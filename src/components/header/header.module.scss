@@ -1,0 +1,13 @@
+.header {
+  color: var(--white);
+  background: var(--grey-900);
+}
+
+.wrapp {
+  display: grid;
+  align-items: center;
+  grid-template: 4.0625rem / auto 1fr auto auto auto auto;
+  gap: 4%;
+  // font-family: "Bebas Neue";
+  // font-size: 1rem;
+}

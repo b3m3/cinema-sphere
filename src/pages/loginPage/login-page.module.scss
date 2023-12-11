@@ -1,0 +1,80 @@
+.wrapp {
+  margin: 50px auto 0 auto;
+  max-width: 600px;
+  display: grid;
+  justify-items: center;
+  grid-template: auto / 65% 35%;
+  font-weight: 600;
+
+  @media screen and (max-width: 768px) {
+    grid-template: auto / 1fr;
+  }
+}
+
+.form {
+  padding: 1.25rem;
+  width: 100%;
+  border-radius: .25rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.right {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.25rem;
+  border-left: 1px solid var(--grey-100);
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    border: none;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: .625rem;
+}
+
+.input {
+  padding: 0 .625rem;
+  min-height: 35px;
+  border: 1px solid var(--grey-100);
+  border-radius: .25rem;
+
+  &:focus {
+    border: 1px solid var(--orange-400);
+  }
+}
+
+.button {
+  margin-top: 1.25rem;
+  background: var(--grey-900);
+  color: var(--white);
+  border-radius: 1.5625rem;
+  min-height: 45px;
+  transition: background 0.3s;
+
+  &:hover {
+    background: var(--grey-800);
+  }
+
+  &_orange {
+    background: var(--orange-400);
+    color: var(--grey-900);
+
+    &:hover {
+      background: var(--orange-300);
+    }
+  }
+}
+
+.label {
+  font-weight: 300;
+  font-size: .8125rem;
+}

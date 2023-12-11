@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 * {
   padding: 0;
@@ -14,8 +14,13 @@
 :root {
   --blue-400: #2264e2;
   --grey-900: #121212;
+  --grey-800: #353535;
+  --grey-100: #dddddd;
   --orange-400: #e2b616;
+  --orange-300: #e9c440;
   --white: #fff;
+  --white-01: rgba(255, 255, 255, .1);
+  --radius-4: 4px;
 }
 
 html {
@@ -33,7 +38,34 @@ body {
   height: 100%;
 }
 
-
 #root {
   height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.App-wrapp {
+  flex: 1 1 auto;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+input {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 .9375rem;
 }
