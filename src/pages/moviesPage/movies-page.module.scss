@@ -1,0 +1,14 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+}
+
+.body {
+  margin: 3.125rem 0;
+  display: grid;
+  column-gap: 1.25rem;
+  row-gap: 1.875rem;
+  grid-template: auto / repeat(6, 1fr);
+}

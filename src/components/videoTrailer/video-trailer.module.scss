@@ -1,0 +1,59 @@
+.wrapp {
+  position: relative;
+  height: 100%;
+}
+
+.mask {
+  &.hide {
+    opacity: 0;
+  }
+
+  &::before {
+    position: absolute;
+    z-index: 3;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #000 100%);
+  }
+
+  & img {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+  }
+
+  & button {
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    padding: .625rem;
+
+    & span {
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: .625rem;
+      font-size: 1.625rem;
+    }
+  }
+}
+
+.iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+}

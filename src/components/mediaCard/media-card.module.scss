@@ -1,0 +1,22 @@
+.wrapp {
+  border-radius: var(--radius-4);
+  overflow: hidden;
+  display: grid;
+  grid-template: auto 1fr / auto;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  height: 100%;
+  padding: 15px 10px 10px 10px;
+  background: var(--grey-900);
+
+  &__title {
+    flex: 1 1 auto;
+    font-weight: 500;
+    font-size: .9375rem;
+    color: var(--white);
+  }
+}

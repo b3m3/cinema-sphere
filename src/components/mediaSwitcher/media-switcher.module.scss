@@ -1,0 +1,53 @@
+.wrapp {
+  position: relative;
+}
+
+.slider {
+  position: absolute;
+  content: '';
+  bottom: -12px;
+  left: 0px;
+  height: 3px;
+  background: var(--orange-400);
+  transition: left .3s;
+  transition-duration: .1s;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  margin-top: 3.125rem;
+}
+
+.button {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 25px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-bottom: 3px solid var(--orange-400);
+    transform: scale(0);
+    transition: transform .2s;
+
+  }
+
+  &.active {
+    &::before {
+      transform: scale(1);
+    }
+  }
+
+
+  @media (any-hover: hover) {
+    &:hover {
+      background: var(--white-01);
+    }
+  }
+}

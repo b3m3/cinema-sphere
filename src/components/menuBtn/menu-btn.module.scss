@@ -1,0 +1,14 @@
+.button {
+  padding: .3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+  border-radius: var(--radius-4);
+
+  @media (any-hover: hover) {
+    &:hover {
+      background: var(--white-01);
+    }
+  }
+}

@@ -13,13 +13,16 @@
 
 :root {
   --blue-400: #2264e2;
+  --blue-400-01: rgba(179, 189, 208, 0.1);
   --grey-900: #121212;
   --grey-800: #353535;
+  --grey-400: #a0a0a0;
   --grey-100: #dddddd;
   --orange-400: #e2b616;
   --orange-300: #e9c440;
   --white: #fff;
   --white-01: rgba(255, 255, 255, .1);
+  --black: #000;
   --radius-4: 4px;
 }
 
@@ -34,7 +37,8 @@ body {
   font-size: .875rem;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: var(--grey-900);
+  background-color: var(--black);
+  color: var(--white);
   height: 100%;
 }
 
@@ -52,6 +56,14 @@ body {
   flex: 1 1 auto;
 }
 
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 .9375rem;
+  height: 100%;
+}
+
+
 button {
   cursor: pointer;
   background: none;
@@ -62,10 +74,4 @@ input {
   background: none;
   border: none;
   outline: none;
-}
-
-.container {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 .9375rem;
 }

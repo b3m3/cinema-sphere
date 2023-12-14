@@ -1,0 +1,10 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  color: var(--grey-400);
+
+  & svg {
+    color: var(--orange-400);
+  }
+}

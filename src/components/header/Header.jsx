@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
-
 import Logo from '../logo/Logo';
 import SearchBar from '../searchBar/SearchBar';
 import Language from '../language/Language';
-
-import { BsBookmarkStarFill } from "react-icons/bs";
+import WatchListBtn from '../watchListBtn/WatchListBtn';
+import SingInBtn from '../singInBtn/SingInBtn';
+import MenuBtn from '../menuBtn/MenuBtn';
+import Navbar from '../navbar/Navbar';
 
 import style from './header.module.scss';
 
@@ -15,10 +15,11 @@ const Header = () => {
         <div className={style.wrapp}>
           <Logo />
           <SearchBar />
-          <div style={{display:'flex', gap:'1px', alignItems:'center'}}>WatchList <BsBookmarkStarFill style={{fontSize:'16px'}}/></div>
-          <Link to='/login'>Sing In</Link>
+          <WatchListBtn />
+          <SingInBtn />
           <Language />
-          <div>Menu</div>
+          <MenuBtn />
+          <Navbar />
         </div>
       </div>
     </header>
