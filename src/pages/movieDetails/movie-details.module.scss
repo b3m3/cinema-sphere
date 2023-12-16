@@ -99,10 +99,47 @@
           object-fit: cover;
         }
       }
-      &:nth-child(2) {
+
+      &:nth-child(3) {
+        display: flex;
+        flex-direction: column;
+        gap: .625rem;
       }
     }
 
+    &_media{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: .3125rem;
+      background: var(--white-01);
+      height: 100%;
+      border: 1px solid #000;
+    }
+  }
+
+  &__bottom {
+    &_genres {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .625rem;
+
+      & li {
+        font-weight: 300;
+        padding: 5px 10px;
+        border-radius: 1.5625rem;
+        border: 2px solid var(--grey-400);
+      }
+    }
+
+    &_block {
+      display: grid;
+      align-items: start;
+      grid-template: auto / minmax(auto, 80%) minmax(auto, 20%);
+      gap: 3.125rem;
+    }
   }
 }
 
@@ -112,4 +149,13 @@
 
   &__wrapp {
   }
+}
+
+.logo_company {
+  width: 95px;
+  height: 55px;
+  object-fit: contain;
+  background: var(--blue-400);
+  padding: 10px;
+  border-radius: var(--radius-4);
 }

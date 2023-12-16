@@ -9,7 +9,7 @@ const VideoTrailer = ({url}) => {
   return (
     <div className={style.wrapp}>  
       <div className={`${style.mask} ${play ? style.hide : ''}`}>
-        <img src={url &&`https://img.youtube.com/vi/${url}/mqdefault.jpg`} alt="Youtube trailer" />
+        <img src={url &&`https://img.youtube.com/vi/${url}/maxresdefault.jpg`} alt="Youtube trailer" />
         <button onClick={() => setPlay(true)}>
           <span>
             <IoPlayCircleOutline style={{fontSize: '5rem'}} /> Play Trailer

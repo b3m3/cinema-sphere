@@ -1,0 +1,22 @@
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  text-decoration: underline;
+
+  &:not(:last-child) {
+    margin-right: .625rem;
+    &::before {
+      position: absolute;
+      content: '•';
+      bottom: 0;
+      right: -13px;
+      color: var(--grey-400);
+    }
+  }
+
+  & svg {
+    font-size: 1.1rem;
+  }
+}
