@@ -25,7 +25,7 @@ const Links = ({category, id, homepage}) => {
   const renderLinks = (id, linkBase, linkId, name) => {
     if (links.res[`${id}`]) {
       return (
-        <a className={style.link} href={`${linkBase}${linkId}`} rel="noopener noreferrer" target='__blank'>
+        <a key={id} className={style.link} href={`${linkBase}${linkId}`} rel="noopener noreferrer" target='__blank'>
           {name}
           <LiaExternalLinkAltSolid />
         </a>

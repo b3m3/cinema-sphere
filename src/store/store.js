@@ -8,6 +8,7 @@ import fetchVideos from './slices/fetchDataSlice';
 import fetchImages from './slices/fetchDataSlice';
 import fetchGenresList from './slices/fetchDataSlice';
 import fetchLinks from './slices/fetchDataSlice';
+import fetchEnglishVideo from './slices/fetchDataSlice';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     data: fetchDataSlice,
     details: fetchDetails,
     videos: fetchVideos,
+    englishVideo: fetchEnglishVideo,
     images: fetchImages,
     genresList: fetchGenresList,
     links: fetchLinks

@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 
-import { fetchDetails, fetchVideos, fetchImages } from '../../store/slices/fetchDataSlice';
-import { IMAGE_URL } from '../../constants/api';
+import { fetchDetails, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
@@ -15,16 +14,19 @@ import Details from '../../components/details/Details';
 import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
 
 import { FaRegImage } from "react-icons/fa6";
-import { FaPhotoVideo } from "react-icons/fa";
-
 
 import style from './movie-details.module.scss';
+import BackgroundImage from '../../components/backgroundImage/BackgroundImage';
+import PosterImage from '../../components/posterImage/PosterImage';
+import Loading from '../../components/loading/Loading';
+import Error from '../../components/error/Error';
 
 const MovieDetails = () => {
   const {id} = useParams();
   const {lang} = useSelector(state => state.lang);
   const {details} = useSelector(state => state.details);
   const {videos} = useSelector(state => state.videos);
+  const {englishVideo} = useSelector(state => state.englishVideo);
   const {images} = useSelector(state => state.images);
   const dispatch = useDispatch();
 
@@ -33,24 +35,27 @@ const MovieDetails = () => {
   useEffect(() =>{
     dispatch(fetchDetails({category, lang, id}))
     dispatch(fetchVideos({category, lang, id}))
+    dispatch(fetchEnglishVideo({category, id}))
     dispatch(fetchImages({category, lang, id}))
   }, [dispatch, category, lang, id]);
 
-  console.log(details.res && details.res);
+  const firstTrailer = useMemo(() => {
+    return videos.res?.results.length > 0 ? videos.res.results[0].key 
+      : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
+  }, [videos, englishVideo]);
 
   return (
     <div className={style.wrapp}>
+      { details.loading && <Loading /> }
+      { details.status && <Error status={details.status} />}
+
       {
         details.res &&
         <>
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <img 
-                  src={`${IMAGE_URL}/original/${details.res.backdrop_path}`} 
-                  alt={details.res.title}
-                  className={style.top__backgroung}
-                />
+                <BackgroundImage backdrop_path={details.res.backdrop_path} />
 
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
@@ -66,24 +71,12 @@ const MovieDetails = () => {
                 </div>
 
                 <div className={style.top__center}>
-                  <ul>
-                    <li>
-                      <img src={`${IMAGE_URL}/w500/${details.res.poster_path}`} alt={details.res.title} />
-                    </li>
-                    <li>
-                      {videos.res?.results.length > 0 && <VideoTrailer url={videos.res.results[0].key} />}
-                    </li>
-                    <li>
-                      <div className={style.top__center_media}>
-                        <FaRegImage />
-                        <span>{images?.res?.posters.length > 1 ? images?.res?.posters.length + ' IMAGES' : images?.res?.posters.length + ' IMAGE'}</span>
-                      </div>
-                      <div className={style.top__center_media}>
-                        <FaPhotoVideo />
-                        <span>{videos?.res?.results.length > 1 ? videos?.res?.results.length + ' VIDEOS' : videos?.res?.results.length + ' VIDEO'}</span>
-                      </div>
-                    </li>
-                  </ul>
+                  <PosterImage title={details.res.title} poster_path={details.res.poster_path} />
+                  { firstTrailer && <VideoTrailer url={firstTrailer} loading={videos.loading}/> }
+
+                  <div style={{display: 'flex', flexDirection: 'column', gap: '.625rem'}}>
+                    
+                  </div>
                 </div>
 
                 <div className={style.top__bottom}>
@@ -96,13 +89,6 @@ const MovieDetails = () => {
                   <div className={style.top__bottom_block}>
                     <Details id={id} category={category} {...details.res && details.res} />
                     <div>
-                      <div>
-                        {/* {details.res.production_companies.map(({id, name, logo_path}) => {
-                          logo_path && (
-                            <img className={style.logo_company}  key={id} src={IMAGE_URL+'w500'+logo_path} alt={name} />
-                          )
-                        })} */}
-                      </div>
                       <AddToWatchlist orange/>
                     </div>
                   </div>

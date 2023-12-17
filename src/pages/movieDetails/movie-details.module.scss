@@ -3,32 +3,6 @@
   z-index: 1;
   padding: .625rem 0;
 
-  &__wrapp {
-    display: flex;
-    flex-direction: column;
-    gap: .625rem;
-  }
-
-  &__backgroung {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &__backdrop {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   &::after {
     position: absolute;
     z-index: -1;
@@ -39,6 +13,12 @@
     height: 100%;
     background: rgba(0, 0, 0, .7);
     backdrop-filter: blur(50px);
+  }
+
+  &__wrapp {
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
   }
 
   &__head {
@@ -78,34 +58,9 @@
   }
 
   &__center {
-    & ul {
-      display: grid;
-      grid-template: auto / 22% 1fr 20%;
-      gap: .625rem;
-    }
-    
-    & li {
-      &:nth-child(1) {
-        position: relative;
-        padding: 74% 0;
-  
-        & img {
-          position: absolute;
-          content: '';
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      &:nth-child(3) {
-        display: flex;
-        flex-direction: column;
-        gap: .625rem;
-      }
-    }
+    display: grid;
+    grid-template: auto / 22% 1fr 20%;
+    gap: .625rem;
 
     &_media{
       display: flex;
@@ -149,13 +104,4 @@
 
   &__wrapp {
   }
-}
-
-.logo_company {
-  width: 95px;
-  height: 55px;
-  object-fit: contain;
-  background: var(--blue-400);
-  padding: 10px;
-  border-radius: var(--radius-4);
 }

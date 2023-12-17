@@ -2,6 +2,19 @@
   position: relative;
   overflow: hidden;
   padding: 75% 0;
+  cursor: auto;
+
+  &.link {
+    cursor: pointer;
+    
+    & img {
+      @media (any-hover: hover) {
+        &:hover {
+          opacity: .8;
+        }
+      }
+    }
+  }
 
   & img {
     position: absolute;
@@ -11,11 +24,5 @@
     height: 100%;
     object-fit: cover;
     transition: .2s;
-
-    @media (any-hover: hover) {
-      &:hover {
-        opacity: .8;
-      }
-    }
   }
 }

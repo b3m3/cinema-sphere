@@ -9,6 +9,7 @@ const initialState = {
   cardData: {loading: false, status: null, res: null},
   details: {loading: false, status: null, res: null},
   videos: {loading: false, status: null, res: null},
+  englishVideo: {loading: false, status: null, res: null},
   images: {loading: false, status: null, res: null},
   genresList: {loading: false, status: null, res: null},
   links: {loading: false, status: null, res: null},
@@ -61,6 +62,21 @@ export const fetchVideos = createAsyncThunk(
   }
 )
 
+export const fetchEnglishVideo = createAsyncThunk(
+  'fetch/fetchEnglishVideo',
+  async({category, id}, {rejectWithValue}) => {
+    try {
+      if (category && id) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/videos?api_key=${API_KEY}&language=en`);
+
+        return data
+      }
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
 export const fetchImages = createAsyncThunk(
   'fetch/fetchImages',
   async({category, id, lang}, {rejectWithValue}) => {
@@ -96,7 +112,6 @@ export const fetchLinks = createAsyncThunk(
   async({category, id}, {rejectWithValue}) => {
     try {
       if (category && id) {
-        console.log("QQWERTY", `${BASE_URL}${category}/${id}/external_ids?api_key=${API_KEY}`);
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/external_ids?api_key=${API_KEY}`);
 
         return data
@@ -132,6 +147,7 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchCardData, 'cardData')
     createFetchCase(builder, fetchDetails, 'details')
     createFetchCase(builder, fetchVideos, 'videos')
+    createFetchCase(builder, fetchEnglishVideo, 'englishVideo')
     createFetchCase(builder, fetchImages, 'images')
     createFetchCase(builder, fetchGenresList, 'genresList')
     createFetchCase(builder, fetchLinks, 'links')

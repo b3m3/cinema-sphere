@@ -9,7 +9,7 @@ const MediaCard = (params) => {
 
   return (
     <div className={style.wrapp}>
-      <PosterImage poster_path={poster_path} title={title} id={id} />
+      <PosterImage poster_path={poster_path} title={title} id={id} link/>
 
       <div className={style.body}>
         <Rating rating={vote_average} />

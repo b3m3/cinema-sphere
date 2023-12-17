@@ -33,7 +33,7 @@ const Details = ({id, category, release_date, production_countries, production_c
         <li>
           <h3>Languages:</h3>
           {spoken_languages && spoken_languages.map(({name}) => (
-            <span>{name}</span>
+            <span key={name}>{name}</span>
           ))}
         </li>
         <li>
