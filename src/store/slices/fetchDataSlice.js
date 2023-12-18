@@ -79,10 +79,10 @@ export const fetchEnglishVideo = createAsyncThunk(
 
 export const fetchImages = createAsyncThunk(
   'fetch/fetchImages',
-  async({category, id, lang}, {rejectWithValue}) => {
+  async({category, id}, {rejectWithValue}) => {
     try {
-      if (category && id && lang) {
-        const {data} = await axios.get(`${BASE_URL}${category}/${id}/images?api_key=${API_KEY}&language=${lang}`);
+      if (category && id) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/images?api_key=${API_KEY}`);
 
         return data
       }

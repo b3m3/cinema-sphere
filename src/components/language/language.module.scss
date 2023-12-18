@@ -26,7 +26,6 @@
 }
 
 .list {
-  padding: 5px;
   position: absolute;
   content: '';
   left: 0;
@@ -47,7 +46,7 @@
   cursor: pointer;
   font-size: 12.5px;
   width: 100%;
-  line-height: 2;
+  padding: .5rem;
   transition: background .2s;
 
   @media (any-hover: hover) {

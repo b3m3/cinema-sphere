@@ -2,12 +2,17 @@ import { FaPhotoVideo } from "react-icons/fa";
 
 import style from './videos.module.scss';
 
-const Videos = ({videos}) => {
-  console.log(videos && videos);
+const Videos = ({videos, englishVideo}) => {
+  const numberOfVideos = videos.res?.results.length > 0 ? videos.res?.results.length
+    : englishVideo.res?.results.length > 0 ? englishVideo.res?.results.length : 0;
+
   return (
-    <div className={style.wrapp}>
-      
-    </div>
+    <button className={style.wrapp}>
+      <FaPhotoVideo />
+      <span>
+        { numberOfVideos > 1 ? numberOfVideos + ' VIDEOS' : numberOfVideos + ' VIDEO' } 
+      </span>
+    </button>
   );
 }
 

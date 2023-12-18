@@ -24,10 +24,28 @@ const Language = () => {
   }
 
   useEffect(() => {
-    // Get language in local storage
     const getStorageLang = localStorage.getItem('lang');
     dispatch(changeLang(getStorageLang ? getStorageLang : 'en'));
-  }, [dispatch]);
+  }, [dispatch]); // Get language in local storage
+
+  useEffect(() => {
+    const handleMove = event => {
+      if (event.target && !event.target.closest('HEADER')) {
+        setIsOpen(false)
+        return
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mouseout', handleMove);
+    } else {
+      document.removeEventListener('mouseout', handleMove);
+    }
+
+    return () => {
+      document.removeEventListener('mouseout', handleMove);
+    }
+  }, [isOpen]);
   
   return (
     <div className={style.wrapp}>

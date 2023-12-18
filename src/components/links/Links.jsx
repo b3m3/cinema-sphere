@@ -22,10 +22,10 @@ const Links = ({category, id, homepage}) => {
     dispatch(fetchLinks({category, id}))
   }, [dispatch, category, id]);
 
-  const renderLinks = (id, linkBase, linkId, name) => {
+  const renderLinks = (id, linkBase, linkKey, name) => {
     if (links.res[`${id}`]) {
       return (
-        <a key={id} className={style.link} href={`${linkBase}${linkId}`} rel="noopener noreferrer" target='__blank'>
+        <a key={id} className={style.link} href={`${linkBase}${linkKey}`} rel="noopener noreferrer" target='__blank'>
           {name}
           <LiaExternalLinkAltSolid />
         </a>
@@ -46,7 +46,7 @@ const Links = ({category, id, homepage}) => {
               </a>
           }
           {linksArr.map(({id, linkBase, name}) => (
-            renderLinks(id, linkBase, links.res.id, name)
+            renderLinks(id, linkBase, links.res[`${id}`], name)
           ))}
         </>
       }

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 
-import { fetchDetails, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
+import { fetchDetails, fetchVideos, fetchEnglishVideo } from '../../store/slices/fetchDataSlice';
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
@@ -13,13 +13,13 @@ import Time from '../../components/time/Time';
 import Details from '../../components/details/Details';
 import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
 
-import { FaRegImage } from "react-icons/fa6";
-
 import style from './movie-details.module.scss';
 import BackgroundImage from '../../components/backgroundImage/BackgroundImage';
 import PosterImage from '../../components/posterImage/PosterImage';
 import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
+import Videos from '../../components/videos/Videos';
+import Images from '../../components/images/Images';
 
 const MovieDetails = () => {
   const {id} = useParams();
@@ -27,7 +27,6 @@ const MovieDetails = () => {
   const {details} = useSelector(state => state.details);
   const {videos} = useSelector(state => state.videos);
   const {englishVideo} = useSelector(state => state.englishVideo);
-  const {images} = useSelector(state => state.images);
   const dispatch = useDispatch();
 
   const category = useCategoryFromLocation();
@@ -36,7 +35,6 @@ const MovieDetails = () => {
     dispatch(fetchDetails({category, lang, id}))
     dispatch(fetchVideos({category, lang, id}))
     dispatch(fetchEnglishVideo({category, id}))
-    dispatch(fetchImages({category, lang, id}))
   }, [dispatch, category, lang, id]);
 
   const firstTrailer = useMemo(() => {
@@ -75,7 +73,8 @@ const MovieDetails = () => {
                   { firstTrailer && <VideoTrailer url={firstTrailer} loading={videos.loading}/> }
 
                   <div style={{display: 'flex', flexDirection: 'column', gap: '.625rem'}}>
-                    
+                    <Videos videos={videos} englishVideo={englishVideo} />
+                    <Images category={category} id={id} />
                   </div>
                 </div>
 
