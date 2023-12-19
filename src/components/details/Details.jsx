@@ -8,7 +8,7 @@ const Details = ({id, category, release_date, production_countries, production_c
   
   const releaseDate = (releaseDate) => {
     const date = releaseDate && releaseDate.split('-');
-    return `${month[+date[1] + 1]} ${date[2]}, ${date[0]}`;
+    return `${month[+date[1] - 1]} ${date[2]}, ${date[0]}`;
   }
   
   return (

@@ -1,0 +1,16 @@
+.wrapp {
+  position: relative;
+  padding-left: .9375rem;
+  font-weight: 600;
+  font-size: 2rem;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: .25rem;
+    height: 100%;
+    background: var(--orange-400);
+  }
+}
