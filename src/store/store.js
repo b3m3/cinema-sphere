@@ -9,9 +9,11 @@ import fetchImages from './slices/fetchDataSlice';
 import fetchGenresList from './slices/fetchDataSlice';
 import fetchLinks from './slices/fetchDataSlice';
 import fetchEnglishVideo from './slices/fetchDataSlice';
+import authSlice from './slices/authSlice';
 
 const store = configureStore({
   reducer: {
+    auth: authSlice,
     lang: languageSlice,
     menu: menuSlice,
     data: fetchDataSlice,

@@ -27,7 +27,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 1.25rem;
-  border-left: 1px solid var(--grey-100);
+  border-left: 1px solid var(--grey-800);
   width: 100%;
 
   @media screen and (max-width: 768px) {
@@ -65,6 +65,9 @@
   }
 
   &_orange {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--orange-400);
     color: var(--grey-900);
 
