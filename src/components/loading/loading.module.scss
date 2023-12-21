@@ -1,5 +1,12 @@
 .wrapp {
-  margin-top: 3rem;
+  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  & img {
+    position: absolute;
+    object-fit: contain;
+  }
 }

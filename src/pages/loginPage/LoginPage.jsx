@@ -1,7 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { createRequestToken, createSessionWithLogin, createSession, checkAuth } from '../../store/slices/authSlice';
+
+import Loading from '../../components/loading/Loading';
 
 import style from './login-page.module.scss';
 
@@ -9,9 +12,10 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const {loading, status, token, validate, session, isAuth} = useSelector(state => state.auth);
+  const {loading, status, token, validate, user} = useSelector(state => state.auth);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
   const auth = (event) => {
     event.preventDefault();
     dispatch(createRequestToken());
@@ -30,30 +34,45 @@ const LoginPage = () => {
   }, [dispatch, validate]);
 
   useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch])
-
-
-  console.log('loading', loading);
-  console.log('status', status);
-  console.log('session', session);
-  console.log('isAuth', isAuth);
+    if(user.isAuth) {
+      dispatch(checkAuth())
+      navigate('/')
+    }
+  }, [dispatch, navigate, user]);
 
   return (
     <section className={style.wrapp}>
       <form className={style.form} onSubmit={auth}>
         <div className={style.row}>
           <p>Username</p>
-          <input className={style.input} type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
+          <input 
+            className={style.input} 
+            type="text" 
+            name="username" 
+            onChange={(e) => setUsername(e.target.value)}
+            style={status && {border: '2px solid var(--red-400)'}}
+          />
         </div>
 
         <div className={style.row}>
           <p>Password</p>
-          <input className={style.input} type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+          <input 
+            className={style.input} 
+            type="password" 
+            name="password" 
+            onChange={(e) => setPassword(e.target.value)}
+            style={status && {border: '2px solid var(--red-400)'}}
+          />
         </div>
 
+        { status && <p className={style.error}>Wrong login or password</p> }
+
         <div className={style.row}>
-          <button className={style.button}>Sing In</button>
+          <button
+            className={`${style.button} ${username.length < 4 || password.length < 4 || loading ? style.ban : ''}`}
+          >
+            {loading ? <Loading spinner size={100}/> : <span>Sing In</span>}
+          </button>
         </div>
       </form>
 

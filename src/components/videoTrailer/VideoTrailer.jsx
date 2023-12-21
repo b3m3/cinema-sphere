@@ -9,8 +9,8 @@ const VideoTrailer = ({url, loading}) => {
   const [play, setPlay] = useState(false);
 
   return (
-    <>
-      { loading && <Loading spinner /> }
+    <div>
+      { loading && <Loading spinner size={30} /> }
       { 
         url &&
           <div className={style.wrapp}>  
@@ -32,7 +32,7 @@ const VideoTrailer = ({url, loading}) => {
             />
           </div>
       }
-    </>
+    </div>
   );
 }
 

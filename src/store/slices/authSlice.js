@@ -11,7 +11,7 @@ const initialState = {
   status: null,
   token: null,
   validate: null,
-  isAuth: false
+  user: {isAuth: false, data: null, loading: false, status: null}
 }
 
 export const createRequestToken = createAsyncThunk(
@@ -78,7 +78,6 @@ export const checkAuth = createAsyncThunk(
         return data;
       }
     } catch (error) {
-      window.localStorage.removeItem('session');
       return rejectWithValue(error);
     }
   }
@@ -87,61 +86,76 @@ export const checkAuth = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    signOut: (state) => {
+      state.user = {isAuth: false, data: null, loading: false, status: null};
+      window.localStorage.removeItem('session');
+    }
+  },
   extraReducers: (builder) => {
     // Create Request Token
     builder.addCase(createRequestToken.pending, (state) => {
       state.loading = true;
       state.token = null;
+      state.validate = null;
       state.status = null;
+      state.isAuth = false;
+      state.user = {isAuth: false, data: null, loading: false, status: null};
     })
     builder.addCase(createRequestToken.fulfilled, (state, {payload}) => {
       state.token = payload.request_token;
     })
     builder.addCase(createRequestToken.rejected, (state, {payload}) => {
       state.loading = false;
-      state.token = null;
       state.status = payload;
+      state.token = null;
+      state.user = {isAuth: false, data: null, loading: false, status: null};
     })
 
     // Create Session With Login
-    builder.addCase(createSessionWithLogin.pending, (state) => {
-      state.status = null;
-    })
     builder.addCase(createSessionWithLogin.fulfilled, (state, {payload}) => {
       state.validate = payload.request_token;
+      state.status = null;
     })
     builder.addCase(createSessionWithLogin.rejected, (state, {payload}) => {
       state.loading = false;
       state.status = payload;
+      state.validate = null;
+      state.token = null;
+      state.user = {isAuth: false, data: null, loading: false, status: null};
     })
 
     // Create Session
-    builder.addCase(createSession.pending, (state) => {
-      state.status = null;
-    })
     builder.addCase(createSession.fulfilled, (state) => {
        state.loading = false;
        state.token = null;
        state.validate = null;
+       state.user.isAuth = true
     })
     builder.addCase(createSession.rejected, (state, {payload}) => {
       state.loading = false;
       state.status = payload;
+      state.user = {isAuth: false, data: null, loading: false, status: null};
     })
 
     // Check Auth
-    builder.addCase(checkAuth.pending, (state) => {
-      state.loading = true;
+    builder.addCase(checkAuth.pending, (state, {payload}) => {
+      state.user = {isAuth: false, data: null, loading: true, status: null};
     })
     builder.addCase(checkAuth.fulfilled, (state, {payload}) => {
-       state.isAuth = payload;
+      state.user = {
+        isAuth: payload ? true : false, 
+        data: payload,
+        loading: false, 
+        status: null
+      };
     })
     builder.addCase(checkAuth.rejected, (state, {payload}) => {
-      state.loading = false;
-      state.status = payload;
+      state.user = {isAuth: null, data: null, loading: false, status: payload};
+      window.localStorage.removeItem('session');
     })
   }
 })
 
 export default authSlice.reducer;
+export const { signOut } = authSlice.actions;

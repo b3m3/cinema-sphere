@@ -53,7 +53,7 @@
 }
 
 .button {
-  margin-top: 1.25rem;
+  margin-top: .625rem;
   background: var(--grey-900);
   color: var(--white);
   border-radius: 1.5625rem;
@@ -62,6 +62,11 @@
 
   &:hover {
     background: var(--grey-800);
+  }
+
+  &.ban {
+    pointer-events: none;
+    opacity: .7;
   }
 
   &_orange {
@@ -75,6 +80,13 @@
       background: var(--orange-300);
     }
   }
+}
+
+.error {
+  font-weight: 500;
+  font-size: .8125rem;
+  color: var(--red-400);
+  text-align: center;
 }
 
 .label {

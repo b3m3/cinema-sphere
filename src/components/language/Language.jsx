@@ -5,6 +5,8 @@ import { changeLang } from '../../store/slices/languageSlice';
 
 import { MdOutlineArrowDropDown } from "react-icons/md";
 
+import { autoCloser } from '../../utils/functions';
+
 import style from './language.module.scss';
 
 const langArr = [
@@ -29,22 +31,7 @@ const Language = () => {
   }, [dispatch]); // Get language in local storage
 
   useEffect(() => {
-    const handleMove = event => {
-      if (event.target && !event.target.closest('HEADER')) {
-        setIsOpen(false)
-        return
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener('mouseout', handleMove);
-    } else {
-      document.removeEventListener('mouseout', handleMove);
-    }
-
-    return () => {
-      document.removeEventListener('mouseout', handleMove);
-    }
+    autoCloser('HEADER', isOpen, setIsOpen);
   }, [isOpen]);
   
   return (
