@@ -70,6 +70,13 @@
   }
 }
 
+.hover {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .close {
   display: flex;
   justify-content: center;
@@ -83,5 +90,18 @@
     &:hover {
       background: var(--white-01);
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .hover {
+    display: flex;
   }
 }

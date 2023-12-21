@@ -10,3 +10,12 @@
   grid-template: 4.0625rem / auto 1fr auto auto auto auto;
   gap: 3.5%;
 }
+
+@media screen and (max-width: 768px) {
+  .wrapp {
+    grid-template: 4.0625rem / 5.625rem 1fr 3.125rem 2rem;
+  }
+  .hide {
+    display: none;
+  }
+}

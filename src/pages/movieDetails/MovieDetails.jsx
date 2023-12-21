@@ -45,8 +45,6 @@ const MovieDetails = () => {
       : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
   }, [videos, englishVideo]);
 
-  console.log(details.res);
-
   return (
     <div className={style.wrapp}>
       { details.loading && <Loading /> }

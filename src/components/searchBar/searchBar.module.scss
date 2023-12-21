@@ -1,7 +1,7 @@
-.wrapp {
+.search {
   display: flex;
   align-items: center;
-  gap: .3125rem;
+  gap: .625rem;
   background: var(--white);
   color: var(--grey-900);
 
@@ -11,17 +11,138 @@
   border: 2px solid var(--orange-400);
 }
 
+.close {
+  display: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-right: 1px solid var(--grey-400);
+  padding-right: .3125rem;
+
+  & span {
+    white-space: nowrap;
+  }
+
+  & ul {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 2.1875rem;
+    z-index: 10;
+    text-align: center;
+    background: var(--grey-900);
+    border-radius: var(--radius-4);
+    border: 2px solid var(--white-01);
+    display: none;
+  
+    &.open_select {
+      display: block;
+    }
+
+    & li {
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 12.5px;
+      width: 100%;
+      padding: .5rem;
+      transition: background .2s;
+      color: var(--white);
+    
+      @media (any-hover: hover) {
+        &:hover {
+          background: var(--white-01);
+        }
+      }
+    }
+  }
+}
+
 .input {
   width: 100%;
   height: 100%;
 }
 
 .button {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+  color: var(--grey-900);
 
   svg {
     font-size: 1.375rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapp {
+    display: flex;
+    justify-content: flex-end;
+    border: none;
+    background: none;
+  }
+
+  .search {
+    position: absolute;
+    z-index: 10;
+    content: '';
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    background: var(--grey-900);
+    transition: all .2s;
+    pointer-events: none;
+    opacity: 0;
+
+    &.open_search {
+      pointer-events: all;
+      opacity: 1;
+      top: 0;
+    }
+  }
+
+  .select {
+    color: var(--orange-400);
+  }
+  
+  .input {
+    color: var(--white);
+    padding-right: 2.5rem;
+  }
+
+  .close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.125rem;
+    position: absolute;
+    z-index: 10;
+    content: '';
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    color: var(--grey-400);
+  }
+  
+  .button {
+    display: flex;
+    flex: 0 1 auto;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background .2s;
+
+    &:hover {
+      background: var(--white-01);
+    }
+
+    & svg {
+      color: #fff;
+    }
   }
 }

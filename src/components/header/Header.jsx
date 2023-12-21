@@ -28,9 +28,13 @@ const Header = () => {
         <div className={style.wrapp}>
           <Logo />
           <SearchBar />
-          <WatchListBtn />
+          <div className={style.hide}>
+            <WatchListBtn />
+          </div>
           { isAuth ? <User /> : <SingInBtn /> }
-          <Language />
+          <div className={style.hide}>
+            <Language />
+          </div>
           <MenuBtn />
           <Navbar />
         </div>

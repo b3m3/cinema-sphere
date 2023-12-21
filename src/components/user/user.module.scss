@@ -60,6 +60,7 @@
   }
 
   &_item {
+    white-space: nowrap;
     cursor: pointer;
     font-size: 12.5px;
     padding: .5rem;
@@ -73,3 +74,11 @@
   }
 }
 
+
+@media screen and (max-width: 950px) {
+  .wrapp {
+    & p {
+      display: none;
+    }
+  }
+}

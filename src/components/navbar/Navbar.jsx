@@ -10,6 +10,8 @@ import { FaUsers } from "react-icons/fa";
 
 import style from './navbar.module.scss';
 import Logo from '../logo/Logo';
+import Language from '../language/Language';
+import WatchListBtn from '../watchListBtn/WatchListBtn';
 
 const array = [
   {
@@ -55,6 +57,10 @@ const Navbar = () => {
         <nav className={style.navbar}>
           <div className={style.top}>
             <Logo onClick={handleClose} />
+            <div className={style.hover}>
+              <Language />
+              <WatchListBtn/>
+            </div>
             <button 
               className={style.close}
               onClick={() => dispatch(isCloseMenu())}
