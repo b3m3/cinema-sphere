@@ -5,11 +5,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: .75rem;
+  gap: .375rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   background: var(--white-01);
-  border-radius: 1.5625rem;
+  border-radius: var(--radius-4);
   color: var(--blue-400);
   transition: background .2s;
 

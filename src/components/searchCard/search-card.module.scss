@@ -1,0 +1,20 @@
+.wrapp {
+  display: grid;
+  grid-template: auto / 3.125rem 1fr;
+  gap: 1.25rem;
+  padding: 10px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: .3125rem;
+
+  & h4 {
+    font-weight: 600;
+  }
+
+  & p {
+    color: var(--grey-400);
+  }
+}

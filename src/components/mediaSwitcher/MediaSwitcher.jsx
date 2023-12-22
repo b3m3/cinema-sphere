@@ -2,6 +2,8 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation'
 
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight  } from "react-icons/md";
+
 import style from './media-switcher.module.scss';
 
 const movieArr = ['popular', 'now_playing', 'upcoming', 'top_rated'];
@@ -32,6 +34,11 @@ const MediaSwitcher = () => {
             </li>
           ))
         }
+
+        <div className={style.navigate}>
+          <MdKeyboardArrowLeft />
+          <MdKeyboardArrowRight />
+        </div>
       </ul>
     </div>
   );

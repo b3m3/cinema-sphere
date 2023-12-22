@@ -1,5 +1,6 @@
 .wrapp {
   position: relative;
+  margin-top: 1.25rem;
 }
 
 .slider {
@@ -13,16 +14,53 @@
   transition-duration: .1s;
 }
 
+.navigate {
+  display: none;
+
+  & svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.875rem;
+    opacity: .75;
+
+    &:first-child {
+      left: -15px;
+    }
+
+    &:last-child {
+      right: -15px;
+    }
+  }
+}
+
 .list {
   display: flex;
   align-items: center;
-  margin-top: 3.125rem;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+      background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+  }
 }
 
 .button {
+  white-space: nowrap;
+  display: block;
   position: relative;
-  font-size: 1rem;
-  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
   padding: 12px 25px;
 
   &::before {
@@ -49,5 +87,11 @@
     &:hover {
       background: var(--white-01);
     }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .navigate {
+    display: block;
   }
 }

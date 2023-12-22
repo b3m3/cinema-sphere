@@ -14,7 +14,7 @@ const PosterImage = ({id, poster_path, title, link}) => {
       className={`${style.poster} ${link ? style.link : ''}`} 
       to={link ? `/${category}/${id}` : ""}
     >
-      <img src={IMAGE_URL ? `${IMAGE_URL}w500/${poster_path}` : Mask} alt={title} />
+      <img src={poster_path ? `${IMAGE_URL}w500/${poster_path}` : Mask} alt={title} />
     </Link>
   );
 }

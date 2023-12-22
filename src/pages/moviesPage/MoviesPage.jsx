@@ -14,7 +14,7 @@ import style from './movies-page.module.scss';
 
 const MoviesPage = () => {
   const {page, filter} = useParams();
-  const {loading, status, res} = useSelector(state => state.data.cardData);
+  const {loading, status, res} = useSelector(state => state.cardData.cardData);
   const {lang} = useSelector(state => state.lang)
   const dispatch = useDispatch();
 
