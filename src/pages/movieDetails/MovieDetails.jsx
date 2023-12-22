@@ -21,6 +21,7 @@ import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
 
 import style from './movie-details.module.scss';
+import MediaCasts from '../../components/mediaCasts/MediaCasts';
 
 const MovieDetails = () => {
   const {id} = useParams();
@@ -99,7 +100,13 @@ const MovieDetails = () => {
           <div className={style.body}>
             <div className="container">
               <div className={style.body__wrapp}>
-                <Overview overview={details.res?.overview} />
+                <div className={style.body__left}>
+                  <Overview overview={details.res?.overview} />
+                  <MediaCasts />
+                </div>
+
+                <div className={style.body__right}>
+                </div>
               </div>
             </div>
           </div>

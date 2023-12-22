@@ -6,13 +6,13 @@ import Mask from './mask.webp'
 
 import style from './poster-image.module.scss';
 
-const PosterImage = ({id, poster_path, title, link}) => {
+const PosterImage = ({id, poster_path, title, link, celeb}) => {
   const category = useCategoryFromLocation();
 
   return (
     <Link 
       className={`${style.poster} ${link ? style.link : ''}`} 
-      to={link ? `/${category}/${id}` : ""}
+      to={link ? `/${celeb ? 'person' : category}/${id}` : ""}
     >
       <img src={poster_path ? `${IMAGE_URL}w500/${poster_path}` : Mask} alt={title} />
     </Link>

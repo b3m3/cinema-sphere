@@ -14,6 +14,7 @@ const initialState = {
   genresList: {loading: false, status: null, res: null},
   links: {loading: false, status: null, res: null},
   search: {loading: false, status: null, res: null},
+  mediaCasts: {loading: false, status: null, res: null},
 }
 
 export const fetchCardData = createAsyncThunk(
@@ -140,6 +141,23 @@ export const fetchSearch = createAsyncThunk(
   }
 )
 
+export const fetchMediaCasts = createAsyncThunk(
+  'fetch/fetchMediaCasts',
+  async({category, id, lang}, {rejectWithValue}) => {
+    try {
+      if (category && id && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}${category}/${id}/credits?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 // Function Create Fetch Case
 const createFetchCase = (builder, asyncThunk, stateName) => {
   builder.addCase(asyncThunk.pending, (state) => {
@@ -174,6 +192,7 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchGenresList, 'genresList')
     createFetchCase(builder, fetchLinks, 'links')
     createFetchCase(builder, fetchSearch, 'search')
+    createFetchCase(builder, fetchMediaCasts, 'mediaCasts')
   }
 })
 

@@ -1,0 +1,12 @@
+.wrapp {
+  margin-top: 3.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.list {
+  display: grid;
+  gap: 1.25rem;
+  grid-template: auto / 1fr 1fr;
+}
