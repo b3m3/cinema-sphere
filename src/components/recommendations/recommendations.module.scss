@@ -1,0 +1,17 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  & h2 {
+    font-weight: 800;
+  }
+
+  & ul {
+    & li {
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--grey-100);
+      }
+    }
+  }
+}

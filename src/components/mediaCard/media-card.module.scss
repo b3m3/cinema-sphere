@@ -3,6 +3,7 @@
   overflow: hidden;
   display: grid;
   grid-template: auto 1fr / auto;
+  height: 100%;
 }
 
 .body {
@@ -18,5 +19,24 @@
     font-weight: 500;
     font-size: .9375rem;
     color: var(--white);
+  }
+
+  &.white {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    
+    & h4 {
+      color: var(--grey-900);
+    }
+
+    & button {
+      background: var(--blue-400-01);
+
+      @media (any-hover: hover) {
+        &:hover {
+          background: var(--grey-100);
+        }
+      }
+    }
   }
 }

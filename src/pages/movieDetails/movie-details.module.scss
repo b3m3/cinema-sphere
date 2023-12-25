@@ -54,7 +54,8 @@
       }
     }
 
-    &_right {}
+    &_right {
+    }
   }
 
   &__center {
@@ -91,15 +92,13 @@
 
   &__wrapp {
     display: grid;
-    grid-template: auto / 1fr 30%;
+    grid-template: auto / 70% 30%;
     gap: 1.875rem;
   }
 
   &__left {
-
   }
 
   &__right {
-
   }
 }

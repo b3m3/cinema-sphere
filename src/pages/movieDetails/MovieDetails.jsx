@@ -19,9 +19,11 @@ import VideosButton from '../../components/videosButton/VideosButton';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
+import MediaCasts from '../../components/mediaCasts/MediaCasts';
+import Recommendations from '../../components/recommendations/Recommendations';
 
 import style from './movie-details.module.scss';
-import MediaCasts from '../../components/mediaCasts/MediaCasts';
+import Similar from '../../components/similar/Similar';
 
 const MovieDetails = () => {
   const {id} = useParams();
@@ -102,10 +104,12 @@ const MovieDetails = () => {
               <div className={style.body__wrapp}>
                 <div className={style.body__left}>
                   <Overview overview={details.res?.overview} />
-                  <MediaCasts />
+                  <Similar id={id} category={category} lang={lang} />
+                  <MediaCasts id={id} category={category} lang={lang} />
                 </div>
 
                 <div className={style.body__right}>
+                  <Recommendations id={id} category={category} lang={lang} />
                 </div>
               </div>
             </div>

@@ -13,6 +13,8 @@ import fetchLinks from './slices/fetchDataSlice';
 import fetchEnglishVideo from './slices/fetchDataSlice';
 import fetchSearch from './slices/fetchDataSlice';
 import fetchMediaCasts from './slices/fetchDataSlice';
+import fetchRecommendations from './slices/fetchDataSlice';
+import fetchSimilar from './slices/fetchDataSlice';
 
 const store = configureStore({
   reducer: {
@@ -27,7 +29,9 @@ const store = configureStore({
     genresList: fetchGenresList,
     links: fetchLinks,
     search: fetchSearch,
-    mediaCasts: fetchMediaCasts
+    mediaCasts: fetchMediaCasts,
+    recommendations: fetchRecommendations,
+    similar: fetchSimilar
   }
 })
 

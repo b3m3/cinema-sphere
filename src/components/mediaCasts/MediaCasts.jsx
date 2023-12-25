@@ -1,21 +1,15 @@
-import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { fetchMediaCasts } from '../../store/slices/fetchDataSlice';
 
 import style from './media-casts.module.scss';
 import CelebCard from '../celebCard/CelebCard';
 import Title from '../title/Title';
 
-const MediaCasts = () => {
+const MediaCasts = ({id, category, lang}) => {
   const {res} = useSelector(state => state.mediaCasts.mediaCasts);
-  const {lang} = useSelector(state => state.lang);
   const dispatch = useDispatch();
-  const {id} = useParams();
-
-  const category = useCategoryFromLocation();
 
   useEffect(() => {
     dispatch(fetchMediaCasts({category, id, lang}))

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { autoCloser } from "../../utils/functions";
 import { fetchSearch, clearSearch } from "../../store/slices/fetchDataSlice";
@@ -11,10 +12,9 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 
 import SearchCard from "../searchCard/SearchCard";
 import Loading from "../loading/Loading";
+import Error from "../error/Error";
 
 import style from './searchBar.module.scss';
-import { Link } from "react-router-dom";
-import Error from "../error/Error";
 
 const selectArr = [
   {name: 'All', category: 'multi'},

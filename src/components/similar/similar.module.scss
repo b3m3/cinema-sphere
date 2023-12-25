@@ -1,0 +1,48 @@
+.wrapp {
+  margin-top: 3.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.swiper {
+  width: 100% !important;
+
+  & > div {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr;
+  }
+}
+
+.button {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0, 0, 0, .5);
+  border-radius: var(--radius-4);
+  border: 2px solid var(--grey-100);
+  color: var(--grey-100);
+  padding: 5px 0;
+  transition: .2s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--orange-400);
+      border: 2px solid var(--orange-400);
+    }
+  }
+  
+  &_prev {
+    left: -10px;
+  }
+
+  &_next {
+    right: -10px;
+  }
+}

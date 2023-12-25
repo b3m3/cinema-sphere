@@ -15,6 +15,8 @@ const initialState = {
   links: {loading: false, status: null, res: null},
   search: {loading: false, status: null, res: null},
   mediaCasts: {loading: false, status: null, res: null},
+  recommendations: {loading: false, status: null, res: null},
+  similar: {loading: false, status: null, res: null},
 }
 
 export const fetchCardData = createAsyncThunk(
@@ -158,6 +160,40 @@ export const fetchMediaCasts = createAsyncThunk(
   }
 )
 
+export const fetchRecommendations = createAsyncThunk(
+  'fetch/fetchRecommendations',
+  async ({category, id, lang},{rejectWithValue}) => {
+    try {
+      if (category && id && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}${category}/${id}/recommendations?api_key=${API_KEY}&include_adult=false&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
+export const fetchSimilar = createAsyncThunk(
+  'fetch/fetchSimilar',
+  async ({category, id, lang},{rejectWithValue}) => {
+    try {
+      if (category && id && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}${category}/${id}/similar?api_key=${API_KEY}&include_adult=false&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 // Function Create Fetch Case
 const createFetchCase = (builder, asyncThunk, stateName) => {
   builder.addCase(asyncThunk.pending, (state) => {
@@ -193,6 +229,8 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchLinks, 'links')
     createFetchCase(builder, fetchSearch, 'search')
     createFetchCase(builder, fetchMediaCasts, 'mediaCasts')
+    createFetchCase(builder, fetchRecommendations, 'recommendations')
+    createFetchCase(builder, fetchSimilar, 'similar')
   }
 })
 
