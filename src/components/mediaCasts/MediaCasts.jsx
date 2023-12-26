@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchMediaCasts } from '../../store/slices/fetchDataSlice';
-
-import style from './media-casts.module.scss';
 import CelebCard from '../celebCard/CelebCard';
 import Title from '../title/Title';
+
+import style from './media-casts.module.scss';
 
 const MediaCasts = ({id, category, lang}) => {
   const {res} = useSelector(state => state.mediaCasts.mediaCasts);

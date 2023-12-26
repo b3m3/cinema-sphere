@@ -88,17 +88,23 @@
 .body {
   background: #fff;
   color: var(--grey-900);
-  padding: 1rem 0;
+  padding: 1rem 0 3rem 0;
 
   &__wrapp {
     display: grid;
-    grid-template: auto / 70% 30%;
+    grid-template: auto / minmax(auto, 70%) minmax(auto, 30%);
     gap: 1.875rem;
   }
 
   &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 
   &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 }

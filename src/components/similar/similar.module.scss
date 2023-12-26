@@ -1,5 +1,4 @@
 .wrapp {
-  margin-top: 3.125rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -16,33 +15,40 @@
 }
 
 .button {
+  pointer-events: all !important;
   position: absolute;
   z-index: 2;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2.75rem;
+  font-size: 2.75rem !important;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgb(0, 0, 0, .5);
   border-radius: var(--radius-4);
-  border: 2px solid var(--grey-100);
-  color: var(--grey-100);
+  border: 2px solid var(--grey-100) !important;
+  color: var(--grey-100) !important;
   padding: 5px 0;
+  width: unset !important;
+  height: unset !important;
   transition: .2s;
+
+  &::after {
+    display: none;
+  }
 
   @media (any-hover: hover) {
     &:hover {
-      color: var(--orange-400);
-      border: 2px solid var(--orange-400);
+      color: var(--orange-400) !important;
+      border: 2px solid var(--orange-400) !important;
     }
   }
   
   &_prev {
-    left: -10px;
+    left: -10px !important;
   }
 
   &_next {
-    right: -10px;
+    right: -10px !important;
   }
 }

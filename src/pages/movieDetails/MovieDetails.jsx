@@ -1,13 +1,13 @@
 import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { fetchDetails, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
-import Date from '../../components/date/Date';
 import Time from '../../components/time/Time';
 import Details from '../../components/details/Details';
 import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
@@ -24,6 +24,7 @@ import Recommendations from '../../components/recommendations/Recommendations';
 
 import style from './movie-details.module.scss';
 import Similar from '../../components/similar/Similar';
+import Reviews from '../../components/reviews/Reviews';
 
 const MovieDetails = () => {
   const {id} = useParams();
@@ -65,7 +66,7 @@ const MovieDetails = () => {
                   <div className={style.top__head_left}>
                     <h1>{details.res.title}</h1>
                     <ul>
-                      <li><Date date={details.res.release_date}/></li>
+                      <li>{details.res?.release_date && moment(details.res?.release_date).format('YYYY')}</li>
                       <li><Time minutes={details.res.runtime}/></li>
                     </ul>
                   </div>
@@ -106,6 +107,7 @@ const MovieDetails = () => {
                   <Overview overview={details.res?.overview} />
                   <Similar id={id} category={category} lang={lang} />
                   <MediaCasts id={id} category={category} lang={lang} />
+                  <Reviews id={id} category={category} />
                 </div>
 
                 <div className={style.body__right}>

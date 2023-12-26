@@ -15,6 +15,7 @@ import fetchSearch from './slices/fetchDataSlice';
 import fetchMediaCasts from './slices/fetchDataSlice';
 import fetchRecommendations from './slices/fetchDataSlice';
 import fetchSimilar from './slices/fetchDataSlice';
+import fetchReviews from './slices/fetchDataSlice';
 
 const store = configureStore({
   reducer: {
@@ -31,7 +32,8 @@ const store = configureStore({
     search: fetchSearch,
     mediaCasts: fetchMediaCasts,
     recommendations: fetchRecommendations,
-    similar: fetchSimilar
+    similar: fetchSimilar,
+    reviews: fetchReviews
   }
 })
 

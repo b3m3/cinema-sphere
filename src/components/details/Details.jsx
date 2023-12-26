@@ -1,22 +1,17 @@
 import Links from '../links/Links';
+import moment from 'moment';
 
 import style from './details.module.scss';
 
-const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-const Details = ({id, category, release_date, production_countries, production_companies, homepage, spoken_languages}) => {
-  
-  const releaseDate = (releaseDate) => {
-    const date = releaseDate && releaseDate.split('-');
-    return `${month[+date[1] - 1]} ${date[2]}, ${date[0]}`;
-  }
+const Details = (props) => {
+  const {id, category, release_date, production_countries, production_companies, homepage, spoken_languages} = props;
   
   return (
     <div className={style.wrapp}>
       <ul>
         <li>
           <h3>Release date:</h3>
-          {release_date && releaseDate(release_date)}
+          {release_date && moment(release_date).format('MMMM DD, YYYY')}
         </li>
         <li>
           <h3>Countries of origin:</h3>

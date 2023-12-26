@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { fetchSimilar } from '../../store/slices/fetchDataSlice';
@@ -10,14 +10,13 @@ import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 import style from './similar.module.scss';
 import 'swiper/css';
-import 'swiper/scss/navigation';
+
+import { Navigation } from 'swiper/modules';
+import 'swiper/css/navigation';
 
 const Similar = ({lang, category, id}) => {
   const {loading, status, res} = useSelector(state => state.similar.similar);
   const dispatch = useDispatch();
-
-  const prev = useRef(null);
-  const next = useRef(null);
 
   useEffect(() => {
     dispatch(fetchSimilar({category, id, lang}))
@@ -29,12 +28,12 @@ const Similar = ({lang, category, id}) => {
 
       <div style={{position: 'relative'}}>
         <Swiper
+          modules={[Navigation]}
           slidesPerView={4}
           spaceBetween={10}
-          loop={true}
           navigation={{
-            nextEl: next && next.current,
-            prevEl: prev && prev.current
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
           }}
           className={style.swiper}
         >
@@ -46,10 +45,10 @@ const Similar = ({lang, category, id}) => {
 
         </Swiper>
 
-        <button className={`${style.button} ${style.button_prev}`} ref={prev}>
+        <button className={`${style.button} ${style.button_prev} swiper-button-prev`}>
           <IoIosArrowBack />
         </button>
-        <button className={`${style.button} ${style.button_next}`} ref={next}>
+        <button className={`${style.button} ${style.button_next} swiper-button-next`}>
           <IoIosArrowForward />
         </button>
       </div>

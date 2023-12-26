@@ -17,6 +17,7 @@ const initialState = {
   mediaCasts: {loading: false, status: null, res: null},
   recommendations: {loading: false, status: null, res: null},
   similar: {loading: false, status: null, res: null},
+  reviews: {loading: false, status: null, res: null},
 }
 
 export const fetchCardData = createAsyncThunk(
@@ -194,6 +195,23 @@ export const fetchSimilar = createAsyncThunk(
   }
 )
 
+export const fetchReviews = createAsyncThunk(
+  'fetch/fetchReviews',
+  async ({category, id}, {rejectWithValue}) => {
+    try {
+      if (category && id) {
+        const {data} = await axios.get(
+          `${BASE_URL}${category}/${id}/reviews?api_key=${API_KEY}&language=en`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 // Function Create Fetch Case
 const createFetchCase = (builder, asyncThunk, stateName) => {
   builder.addCase(asyncThunk.pending, (state) => {
@@ -231,6 +249,7 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchMediaCasts, 'mediaCasts')
     createFetchCase(builder, fetchRecommendations, 'recommendations')
     createFetchCase(builder, fetchSimilar, 'similar')
+    createFetchCase(builder, fetchReviews, 'reviews')
   }
 })
 
