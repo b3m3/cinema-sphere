@@ -1,0 +1,23 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  & h2 {
+    font-weight: 800;
+  }
+  
+  & ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+  
+    & li {
+      font-weight: 300;
+      padding: .3125rem .625rem;
+      border-radius: 1.5625rem;
+      border: 1px solid var(--grey-400);
+    }
+  }
+}

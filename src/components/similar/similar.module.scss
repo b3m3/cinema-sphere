@@ -6,6 +6,7 @@
 
 .swiper {
   width: 100% !important;
+  z-index: 0 !important;
 
   & > div {
     display: grid;
@@ -17,7 +18,7 @@
 .button {
   pointer-events: all !important;
   position: absolute;
-  z-index: 2;
+  z-index: 0 !important;
   top: 50%;
   transform: translateY(-50%);
   font-size: 2.75rem !important;

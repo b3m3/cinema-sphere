@@ -25,6 +25,8 @@ import Recommendations from '../../components/recommendations/Recommendations';
 import style from './movie-details.module.scss';
 import Similar from '../../components/similar/Similar';
 import Reviews from '../../components/reviews/Reviews';
+import Keywords from '../../components/keywords/Keywords';
+import Rate from '../../components/rate/Rate';
 
 const MovieDetails = () => {
   const {id} = useParams();
@@ -72,6 +74,7 @@ const MovieDetails = () => {
                   </div>
                   <div className={style.top__head_right}>
                     <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />
+                    <Rate />
                   </div>
                 </div>
 
@@ -111,6 +114,7 @@ const MovieDetails = () => {
                 </div>
 
                 <div className={style.body__right}>
+                  <Keywords category={category} id={id} />
                   <Recommendations id={id} category={category} lang={lang} />
                 </div>
               </div>

@@ -1,5 +1,20 @@
 .wrapp {
   display: flex;
+  flex-direction: column;
+  gap: .3125rem;
+  
+  & h4 {
+    text-align: center;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--grey-400);
+  }
+}
+
+.box {
+  display: flex;
   align-items: center;
   gap: .25rem;
   color: var(--grey-400);

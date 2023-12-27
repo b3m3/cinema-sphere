@@ -55,6 +55,9 @@
     }
 
     &_right {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
     }
   }
 
