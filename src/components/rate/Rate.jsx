@@ -1,24 +1,38 @@
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useRef, useState } from "react";
 
-
 import style from './rate.module.scss';
 
 const Rate = () => {
   const [isShow, setIsShow] = useState(false);
-  const [star, setStar] = useState('?')
+  const [starSelected, setStarSelected] = useState('');
+  const [starHover, setStarHover] = useState('');
 
   const refModal = useRef(null);
 
   const close = (event) => {
-    return event.target === refModal.current && setIsShow(false);
+    if (event.target && event.target === refModal.current) {
+      setIsShow(false);
+      setStarHover('');
+      setStarSelected('');
+    }
   }
 
-  const starHandler = (event, index) => {
+  const starSelectHandler = (event, index) => {
     if (event.target && event.target.closest('SVG')) {
-      setStar(index);
-    } else {
-      console.log(false);
+      setStarSelected(index + 1);
+    }
+  }
+  
+  const starHoverHandler = (event, index) => {
+    if (event.target && event.target.closest('LI')) {
+      setStarHover(index + 1);
+    }
+  }
+
+  const resetStarHoverHandler = (event) => {
+    if (event.target && !event.target.closest('LI')) {
+      setStarHover('');
     }
   }
 
@@ -35,23 +49,36 @@ const Rate = () => {
         className={`${style.modal} ${isShow && style.show}`} 
         ref={refModal} 
         onClick={(e) => close(e)}
+        onMouseMove={resetStarHoverHandler}
       >
-        <div 
-          className={style.modal_wrapp}
-          
-        >
+        <div className={style.modal_wrapp}>
           <div className={style.modal_star}>
             <FaStar />
-            <span>{star}</span>
+            <span>{starSelected ? starSelected : '?'}</span>
           </div>
 
-          {[...Array(10)].map((_, i) => (
-            <FaRegStar 
-              key={i}
-              onMouseMove={(e) => starHandler(e, (i + 1))}
-              style={i === star && {color: 'var(--blue-400)'}}
-            />
-          ))}
+          <ul className={style.modal_list}>
+            {[...Array(10)].map((_, i) => (
+              <li key={i}>
+                <button>
+                  <FaRegStar 
+                    key={i} 
+                    onClick={(e) => starSelectHandler(e, i)}
+                    onMouseMove={e => starHoverHandler(e, i)}
+                    style={{fill: i < starHover ? 'var(--blue-400' : i < starSelected ? 'var(--blue-400' : ''}}
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
+
+
+          <button 
+            style={!starSelected ? {background: 'var(--grey-400)', pointerEvents: 'none'} : null}
+            className={style.rate}
+          >
+            Rate
+          </button>
         </div>
       </div>
     </div>
