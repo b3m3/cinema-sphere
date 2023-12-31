@@ -74,7 +74,7 @@ const MovieDetails = () => {
                   </div>
                   <div className={style.top__head_right}>
                     <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />
-                    <Rate />
+                    <Rate id={id} category={category}/>
                   </div>
                 </div>
 

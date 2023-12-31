@@ -16,17 +16,24 @@ const Recommendations = ({id, category, lang}) => {
   }, [dispatch, id, category, lang]);
 
   return (
-    <div className={style.wrapp}>
-      <h2>Recommendations</h2>
+    <>
+      {loading && <Loading size={70} black />}
 
-      <ul>
-        {res?.results?.map(props => (
-          <li key={props.id}>
-            <SearchCard {...props} link />
-          </li>
-        ))}
-      </ul>
-    </div>
+      {
+        res?.results?.length > 0 &&
+          <div className={style.wrapp}>
+            <h2>Recommendations</h2>
+      
+            <ul>
+              {res?.results?.map(props => (
+                <li key={props.id}>
+                  <SearchCard {...props} link />
+                </li>
+              ))}
+            </ul>
+          </div>
+      }
+    </>
   );
 }
 

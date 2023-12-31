@@ -3,6 +3,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import languageSlice from './slices/languageSlice';
 import menuSlice from './slices/menuSlice';
 import authSlice from './slices/authSlice';
+import rateSlice from './slices/rateSlice';
 
 import fetchCardData from './slices/fetchDataSlice';
 import fetchDetails from './slices/fetchDataSlice';
@@ -23,6 +24,7 @@ const store = configureStore({
     auth: authSlice,
     lang: languageSlice,
     menu: menuSlice,
+    rate: rateSlice,
     cardData: fetchCardData,
     details: fetchDetails,
     videos: fetchVideos,
@@ -35,7 +37,7 @@ const store = configureStore({
     recommendations: fetchRecommendations,
     similar: fetchSimilar,
     reviews: fetchReviews,
-    keywords: fetchKeywords
+    keywords: fetchKeywords,
   }
 })
 

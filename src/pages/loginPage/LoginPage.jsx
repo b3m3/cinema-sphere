@@ -71,14 +71,21 @@ const LoginPage = () => {
           <button
             className={`${style.button} ${username.length < 4 || password.length < 4 || loading ? style.ban : ''}`}
           >
-            {loading ? <Loading spinner size={100}/> : <span>Sing In</span>}
+            {loading ? <Loading spinner size={10}/> : <span>Sing In</span>}
           </button>
         </div>
       </form>
 
       <div className={style.right}>
         <span className={style.label}>Don't have an account ?</span>
-        <a className={`${style.button} ${style.button_orange}`} rel="noopener noreferrer" target='__blank' href='https://www.themoviedb.org/signup'>Create a New Account</a>
+        <a 
+          className={`${style.button} ${style.button_orange}`} 
+          rel="noopener noreferrer" 
+          target='__blank' 
+          href='https://www.themoviedb.org/signup'
+        >
+          Create a New Account
+        </a>
       </div>
     </section>
   );

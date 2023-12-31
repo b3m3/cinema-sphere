@@ -80,11 +80,10 @@
     
     & svg {
       position: absolute;
-      top: -45px;
+      top: -10px;
       left: 50%;
-      transform: translateX(-50%);
       color: var(--blue-400);
-      font-size: 86px;
+      transition: transform .2s;
     }
 
     & span {
