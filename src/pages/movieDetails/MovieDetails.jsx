@@ -21,12 +21,13 @@ import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/recommendations/Recommendations';
-
-import style from './movie-details.module.scss';
 import Similar from '../../components/similar/Similar';
 import Reviews from '../../components/reviews/Reviews';
 import Keywords from '../../components/keywords/Keywords';
 import Rate from '../../components/rate/Rate';
+import SideTrending from '../../components/sideTrending/SideTrending';
+
+import style from './movie-details.module.scss';
 
 const MovieDetails = () => {
   const {id} = useParams();
@@ -108,15 +109,16 @@ const MovieDetails = () => {
               <div className={style.body__wrapp}>
                 <div className={style.body__left}>
                   <Overview overview={details.res?.overview} />
-                  <Similar id={id} category={category} lang={lang} />
                   <MediaCasts id={id} category={category} lang={lang} />
+                  <Similar id={id} category={category} lang={lang} />
                   <Reviews id={id} category={category} />
                 </div>
 
-                <div className={style.body__right}>
+                <aside className={style.body__right}>
                   <Keywords category={category} id={id} />
+                  <SideTrending lang={lang} category={category}id={id} />
                   <Recommendations id={id} category={category} lang={lang} />
-                </div>
+                </aside>
               </div>
             </div>
           </div>

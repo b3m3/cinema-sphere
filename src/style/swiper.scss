@@ -1,0 +1,48 @@
+.swiper {
+  width: 100% !important;
+  z-index: 0 !important;
+}
+
+.swiper-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
+}
+
+.swiper-button {
+  pointer-events: all !important;
+  position: absolute;
+  z-index: 0 !important;
+  top: 50%;
+  font-size: 2.75rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0, 0, 0, .5);
+  border-radius: var(--radius-4);
+  border: 2px solid var(--grey-100) !important;
+  color: var(--grey-100) !important;
+  padding: 5px 0;
+  width: unset !important;
+  height: unset !important;
+  transition: .2s;
+
+  &::after {
+    display: none;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--orange-400) !important;
+      border: 2px solid var(--orange-400) !important;
+    }
+  }
+}
+
+.swiper-button-prev {
+  left: -10px !important;
+}
+
+.swiper-button-next {
+  right: -10px !important;
+}

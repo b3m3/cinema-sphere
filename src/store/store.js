@@ -18,6 +18,7 @@ import fetchRecommendations from './slices/fetchDataSlice';
 import fetchSimilar from './slices/fetchDataSlice';
 import fetchReviews from './slices/fetchDataSlice';
 import fetchKeywords from './slices/fetchDataSlice';
+import fetchTrending from './slices/fetchDataSlice';
 
 const store = configureStore({
   reducer: {
@@ -38,6 +39,7 @@ const store = configureStore({
     similar: fetchSimilar,
     reviews: fetchReviews,
     keywords: fetchKeywords,
+    trending: fetchTrending
   }
 })
 

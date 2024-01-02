@@ -19,6 +19,7 @@ const initialState = {
   similar: {loading: false, status: null, res: null},
   reviews: {loading: false, status: null, res: null},
   keywords: {loading: false, status: null, res: null},
+  trending: {loading: false, status: null, res: null},
 }
 
 export const fetchCardData = createAsyncThunk(
@@ -230,6 +231,23 @@ export const fetchKeywords = createAsyncThunk(
   }
 )
 
+export const fetchTrending = createAsyncThunk(
+  'fetch/fetchTrending',
+  async ({category, lang}, {rejectWithValue}) => {
+    try {
+      if (category && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}trending/${category}/day?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 // Function Create Fetch Case
 const createFetchCase = (builder, asyncThunk, stateName) => {
   builder.addCase(asyncThunk.pending, (state) => {
@@ -269,6 +287,7 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchSimilar, 'similar')
     createFetchCase(builder, fetchReviews, 'reviews')
     createFetchCase(builder, fetchKeywords, 'keywords')
+    createFetchCase(builder, fetchTrending, 'trending')
   }
 })
 
