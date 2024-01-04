@@ -9,3 +9,22 @@
   gap: 1.25rem;
   grid-template: auto / 1fr 1fr;
 }
+
+@media screen and (max-width: 1024px) {
+  .list {
+    grid-template: auto / repeat(3, 1fr);
+    gap: .625rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list {
+    grid-template: auto / repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .list {
+    grid-template: auto / 1fr;
+  }
+}

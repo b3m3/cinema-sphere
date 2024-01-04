@@ -18,7 +18,7 @@ export const useWrapperSwiper = (Component) => {
             prevEl: `.${props.prevEl}`
           }}
         >
-          {props.res?.results?.map((data) => +props.slideId !== +data.id && (
+          {props.res?.results?.map((data) => +props._id !== +data.id && (
             <SwiperSlide key={data.id}>
               <Component {...data} {...props} />
             </SwiperSlide>

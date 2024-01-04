@@ -15,3 +15,32 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .wrapp {
+    & ul {
+      display: grid;
+      grid-template: auto / 1fr 1fr;
+
+      & li {
+        border-bottom: 1px solid var(--grey-100);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapp {
+    & ul {
+      grid-template: auto / 1fr;
+
+      & li {
+        border-bottom: none;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--grey-100);
+        }
+      }
+    }
+  }
+}

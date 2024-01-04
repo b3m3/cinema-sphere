@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoPlayCircleOutline } from "react-icons/io5";
+import { FaPlayCircle } from "react-icons/fa";
 
 import Loading from "../loading/Loading";
 
@@ -19,7 +19,7 @@ const VideoTrailer = ({url, loading}) => {
                   <img src={url &&`https://img.youtube.com/vi/${url}/maxresdefault.jpg`} alt="Youtube trailer" />
                   <button onClick={() => setPlay(true)}>
                     <span>
-                      <IoPlayCircleOutline style={{fontSize: '5rem'}} /> Play Trailer
+                      <FaPlayCircle /> Play Trailer
                     </span>
                   </button>
                 </div>

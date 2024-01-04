@@ -83,7 +83,7 @@ const MovieDetails = () => {
                   <PosterImage title={details.res.title} poster_path={details.res.poster_path} />
                   <VideoTrailer url={getFirstTrailer} loading={videos.loading}/>
 
-                  <div style={{display: 'flex', flexDirection: 'column', gap: '.625rem'}}>
+                  <div className={style.top__center_box}>
                     <VideosButton videos={videos} englishVideo={englishVideo} category={category} id={id} />
                     <ImagesButton images={images} category={category} id={id} />
                   </div>

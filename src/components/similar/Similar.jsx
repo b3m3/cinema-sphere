@@ -12,6 +12,11 @@ import style from './similar.module.scss';
 
 const breakpoints = {
   1024: { slidesPerView: 4 },
+  768: { slidesPerView: 5 },
+  650: { slidesPerView: 4 },
+  475: { slidesPerView: 3 },
+  375: { slidesPerView: 2 },
+  320: { slidesPerView: 1 },
 }
 
 const Similar = ({lang, category, id}) => {

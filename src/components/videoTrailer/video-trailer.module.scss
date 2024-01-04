@@ -6,8 +6,8 @@
 
 .box {
   position: relative;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 .mask {
@@ -32,7 +32,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-
   }
 
   & button {
@@ -43,14 +42,18 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    padding: .625rem;
+    padding: 3%;
 
     & span {
       pointer-events: none;
       display: flex;
       align-items: center;
       gap: .625rem;
-      font-size: 1.625rem;
+      font-size: 1.25rem;
+    }
+
+    & svg {
+      font-size: 2.75rem;
     }
   }
 }

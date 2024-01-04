@@ -11,6 +11,10 @@ import style from './side-trending.module.scss';
 
 const breakpoints = {
   1024: { slidesPerView: 2 },
+  768: { slidesPerView: 7 },
+  650: { slidesPerView: 5 },
+  475: { slidesPerView: 4 },
+  320: { slidesPerView: 2 },
 }
 
 const SideTrending = ({category, lang, id}) => {
@@ -33,6 +37,7 @@ const SideTrending = ({category, lang, id}) => {
           <h2>Trending</h2>
 
           <SwiperWrapper
+            _id={id}
             res={res} 
             perView={2} 
             nextEl={'sbnt'}
