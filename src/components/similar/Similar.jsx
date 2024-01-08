@@ -34,19 +34,19 @@ const Similar = ({lang, category, id}) => {
     <>
       {loading && <Loading size={30} black />}
       {
-        res &&        
-        <div className={style.wrapp}>
-          <Title title={'Similar'} />
+        res?.results?.length > 0 &&        
+          <div className={style.wrapp}>
+            <Title title={'Similar'} />
 
-          <SwiperWrapper
-            res={res}
-            white 
-            perView={4}
-            nextEl={'sbns'}
-            prevEl={'sbps'}
-            breakpoints={breakpoints}
-          />
-        </div>
+            <SwiperWrapper
+              res={res}
+              white 
+              perView={4}
+              nextEl={'sbns'}
+              prevEl={'sbps'}
+              breakpoints={breakpoints}
+            />
+          </div>
       }
     </>
   );

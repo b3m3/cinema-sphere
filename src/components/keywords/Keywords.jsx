@@ -14,17 +14,22 @@ const Keywords = ({category, id}) => {
   }, [dispatch, category, id]);
 
   return (
-    <div className={style.wrapp}>
-      <h2>Keywords</h2>
+    <>
+      {
+        res?.keywords.length > 0 &&
+          <div className={style.wrapp}>
+            <h2>Keywords</h2>
 
-      <ul>
-        {res?.keywords?.map(({id, name}) => (
-          <li key={id}>
-            <button>{name}</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+            <ul>
+              {res?.keywords?.map(({id, name}) => (
+                <li key={id}>
+                  <button>{name}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+      }
+    </>
   );
 }
 

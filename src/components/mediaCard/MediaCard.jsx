@@ -13,7 +13,7 @@ const MediaCard = (params) => {
 
       <div className={`${style.body} ${white && style.white}`}>
         <Rating rating={vote_average} />
-        <h4 className={style.body__title}>{title} ({release_date.slice(0, 4)})</h4>
+        <h4 className={style.body__title}>{title} {release_date && (release_date?.slice(0, 4))}</h4>
         <AddToWatchlist id={id} />
       </div>
     </div>

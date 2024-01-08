@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 
+import { IMAGE_URL } from "../../constants/api";
+
 import Loading from "../loading/Loading";
 
 import style from './video-trailer.module.scss';
 
-const VideoTrailer = ({url, loading}) => {
+const VideoTrailer = ({url, loading, backdrop}) => {
   const [play, setPlay] = useState(false);
 
   return (
@@ -13,8 +15,8 @@ const VideoTrailer = ({url, loading}) => {
       {
         loading
           ? <Loading spinner size={30} />
-          : url &&
-              <div className={style.box}>  
+          : url
+            ? <div className={style.box}>  
                 <div className={`${style.mask} ${play ? style.hide : ''}`}>
                   <img src={url &&`https://img.youtube.com/vi/${url}/maxresdefault.jpg`} alt="Youtube trailer" />
                   <button onClick={() => setPlay(true)}>
@@ -32,6 +34,7 @@ const VideoTrailer = ({url, loading}) => {
                   className={style.iframe}
                 />
               </div>
+          : !backdrop ? <img className={style.backdrop} src={`${IMAGE_URL}/w1280${backdrop}`} alt="Backdrop" /> : <span className={style.white} />
       }
     </div>
   );

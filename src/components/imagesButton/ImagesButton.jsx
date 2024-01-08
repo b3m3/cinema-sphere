@@ -8,7 +8,7 @@ const ImagesButton = ({images, category, id}) => {
 
   return (
     <>
-      <Link className={style.wrapp} to={`/${category}/${id}/gallery/images`}>
+      <Link className={style.wrapp} to={numberOfImages > 0 ? `/${category}/${id}/gallery/images` : ''}>
         <FaRegImage />
         <span>
           { numberOfImages > 1 ? numberOfImages + ' PHOTOS' : numberOfImages + ' PHOTO' } 

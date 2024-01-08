@@ -26,4 +26,22 @@
     height: 100%;
     object-fit: cover;
   }
+
+  & span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--grey-400);
+    animation: identifier 1s linear infinite;
+  }
+}
+
+@keyframes identifier {
+  0% {opacity: .2;}
+  33% {opacity: .4;}
+  66% {opacity: .6;}
+  100% {opacity: .2;}
 }

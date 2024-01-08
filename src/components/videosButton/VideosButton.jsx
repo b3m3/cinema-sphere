@@ -8,7 +8,7 @@ const VideosButton = ({videos, englishVideo, category, id}) => {
     : englishVideo.res?.results.length > 0 ? englishVideo.res?.results.length : 0;
 
   return (
-    <Link className={style.wrapp} to={`/${category}/${id}/gallery/videos`}>
+    <Link className={style.wrapp} to={numberOfVideos > 0 ? `/${category}/${id}/gallery/videos` : ''}>
       <FaPhotoVideo />
       <span>
         { numberOfVideos > 1 ? numberOfVideos + ' VIDEOS' : numberOfVideos + ' VIDEO' } 

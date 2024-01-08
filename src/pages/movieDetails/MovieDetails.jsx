@@ -81,7 +81,7 @@ const MovieDetails = () => {
 
                 <div className={style.top__center}>
                   <PosterImage title={details.res.title} poster_path={details.res.poster_path} />
-                  <VideoTrailer url={getFirstTrailer} loading={videos.loading}/>
+                  <VideoTrailer url={getFirstTrailer} loading={videos.loading} backdrop={details.res.backdrop_path}/>
 
                   <div className={style.top__center_box}>
                     <VideosButton videos={videos} englishVideo={englishVideo} category={category} id={id} />

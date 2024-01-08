@@ -5,3 +5,11 @@
 .wrapp {
   min-height: 8.125rem;
 }
+
+.history {
+  & ul {
+    display: grid;
+    grid-template: auto / repeat(7, 1fr);
+    gap: .625rem;
+  }
+}

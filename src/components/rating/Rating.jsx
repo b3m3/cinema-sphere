@@ -6,7 +6,7 @@ const Rating = ({rating, vote_count}) => {
   return (
     <>
       {
-        rating &&
+        rating > 0 &&
           <div className={style.wrapp}>
             {
               vote_count && <h4>TMDB Rating</h4>
@@ -25,7 +25,7 @@ const Rating = ({rating, vote_count}) => {
                       </li>
                       <li>{vote_count}</li>
                     </ul>
-                  : <span>{rating?.toString().slice(0, 3)}</span>
+                  : <span>{rating.toString().slice(0, 3)}</span>
               }
             </div>
           </div>
