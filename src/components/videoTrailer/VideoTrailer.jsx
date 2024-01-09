@@ -18,7 +18,7 @@ const VideoTrailer = ({url, loading, backdrop}) => {
           : url
             ? <div className={style.box}>  
                 <div className={`${style.mask} ${play ? style.hide : ''}`}>
-                  <img src={url &&`https://img.youtube.com/vi/${url}/maxresdefault.jpg`} alt="Youtube trailer" />
+                  <img src={url &&`https://img.youtube.com/vi/${url}/sddefault.jpg`} alt="Youtube trailer" />
                   <button onClick={() => setPlay(true)}>
                     <span>
                       <FaPlayCircle /> Play Trailer
@@ -34,7 +34,7 @@ const VideoTrailer = ({url, loading, backdrop}) => {
                   className={style.iframe}
                 />
               </div>
-          : !backdrop ? <img className={style.backdrop} src={`${IMAGE_URL}/w1280${backdrop}`} alt="Backdrop" /> : <span className={style.white} />
+          : backdrop ? <img className={style.backdrop} src={`${IMAGE_URL}w1280${backdrop}`} alt="Backdrop" /> : <span className={style.white} />
       }
     </div>
   );

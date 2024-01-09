@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 
 export const useWrapperSwiper = (Component) => {
   return (props) => {
+
     return (
       <div style={{position: 'relative'}}>
         <Swiper

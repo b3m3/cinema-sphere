@@ -22,9 +22,8 @@ const SideTrending = ({category, lang, id}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTrending({category, lang}))
+    dispatch(fetchTrending({category: 'all', lang}))
   }, [dispatch, lang, category]);
-
 
   const SwiperWrapper = useWrapperSwiper(PosterImage);
 
@@ -43,7 +42,8 @@ const SideTrending = ({category, lang, id}) => {
             nextEl={'sbnt'}
             prevEl={'sbpt'}
             breakpoints={breakpoints}
-            link 
+            link
+            category={category}
           />
         </div>
       }

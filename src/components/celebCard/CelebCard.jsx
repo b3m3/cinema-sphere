@@ -6,7 +6,7 @@ const CelebCard = ({id, original_name, character, profile_path}) => {
   return (
     <div className={style.wrapp}>
       <div className={style.image}>
-        <PosterImage id={id} poster_path={profile_path} title={original_name} link celeb />
+        <PosterImage id={id} poster_path={profile_path} title={original_name} link category={'person'} />
       </div>
 
       <div className={style.box}>

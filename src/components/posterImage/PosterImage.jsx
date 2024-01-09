@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { IMAGE_URL } from '../../constants/api';
 import Mask from './mask.webp'
 
 import style from './poster-image.module.scss';
 
-const PosterImage = ({id, poster_path, title, link, celeb}) => {
-  const [load, setLoad] = useState(true)
-  const category = useCategoryFromLocation();
+const PosterImage = ({id, poster_path, title, link, media_type, category}) => {
+  const [load, setLoad] = useState(true);
 
-  const doc = {id, poster_path, category: celeb ? 'person' : category};
+  const doc = {id, poster_path, category: media_type ? media_type : category};
   
   const setHistory = () => {
     const getLSHistory = localStorage.getItem('history');
@@ -30,7 +28,7 @@ const PosterImage = ({id, poster_path, title, link, celeb}) => {
   return (
     <Link 
       className={`${style.poster} ${link ? style.link : ''}`} 
-      to={link ? `/${celeb ? 'person' : category}/${id}` : ""}
+      to={link ? `/${media_type ? media_type : category}/${id}` : ""}
       onClick={setHistory}
     >
       { load && <span/> }

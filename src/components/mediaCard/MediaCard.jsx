@@ -5,11 +5,11 @@ import Rating from '../rating/Rating';
 import style from './media-card.module.scss';
 
 const MediaCard = (params) => {
-  const {id, poster_path, release_date, title, vote_average, white} = params;
+  const {id, poster_path, release_date, title, vote_average, white, category} = params;
 
   return (
     <div className={style.wrapp}>
-      <PosterImage poster_path={poster_path} title={title} id={id} link/>
+      <PosterImage poster_path={poster_path} title={title} id={id} link category={category} />
 
       <div className={`${style.body} ${white && style.white}`}>
         <Rating rating={vote_average} />

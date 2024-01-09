@@ -27,7 +27,7 @@ const Recommendations = ({id, category, lang}) => {
             <ul>
               {res?.results?.map(props => (
                 <li key={props.id}>
-                  <SearchCard {...props} link />
+                  <SearchCard {...props} category={category} link />
                 </li>
               ))}
             </ul>

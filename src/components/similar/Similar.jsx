@@ -45,6 +45,7 @@ const Similar = ({lang, category, id}) => {
               nextEl={'sbns'}
               prevEl={'sbps'}
               breakpoints={breakpoints}
+              category={category}
             />
           </div>
       }
