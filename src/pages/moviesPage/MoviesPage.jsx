@@ -27,12 +27,13 @@ const MoviesPage = () => {
   return (
     <div className="container">
       <section className={style.wrapp}>
+        <h1>What to watch - Cinema Sphere</h1>
         <MediaSwitcher />
         { loading && <Loading /> }
         <div className={style.body}>
           { res?.results.map((params) => <MediaCard key={params.id} {...params} category={category} />) }
         </div>
-        { res && <PageSwitcher total_pages={res.total_pages} page={page} /> }
+        <PageSwitcher total_pages={res?.total_pages} page={page} />
         { status && <Error status={status} /> }
       </section>
     </div>

@@ -1,12 +1,16 @@
+import { useMemo } from 'react';
 import moment from 'moment';
 import PosterImage from '../posterImage/PosterImage';
 
 import style from './search-card.module.scss';
 
-const SearchCard = (props) => {
-  const {id, link, title, name, release_date, media_type, first_air_date, known_for_department, profile_path, poster_path, category} = props;
+const SearchCard = (
+  {id, link, title, name, release_date, media_type, first_air_date, known_for_department, profile_path, poster_path, category}
+) => {
 
-  const categoryFullName = media_type === 'tv' ? 'Tv serie' : media_type === 'movie' ? 'Movie' : null;
+  const categoryFullName = useMemo(() => {
+    return media_type === 'tv' ? 'Tv serie' : media_type === 'movie' ? 'Movie' : null
+  }, [media_type]);
 
   return (
     <div className={style.wrapp}>

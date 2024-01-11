@@ -8,10 +8,11 @@ import { MdLocalMovies } from "react-icons/md";
 import { PiTelevisionSimple } from "react-icons/pi";
 import { FaUsers } from "react-icons/fa";
 
-import style from './navbar.module.scss';
 import Logo from '../logo/Logo';
 import Language from '../language/Language';
 import WatchListBtn from '../watchListBtn/WatchListBtn';
+
+import style from './navbar.module.scss';
 
 const array = [
   {

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { autoCloser } from "../../utils/functions";
-import { fetchSearch, clearSearch } from "../../store/slices/fetchDataSlice";
+import { fetchSearchBar, clearSearch } from "../../store/slices/fetchDataSlice";
 import { useCategoryFromLocation } from "../../hooks/useCategoryFromLocation";
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -29,11 +29,12 @@ const SearchBar = () => {
   const [selected, setSelected] = useState(0);
   const [value, setValue] = useState('');
 
-  const {loading, status, res} = useSelector(state => state.search.search);
+  const {status, res} = useSelector(state => state.searchBar.searchBar);
   const {lang} = useSelector(state => state.lang);
   const dispatch = useDispatch();
 
   const category = useCategoryFromLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     autoCloser('HEADER', openSelect, setOpenSelect);
@@ -43,7 +44,7 @@ const SearchBar = () => {
     const debounce = setTimeout(() => {
       if (value) {
         const doc = { category: selectArr[selected].category, value, page: 1, lang }
-        dispatch(fetchSearch(doc));
+        dispatch(fetchSearchBar(doc));
       }
     }, 1500);
 
@@ -52,8 +53,13 @@ const SearchBar = () => {
     }
 
     return () => clearTimeout(debounce);
-  }, [dispatch, value, category, selected, lang])
-  
+  }, [dispatch, value, category, selected, lang]);
+
+  const handleNavigate = (props) => {
+    setValue('')
+    navigate(`/${props.media_type ? props.media_type : selectArr[selected].category}/${props.id}`);
+  }
+
   return (
     <div className={style.wrapp}>
       <div className={`${style.search} ${openSearch ? style.open_search : ''}`}>
@@ -66,7 +72,10 @@ const SearchBar = () => {
               <li 
                 key={i}
                 style={selected === i ? {color: 'var(--orange-400'} : null}
-                onClick={() => setSelected(i)}
+                onClick={() => {
+                  setSelected(i) 
+                  dispatch(clearSearch())
+                }}
               >
                 {name}
               </li>
@@ -96,36 +105,40 @@ const SearchBar = () => {
       </button>
 
       {
-        value &&
-          <div className={`${style.results} ${openSearch && style.results_open}`}>
-            { loading && <Loading />}
-            { status && <Error status={status} /> }
-            {
-              res &&
-                <ul>
-                  {res?.results?.map((props) => (
-                    <li key={props.id}>
-                      <Link 
-                        to={`/${props.media_type ? props.media_type : selectArr[selected].category}/${props.id}`} 
+        <div className={`${style.results} ${openSearch && style.results_open}`}>
+          { value && !res && <Loading />}
+          { status && <Error status={status} /> }
+          {
+            value && res &&
+              <ul>
+                {res?.results?.map((props) => (
+                  <li 
+                    key={props.id}
+                    onClick={() => handleNavigate(props)}
+                  >
+                    <SearchCard {...props} />
+                  </li>
+                ))}
+
+                {
+                  res?.results?.length > 0 && selectArr[selected].category !== 'multi' &&
+                    <li style={{padding: '.625rem', textDecoration: 'underline', color: 'var(--blue-400'}}>
+                      <Link
+                        to={`/search/${selectArr[selected].category}/${value}/1`}
                         onClick={() => setValue('')}
                       >
-                        <SearchCard {...props} />
+                        See all results →
                       </Link>
                     </li>
-                  ))}
+                }
 
-                  {
-                    res?.results?.length > 0 &&
-                      <li style={{padding: '.625rem', textDecoration: 'underline', color: 'var(--blue-400'}}>See all results →</li>
-                  }
-
-                  {
-                    res?.results?.length === 0 && 
-                      <li style={{padding: '.625rem'}}>No results found for "{value}"</li>
-                  }
-                </ul>
-            }
-          </div>
+                {
+                  res?.results?.length === 0 && 
+                    <li style={{padding: '.625rem'}}>No results found for "{value}"</li>
+                }
+              </ul>
+          }
+        </div>
       }
     </div>
   );

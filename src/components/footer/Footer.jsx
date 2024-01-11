@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux'
-import { useLocation, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 import PosterImage from '../posterImage/PosterImage';
@@ -13,6 +12,7 @@ import { FcAbout } from "react-icons/fc";
 import TMDBLogo from './tmdb.svg';
 
 import style from './footer.module.scss';
+import { clearHistory } from '../../store/slices/historySlice';
 
 const breakpoints = {
   1024: { slidesPerView: 8 },
@@ -30,23 +30,11 @@ const socialLinks = [
 ]
 
 const Footer = () => {
-  const [historyResults, setHistoryResults] = useState(null);
   const {isAuth} = useSelector(state => state.auth.user);
+  const {history} = useSelector(state => state.history);
 
   const SwiperWrapper = useWrapperSwiper(PosterImage);
-  const {pathname} = useLocation();
-  
-  useEffect(() => {
-    const history = localStorage.getItem('history');
-    const res = history && JSON.parse(history);
-
-    setHistoryResults(res && res);
-  }, [pathname]);
-
-  const clearStory = () => {
-    localStorage.removeItem('history');
-    setHistoryResults(null);
-  }
+  const dispatch = useDispatch();
 
   return (
     <footer className={style.footer}>
@@ -55,14 +43,19 @@ const Footer = () => {
           <div className={style.history}>
             <div className={style.history__top}>
               <h2>Recently viewed</h2>
-              { historyResults && <button onClick={clearStory}><TfiBrushAlt /></button> }
+              { 
+                history.length > 0 && 
+                  <button onClick={() => dispatch(clearHistory())}>
+                    <TfiBrushAlt />
+                  </button> 
+              }
             </div>
           
             <div className={style.history__bot}>
               {
-                historyResults
+                history.length > 0
                   ? <SwiperWrapper
-                      res={{results: historyResults}}
+                      res={{results: history}}
                       white 
                       perView={4}
                       nextEl={'sbnf'}
@@ -77,8 +70,8 @@ const Footer = () => {
 
           <ul className={style.social_list}>
             {
-              socialLinks.map(({link, logo}) => (
-                <li>
+              socialLinks.map(({link, logo}, i) => (
+                <li key={i}>
                   <a href={link} target="_blank" rel="noopener noreferrer">
                     {logo}
                   </a>

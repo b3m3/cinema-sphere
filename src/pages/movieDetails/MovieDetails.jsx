@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { fetchDetails, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
+import { getHistory, setHistory } from '../../store/slices/historySlice';
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
@@ -36,8 +37,8 @@ const MovieDetails = () => {
   const {videos} = useSelector(state => state.videos);
   const {images} = useSelector(state => state.images);
   const {englishVideo} = useSelector(state => state.englishVideo);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const category = useCategoryFromLocation();
 
   useEffect(() =>{
@@ -47,10 +48,26 @@ const MovieDetails = () => {
     dispatch(fetchImages({category, id}))
   }, [dispatch, category, lang, id]);
 
-  const getFirstTrailer = useMemo(() => {
+  useEffect(() => {
+    dispatch(getHistory());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (details) {
+      const poster_path = details?.res?.poster_path;
+      const doc = {id, poster_path, category};
+  
+      dispatch(setHistory(doc));
+    }
+  }, [dispatch, details, id, category])
+
+  const getFirstTrailerUrl = useMemo(() => {
     return videos.res?.results.length > 0 ? videos.res.results[0].key 
       : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
   }, [videos, englishVideo]);
+
+  const title = details.res?.title;
+  const releaseDate = details.res?.release_date && moment(details.res?.release_date).format('YYYY');
 
   return (
     <div className={style.wrapp}>
@@ -67,9 +84,9 @@ const MovieDetails = () => {
 
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
-                    <h1>{details.res.title}</h1>
+                    <h1>{title}</h1>
                     <ul>
-                      <li>{details.res?.release_date && moment(details.res?.release_date).format('YYYY')}</li>
+                      <li>{releaseDate}</li>
                       <li><Time minutes={details.res.runtime}/></li>
                     </ul>
                   </div>
@@ -81,7 +98,7 @@ const MovieDetails = () => {
 
                 <div className={style.top__center}>
                   <PosterImage title={details.res.title} poster_path={details.res.poster_path} />
-                  <VideoTrailer url={getFirstTrailer} loading={videos.loading} backdrop={details.res.backdrop_path}/>
+                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
 
                   <div className={style.top__center_box}>
                     <VideosButton videos={videos} englishVideo={englishVideo} category={category} id={id} />

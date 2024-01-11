@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import { FaRegImage } from "react-icons/fa6";
 
 import style from './images-button.module.scss';
+import { useMemo } from "react";
 
 const ImagesButton = ({images, category, id}) => {
-  const numberOfImages = images.res?.backdrops.length > 0 ? images.res?.backdrops.length : 0;
+  const numberOfImages = useMemo(() => {
+    return images.res?.backdrops.length > 0 ? images.res?.backdrops.length : 0
+  }, [images]);
 
   return (
     <>

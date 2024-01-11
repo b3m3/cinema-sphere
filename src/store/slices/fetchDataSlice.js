@@ -13,6 +13,7 @@ const initialState = {
   images: {loading: false, status: null, res: null},
   genresList: {loading: false, status: null, res: null},
   links: {loading: false, status: null, res: null},
+  searchBar: {loading: false, status: null, res: null},
   search: {loading: false, status: null, res: null},
   mediaCasts: {loading: false, status: null, res: null},
   recommendations: {loading: false, status: null, res: null},
@@ -121,6 +122,23 @@ export const fetchLinks = createAsyncThunk(
       if (category && id) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/external_ids?api_key=${API_KEY}`);
 
+        return data
+      }
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const fetchSearchBar = createAsyncThunk(
+  'fetch/fetchSearchBar',
+  async({category, value, page, lang}, {rejectWithValue}) => {
+    try {
+      if (category && value && page && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}search/${category}?api_key=${API_KEY}&query=${value}&language=${lang}&include_adult=false&page=${page}`
+        );
+        
         return data
       }
     } catch (error) {
@@ -270,7 +288,7 @@ const fetchDataSlice = createSlice({
   initialState,
   reducers: {
     clearSearch: (state) => {
-      state.search = {loading: false, status: null, res: null}
+      state.searchBar = {loading: false, status: null, res: null}
     }
   },
   extraReducers: (builder) => {
@@ -281,6 +299,7 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchImages, 'images')
     createFetchCase(builder, fetchGenresList, 'genresList')
     createFetchCase(builder, fetchLinks, 'links')
+    createFetchCase(builder, fetchSearchBar, 'searchBar')
     createFetchCase(builder, fetchSearch, 'search')
     createFetchCase(builder, fetchMediaCasts, 'mediaCasts')
     createFetchCase(builder, fetchRecommendations, 'recommendations')

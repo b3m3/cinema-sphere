@@ -1,6 +1,6 @@
+import { useCallback, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 import style from './page-switcher.module.scss';
@@ -8,13 +8,13 @@ import style from './page-switcher.module.scss';
 const PageSwitcher = ({total_pages, page}) => {
   const {pathname} = useLocation();
 
-  const category = useCategoryFromLocation();
+  const total = useMemo(() => {
+    return total_pages && total_pages > 500 ? 500 : total_pages
+  }, [total_pages]);
 
-  const total = total_pages && total_pages > 500 ? 500 : total_pages;
-
-  const switchPage = (num) => {
-    return `/${category}/${pathname.split('/')[2]}/${num}`;
-  }
+  const switchPage = useCallback((num) => {
+    return `${pathname.slice(0, pathname.lastIndexOf('/'))}/${num}`;
+  }, [pathname]);
 
   return (
     <>

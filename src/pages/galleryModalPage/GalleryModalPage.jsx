@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
@@ -50,18 +50,18 @@ const GalleryModal = () => {
     return images.res?.posters.length > 0 ? images.res : null;
   }, [images]);
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     const length = isModalImages ? imageResults?.backdrops.length : isModalVideos ? videoResults?.length : null;
-    setCount(c => length && c < length ? c + 1 : 1);
-  }
+    return setCount(c => length && c < length ? c + 1 : 1);
+  }, [isModalImages, imageResults, isModalVideos, videoResults])
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     const length = isModalImages ? imageResults?.backdrops.length : isModalVideos ? videoResults?.length : null;
     setCount(c => length && c <= 1 ? length : c - 1);
-  }
+  }, [isModalImages, imageResults, isModalVideos, videoResults])
   
-  const scrollToBody = () => bodyRef.current.scrollIntoView();
-  const scrollToTop = () => window.scrollTo(0, 0);
+  const scrollToBody = useCallback(() => bodyRef.current.scrollIntoView(), []);
+  const scrollToTop = useCallback(() => window.scrollTo(0, 0), []);
 
   return (
     <div className={style.wrapp}>
@@ -77,6 +77,7 @@ const GalleryModal = () => {
               </span>
             </div>
             <CgMenuGridR className={style.scroll} onClick={scrollToBody} />
+
             <Link className={style.close} to={`/${category}/${id}`}>
               <IoIosCloseCircleOutline />
             </Link>

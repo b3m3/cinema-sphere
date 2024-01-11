@@ -9,6 +9,7 @@ import GallaryModalPage from '../pages/galleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/tvSeriesPage/TvSeriesPage';
 import CelebsPage from '../pages/celebsPage/CelebsPage';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
+import SearchPage from "../pages/searchPage/SearchPage";
 
 const Router = () => {
   return useRoutes([
@@ -30,6 +31,13 @@ const Router = () => {
             { path: 'gallery/:modal',element: <GallaryModalPage/> }
           ]
         },
+      ]
+    },
+    {
+      path: 'search', 
+      children: [
+        { index: true },
+        { path: ':category/:value/:page', element: <SearchPage /> }
       ]
     }
   ])

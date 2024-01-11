@@ -2,7 +2,7 @@ import PosterImage from '../posterImage/PosterImage';
 
 import style from './celeb-card.module.scss';
 
-const CelebCard = ({id, original_name, character, profile_path}) => {
+const CelebCard = ({id, original_name, character, profile_path, known_for_department}) => {
   return (
     <div className={style.wrapp}>
       <div className={style.image}>
@@ -12,6 +12,7 @@ const CelebCard = ({id, original_name, character, profile_path}) => {
       <div className={style.box}>
         <h4>{original_name && original_name}</h4>
         <p>{character && character}</p>
+        <p>{known_for_department && known_for_department}</p>
       </div>
     </div>
   );

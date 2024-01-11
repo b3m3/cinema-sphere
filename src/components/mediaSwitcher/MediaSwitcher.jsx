@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import { useCallback, useMemo } from 'react';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation'
 
@@ -12,15 +13,17 @@ const MediaSwitcher = () => {
   const {filter} = useParams();
   const category = useCategoryFromLocation();
 
-  const getTitleFromPathname = (str) => {
+  const getTitleFromPathname = useCallback((str) => {
     return `/${category}/${str}/1`;
-  }
+  }, [category])
 
-  const updateLocationPathname = (str) => {
+  const updateLocationPathname = useCallback((str) => {
     return str[0].toUpperCase() + str.slice(1).split('_').join(' ')
-  }
+  }, [])
 
-  const isActive = movieArr.indexOf(filter);
+  const isActive = useMemo(() => {
+    return movieArr.indexOf(filter)
+  }, [filter]);
 
   return (
     <div className={style.wrapp}>

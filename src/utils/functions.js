@@ -18,3 +18,9 @@ export const autoCloser = (tagName, state, setState) => {
     document.removeEventListener('mouseout', handleMove);
   }
 }
+
+export const convertMinutesToHoursAndMinutes = (min) => {
+  const hours = Math.floor(min / 60);
+  const minutes = min % 60;
+  return `${hours}h ${minutes < 10 ? 0 : ""} ${minutes}m`;
+}
