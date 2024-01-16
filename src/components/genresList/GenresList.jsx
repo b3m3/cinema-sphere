@@ -3,28 +3,29 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchGenresList } from '../../store/slices/fetchDataSlice';
 
-import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
-
 import style from './genres-list.module.scss';
 
-const Genres = ({}) => {
-  const {lang} = useSelector(state => state.lang);
+const GenresList = ({category, lang}) => {
   const {genresList} = useSelector(state => state.genresList);
   const dispatch = useDispatch();
 
-  const category = useCategoryFromLocation();
-
-  useEffect(() =>{
+  useEffect(() => {
     dispatch(fetchGenresList({category, lang}))
   }, [dispatch, category, lang]);
+
+  console.log(genresList);
 
   return (
     <div className={style.wrapp}>
       <ul>
-        <li></li>
+        {genresList.res?.genres?.map(({id, name}) => (
+          <li key={id}>
+            <button>{name}</button>
+          </li>
+        ))}
       </ul>
     </div>
   );
 }
 
-export default Genres;
+export default GenresList;

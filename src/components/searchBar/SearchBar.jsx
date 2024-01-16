@@ -6,7 +6,9 @@ import { autoCloser } from "../../utils/functions";
 import { fetchSearchBar, clearSearch } from "../../store/slices/fetchDataSlice";
 import { useCategoryFromLocation } from "../../hooks/useCategoryFromLocation";
 
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { IoFilterOutline } from "react-icons/io5";
+import { IoIosClose } from "react-icons/io";
+
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 
@@ -15,6 +17,7 @@ import Loading from "../loading/Loading";
 import Error from "../error/Error";
 
 import style from './searchBar.module.scss';
+import Filters from "../filters/Filters";
 
 const selectArr = [
   {name: 'All', category: 'multi'},
@@ -26,6 +29,7 @@ const selectArr = [
 const SearchBar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openSelect, setOpenSelect] = useState(false);
+  const [openFilters, setOpenFilter] = useState(false);
   const [selected, setSelected] = useState(0);
   const [value, setValue] = useState('');
 
@@ -55,6 +59,8 @@ const SearchBar = () => {
     return () => clearTimeout(debounce);
   }, [dispatch, value, category, selected, lang]);
 
+  const filterHandler = () => setOpenFilter(true);
+
   const handleNavigate = (props) => {
     setValue('')
     navigate(`/${props.media_type ? props.media_type : selectArr[selected].category}/${props.id}`);
@@ -82,13 +88,13 @@ const SearchBar = () => {
             ))}
           </ul>
         </div>
-        <input 
-          className={style.input} 
-          type="text" 
-          placeholder="Search Cinema Sphere" 
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
-        />
+        <div className={style.input_wrapp}>
+          <input 
+            type="text" 
+            placeholder="Search Cinema Sphere" 
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
         <button 
           className={style.close} 
           onClick={() => {
@@ -96,50 +102,54 @@ const SearchBar = () => {
             setValue('')
           }}
         >
-          <IoIosCloseCircleOutline />
+          <IoIosClose />
+        </button>
+        </div>
+        <button className={style.filter_button} onClick={filterHandler}>
+          <IoFilterOutline />
         </button>
       </div>
 
-      <button className={style.button} onClick={() => setOpenSearch(true)}>
+      <button className={style.search_button} onClick={() => setOpenSearch(true)}>
         <IoSearch />
       </button>
 
-      {
-        <div className={`${style.results} ${openSearch && style.results_open}`}>
-          { value && !res && <Loading />}
-          { status && <Error status={status} /> }
-          {
-            value && res &&
-              <ul>
-                {res?.results?.map((props) => (
-                  <li 
-                    key={props.id}
-                    onClick={() => handleNavigate(props)}
-                  >
-                    <SearchCard {...props} />
+      <div className={`${style.results} ${openSearch && style.results_open}`}>
+        { value && !res && <Loading />}
+        { status && <Error status={status} /> }
+        {
+          value && res &&
+            <ul>
+              {res?.results?.map((props) => (
+                <li 
+                  key={props.id}
+                  onClick={() => handleNavigate(props)}
+                >
+                  <SearchCard {...props} />
+                </li>
+              ))}
+
+              {
+                res?.results?.length > 0 && selectArr[selected].category !== 'multi' &&
+                  <li style={{padding: '.625rem', textDecoration: 'underline', color: 'var(--blue-400'}}>
+                    <Link
+                      to={`/search/${selectArr[selected].category}/${value}/1`}
+                      onClick={() => setValue('')}
+                    >
+                      See all results →
+                    </Link>
                   </li>
-                ))}
+              }
 
-                {
-                  res?.results?.length > 0 && selectArr[selected].category !== 'multi' &&
-                    <li style={{padding: '.625rem', textDecoration: 'underline', color: 'var(--blue-400'}}>
-                      <Link
-                        to={`/search/${selectArr[selected].category}/${value}/1`}
-                        onClick={() => setValue('')}
-                      >
-                        See all results →
-                      </Link>
-                    </li>
-                }
+              {
+                res?.results?.length === 0 && 
+                  <li style={{padding: '.625rem'}}>No results found for "{value}"</li>
+              }
+            </ul>
+        }
+      </div>
 
-                {
-                  res?.results?.length === 0 && 
-                    <li style={{padding: '.625rem'}}>No results found for "{value}"</li>
-                }
-              </ul>
-          }
-        </div>
-      }
+      { openFilters && <Filters setOpenFilter={setOpenFilter} /> }
     </div>
   );
 }
