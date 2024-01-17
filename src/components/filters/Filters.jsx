@@ -30,6 +30,7 @@ const Filters = ({setOpenFilter}) => {
   const [dateMin, setDateMin] = useState(1970);
   const [dateMax, setDateMax] = useState(2024);
   const [dataMinFocus, setDataMinFocus] = useState(false);
+  const [dataMaxFocus, setDataMaxFocus] = useState(false);
 
   const { lang } = useSelector(state => state.lang);
   const {genresList} = useSelector(state => state.genresList);
@@ -43,8 +44,8 @@ const Filters = ({setOpenFilter}) => {
     setOpenFilter(false);
   };
 
-  const handleBlur = () => {
-    setDataMinFocus(false);
+  const handleBlur = (setState) => {
+    setState(false);
   };
 
   const selectHandler = useCallback((str, state, setState) => {
@@ -90,6 +91,9 @@ const Filters = ({setOpenFilter}) => {
   // console.log('link: ', link);
   
   const activeStyleSortBtn = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };
+
+  console.log('dataMinFocus', dataMinFocus);
+  console.log('dateMin', dateMin);
 
   return (
     <div className={style.wrapp}>
@@ -202,11 +206,11 @@ const Filters = ({setOpenFilter}) => {
                   type="number"
                   name="date-min" 
                   value={!dataMinFocus && dateMin < 1970 ? setDateMin(1970) : dateMin}
-                  // onBlur={handleBlur}
+                  onBlur={() => handleBlur(setDataMinFocus)}
                   onChange={(e) => getMinValue(e, 1, dateMax, setDateMin)}
                   onFocus={(e) => {
                     e.target.select();
-                    // setDataMinFocus(true);
+                    setDataMinFocus(true);
                   }}
                 />
                 <div>
@@ -224,10 +228,12 @@ const Filters = ({setOpenFilter}) => {
                   type="number"
                   name="date-max" 
                   value={dateMax}
-                  minLength={1}
-                  maxLength={4}
+                  onBlur={() => handleBlur(setDataMaxFocus)}
                   onChange={(e) => getMaxValue(e, 2024, dateMin, setDateMax)}
-                  onFocus={e => e.target.select()}
+                  onFocus={(e) => {
+                    e.target.select();
+                    setDataMaxFocus(true);
+                  }}
                 />
                 <div>
                   <button onClick={() => incMax(setDateMax, 2024)}>
