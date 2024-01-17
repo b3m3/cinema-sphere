@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchGenresList } from '../../store/slices/fetchDataSlice';
@@ -7,18 +7,19 @@ import { IoClose } from "react-icons/io5";
 import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown  } from "react-icons/md";
 
 import style from './filters.module.scss';
+import Loading from "../loading/Loading";
 
 const sortArr = [
   {name: 'Popular', path: 'popularity.desc'},
   {name: 'Date', path: 'primary_release_date.desc'},
   {name: 'Rating', path: 'vote_average.desc'},
   {name: 'Votes', path: 'vote_count.desc'},
-]
+];
 
 const categoryArr = [
   {name: 'Movies', path: 'movie'},
   {name: 'Tv series', path: 'tv'}
-]
+];
 
 const Filters = ({setOpenFilter}) => {
   const [category, setCategory] = useState('movie');
@@ -28,6 +29,7 @@ const Filters = ({setOpenFilter}) => {
   const [ratingMax, setRatingMax] = useState(10);
   const [dateMin, setDateMin] = useState(1970);
   const [dateMax, setDateMax] = useState(2024);
+  const [dataMinFocus, setDataMinFocus] = useState(false);
 
   const { lang } = useSelector(state => state.lang);
   const {genresList} = useSelector(state => state.genresList);
@@ -39,6 +41,10 @@ const Filters = ({setOpenFilter}) => {
 
   const handleClose = () => {
     setOpenFilter(false);
+  };
+
+  const handleBlur = () => {
+    setDataMinFocus(false);
   };
 
   const selectHandler = useCallback((str, state, setState) => {
@@ -76,7 +82,13 @@ const Filters = ({setOpenFilter}) => {
   const decMax = useCallback((state, setState) => {
     return setState(c => c > state +1 ? c -1 : c);
   }, []);
+  
+  const link = useMemo(() => {
+    return `discover/${category}/&include_adult=false&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&language=${lang}`;
+  }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax, lang]);
 
+  // console.log('link: ', link);
+  
   const activeStyleSortBtn = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };
 
   return (
@@ -122,12 +134,14 @@ const Filters = ({setOpenFilter}) => {
           <div className={style.row}>
             <h3>Genres</h3>
 
+            {genresList?.loading && <Loading size={25} />}
+
             <ul>
               {genresList.res?.genres?.map(({id, name}) => (
                 <li key={id}>
                   <button 
-                    onClick={() => selectHandler(name, genres, setGenres)}
-                    style={genres?.indexOf(name) !== -1 ? activeStyleSortBtn : null}
+                    onClick={() => selectHandler(id, genres, setGenres)}
+                    style={genres?.indexOf(id) !== -1 ? activeStyleSortBtn : null}
                   >
                     {name}
                   </button>
@@ -187,9 +201,13 @@ const Filters = ({setOpenFilter}) => {
                 <input 
                   type="number"
                   name="date-min" 
-                  value={dateMin}
-                  onChange={(e) => getMinValue(e, 1, dateMax, setDateMin)} // FIX YEAR 1970
-                  onFocus={e => e.target.select()}
+                  value={!dataMinFocus && dateMin < 1970 ? setDateMin(1970) : dateMin}
+                  // onBlur={handleBlur}
+                  onChange={(e) => getMinValue(e, 1, dateMax, setDateMin)}
+                  onFocus={(e) => {
+                    e.target.select();
+                    // setDataMinFocus(true);
+                  }}
                 />
                 <div>
                   <button onClick={() => incMin(dateMax, setDateMin)}>

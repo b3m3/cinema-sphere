@@ -4,6 +4,7 @@ import languageSlice from './slices/languageSlice';
 import menuSlice from './slices/menuSlice';
 import authSlice from './slices/authSlice';
 import rateSlice from './slices/rateSlice';
+import historySlice from './slices/historySlice';
 
 import fetchCardData from './slices/fetchDataSlice';
 import fetchDetails from './slices/fetchDataSlice';
@@ -20,7 +21,7 @@ import fetchSimilar from './slices/fetchDataSlice';
 import fetchReviews from './slices/fetchDataSlice';
 import fetchKeywords from './slices/fetchDataSlice';
 import fetchTrending from './slices/fetchDataSlice';
-import historySlice from './slices/historySlice';
+import fetchDiscover from './slices/fetchDataSlice';
 
 const store = configureStore({
   reducer: {
@@ -43,7 +44,8 @@ const store = configureStore({
     reviews: fetchReviews,
     keywords: fetchKeywords,
     trending: fetchTrending,
-    history: historySlice
+    history: historySlice,
+    discover: fetchDiscover
   }
 })
 
