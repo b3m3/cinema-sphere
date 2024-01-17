@@ -21,6 +21,8 @@ const categoryArr = [
   {name: 'Tv series', path: 'tv'}
 ];
 
+const currentYear = new Date().getFullYear();
+
 const Filters = ({setOpenFilter}) => {
   const [category, setCategory] = useState('movie');
   const [sort, setSort] = useState('popularity.desc');
@@ -28,9 +30,7 @@ const Filters = ({setOpenFilter}) => {
   const [ratingMin, setRatingMin] = useState(1);
   const [ratingMax, setRatingMax] = useState(10);
   const [dateMin, setDateMin] = useState(1970);
-  const [dateMax, setDateMax] = useState(2024);
-  const [dataMinFocus, setDataMinFocus] = useState(false);
-  const [dataMaxFocus, setDataMaxFocus] = useState(false);
+  const [dateMax, setDateMax] = useState(currentYear);
 
   const { lang } = useSelector(state => state.lang);
   const {genresList} = useSelector(state => state.genresList);
@@ -44,10 +44,6 @@ const Filters = ({setOpenFilter}) => {
     setOpenFilter(false);
   };
 
-  const handleBlur = (setState) => {
-    setState(false);
-  };
-
   const selectHandler = useCallback((str, state, setState) => {
     if (state.indexOf(str) !== -1) {
       const newArr = state.filter(elem => elem !== str);
@@ -58,18 +54,32 @@ const Filters = ({setOpenFilter}) => {
     }
   }, []);
 
-  const getMinValue = useCallback((event, minValue, state, setState) => {
+  // onChange
+
+  const getMinValue = useCallback((event, minValue, state, valeLength) => {
     const value = +event.target.value;
-    return setState(value >= state ? state -1 : value < minValue ? minValue : value);
+
+    if (valeLength) {
+      return value.toString().length >= valeLength && value < minValue ? minValue : value > state ? state : value
+    }
+
+    return value < minValue ? minValue : value > state ? state : value
   }, []);
 
-  const getMaxValue = useCallback((event, maxValue, state, setState) => {
+  const getMaxValue = useCallback((event, maxValue, state, valeLength) => {
     const value = +event.target.value;
-    return setState(value <= state ? state +1 : value > maxValue ? maxValue : value);
+    
+    if (valeLength) {
+      return value.toString().length >= valeLength && value <= state ? state : value > maxValue ? maxValue : value
+    }
+
+    return value <= state ? state : value > maxValue ? maxValue : value
   }, []);
+
+  // onClick
 
   const incMin = useCallback((state, setState) => {
-    return setState(c => c < state -1 ? c +1 : c);
+    return setState(c => c < state ? c +1 : c);
   }, []);
 
   const decMin = useCallback((setState, minValue) => {
@@ -81,19 +91,14 @@ const Filters = ({setOpenFilter}) => {
   }, []);
 
   const decMax = useCallback((state, setState) => {
-    return setState(c => c > state +1 ? c -1 : c);
+    return setState(c => c > state ? c -1 : c);
   }, []);
   
   const link = useMemo(() => {
     return `discover/${category}/&include_adult=false&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&language=${lang}`;
   }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax, lang]);
-
-  // console.log('link: ', link);
   
   const activeStyleSortBtn = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };
-
-  console.log('dataMinFocus', dataMinFocus);
-  console.log('dateMin', dateMin);
 
   return (
     <div className={style.wrapp}>
@@ -163,7 +168,7 @@ const Filters = ({setOpenFilter}) => {
                   type="number"
                   name="rating-min" 
                   value={ratingMin}
-                  onChange={(e) => getMinValue(e, 1, ratingMax, setRatingMin)}
+                  onChange={(e) => setRatingMin(getMinValue(e, 1, ratingMax))}
                   onFocus={e => e.target.select()}
                 />
                 <div>
@@ -181,10 +186,9 @@ const Filters = ({setOpenFilter}) => {
                   type="number"
                   name="rating-max" 
                   value={ratingMax}
-                  onChange={(e) => getMaxValue(e, 10, ratingMin, setRatingMax)}
+                  onChange={(e) => setRatingMax(getMaxValue(e, 10, ratingMin))}
                   onFocus={e => e.target.select()}
                 />
-
                 <div>
                   <button onClick={() => incMax(setRatingMax, 10)}>
                     <MdOutlineKeyboardArrowUp/>
@@ -205,13 +209,9 @@ const Filters = ({setOpenFilter}) => {
                 <input 
                   type="number"
                   name="date-min" 
-                  value={!dataMinFocus && dateMin < 1970 ? setDateMin(1970) : dateMin}
-                  onBlur={() => handleBlur(setDataMinFocus)}
-                  onChange={(e) => getMinValue(e, 1, dateMax, setDateMin)}
-                  onFocus={(e) => {
-                    e.target.select();
-                    setDataMinFocus(true);
-                  }}
+                  value={dateMin}
+                  onChange={(e) => setDateMin(getMinValue(e, 1970, dateMax, 4))}
+                  onFocus={(e) =>  e.target.select()}
                 />
                 <div>
                   <button onClick={() => incMin(dateMax, setDateMin)}>
@@ -228,15 +228,11 @@ const Filters = ({setOpenFilter}) => {
                   type="number"
                   name="date-max" 
                   value={dateMax}
-                  onBlur={() => handleBlur(setDataMaxFocus)}
-                  onChange={(e) => getMaxValue(e, 2024, dateMin, setDateMax)}
-                  onFocus={(e) => {
-                    e.target.select();
-                    setDataMaxFocus(true);
-                  }}
+                  onChange={(e) => setDateMax(getMaxValue(e, currentYear, dateMin, 4))}
+                  onFocus={(e) => e.target.select()}
                 />
                 <div>
-                  <button onClick={() => incMax(setDateMax, 2024)}>
+                  <button onClick={() => incMax(setDateMax, currentYear)}>
                     <MdOutlineKeyboardArrowUp/>
                   </button>
                   <button onClick={() => decMax(dateMin, setDateMax)}>
