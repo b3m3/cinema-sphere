@@ -107,7 +107,7 @@ const MovieDetails = () => {
                 </div>
 
                 <div className={style.top__bottom}>
-                  <MediaGenres genres={details.res?.genres} />
+                  <MediaGenres genres={details.res?.genres} category={category} />
 
                   <div className={style.top__bottom_block}>
                     <Details id={id} category={category} {...details.res && details.res} />

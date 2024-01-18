@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { fetchKeywords } from '../../store/slices/fetchDataSlice';
 
@@ -23,7 +24,9 @@ const Keywords = ({category, id}) => {
             <ul>
               {res?.keywords?.map(({id, name}) => (
                 <li key={id}>
-                  <button>{name}</button>
+                  <Link to={`/discover/${category}/&include_adult=false&with_keywords=${id}&/1`}>
+                    {name}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -13,11 +13,20 @@
     flex-wrap: wrap;
     gap: .5rem;
   
-    & li {
+    & li a {
+      display: block;
       font-weight: 300;
       padding: .3125rem .625rem;
       border-radius: 1.5625rem;
       border: 1px solid var(--grey-400);
+      transition: .2s;
+
+      @media (any-hover: hover) {
+        &:hover {
+          background: var(--grey-400);
+          color: var(--white);
+        }
+      }
     }
   }
 }

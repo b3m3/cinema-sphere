@@ -131,7 +131,7 @@ const Filters = ({setOpenFilter}) => {
     return setState(c => c > state ? c -1 : c);
   }, []);
   
-  const path = useMemo(() => {
+  const link = useMemo(() => {
     return `/discover/${category}/&include_adult=false&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&/1`;
   }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax]);
   
@@ -288,7 +288,7 @@ const Filters = ({setOpenFilter}) => {
 
         <div className={style.bottom}>
           <button onClick={handleClose}>Close</button>
-          <Link to={path} onClick={handleClose}>Search</Link>
+          <Link to={link} onClick={handleClose}>Search</Link>
         </div>
 
         <button className={style.close} onClick={handleClose}>
