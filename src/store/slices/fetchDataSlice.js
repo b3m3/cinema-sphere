@@ -269,13 +269,15 @@ export const fetchTrending = createAsyncThunk(
 
 export const fetchDiscover = createAsyncThunk(
   'fetch/fetchDiscover',
-  async ({category, sort, lang}, {rejectWithValue}) => {
+  async ({category, filters, lang, page}, {rejectWithValue}) => {
     try {
-      const {data} = await axios.get(
-        `${BASE_URL}discover/${category}?api_key=${API_KEY}&include_adult=false&&sort_by=${sort}language=${lang}`
-      )
-
-      return data;
+      if (category && filters && lang && page) {
+        const {data} = await axios.get(
+          `${BASE_URL}discover/${category}?api_key=${API_KEY}${filters}&vote_count.gte=25&language=${lang}&page=${page}`
+        )
+  
+        return data;
+      }
     } catch (error) {
       return rejectWithValue(error);
     }

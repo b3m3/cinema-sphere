@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 
 import { fetchGenresList } from '../../store/slices/fetchDataSlice';
 
@@ -21,6 +22,7 @@ const categoryArr = [
   {name: 'Tv series', path: 'tv'}
 ];
 
+const firstYear = 1970;
 const currentYear = new Date().getFullYear();
 
 const Filters = ({setOpenFilter}) => {
@@ -29,12 +31,37 @@ const Filters = ({setOpenFilter}) => {
   const [genres, setGenres] = useState([]);
   const [ratingMin, setRatingMin] = useState(1);
   const [ratingMax, setRatingMax] = useState(10);
-  const [dateMin, setDateMin] = useState(1970);
+  const [dateMin, setDateMin] = useState(firstYear);
   const [dateMax, setDateMax] = useState(currentYear);
 
   const { lang } = useSelector(state => state.lang);
   const {genresList} = useSelector(state => state.genresList);
+  const {pathname} = useLocation();
   const dispatch = useDispatch();
+
+  // Get filters with pathname
+  useEffect(() => {
+    const isDiscover =  pathname.split('/')[1] === 'discover';
+
+    if (isDiscover) {
+      const getElem = (name) => {
+        return pathname.slice(pathname.indexOf(name)).split('&')[0].split('=')[1];
+      }
+
+      const getCategoryPath = () => {
+        return pathname.split('/')[2] === 'movie' 
+          ? 'movie' : pathname.split('/')[2] === 'tv' ? 'tv' : null;
+      }
+
+      getCategoryPath() && setCategory(getCategoryPath())
+      getElem('sort_by=') && setSort(getElem('sort_by='))
+      getElem('with_genres=') && setGenres(getElem('with_genres=').split(',').map(el => +el));
+      getElem('vote_average.gte=') && setRatingMin(+getElem('vote_average.gte='));
+      getElem('vote_average.lte=') && setRatingMax(+getElem('vote_average.lte='));
+      getElem('primary_release_date.gte=') && setDateMin(+getElem('primary_release_date.gte='));
+      getElem('primary_release_date.lte=') && setDateMax(+getElem('primary_release_date.lte='));
+    }
+  }, [pathname]);
 
   useEffect(() => {
     dispatch(fetchGenresList({category, lang}))
@@ -52,6 +79,16 @@ const Filters = ({setOpenFilter}) => {
     } else {
       setState(c => [...c.filter(elem => elem !== str), str]);
     }
+  }, []);
+
+  // onFocus
+
+  const blurMinValue = useCallback((event) => {
+    return +event.target.value.toString().length < 4 ? firstYear : +event.target.value;
+  }, []);
+
+  const blurMaxValue = useCallback((event) => {
+    return +event.target.value.toString().length < 4 ? currentYear : +event.target.value;
   }, []);
 
   // onChange
@@ -94,9 +131,9 @@ const Filters = ({setOpenFilter}) => {
     return setState(c => c > state ? c -1 : c);
   }, []);
   
-  const link = useMemo(() => {
-    return `discover/${category}/&include_adult=false&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&language=${lang}`;
-  }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax, lang]);
+  const path = useMemo(() => {
+    return `/discover/${category}/&include_adult=false&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&/1`;
+  }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax]);
   
   const activeStyleSortBtn = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };
 
@@ -113,7 +150,10 @@ const Filters = ({setOpenFilter}) => {
               {categoryArr.map(({path, name}) => (
                 <li key={path}>
                   <button
-                    onClick={() => setCategory(path)}
+                    onClick={() => {
+                      setCategory(path);
+                      setGenres([]);
+                    }}
                     style={category.indexOf(path) !== -1 ? activeStyleSortBtn : null}
                   >
                     {name}
@@ -210,14 +250,15 @@ const Filters = ({setOpenFilter}) => {
                   type="number"
                   name="date-min" 
                   value={dateMin}
-                  onChange={(e) => setDateMin(getMinValue(e, 1970, dateMax, 4))}
+                  onChange={(e) => setDateMin(getMinValue(e, firstYear, dateMax, 4))}
                   onFocus={(e) =>  e.target.select()}
+                  onBlur={(e) => setDateMin(blurMinValue(e))}
                 />
                 <div>
                   <button onClick={() => incMin(dateMax, setDateMin)}>
                     <MdOutlineKeyboardArrowUp/>
                   </button>
-                  <button onClick={() => decMin(setDateMin, 1970)}>
+                  <button onClick={() => decMin(setDateMin, firstYear)}>
                     <MdOutlineKeyboardArrowDown/>
                   </button>
                 </div>
@@ -230,6 +271,7 @@ const Filters = ({setOpenFilter}) => {
                   value={dateMax}
                   onChange={(e) => setDateMax(getMaxValue(e, currentYear, dateMin, 4))}
                   onFocus={(e) => e.target.select()}
+                  onBlur={(e) => setDateMax(blurMaxValue(e))}
                 />
                 <div>
                   <button onClick={() => incMax(setDateMax, currentYear)}>
@@ -246,7 +288,7 @@ const Filters = ({setOpenFilter}) => {
 
         <div className={style.bottom}>
           <button onClick={handleClose}>Close</button>
-          <button>Acept</button>
+          <Link to={path} onClick={handleClose}>Search</Link>
         </div>
 
         <button className={style.close} onClick={handleClose}>

@@ -10,6 +10,7 @@ import TvSeriesPage from '../pages/tvSeriesPage/TvSeriesPage';
 import CelebsPage from '../pages/celebsPage/CelebsPage';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import SearchPage from "../pages/searchPage/SearchPage";
+import DiscoverPage from "../pages/discoverPage/DiscoverPage";
 
 const Router = () => {
   return useRoutes([
@@ -34,10 +35,17 @@ const Router = () => {
       ]
     },
     {
-      path: 'search', 
+      path: 'search',
       children: [
         { index: true },
         { path: ':category/:value/:page', element: <SearchPage /> }
+      ]
+    },
+    {
+      path: 'discover',
+      children: [
+        { index: true },
+        { path: ':category/:filters/:page', element: <DiscoverPage /> }
       ]
     }
   ])

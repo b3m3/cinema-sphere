@@ -71,12 +71,13 @@
   justify-content: flex-end;
   gap: 1.25rem;
 
-  & button {
+  & button, a {
     font-size: 1rem;
     font-weight: 600;
-    padding: 8px 30px;
-    background: var(--orange-400);
+    padding: .625rem 1.5625rem;
+    background: var(--blue-400);
     border-radius: var(--radius-4);
+    border-radius: 25px;
     color: var(--grey-900);
     transition: opacity .2s;
 
