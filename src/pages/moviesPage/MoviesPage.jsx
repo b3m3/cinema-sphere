@@ -27,7 +27,7 @@ const MoviesPage = () => {
   return (
     <div className="container">
       <section className={style.wrapp}>
-        <h1>What to watch - Cinema Sphere</h1>
+        <h1>What movies to watch - Cinema Sphere</h1>
         <MediaSwitcher />
         { loading && <Loading /> }
         <div className={style.body}>

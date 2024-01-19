@@ -18,8 +18,8 @@ const Router = () => {
     { path: 'login', element: <LoginPage /> },
     { path: 'watch_list', element: <WatchListPage /> },
     { path: '*', element: <NotFoundPage /> },
+    { path: 'person/:filter/:page',element: <CelebsPage/> },
     { path: 'tv/:filter/:page',element: <TvSeriesPage/> },
-    { path: 'person/:page',element: <CelebsPage/> },
     { 
       path: 'movie',
       children: [
