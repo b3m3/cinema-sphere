@@ -5,16 +5,22 @@ import style from './images-button.module.scss';
 import { useMemo } from "react";
 
 const ImagesButton = ({images, category, id}) => {
+  const getResults = () => {
+    return images.res?.backdrops ? images.res?.backdrops : images.res?.profiles ? images.res?.profiles : null;
+  };
+
+  const res = getResults();
+
   const numberOfImages = useMemo(() => {
-    return images.res?.backdrops.length > 0 ? images.res?.backdrops.length : 0
-  }, [images]);
+    return res && res.length > 0 ? res.length : 0
+  }, [res]);
 
   return (
     <>
-      <Link className={style.wrapp} to={numberOfImages > 0 ? `/${category}/${id}/gallery/images` : ''}>
+      <Link className={style.wrapp} to={numberOfImages && numberOfImages > 0 ? `/${category}/${id}/gallery/images` : ''}>
         <FaRegImage />
         <span>
-          { numberOfImages > 1 ? numberOfImages + ' PHOTOS' : numberOfImages + ' PHOTO' } 
+          { numberOfImages && numberOfImages > 1 ? numberOfImages + ' PHOTOS' : numberOfImages + ' PHOTO' } 
         </span>
       </Link>
     </>

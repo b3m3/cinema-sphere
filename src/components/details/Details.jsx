@@ -1,10 +1,19 @@
 import Links from '../links/Links';
 import moment from 'moment';
 
+import { calculateAgeWithDOB } from '../../utils/functions';
+
 import style from './details.module.scss';
 
 const Details = (props) => {
-  const {id, category, release_date, production_countries, production_companies, homepage, spoken_languages} = props;
+  const {id, category, release_date, production_countries, birthday, deathday, place_of_birth, production_companies, homepage, spoken_languages} = props;
+
+  const currentYear = new Date().getFullYear();
+  const birthYear = moment(birthday).format('YYYY');
+  const birthMonth = moment(birthday).format('MM');
+  const birthDay = moment(birthday).format('DD');
+
+  const age = calculateAgeWithDOB(currentYear, birthYear, birthMonth, birthDay);
 
   return (
     <div className={style.wrapp}>
@@ -14,6 +23,20 @@ const Details = (props) => {
             <li>
               <h3>Release date:</h3>
               {moment(release_date).format('MMMM DD, YYYY')}
+            </li>
+        }
+        {
+          birthday &&
+            <li>
+              <h3>Birthday:</h3>
+              {moment(birthday).format('MMMM DD, YYYY')} {age && !deathday && `(${age} years)`}
+            </li>
+        }
+        {
+          place_of_birth &&
+            <li>
+              <h3>Place of birth:</h3>
+              {place_of_birth}
             </li>
         }
         {
@@ -43,13 +66,11 @@ const Details = (props) => {
               ))}
             </li>
         }
-        {
 
         <li>
           <h3>Official sites:</h3>
           <Links id={id} category={category} homepage={homepage} />
         </li>
-        }
       </ul>
     </div>
   );

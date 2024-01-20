@@ -3,6 +3,14 @@
   z-index: 1;
   padding: .625rem 0;
 
+  & h1 {
+    span {
+      font-size: 1.25rem;
+      color: var(--grey-400);
+      margin-left: .625rem;
+    }
+  }
+
   &::after {
     position: absolute;
     z-index: -1;
@@ -23,8 +31,9 @@
 
   &__head {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
+    gap: .625rem;
 
     &_left {
       & ul {
@@ -185,5 +194,16 @@
         justify-content: center;
       }
     }
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .top {
+    &__head {
+      &_right {
+        gap: 6px;
+      }
+    }
+  
   }
 }

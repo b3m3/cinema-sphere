@@ -6,8 +6,19 @@
 
   & li {
     font-weight: 300;
-    padding: 5px 10px;
     border-radius: 1.5625rem;
     border: 2px solid var(--grey-400);
+    transition: background .2s;
+    
+    & a {
+      display: block;
+      padding: 5px 10px;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--grey-400);
+      }
+    }
   }
 }

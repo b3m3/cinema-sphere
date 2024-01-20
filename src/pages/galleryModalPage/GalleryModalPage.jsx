@@ -41,22 +41,28 @@ const GalleryModal = () => {
     }
   }, [dispatch, category, lang, id, isModalImages, isModalVideos]);
 
+  const getImagesRes = () => {
+    return images.res?.backdrops ? images.res?.backdrops : images.res?.profiles ? images.res?.profiles : null;
+  };
+
+  const imagesRes = getImagesRes();
+
   const videoResults = useMemo(() => {
     return videos.res?.results.length > 0 ? videos.res?.results
       : englishVideo.res?.results.length > 0 ? englishVideo.res?.results : null;
   }, [videos, englishVideo]);
 
   const imageResults = useMemo(() => {
-    return images.res?.posters.length > 0 ? images.res : null;
-  }, [images]);
+    return imagesRes?.length > 0 ? imagesRes : null;
+  }, [imagesRes]);
 
-  const nextImage = useCallback(() => {
-    const length = isModalImages ? imageResults?.backdrops.length : isModalVideos ? videoResults?.length : null;
+  const nextSlide = useCallback(() => {
+    const length = isModalImages ? imageResults.length : isModalVideos ? videoResults?.length : null;
     return setCount(c => length && c < length ? c + 1 : 1);
   }, [isModalImages, imageResults, isModalVideos, videoResults])
 
-  const prevImage = useCallback(() => {
-    const length = isModalImages ? imageResults?.backdrops.length : isModalVideos ? videoResults?.length : null;
+  const prevSlide = useCallback(() => {
+    const length = isModalImages ? imageResults.length : isModalVideos ? videoResults?.length : null;
     setCount(c => length && c <= 1 ? length : c - 1);
   }, [isModalImages, imageResults, isModalVideos, videoResults])
   
@@ -72,7 +78,7 @@ const GalleryModal = () => {
               <span>{count}</span>
               <span>of</span>
               <span>
-                {isModalImages && imageResults?.backdrops.length}
+                {isModalImages && imageResults?.length}
                 {isModalVideos && videoResults?.length}
               </span>
             </div>
@@ -86,7 +92,7 @@ const GalleryModal = () => {
             {
               isModalImages &&
                 <img 
-                  src={`${IMAGE_URL}original${imageResults?.backdrops[count -1].file_path}`}
+                  src={`${IMAGE_URL}original${imageResults?.[count -1].file_path}`}
                   alt="backdrop" 
                 />
             }
@@ -101,10 +107,10 @@ const GalleryModal = () => {
             }
           </div>
           <div className={style.top_navigate}>
-            <button className={style.left_btn} onClick={prevImage}>
+            <button className={style.left_btn} onClick={prevSlide}>
               <PiArrowSquareLeft />
             </button>
-            <button className={style.right_btn} onClick={nextImage}>
+            <button className={style.right_btn} onClick={nextSlide}>
               <PiArrowSquareRight />
             </button>
           </div>
@@ -112,7 +118,7 @@ const GalleryModal = () => {
 
         <div className={style.body} ref={bodyRef}>
           {
-            isModalImages && imageResults?.backdrops?.map(({file_path}, i) => (
+            isModalImages && imageResults?.map(({file_path}, i) => (
               <img 
                 key={i}
                 src={`${IMAGE_URL}w185${file_path}`}

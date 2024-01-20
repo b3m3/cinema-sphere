@@ -1,6 +1,4 @@
 .wrapp {
-  padding-top: 1.25rem;
-
   & ul {
     & li {
       position: relative;
@@ -13,14 +11,16 @@
       color: var(--blue-400);
       padding: 15px 0;
   
-      &::before {
-        position: absolute;
-        content: '';
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: var(--white-01);
+      &:not(:first-child) {
+        &::before {
+          position: absolute;
+          content: '';
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: var(--white-01);
+        }
       }
   
       & h3 {
@@ -34,6 +34,7 @@
 
         &:not(:last-child) {
           margin-right: .625rem;
+
           &::before {
             position: absolute;
             content: '•';

@@ -24,3 +24,16 @@ export const convertMinutesToHoursAndMinutes = (min) => {
   const minutes = min % 60;
   return `${hours}h ${minutes < 10 ? 0 : ""} ${minutes}m`;
 }
+
+export const calculateAgeWithDOB = (currentYear, birthYear, birthMonth, birthDay) => {
+  const currentDate = new Date();
+  const birthdayThisYear = new Date(currentYear, birthMonth - 1, birthDay);
+
+  let age = currentYear - birthYear;
+
+  if (currentDate < birthdayThisYear) {
+    age--;
+  }
+
+  return age;
+}

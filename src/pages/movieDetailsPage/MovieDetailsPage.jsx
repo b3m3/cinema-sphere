@@ -27,8 +27,9 @@ import Reviews from '../../components/reviews/Reviews';
 import Keywords from '../../components/keywords/Keywords';
 import Rate from '../../components/rate/Rate';
 import SideTrending from '../../components/sideTrending/SideTrending';
+import Popularity from '../../components/popularity/Popularity';
 
-import style from './movie-details.module.scss';
+import style from './movie-details-page.module.scss';
 
 const MovieDetails = () => {
   const {id} = useParams();
@@ -68,7 +69,7 @@ const MovieDetails = () => {
 
   const title = details.res?.title;
   const releaseDate = details.res?.release_date && moment(details.res?.release_date).format('YYYY');
-
+  
   return (
     <div className={style.wrapp}>
       { details.loading && <Loading /> }
@@ -93,6 +94,7 @@ const MovieDetails = () => {
                   <div className={style.top__head_right}>
                     <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />
                     <Rate id={id} category={category}/>
+                    <Popularity popularity={details.res?.popularity} />
                   </div>
                 </div>
 
