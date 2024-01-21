@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchSimilar } from '../../store/slices/fetchDataSlice';
+import { fetchSimilar, fetchCombinedCredits } from '../../store/slices/fetchDataSlice';
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
 import Title from '../title/Title';
 import MediaCard from '../mediaCard/MediaCard';
 import Loading from '../loading/Loading';
 
-import style from './similar.module.scss';
+import style from './media-swiper.module.scss';
 
 const breakpoints = {
   1024: { slidesPerView: 4 },
@@ -19,27 +19,36 @@ const breakpoints = {
   320: { slidesPerView: 1 },
 }
 
-const Similar = ({lang, category, id}) => {
-  const {loading, res} = useSelector(state => state.similar.similar);
+const MediaSwiper = ({lang, category, id, title}) => {
+  const {similar} = useSelector(state => state.similar);
+  const {combinedCredits} = useSelector(state => state.combinedCredits);
   const dispatch = useDispatch();
 
+  const isCelebPage = category === 'person';
+
   useEffect(() => {
-    dispatch(fetchSimilar({category, id, lang}))
+    if (isCelebPage) {
+      dispatch(fetchCombinedCredits({id, lang}))
+    } else {
+      dispatch(fetchSimilar({category, id, lang}))
+    }
   }, [dispatch, category, id, lang]);
 
-
   const SwiperWrapper = useWrapperSwiper(MediaCard);
+
+  const res = isCelebPage ? combinedCredits.res?.cast : similar.res?.results;
+  const loading = isCelebPage ? combinedCredits.loading : similar.loading;
 
   return (
     <>
       {loading && <Loading size={30} black />}
       {
-        res?.results?.length > 0 &&        
+        res?.length > 0 &&
           <div className={style.wrapp}>
-            <Title title={'Similar'} />
+            <Title title={title} length={res?.length} />
 
             <SwiperWrapper
-              res={res}
+              res={{results: res}}
               white 
               perView={4}
               nextEl={'sbns'}
@@ -53,4 +62,4 @@ const Similar = ({lang, category, id}) => {
   );
 }
 
-export default Similar;
+export default MediaSwiper;

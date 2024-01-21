@@ -16,14 +16,12 @@ const ImagesButton = ({images, category, id}) => {
   }, [res]);
 
   return (
-    <>
-      <Link className={style.wrapp} to={numberOfImages && numberOfImages > 0 ? `/${category}/${id}/gallery/images` : ''}>
-        <FaRegImage />
-        <span>
-          { numberOfImages && numberOfImages > 1 ? numberOfImages + ' PHOTOS' : numberOfImages + ' PHOTO' } 
-        </span>
-      </Link>
-    </>
+    <Link className={style.wrapp} to={numberOfImages && numberOfImages > 0 ? `/${category}/${id}/gallery/images` : ''}>
+      <FaRegImage />
+      <span>
+        { numberOfImages && numberOfImages > 1 ? numberOfImages + ' PHOTOS' : numberOfImages + ' PHOTO' } 
+      </span>
+    </Link>
   );
 }
 

@@ -15,6 +15,7 @@ import Error from '../../components/error/Error';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
+import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import SideTrending from '../../components/sideTrending/SideTrending';
 import Popularity from '../../components/popularity/Popularity';
 
@@ -91,15 +92,7 @@ const CelebDetailsPage = () => {
                 </div>
 
                 {/* <div className={style.top__bottom}>
-                  <MediaGenres genres={details.res?.genres} category={category} />
-
-                  <div className={style.top__bottom_block}>
-                    <Details id={id} category={category} {...details.res && details.res} />
-                    <div>
-                      <AddToWatchlist orange/>
-                    </div>
-                  </div>
-
+                  <MediaSwiper category={category} lang={lang} id={id} title={'Starred in'} />
                 </div> */}
               </div>
             </div>
@@ -110,9 +103,13 @@ const CelebDetailsPage = () => {
               <div className={style.body__wrapp}>
                 <div className={style.body__left}>
                   <Overview biography={details.res?.biography} />
+                  <MediaSwiper category={category} lang={lang} id={id} title={'Starred in'} />
                 </div>
 
                 <aside className={style.body__right}>
+                  <div className={style.body__right_images}>
+                    <ImagesButton images={images} category={category} id={id} />
+                  </div>
                   <SideTrending lang={lang} category={category}id={id} />
                 </aside>
               </div>

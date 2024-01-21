@@ -22,7 +22,7 @@ import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/recommendations/Recommendations';
-import Similar from '../../components/similar/Similar';
+import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import Reviews from '../../components/reviews/Reviews';
 import Keywords from '../../components/keywords/Keywords';
 import Rate from '../../components/rate/Rate';
@@ -129,7 +129,7 @@ const MovieDetails = () => {
                 <div className={style.body__left}>
                   <Overview overview={details.res?.overview} />
                   <MediaCasts id={id} category={category} lang={lang} />
-                  <Similar id={id} category={category} lang={lang} />
+                  <MediaSwiper id={id} category={category} lang={lang} title={'Similar'} />
                   <Reviews id={id} category={category} />
                 </div>
 

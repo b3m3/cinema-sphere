@@ -72,13 +72,16 @@
 
   &__center {
     display: grid;
-    grid-template: auto / 21.4% 1fr 20%;
+    // grid-template: auto / 21.4% 1fr 20%;
+    grid-template: auto / 21.4% 1fr;
     gap: .625rem;
 
     &_box{
-      display: flex;
-      flex-direction: column;
-      gap: .625rem;
+      // display: flex;
+      // flex-direction: column;
+      // gap: .625rem;
+      display: grid;
+      grid-template: 200px auto / 1fr;
     }
   }
 
@@ -113,6 +116,13 @@
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    
+    &_images {
+      height: 5rem;
+      background: var(--orange-400);
+      border: 1px solid var(--blue-400-01);
+      border-radius: var(--radius-4);
+    }
   }
 }
 

@@ -32,23 +32,23 @@ const Links = ({category, id, homepage}) => {
       )
     }
   }
-
+  
   return (
     <>
       {
         links.res &&
-        <>
-          {
-            homepage && 
-              <a className={style.link} href={homepage} rel="noopener noreferrer" target='__blank'>
-                Official Site
-                <LiaExternalLinkAltSolid />
-              </a>
-          }
-          {linksArr.map(({id, linkBase, name}) => (
-            renderLinks(id, linkBase, links.res[`${id}`], name)
-          ))}
-        </>
+          <>
+            {
+              homepage && 
+                <a className={style.link} href={homepage} rel="noopener noreferrer" target='__blank'>
+                  Official Site
+                  <LiaExternalLinkAltSolid />
+                </a>
+            }
+            {linksArr.map(({id, linkBase, name}) => (
+              renderLinks(id, linkBase, links.res[`${id}`], name)
+            ))}
+          </>
       }
     </>
   );

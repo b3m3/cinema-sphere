@@ -16,6 +16,7 @@ import fetchEnglishVideo from './slices/fetchDataSlice';
 import fetchSearchBar from './slices/fetchDataSlice';
 import fetchSearch from './slices/fetchDataSlice';
 import fetchMediaCasts from './slices/fetchDataSlice';
+import fetchCombinedCredits from './slices/fetchDataSlice';
 import fetchRecommendations from './slices/fetchDataSlice';
 import fetchSimilar from './slices/fetchDataSlice';
 import fetchReviews from './slices/fetchDataSlice';
@@ -39,6 +40,7 @@ const store = configureStore({
     searchBar: fetchSearchBar,
     search: fetchSearch,
     mediaCasts: fetchMediaCasts,
+    combinedCredits: fetchCombinedCredits,
     recommendations: fetchRecommendations,
     similar: fetchSimilar,
     reviews: fetchReviews,

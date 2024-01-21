@@ -7,7 +7,6 @@ import 'swiper/css/navigation';
 
 export const useWrapperSwiper = (Component) => {
   return (props) => {
-
     return (
       <div style={{position: 'relative'}}>
         <Swiper
@@ -21,7 +20,7 @@ export const useWrapperSwiper = (Component) => {
         >
           {props.res?.results?.map((data) => +props._id !== +data.id && (
             <SwiperSlide key={data.id}>
-              <Component {...data} {...props} />
+              <Component {...data} {...props} media_type={data.media_type} />
             </SwiperSlide>
           ))}
         </Swiper>

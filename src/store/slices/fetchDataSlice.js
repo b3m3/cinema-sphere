@@ -16,6 +16,7 @@ const initialState = {
   searchBar: {loading: false, status: null, res: null},
   search: {loading: false, status: null, res: null},
   mediaCasts: {loading: false, status: null, res: null},
+  combinedCredits: {loading: false, status: null, res: null},
   recommendations: {loading: false, status: null, res: null},
   similar: {loading: false, status: null, res: null},
   reviews: {loading: false, status: null, res: null},
@@ -182,6 +183,23 @@ export const fetchMediaCasts = createAsyncThunk(
   }
 )
 
+export const fetchCombinedCredits = createAsyncThunk(
+  'fetch/fetchCombinedCredits',
+  async({id, lang}, {rejectWithValue}) => {
+    try {
+      if (id && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}person/${id}/combined_credits?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
 export const fetchRecommendations = createAsyncThunk(
   'fetch/fetchRecommendations',
   async ({category, id, lang},{rejectWithValue}) => {
@@ -326,6 +344,7 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchKeywords, 'keywords')
     createFetchCase(builder, fetchTrending, 'trending')
     createFetchCase(builder, fetchDiscover, 'discover')
+    createFetchCase(builder, fetchCombinedCredits, 'combinedCredits')
   }
 })
 

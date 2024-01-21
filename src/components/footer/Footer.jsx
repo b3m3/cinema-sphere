@@ -50,12 +50,12 @@ const Footer = () => {
                   </button> 
               }
             </div>
-          
+
             <div className={style.history__bot}>
               {
                 history.length > 0
                   ? <SwiperWrapper
-                      res={{results: history}}
+                      res={{results: history?.slice(0, 25)}}
                       white 
                       perView={4}
                       nextEl={'sbnf'}
