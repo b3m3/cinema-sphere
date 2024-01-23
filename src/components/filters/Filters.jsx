@@ -147,8 +147,8 @@ const Filters = ({setOpenFilter}) => {
             <h3>Category</h3>
 
             <ul>
-              {categoryArr.map(({path, name}) => (
-                <li key={path}>
+              {categoryArr.map(({path, name}, i) => (
+                <li key={path + i}>
                   <button
                     onClick={() => {
                       setCategory(path);
@@ -186,8 +186,8 @@ const Filters = ({setOpenFilter}) => {
             {genresList?.loading && <Loading size={25} />}
 
             <ul>
-              {genresList.res?.genres?.map(({id, name}) => (
-                <li key={id}>
+              {genresList.res?.genres?.map(({id, name}, i) => (
+                <li key={id + i}>
                   <button 
                     onClick={() => selectHandler(id, genres, setGenres)}
                     style={genres?.indexOf(id) !== -1 ? activeStyleSortBtn : null}

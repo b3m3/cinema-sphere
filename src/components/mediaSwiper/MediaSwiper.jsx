@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchSimilar, fetchCombinedCredits } from '../../store/slices/fetchDataSlice';
@@ -32,7 +32,7 @@ const MediaSwiper = ({lang, category, id, title}) => {
     } else {
       dispatch(fetchSimilar({category, id, lang}))
     }
-  }, [dispatch, category, id, lang]);
+  }, [dispatch, isCelebPage, category, id, lang]);
 
   const SwiperWrapper = useWrapperSwiper(MediaCard);
 
@@ -45,7 +45,7 @@ const MediaSwiper = ({lang, category, id, title}) => {
       {
         res?.length > 0 &&
           <div className={style.wrapp}>
-            <Title title={title} length={res?.length} />
+            <Title title={title} length={res?.slice(0, 99).length} />
 
             <SwiperWrapper
               res={{results: res}}

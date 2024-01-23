@@ -66,6 +66,8 @@ const SearchBar = () => {
     navigate(`/${props.media_type ? props.media_type : selectArr[selected].category}/${props.id}`);
   }
 
+  const newCategory = selectArr[selected].name !== 'All' && selectArr[selected].name.slice(0, -1);
+
   return (
     <div className={style.wrapp}>
       <div className={`${style.search} ${openSearch ? style.open_search : ''}`}>
@@ -74,9 +76,9 @@ const SearchBar = () => {
           <MdOutlineArrowDropDown />
 
           <ul className={openSelect ? style.open_select : ''}>
-            {selectArr.map(({name}, i) => (
+            {selectArr.map(({name, category}, i) => (
               <li 
-                key={i}
+                key={category}
                 style={selected === i ? {color: 'var(--orange-400'} : null}
                 onClick={() => {
                   setSelected(i) 
@@ -95,15 +97,15 @@ const SearchBar = () => {
             onChange={(e) => setValue(e.target.value)}
             value={value}
           />
-        <button 
-          className={style.close} 
-          onClick={() => {
-            setOpenSearch(false)
-            setValue('')
-          }}
-        >
-          <IoIosClose />
-        </button>
+          <button 
+            className={style.close} 
+            onClick={() => {
+              setOpenSearch(false)
+              setValue('')
+            }}
+          >
+            <IoIosClose />
+          </button>
         </div>
         <button className={style.filter_button} onClick={filterHandler}>
           <IoFilterOutline />
@@ -125,7 +127,7 @@ const SearchBar = () => {
                   key={props.id}
                   onClick={() => handleNavigate(props)}
                 >
-                  <SearchCard {...props} />
+                  <SearchCard {...props} category={newCategory} />
                 </li>
               ))}
 

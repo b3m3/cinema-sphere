@@ -9,7 +9,7 @@ const SearchCard = (
 ) => {
 
   const categoryFullName = useMemo(() => {
-    return media_type === 'tv' ? 'Tv serie' : media_type === 'movie' ? 'Movie' : null
+    return media_type === 'tv' ? 'Tv serie' : media_type === 'movie' ? 'Movie' : null;
   }, [media_type]);
 
   return (
@@ -23,7 +23,7 @@ const SearchCard = (
         </p>
         <p>
           <span>
-            {categoryFullName}
+            {categoryFullName ? categoryFullName : category}
           </span>
           <span>
             {

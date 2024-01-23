@@ -155,7 +155,7 @@ export const fetchSearch = createAsyncThunk(
     try {
       if (category && value && page && lang) {
         const {data} = await axios.get(
-          `${BASE_URL}search/${category}?api_key=${API_KEY}&query=${value}&language=${lang}&include_adult=false&page=${page}`
+          `${BASE_URL}search/${category}?api_key=${API_KEY}&query=${value}&language=${lang}&page=${page}`
         );
         
         return data

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { fetchLinks } from '../../store/slices/fetchDataSlice';
 
@@ -14,9 +15,11 @@ const linksArr = [
   {id: 'twitter_id', linkBase: 'https://twitter.com/', name: 'Twitter'},
 ]
 
-const Links = ({category, id, homepage}) => {
+const Links = ({category, homepage}) => {
   const {links} = useSelector(state => state.links)
   const dispatch = useDispatch();
+  
+  const {id} = useParams()
 
   useEffect(() => {
     dispatch(fetchLinks({category, id}))

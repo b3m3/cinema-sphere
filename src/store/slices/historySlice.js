@@ -17,7 +17,7 @@ const historySlice = createSlice({
     },
     setHistory: (state, {payload}) => {
       state.history = [payload, ...state.history.filter(el => el.id !== payload.id)];
-      localStorage.setItem('history', JSON.stringify(state.history));
+      localStorage.setItem('history', JSON.stringify(state.history.slice(0, 25)));
     },
     clearHistory: (state) => {
       localStorage.removeItem('history');

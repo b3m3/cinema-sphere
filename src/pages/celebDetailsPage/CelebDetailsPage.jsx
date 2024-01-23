@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
@@ -14,12 +14,15 @@ import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';
-import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import SideTrending from '../../components/sideTrending/SideTrending';
 import Popularity from '../../components/popularity/Popularity';
 
 import style from './celeb-details-page.module.scss';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 
 const CelebDetailsPage = () => {
   const {id} = useParams();
@@ -51,8 +54,6 @@ const CelebDetailsPage = () => {
   const name = details.res?.name;
   const deathday = details.res?.deathday && details.res?.birthday && `(${moment(details.res.birthday).format('YYYY')} - ${moment(details.res.deathday).format('YYYY')})`
   const knownFor = details.res?.known_for_department && details.res?.known_for_department;
-
-  console.log(details.res);
 
   return (
     <div className={style.wrapp}>
@@ -91,9 +92,8 @@ const CelebDetailsPage = () => {
                   </div> */}
                 </div>
 
-                {/* <div className={style.top__bottom}>
-                  <MediaSwiper category={category} lang={lang} id={id} title={'Starred in'} />
-                </div> */}
+                <div className={style.top__bottom}>
+                </div>
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ const CelebDetailsPage = () => {
                   <div className={style.body__right_images}>
                     <ImagesButton images={images} category={category} id={id} />
                   </div>
-                  <SideTrending lang={lang} category={category}id={id} />
+                  <SideTrending lang={lang} category={category} id={id} />
                 </aside>
               </div>
             </div>

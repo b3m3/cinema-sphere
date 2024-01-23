@@ -40,7 +40,7 @@ const Details = (props) => {
             </li>
         }
         {
-          production_countries?.length > 0 && 
+          Boolean(production_countries?.length) && 
             <li>
               <h3>Countries of origin:</h3>
               {production_countries.map(({name}) => (
@@ -49,7 +49,7 @@ const Details = (props) => {
             </li>
         }
         {
-          production_companies?.length > 0 && 
+          Boolean(production_companies?.length) && 
             <li>
               <h3>Production companies:</h3>
               {production_companies.map(({id, name}) => (
@@ -58,7 +58,7 @@ const Details = (props) => {
             </li>
         }
         {
-          spoken_languages?.length > 0 && 
+           Boolean(spoken_languages?.length) && 
             <li>
               <h3>Languages:</h3>
               {spoken_languages && spoken_languages.map(({name}) => (

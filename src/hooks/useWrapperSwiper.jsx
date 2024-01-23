@@ -7,6 +7,17 @@ import 'swiper/css/navigation';
 
 export const useWrapperSwiper = (Component) => {
   return (props) => {
+    const uniqueIds = new Set();
+
+    const filteredItems = props.res?.results?.filter(item => {
+      if (uniqueIds.has(item.id)) {
+        return false;
+      }
+
+      uniqueIds.add(item.id);
+      return true;
+    });
+
     return (
       <div style={{position: 'relative'}}>
         <Swiper
@@ -17,8 +28,8 @@ export const useWrapperSwiper = (Component) => {
             nextEl: `.${props.nextEl}`,
             prevEl: `.${props.prevEl}`
           }}
-        >
-          {props.res?.results?.map((data) => +props._id !== +data.id && (
+          >
+          {filteredItems?.map((data) => +props._id !== +data.id && (
             <SwiperSlide key={data.id}>
               <Component {...data} {...props} media_type={data.media_type} />
             </SwiperSlide>

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 
+import { clearHistory } from '../../store/slices/historySlice';
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 import PosterImage from '../posterImage/PosterImage';
 
@@ -12,7 +13,6 @@ import { FcAbout } from "react-icons/fc";
 import TMDBLogo from './tmdb.svg';
 
 import style from './footer.module.scss';
-import { clearHistory } from '../../store/slices/historySlice';
 
 const breakpoints = {
   1024: { slidesPerView: 8 },
@@ -44,7 +44,7 @@ const Footer = () => {
             <div className={style.history__top}>
               <h2>Recently viewed</h2>
               { 
-                history.length > 0 && 
+                Boolean(history.length) && 
                   <button onClick={() => dispatch(clearHistory())}>
                     <TfiBrushAlt />
                   </button> 
@@ -53,7 +53,7 @@ const Footer = () => {
 
             <div className={style.history__bot}>
               {
-                history.length > 0
+                Boolean(history.length)
                   ? <SwiperWrapper
                       res={{results: history?.slice(0, 25)}}
                       white 
@@ -70,8 +70,8 @@ const Footer = () => {
 
           <ul className={style.social_list}>
             {
-              socialLinks.map(({link, logo}, i) => (
-                <li key={i}>
+              socialLinks.map(({link, logo}) => (
+                <li key={link}>
                   <a href={link} target="_blank" rel="noopener noreferrer">
                     {logo}
                   </a>
