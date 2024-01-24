@@ -45,7 +45,7 @@ const MediaSwiper = ({lang, category, id, title}) => {
       {
         res?.length > 0 &&
           <div className={style.wrapp}>
-            <Title title={title} length={res?.slice(0, 99).length} />
+            <Title title={title} />
 
             <SwiperWrapper
               res={{results: res}}

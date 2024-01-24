@@ -25,7 +25,7 @@ const Keywords = ({category, id}) => {
               {res?.keywords?.map(({id, name}) => (
                 <li key={id}>
                   <Link to={`/discover/${category}/&include_adult=false&with_keywords=${id}&/1`}>
-                    {name}
+                    #{name}
                   </Link>
                 </li>
               ))}

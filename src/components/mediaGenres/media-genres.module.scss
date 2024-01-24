@@ -7,17 +7,21 @@
   & li {
     font-weight: 300;
     border-radius: 1.5625rem;
-    border: 2px solid var(--grey-400);
+    background: var(--blue-400-01);
     transition: background .2s;
     
     & a {
       display: block;
-      padding: 5px 10px;
+      padding: 8px 13px;
+
+      &:first-letter {
+        text-transform: uppercase;
+      }
     }
 
     @media (any-hover: hover) {
       &:hover {
-        background: var(--grey-400);
+        background: var(--white-01);
       }
     }
   }

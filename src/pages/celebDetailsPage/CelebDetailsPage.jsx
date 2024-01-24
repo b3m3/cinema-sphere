@@ -23,7 +23,6 @@ import style from './celeb-details-page.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-
 const CelebDetailsPage = () => {
   const {id} = useParams();
   const {lang} = useSelector(state => state.lang);
@@ -33,7 +32,7 @@ const CelebDetailsPage = () => {
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();
 
-  useEffect(() =>{
+  useEffect(() => {
     dispatch(fetchDetails({category, lang, id}))
     dispatch(fetchImages({category, id}))
   }, [dispatch, category, lang, id]);
@@ -86,13 +85,6 @@ const CelebDetailsPage = () => {
                 <div className={style.top__center}>
                   <PosterImage title={details.res.name} poster_path={details.res.profile_path} />
                   <Details id={id} category={category} {...details.res && details.res} />
-
-                  {/* <div className={style.top__center_box}>
-                    <ImagesButton images={images} category={category} id={id} />
-                  </div> */}
-                </div>
-
-                <div className={style.top__bottom}>
                 </div>
               </div>
             </div>
@@ -110,7 +102,7 @@ const CelebDetailsPage = () => {
                   <div className={style.body__right_images}>
                     <ImagesButton images={images} category={category} id={id} />
                   </div>
-                  <SideTrending lang={lang} category={category} id={id} />
+                  <SideTrending lang={lang} category={category} id={id} list={true} />
                 </aside>
               </div>
             </div>

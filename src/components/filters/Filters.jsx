@@ -212,10 +212,10 @@ const Filters = ({setOpenFilter}) => {
                   onFocus={e => e.target.select()}
                 />
                 <div>
-                  <button onClick={() => incMin(ratingMax, setRatingMin)}>
+                  <button className={style.arrow_btn} onClick={() => incMin(ratingMax, setRatingMin)}>
                     <MdOutlineKeyboardArrowUp/>
                   </button>
-                  <button onClick={() => decMin(setRatingMin, 1)}>
+                  <button className={style.arrow_btn} onClick={() => decMin(setRatingMin, 1)}>
                     <MdOutlineKeyboardArrowDown/>
                   </button>
                 </div>
@@ -230,10 +230,10 @@ const Filters = ({setOpenFilter}) => {
                   onFocus={e => e.target.select()}
                 />
                 <div>
-                  <button onClick={() => incMax(setRatingMax, 10)}>
+                  <button className={style.arrow_btn} onClick={() => incMax(setRatingMax, 10)}>
                     <MdOutlineKeyboardArrowUp/>
                   </button>
-                  <button onClick={() => decMax(ratingMin, setRatingMax)}>
+                  <button className={style.arrow_btn} onClick={() => decMax(ratingMin, setRatingMax)}>
                     <MdOutlineKeyboardArrowDown/>
                   </button>
                 </div>
@@ -255,10 +255,10 @@ const Filters = ({setOpenFilter}) => {
                   onBlur={(e) => setDateMin(blurMinValue(e))}
                 />
                 <div>
-                  <button onClick={() => incMin(dateMax, setDateMin)}>
+                  <button className={style.arrow_btn} onClick={() => incMin(dateMax, setDateMin)}>
                     <MdOutlineKeyboardArrowUp/>
                   </button>
-                  <button onClick={() => decMin(setDateMin, firstYear)}>
+                  <button className={style.arrow_btn} onClick={() => decMin(setDateMin, firstYear)}>
                     <MdOutlineKeyboardArrowDown/>
                   </button>
                 </div>
@@ -274,10 +274,10 @@ const Filters = ({setOpenFilter}) => {
                   onBlur={(e) => setDateMax(blurMaxValue(e))}
                 />
                 <div>
-                  <button onClick={() => incMax(setDateMax, currentYear)}>
+                  <button className={style.arrow_btn} onClick={() => incMax(setDateMax, currentYear)}>
                     <MdOutlineKeyboardArrowUp/>
                   </button>
-                  <button onClick={() => decMax(dateMin, setDateMax)}>
+                  <button className={style.arrow_btn} onClick={() => decMax(dateMin, setDateMax)}>
                     <MdOutlineKeyboardArrowDown/>
                   </button>
                 </div>

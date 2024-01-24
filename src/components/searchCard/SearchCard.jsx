@@ -14,7 +14,7 @@ const SearchCard = (
 
   return (
     <div className={style.wrapp}>
-      <PosterImage poster_path={poster_path || profile_path} title={"Poster"} id={id} link={link} category={category} />
+      <PosterImage poster_path={poster_path || profile_path} title={"Poster"} id={id} link={link} category={category} media_type={media_type} />
       
       <div className={style.box}>
         <h4>{ name ? name : title ? title : null}</h4>

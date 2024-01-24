@@ -5,8 +5,15 @@
   gap: 1px;
   text-decoration: underline;
 
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: .8;
+    }
+  }
+
   &:not(:last-child) {
     margin-right: .625rem;
+
     &::before {
       position: absolute;
       content: '•';

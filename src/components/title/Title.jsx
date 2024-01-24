@@ -1,9 +1,9 @@
 import style from './title.module.scss';
 
-const Title = ({title, length}) => {
+const Title = ({title}) => {
   return (
     <h2 className={style.wrapp}>
-      {title} {length && `(${length})`}
+      {title}
     </h2>
   );
 }
