@@ -20,11 +20,16 @@ const MediaCasts = ({id, category, lang}) => {
       <Title title={'Casts'} />
 
       <ul className={style.list}>
-        {res && res?.cast?.map((props) => (
-          props?.profile_path &&
-            <li key={props.id}>
-              <CelebCard {...props} />
-            </li>
+        {res?.cast?.map((props) => (
+          props?.profile_path
+            ?  <li key={props.id}>
+                <CelebCard {...props} />
+              </li>
+            : res?.cast?.length < 10
+               ? <li key={props.id}>
+                    <CelebCard {...props} />
+                  </li>
+                : null
         ))}
       </ul>
     </div>

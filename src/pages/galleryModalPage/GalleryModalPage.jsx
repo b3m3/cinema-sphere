@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { fetchImages, fetchVideos, fetchEnglishVideo } from '../../store/slices/fetchDataSlice';
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { IMAGE_URL } from '../../constants/api';
+import { scrollToTop } from '../../utils/functions';
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { CgMenuGridR } from "react-icons/cg";
@@ -67,7 +68,6 @@ const GalleryModal = () => {
   }, [isModalImages, imageResults, isModalVideos, videoResults])
   
   const scrollToBody = useCallback(() => bodyRef.current.scrollIntoView(), []);
-  const scrollToTop = useCallback(() => window.scrollTo(0, 0), []);
 
   return (
     <div className={style.wrapp}>

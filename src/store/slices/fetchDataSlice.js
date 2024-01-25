@@ -22,7 +22,9 @@ const initialState = {
   reviews: {loading: false, status: null, res: null},
   keywords: {loading: false, status: null, res: null},
   trending: {loading: false, status: null, res: null},
-  discover: {loading: false, status: null, res: null}
+  discover: {loading: false, status: null, res: null},
+  tvSeasons: {loading: false, status: null, res: null},
+  tvEpisodes: {loading: false, status: null, res: null},
 }
 
 export const fetchCardData = createAsyncThunk(
@@ -302,6 +304,40 @@ export const fetchDiscover = createAsyncThunk(
   }
 )
 
+export const fetchTvSeasons = createAsyncThunk(
+  'fetch/fetchTvSeasons',
+  async ({id, season, lang}, {rejectWithValue}) => {
+    try {
+      if (id && season && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}tv/${id}/season/${season}?api_key=${API_KEY}&language=${lang}`
+        )
+  
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
+export const fetchTvEpisodes = createAsyncThunk(
+  'fetch/fetchTvEpisodes',
+  async ({id, season, episode, lang}, {rejectWithValue}) => {
+    try {
+      if (id && season && episode && lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}tv/${id}/season/${season}/episode/${episode}?api_key=${API_KEY}&language=${lang}`
+        )
+  
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 // Function Create Fetch Case
 const createFetchCase = (builder, asyncThunk, stateName) => {
   builder.addCase(asyncThunk.pending, (state) => {
@@ -345,6 +381,8 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchTrending, 'trending')
     createFetchCase(builder, fetchDiscover, 'discover')
     createFetchCase(builder, fetchCombinedCredits, 'combinedCredits')
+    createFetchCase(builder, fetchTvSeasons, 'tvSeasons')
+    createFetchCase(builder, fetchTvEpisodes, 'tvEpisodes')
   }
 })
 

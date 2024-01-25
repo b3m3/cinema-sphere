@@ -3,6 +3,7 @@ import PosterImage from '../posterImage/PosterImage';
 import style from './celeb-card.module.scss';
 
 const CelebCard = ({id, original_name, character, profile_path, known_for_department}) => {
+
   return (
     <div className={style.wrapp}>
       <div className={style.image}>

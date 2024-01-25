@@ -13,4 +13,24 @@
     height: 100%;
     background: var(--orange-400);
   }
+
+  & a {
+    display: inline-flex;
+    align-items: center;
+    transition: .2s;
+
+    & svg {
+      padding: 4px 0 0 0;
+      transition: .2s;
+      font-size: 3.375rem;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        & svg {
+          color: var(--blue-400);
+        }
+      }
+    }
+  }
 }

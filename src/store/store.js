@@ -23,6 +23,8 @@ import fetchReviews from './slices/fetchDataSlice';
 import fetchKeywords from './slices/fetchDataSlice';
 import fetchTrending from './slices/fetchDataSlice';
 import fetchDiscover from './slices/fetchDataSlice';
+import fetchTvSeasons from './slices/fetchDataSlice';
+import fetchTvEpisodes from './slices/fetchDataSlice';
 
 const store = configureStore({
   reducer: {
@@ -47,7 +49,9 @@ const store = configureStore({
     keywords: fetchKeywords,
     trending: fetchTrending,
     history: historySlice,
-    discover: fetchDiscover
+    discover: fetchDiscover,
+    tvSeasons: fetchTvSeasons,
+    tvEpisodes: fetchTvEpisodes
   }
 })
 

@@ -7,6 +7,7 @@ import MoviesPage from '../pages/moviesPage/MoviesPage';
 import MovieDetailsPage from '../pages/movieDetailsPage/MovieDetailsPage';
 import GallaryModalPage from '../pages/galleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/tvSeriesPage/TvSeriesPage';
+import TvSeriesDetailsPage from "../pages/tvSeriesDetailsPage/TvSeriesDetailsPage";
 import CelebsPage from '../pages/celebsPage/CelebsPage';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import SearchPage from "../pages/searchPage/SearchPage";
@@ -19,13 +20,6 @@ const Router = () => {
     { path: 'login', element: <LoginPage /> },
     { path: 'watch_list', element: <WatchListPage /> },
     { path: '*', element: <NotFoundPage /> },
-    { 
-      path: 'tv',
-      children: [
-        { index: true },
-        { path: ':filter/:page', element: <TvSeriesPage/> },
-      ]
-    },
     { 
       path: 'person',
       children: [
@@ -49,6 +43,20 @@ const Router = () => {
           path: ':id', 
           children: [
             { index: true, element: <MovieDetailsPage/> },
+            { path: 'gallery/:modal',element: <GallaryModalPage/> }
+          ]
+        },
+      ]
+    },
+    { 
+      path: 'tv',
+      children: [
+        { index: true },
+        { path: ':filter/:page', element: <TvSeriesPage/> },
+        { 
+          path: ':id', 
+          children: [
+            { index: true, element: <TvSeriesDetailsPage/> },
             { path: 'gallery/:modal',element: <GallaryModalPage/> }
           ]
         },

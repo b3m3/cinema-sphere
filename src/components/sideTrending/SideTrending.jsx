@@ -23,7 +23,7 @@ const SideTrending = ({category, lang, id, list}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTrending({category: 'all', lang}))
+    dispatch(fetchTrending({category: `${category ? category : 'all'}`, lang}))
   }, [dispatch, lang, category]);
 
   const shuffleArray = (array) => {

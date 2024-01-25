@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { fetchCardData } from '../../store/slices/fetchDataSlice';
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
+import { scrollToTop } from '../../utils/functions';
 
 import Loading from '../../components/loading/Loading';
 import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
@@ -22,6 +23,7 @@ const TvSeriesPage = () => {
 
   useEffect(() => {
     dispatch(fetchCardData({category: 'tv', filter, lang, page}));
+    scrollToTop();
   }, [dispatch, page, filter, lang])
 
   return (

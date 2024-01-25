@@ -23,7 +23,7 @@ export const convertMinutesToHoursAndMinutes = (min) => {
   const hours = Math.floor(min / 60);
   const minutes = min % 60;
   
-  return `${hours}h ${minutes < 10 && minutes > 1 ? ' : 0' + minutes + 'm' : minutes === 0 ? "" : ' : ' + minutes + 'm'}`;
+  return `${Boolean(hours) ? hours + 'h' : ''} ${minutes < 10 && minutes > 1 ? '0' + minutes + 'm' : minutes === 0 ? "" : minutes + 'm'}`;
 }
 
 export const calculateAgeWithDOB = (currentYear, birthYear, birthMonth, birthDay) => {
@@ -37,4 +37,8 @@ export const calculateAgeWithDOB = (currentYear, birthYear, birthMonth, birthDay
   }
 
   return age;
+}
+
+export const scrollToTop = () => {
+  return window.scrollTo(0, 0)
 }
