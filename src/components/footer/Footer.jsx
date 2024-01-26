@@ -15,12 +15,12 @@ import TMDBLogo from './tmdb.svg';
 import style from './footer.module.scss';
 
 const breakpoints = {
-  1024: { slidesPerView: 8 },
-  950: { slidesPerView: 6 },
-  768: { slidesPerView: 5 },
-  650: { slidesPerView: 4 },
-  425: { slidesPerView: 3 },
-  320: { slidesPerView: 2 },
+  1024: { slidesPerView: 8, slidesPerGroup: 2 },
+  950: { slidesPerView: 6, slidesPerGroup: 2 },
+  768: { slidesPerView: 5, slidesPerGroup: 2 },
+  650: { slidesPerView: 4, slidesPerGroup: 2 },
+  425: { slidesPerView: 3, slidesPerGroup: 2 },
+  320: { slidesPerView: 2, slidesPerGroup: 2 },
 }
 
 const socialLinks = [

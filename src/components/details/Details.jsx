@@ -6,7 +6,8 @@ import { calculateAgeWithDOB } from '../../utils/functions';
 import style from './details.module.scss';
 
 const Details = (props) => {
-  const {id, category, release_date, production_countries, birthday, deathday, place_of_birth, production_companies, homepage, spoken_languages} = props;
+  const {id, category, release_date, first_air_date, production_countries, birthday, deathday, place_of_birth, 
+    production_companies, homepage, spoken_languages} = props;
 
   const currentYear = new Date().getFullYear();
   const birthYear = moment(birthday).format('YYYY');
@@ -19,10 +20,10 @@ const Details = (props) => {
     <div className={style.wrapp}>
       <ul>
         {
-          release_date &&
+          (release_date || first_air_date) &&
             <li>
               <h3>Release date:</h3>
-              {moment(release_date).format('MMMM DD, YYYY')}
+              {moment(release_date || first_air_date).format('MMMM DD, YYYY')}
             </li>
         }
         {

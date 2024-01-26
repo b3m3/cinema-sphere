@@ -73,7 +73,7 @@ const TvSeriesDetailsPage = () => {
   const releaseDate = details.res?.first_air_date && moment(details.res?.first_air_date).format('YYYY');
   const lastDate = isEnded && details.res?.last_air_date && ` - ${moment(details.res?.last_air_date).format('YYYY')}`;
 
-  // console.log(details.res);
+  console.log(details.res);
 
   return (
     <div className={style.wrapp}>
@@ -101,7 +101,7 @@ const TvSeriesDetailsPage = () => {
                   </div>
                   <div className={style.top__head_right}>
                     <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />
-                    <Rate id={id} category={category}/>
+                    <Rate id={id} category={category} title={details.res?.name}/>
                     <Popularity popularity={details.res?.popularity} />
                   </div>
                 </div>

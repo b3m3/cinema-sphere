@@ -22,6 +22,7 @@
     font-weight: 500;
     font-size: 1rem;
     color: var(--black);
+    user-select: none;
 
     &.active {
       background: var(--orange-400);

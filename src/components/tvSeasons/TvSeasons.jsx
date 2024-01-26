@@ -7,6 +7,7 @@ import { fetchTvSeasons } from '../../store/slices/fetchDataSlice';
 
 import Title from '../title/Title';
 import EpisodeCard from '../episodeCard/EpisodeCard';
+import Loading from '../loading/Loading';
 
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
@@ -15,14 +16,21 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 const TvSeasons = ({id, seasons, lang, category}) => {
-  const [seasonNumber, setSeasonNumber] = useState(1);
+  const [seasonNumber, setSeasonNumber] = useState(null);
   const [maxEpisodes, setMaxEpisodes] = useState(false);
 
-  const {res} = useSelector(state => state.tvSeasons.tvSeasons)
+  const {loading, res} = useSelector(state => state.tvSeasons.tvSeasons)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTvSeasons({id, season: seasonNumber, lang}));
+    const getFirstSeason = seasons?.[0]?.season_number;
+    setSeasonNumber(getFirstSeason);
+  }, [seasons])
+
+  useEffect(() => {
+    if (seasonNumber?.toString()) {
+      dispatch(fetchTvSeasons({id, season: seasonNumber?.toString() , lang}));
+    }
   }, [dispatch, id, seasonNumber, lang]);
 
   const episodesLength = maxEpisodes ? res?.episodes?.length : 12;
@@ -37,13 +45,13 @@ const TvSeasons = ({id, seasons, lang, category}) => {
             modules={[Navigation]}
             slidesPerView={18}
             >
-              {seasons?.map(({id}, i) => (
+              {seasons?.map(({season_number, id}) => (
                 <SwiperSlide key={id}>
                   <button 
-                    className={seasonNumber === i + 1 ? style.active : null}
-                    onClick={() => setSeasonNumber(i + 1)}
+                    className={seasonNumber === season_number ? style.active : null}
+                    onClick={() => setSeasonNumber(season_number)}
                   >
-                    {i + 1}
+                    {season_number === 0 ? 'Sp.' : season_number}
                   </button>
                 </SwiperSlide>
               ))}
@@ -52,6 +60,7 @@ const TvSeasons = ({id, seasons, lang, category}) => {
       </div>
 
       <div className={style.body}>
+        { loading && <Loading size={10} black /> }
         <ul>
           {res?.episodes?.slice(0, episodesLength).map((props) => (
             <li key={props.id}>

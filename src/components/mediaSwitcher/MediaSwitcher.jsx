@@ -7,7 +7,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight  } from "react-icons/md";
 import style from './media-switcher.module.scss';
 
 const movieArr = ['popular', 'now_playing', 'upcoming', 'top_rated'];
-const tvArr = ['popular', 'airing_today', 'on_the_air', 'top_rated'];
+const tvArr = ['top_rated', 'popular', 'airing_today', 'on_the_air'];
 
 const MediaSwitcher = () => {
   const {filter} = useParams();

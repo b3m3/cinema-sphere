@@ -8,7 +8,7 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 
 import style from './rate.module.scss';
 
-const Rate = ({category, id}) => {
+const Rate = ({category, id, title}) => {
   const [isShow, setIsShow] = useState(false);
   const [starSelected, setStarSelected] = useState('');
   const [starHover, setStarHover] = useState('');
@@ -102,6 +102,8 @@ const Rate = ({category, id}) => {
             <FaStar style={starStyle} />
             <span>{starSelected ? starSelected : '?'}</span>
           </div>
+
+          <h3>{title}</h3>
 
           <ul className={style.modal_list}>
             {[...Array(10)].map((_, i) => (

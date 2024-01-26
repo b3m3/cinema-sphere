@@ -21,13 +21,16 @@
 
     & svg {
       padding: 4px 0 0 0;
-      transition: .2s;
       font-size: 3.375rem;
+      transition: .2s;
     }
 
     @media (any-hover: hover) {
       &:hover {
+        color: var(--blue-400);
+        
         & svg {
+          transform: translateX(4px);
           color: var(--blue-400);
         }
       }

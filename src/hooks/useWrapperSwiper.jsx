@@ -24,6 +24,7 @@ export const useWrapperSwiper = (Component) => {
           modules={[Navigation]}
           breakpoints={props.breakpoints}
           spaceBetween={10}
+          speed={1000}
           navigation={{
             nextEl: `.${props.nextEl}`,
             prevEl: `.${props.prevEl}`

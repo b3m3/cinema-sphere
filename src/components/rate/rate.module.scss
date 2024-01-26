@@ -40,7 +40,7 @@
 }
 
 .modal {
-  padding: 1rem;
+  padding: 5px;
   position: fixed;
   z-index: 10;
   width: 100%;
@@ -66,15 +66,17 @@
   &_wrapp {
     position: relative;
     background: var(--black);
-    height: 200px;
+    max-height: 220px;
+    height: 100%;
     width: 100%;
     max-width: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 20px;
     border-radius: .5rem;
-    padding-top: 2.5rem;
+    padding-top: 1.25rem;
   }
 
   &_star {
@@ -116,7 +118,6 @@
 .rate {
   color: var(--grey-900);
   padding: .625rem 3.125rem;
-  margin-top: 1.875rem;
   font-size: 1rem;
   font-weight: 500;
   background: var(--orange-400);

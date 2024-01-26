@@ -29,10 +29,10 @@ const array = [
     title: 'Tv Series',
     icon: <PiTelevisionSimple />,
     links: [
+      { name: 'Top rated', path: '/tv/top_rated/1' },
       { name: 'Popular', path: '/tv/popular/1' },
       { name: 'Airing today', path: '/tv/airing_today/1' },
       { name: 'On the air', path: '/tv/on_the_air/1' },
-      { name: 'Top rated', path: '/tv/top_rated/1' },
     ]
   },
   {
