@@ -1,0 +1,11 @@
+.wrapp {
+  & ul {
+    & li {
+      padding: .75rem 0;
+  
+      &:not(:last-child){
+        border-bottom: 1px solid var(--grey-100);
+      }
+    }
+  }
+}

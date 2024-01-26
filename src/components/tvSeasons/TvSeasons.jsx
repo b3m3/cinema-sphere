@@ -14,6 +14,7 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import style from './tv-seasons.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useLocation } from 'react-router-dom';
 
 const TvSeasons = ({id, seasons, lang, category}) => {
   const [seasonNumber, setSeasonNumber] = useState(null);
@@ -21,6 +22,10 @@ const TvSeasons = ({id, seasons, lang, category}) => {
 
   const {loading, res} = useSelector(state => state.tvSeasons.tvSeasons)
   const dispatch = useDispatch();
+
+  const {pathname} = useLocation();
+
+  console.log(pathname);
 
   useEffect(() => {
     const getFirstSeason = seasons?.[0]?.season_number;
@@ -34,11 +39,12 @@ const TvSeasons = ({id, seasons, lang, category}) => {
   }, [dispatch, id, seasonNumber, lang]);
 
   const episodesLength = maxEpisodes ? res?.episodes?.length : 12;
+  const link = seasonNumber?.toString() && `${pathname}/seasons/${seasonNumber}`;
 
   return (
     <div className={style.wrapp}>
       <div className={style.top}>
-        <Title title={'Seasons'} link />
+        <Title title={'Seasons'} link={link} />
 
         <div className={style.seasons_list}>
           <Swiper

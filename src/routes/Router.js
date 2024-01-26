@@ -9,6 +9,7 @@ import GallaryModalPage from '../pages/galleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/tvSeriesPage/TvSeriesPage';
 import TvSeriesDetailsPage from "../pages/tvSeriesDetailsPage/TvSeriesDetailsPage";
 import CelebsPage from '../pages/celebsPage/CelebsPage';
+import TvSeasonsPage from "../pages/tvSeasonsPage/TvSeasonsPage";
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import SearchPage from "../pages/searchPage/SearchPage";
 import DiscoverPage from "../pages/discoverPage/DiscoverPage";
@@ -57,7 +58,8 @@ const Router = () => {
           path: ':id', 
           children: [
             { index: true, element: <TvSeriesDetailsPage/> },
-            { path: 'gallery/:modal',element: <GallaryModalPage/> }
+            { path: 'gallery/:modal',element: <GallaryModalPage/> },
+            { path: 'seasons/:season',element: <TvSeasonsPage/> },
           ]
         },
       ]
