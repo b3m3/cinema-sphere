@@ -40,6 +40,8 @@ const SeasonsSwitcher = ({res, season}) => {
             <SwiperSlide key={data.id}>
               <PosterImage {...data} category={category} link />
               <p className={style.name}>{data.name}</p>
+
+              
             </SwiperSlide>
           )
         })}
