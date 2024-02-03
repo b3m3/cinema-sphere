@@ -25,8 +25,6 @@ const TvSeasons = ({id, seasons, lang, category}) => {
 
   const {pathname} = useLocation();
 
-  console.log(pathname);
-
   useEffect(() => {
     const getFirstSeason = seasons?.[0]?.season_number;
     setSeasonNumber(getFirstSeason);

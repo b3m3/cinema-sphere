@@ -15,7 +15,7 @@ const VideoTrailer = ({url, loading, backdrop}) => {
   }, [url, play])
 
   const imgSrc = useMemo(() => {
-    return url &&`https://img.youtube.com/vi/${url}/sddefault.jpg`
+    return url &&`https://img.youtube.com/vi/${url}/0.jpg`
   }, [url])
 
   return (

@@ -94,7 +94,7 @@ const TvSeasonsPage = () => {
 
                 <div className={style.top__center}>
                   <PosterImage title={tvSeasons.res.title} poster_path={tvSeasons.res.poster_path} />
-                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={tvSeasons.res.backdrop_path}/>
+                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={tvSeasons.res.poster_path}/>
 
                   <div className={style.top__center_box}>
                     <VideosButton videos={videos} englishVideo={englishVideo} category={category} id={id} />

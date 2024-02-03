@@ -73,8 +73,6 @@ const TvSeriesDetailsPage = () => {
   const releaseDate = details.res?.first_air_date && moment(details.res?.first_air_date).format('YYYY');
   const lastDate = isEnded && details.res?.last_air_date && ` - ${moment(details.res?.last_air_date).format('YYYY')}`;
 
-  console.log(details.res);
-
   return (
     <div className={style.wrapp}>
       { details.loading && <Loading /> }

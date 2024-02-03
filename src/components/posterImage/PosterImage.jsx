@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { IMAGE_URL } from '../../constants/api';
@@ -6,21 +6,21 @@ import Mask from './mask.webp'
 
 import style from './poster-image.module.scss';
 
-const PosterImage = ({id, poster_path, title, link, media_type, category}) => {
+const PosterImage = ({id, poster_path, title, link, media_type, category, season}) => {
   const [load, setLoad] = useState(true);
 
-  return (
-    <Link 
-      className={`${style.poster} ${link ? style.link : ''}`} 
-      to={link ? `/${media_type ? media_type : category}/${id}` : ""}
-    >
-      { load && <span/> }
+  const className = `${style.poster} ${link ? style.link : ''}`;
+  const imgSrc = poster_path ? `${IMAGE_URL}w500/${poster_path}` : Mask;
+  const path = link ? `/${media_type ? media_type : category}/${id}${season ? `/seasons/${season}` : ''}` : "";
 
-      <img 
-        src={poster_path ? `${IMAGE_URL}w500/${poster_path}` : Mask} 
-        alt={title}
-        onLoad={() => setLoad(false)}
-      />
+  const onLoad = useCallback(() => {
+    return setLoad(false);
+  }, []);
+
+  return (
+    <Link className={className} to={path}>
+      { load && <span/> }
+      <img src={imgSrc} alt={title} onLoad={onLoad}/>
     </Link>
   );
 }

@@ -1,13 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import PosterImage from '../posterImage/PosterImage';
+import { useParams } from 'react-router-dom';
 
+import PosterImage from '../posterImage/PosterImage';
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
+import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 
 import style from './seasons-switcher.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 
 const breakpoints = {
   1024: { slidesPerView: 10, slidesPerGroup: 6 },
@@ -19,8 +20,9 @@ const breakpoints = {
 }
 
 const SeasonsSwitcher = ({res, season}) => {
-  const activeStyle = {border: '5px solid var(--orange-400)'};
+  const {id} = useParams();
 
+  const activeStyle = {background: 'var(--orange-400)', padding: '5px 3.5px 5px 3.5px'};
   const category = useCategoryFromLocation();
 
   return (
@@ -38,10 +40,17 @@ const SeasonsSwitcher = ({res, season}) => {
         {res?.map((data) => {
           return (
             <SwiperSlide key={data.id}>
-              <PosterImage {...data} category={category} link />
-              <p className={style.name}>{data.name}</p>
+              <div style={+season === +data.season_number ? activeStyle : null}>
+                <PosterImage 
+                  poster_path={data.poster_path} 
+                  id={id} 
+                  category={category}
+                  season={data.season_number}
+                  link 
+                />
+              </div>
 
-              
+              <p className={style.name}>{data.name}</p>
             </SwiperSlide>
           )
         })}
