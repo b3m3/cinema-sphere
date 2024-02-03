@@ -93,7 +93,7 @@ const MovieDetails = () => {
                   </div>
                   <div className={style.top__head_right}>
                     <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />
-                    <Rate id={id} category={category}/>
+                    <Rate id={id} category={category} title={title} />
                     <Popularity popularity={details.res?.popularity} />
                   </div>
                 </div>
@@ -103,8 +103,8 @@ const MovieDetails = () => {
                   <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
 
                   <div className={style.top__center_box}>
-                    <VideosButton videos={videos} englishVideo={englishVideo} category={category} id={id} />
-                    <ImagesButton images={images} category={category} id={id} />
+                    <VideosButton videos={videos} englishVideo={englishVideo} />
+                    <ImagesButton images={images} />
                   </div>
                 </div>
 

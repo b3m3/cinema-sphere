@@ -1,32 +1,22 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { fetchDetails, fetchTvSeasons, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
-import Time from '../../components/time/Time';
-import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
 import BackgroundImage from '../../components/backgroundImage/BackgroundImage';
 import PosterImage from '../../components/posterImage/PosterImage';
 import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
 import VideosButton from '../../components/videosButton/VideosButton';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
-import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/recommendations/Recommendations';
-import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
-import Reviews from '../../components/reviews/Reviews';
 import Keywords from '../../components/keywords/Keywords';
-import Rate from '../../components/rate/Rate';
-import SideTrending from '../../components/sideTrending/SideTrending';
-import Popularity from '../../components/popularity/Popularity';
-import TvSeasons from '../../components/tvSeasons/TvSeasons';
 import TvEpisodes from '../../components/tvEpisodes/TvEpisodes';
 import SeasonsSwitcher from '../../components/seasonsSwitcher/SeasonsSwitcher';
 
@@ -60,8 +50,6 @@ const TvSeasonsPage = () => {
 
   const title = tvSeasons.res?.name;
 
-  // console.log(tvSeasons.res);
-
   return (
     <div className={style.wrapp}>
       { tvSeasons.loading && <Loading /> }
@@ -78,17 +66,9 @@ const TvSeasonsPage = () => {
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
                     <h1>{title}</h1>
-                    {/* <ul>
-                      <li>{releaseDate}{lastDate}</li>
-                      { 
-                        Boolean(tvSeasons.res.episode_run_time?.length) &&
-                          <li><Time minutes={tvSeasons.res.episode_run_time}/></li>
-                      }
-                    </ul> */}
                   </div>
                   <div className={style.top__head_right}>
                     <Rating rating={tvSeasons.res.vote_average} vote_count={' '} />
-                    {/* <Rate id={id} category={category} title={tvSeasons.res?.name}/> */}
                   </div>
                 </div>
 
@@ -97,8 +77,8 @@ const TvSeasonsPage = () => {
                   <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={tvSeasons.res.poster_path}/>
 
                   <div className={style.top__center_box}>
-                    <VideosButton videos={videos} englishVideo={englishVideo} category={category} id={id} />
-                    <ImagesButton images={images} category={category} id={id} />
+                    <VideosButton videos={videos} englishVideo={englishVideo} />
+                    <ImagesButton images={images} />
                   </div>
                 </div>
 

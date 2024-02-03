@@ -58,8 +58,14 @@ const Router = () => {
           path: ':id', 
           children: [
             { index: true, element: <TvSeriesDetailsPage/> },
-            { path: 'gallery/:modal',element: <GallaryModalPage/> },
-            { path: 'seasons/:season',element: <TvSeasonsPage/> },
+            { 
+              path: 'seasons/:season',
+              children: [
+                { index: true, element: <TvSeasonsPage/> },
+                { path: 'gallery/:modal',element: <GallaryModalPage/> }
+              ]
+            },
+            { path: 'gallery/:modal',element: <GallaryModalPage/> }
           ]
         },
       ]

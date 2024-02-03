@@ -100,7 +100,7 @@ const CelebDetailsPage = () => {
 
                 <aside className={style.body__right}>
                   <div className={style.body__right_images}>
-                    <ImagesButton images={images} category={category} id={id} />
+                    <ImagesButton images={images} />
                   </div>
                   <SideTrending lang={lang} category={category} id={id} list={true} />
                 </aside>

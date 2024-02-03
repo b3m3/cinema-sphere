@@ -45,7 +45,7 @@ const SeasonsSwitcher = ({res, season}) => {
                   poster_path={data.poster_path} 
                   id={id} 
                   category={category}
-                  season={data.season_number}
+                  season={data.season_number.toString()}
                   link 
                 />
               </div>

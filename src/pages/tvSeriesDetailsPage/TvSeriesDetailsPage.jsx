@@ -109,8 +109,8 @@ const TvSeriesDetailsPage = () => {
                   <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
 
                   <div className={style.top__center_box}>
-                    <VideosButton videos={videos} englishVideo={englishVideo} category={category} id={id} />
-                    <ImagesButton images={images} category={category} id={id} />
+                    <VideosButton videos={videos} englishVideo={englishVideo} />
+                    <ImagesButton images={images} />
                   </div>
                 </div>
 

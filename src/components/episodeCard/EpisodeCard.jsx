@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import PosterImage from '../posterImage/PosterImage';
-import { IMAGE_URL } from '../../constants/api';
 
 import style from './episode-card.module.scss';
 import Rating from '../rating/Rating';
@@ -10,9 +9,7 @@ const EpisodeCard = ({air_date, id, name, category, overview, runtime, season_nu
   return (
     <div className={style.wrapp}>
       <div className={style.image}>
-        <Link to={''}>
-          <img src={`${IMAGE_URL}/w300${still_path}`} alt={name} />
-        </Link>
+        <PosterImage poster_path={still_path} />
       </div>
       <div className={style.body}>
         <div className={style.body_top}>
@@ -32,7 +29,7 @@ const EpisodeCard = ({air_date, id, name, category, overview, runtime, season_nu
         </div>
 
         <div className={style.body_bottom}>
-          <Rating rating={vote_average} /> ({vote_count})
+          <Rating rating={vote_average} /> {vote_count > 0 && (vote_count)}
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const GalleryModal = () => {
 
   const bodyRef = useRef(null);
 
-  const {id, modal} = useParams();
+  const {id, modal, season} = useParams();
   const category = useCategoryFromLocation();
 
   const isModalImages = modal === 'images';
@@ -32,18 +32,32 @@ const GalleryModal = () => {
 
   useEffect(() => {
     if (isModalImages) {
+      if (season) {
+        dispatch(fetchImages({category, season, id}));
+        return;
+      }
+
       dispatch(fetchImages({category, id}));
       return;
-    } 
+    }
     if (isModalVideos) {
+      if (season) {
+        dispatch(fetchVideos({category, season, lang, id}));
+        dispatch(fetchEnglishVideo({category, season, id}));
+        return;
+      }
+
       dispatch(fetchVideos({category, lang, id}));
       dispatch(fetchEnglishVideo({category, id}));
       return;
     }
-  }, [dispatch, category, lang, id, isModalImages, isModalVideos]);
+  }, [dispatch, category, season, lang, id, isModalImages, isModalVideos]);
 
   const getImagesRes = () => {
-    return images.res?.backdrops ? images.res?.backdrops : images.res?.profiles ? images.res?.profiles : null;
+    return images.res?.backdrops ? images.res?.backdrops 
+      : images.res?.profiles ? images.res?.profiles 
+      : images.res?.posters ? images.res?.posters 
+      : null;
   };
 
   const imagesRes = getImagesRes();
@@ -69,6 +83,8 @@ const GalleryModal = () => {
   
   const scrollToBody = useCallback(() => bodyRef.current.scrollIntoView(), []);
 
+  const closePath = `/${category}/${id}${season ? `/seasons/${season}` : ''}`;
+
   return (
     <div className={style.wrapp}>
       <div className="container">
@@ -84,7 +100,7 @@ const GalleryModal = () => {
             </div>
             <CgMenuGridR className={style.scroll} onClick={scrollToBody} />
 
-            <Link className={style.close} to={`/${category}/${id}`}>
+            <Link className={style.close} to={closePath}>
               <IoIosCloseCircleOutline />
             </Link>
           </div>
@@ -132,7 +148,7 @@ const GalleryModal = () => {
             isModalVideos && videoResults?.map(({key}, i) => (
               <img
                 key={i}
-                src={`https://img.youtube.com/vi/${key}/maxresdefault.jpg`}
+                src={`https://img.youtube.com/vi/${key}/0.jpg`}
                 className={i === count -1 ? style.active : null}
                 onClick={() =>  {setCount(i + 1); scrollToTop()}}
                 alt="backdrop"
