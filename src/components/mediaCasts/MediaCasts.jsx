@@ -7,12 +7,16 @@ import Title from '../title/Title';
 
 import style from './media-casts.module.scss';
 
-const MediaCasts = ({id, category, lang}) => {
+const MediaCasts = ({id, category, lang, season}) => {
   const {res} = useSelector(state => state.mediaCasts.mediaCasts);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMediaCasts({category, id, lang}))
+    if (season) {
+      dispatch(fetchMediaCasts({category, season, id, lang}))
+    } else {
+      dispatch(fetchMediaCasts({category, id, lang}))
+    }
   }, [dispatch, category, id, lang]);
 
   return (

@@ -28,43 +28,11 @@ import SideTrending from '../../components/sideTrending/SideTrending';
 import Popularity from '../../components/popularity/Popularity';
 import TvSeasons from '../../components/tvSeasons/TvSeasons';
 import TvEpisodes from '../../components/tvEpisodes/TvEpisodes';
+import SeasonsSwitcher from '../../components/seasonsSwitcher/SeasonsSwitcher';
 
 import style from './tv-seasons-page.module.scss';
 
-
-
-//-------------------------------------------------------------------------
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-const breakpoints = {
-  1024: { slidesPerView: 10, slidesPerGroup: 6 },
-  768: { slidesPerView: 8, slidesPerGroup: 4 },
-  650: { slidesPerView: 6, slidesPerGroup: 2 },
-  475: { slidesPerView: 5, slidesPerGroup: 2 },
-  375: { slidesPerView: 3, slidesPerGroup: 2 },
-  320: { slidesPerView: 2, slidesPerGroup: 1 },
-}
-const SeasonsSwitcher = ({res}) => {
-  const SwiperWrapper = useWrapperSwiper(PosterImage)
-  return (
-    <SwiperWrapper 
-      res={{results: res}}
-      breakpoints={breakpoints}
-      nextEl={'ssbns'}
-      prevEl={'ssbps'}
-    />
-  )
-}
-//-------------------------------------------------------------------------
-
-
-
 const TvSeasonsPage = () => {
-  // const [totalSeasons, setTotalSeasons] = useState(null)
-
   const {id, season} = useParams();
   const {lang} = useSelector(state => state.lang);
   const {details} = useSelector(state => state.details);
@@ -79,15 +47,11 @@ const TvSeasonsPage = () => {
   useEffect(() => {
     dispatch(fetchDetails({category, lang, id}))
     dispatch(fetchTvSeasons({lang, season, id}))
-    dispatch(fetchVideos({category, lang, id}))
-    dispatch(fetchEnglishVideo({category, id}))
-    dispatch(fetchImages({category, id}))
+    dispatch(fetchVideos({category, season, lang, id}))
+    dispatch(fetchEnglishVideo({category, season, id}))
+    dispatch(fetchImages({category, season, id}))
   }, [dispatch, category, season, lang, id]);
 
-  // useEffect(() => {
-  //   const getAllSeasons = details?.res?.seasons?.map(({season_number}) => season_number);
-  //   setTotalSeasons(getAllSeasons);
-  // }, [details])
 
   const getFirstTrailerUrl = useMemo(() => {
     return videos.res?.results.length > 0 ? videos.res.results[0].key 
@@ -96,10 +60,7 @@ const TvSeasonsPage = () => {
 
   const title = tvSeasons.res?.name;
 
-  // console.log('totalSeasons', totalSeasons);
-  // console.log('videos', videos);
-  // console.log('images', images);
-  // console.log('englishVideo', englishVideo);
+  // console.log(tvSeasons.res);
 
   return (
     <div className={style.wrapp}>
@@ -128,7 +89,6 @@ const TvSeasonsPage = () => {
                   <div className={style.top__head_right}>
                     <Rating rating={tvSeasons.res.vote_average} vote_count={' '} />
                     {/* <Rate id={id} category={category} title={tvSeasons.res?.name}/> */}
-                    {/* <Popularity popularity={tvSeasons.res?.popularity} /> */}
                   </div>
                 </div>
 
@@ -143,7 +103,7 @@ const TvSeasonsPage = () => {
                 </div>
 
                 <div  className={style.top__bottom}>
-                  <SeasonsSwitcher res={details?.res?.seasons} />
+                  <SeasonsSwitcher res={details?.res?.seasons} season={season} />
                 </div>
               </div>
             </div>
@@ -155,8 +115,7 @@ const TvSeasonsPage = () => {
                 <div className={style.body__left}>
                   <Overview overview={tvSeasons.res?.overview} />
                   <TvEpisodes res={tvSeasons.res?.episodes}/>
-                  <MediaCasts id={id} category={category} lang={lang} />
-                  <Reviews id={id} category={category} />
+                  <MediaCasts id={id} category={category} lang={lang} season={season} />
                 </div>
 
                 <aside className={style.body__right}>

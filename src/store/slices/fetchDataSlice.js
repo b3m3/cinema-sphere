@@ -61,10 +61,16 @@ export const fetchDetails = createAsyncThunk(
 
 export const fetchVideos = createAsyncThunk(
   'fetch/fetchVideos',
-  async({category, id, lang}, {rejectWithValue}) => {
+  async({category, season, id, lang}, {rejectWithValue}) => {
     try {
-      if (category && id && lang) {
+      if (category && id && lang && !season) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/videos?api_key=${API_KEY}&language=${lang}`);
+
+        return data
+      }
+
+      if (category && id && lang && season) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/videos?api_key=${API_KEY}&language=${lang}`);
 
         return data
       }
@@ -76,10 +82,16 @@ export const fetchVideos = createAsyncThunk(
 
 export const fetchEnglishVideo = createAsyncThunk(
   'fetch/fetchEnglishVideo',
-  async({category, id}, {rejectWithValue}) => {
+  async({category, season, id}, {rejectWithValue}) => {
     try {
-      if (category && id) {
+      if (category && id && !season) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/videos?api_key=${API_KEY}&language=en`);
+
+        return data
+      }
+
+      if (category && id && season) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/videos?api_key=${API_KEY}&language=en`);
 
         return data
       }
@@ -91,12 +103,18 @@ export const fetchEnglishVideo = createAsyncThunk(
 
 export const fetchImages = createAsyncThunk(
   'fetch/fetchImages',
-  async({category, id}, {rejectWithValue}) => {
+  async({category, season, id}, {rejectWithValue}) => {
     try {
-      if (category && id) {
+      if (category && id && !season) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/images?api_key=${API_KEY}`);
 
-        return data
+        return data;
+      }
+
+      if (category && id && season) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/images?api_key=${API_KEY}`);
+
+        return data;
       }
     } catch (error) {
       return rejectWithValue(error)
@@ -170,11 +188,19 @@ export const fetchSearch = createAsyncThunk(
 
 export const fetchMediaCasts = createAsyncThunk(
   'fetch/fetchMediaCasts',
-  async({category, id, lang}, {rejectWithValue}) => {
+  async({category, season, id, lang}, {rejectWithValue}) => {
     try {
-      if (category && id && lang) {
+      if (category && id && lang && !season) {
         const {data} = await axios.get(
           `${BASE_URL}${category}/${id}/credits?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+
+      if (category && id && lang && season) {
+        const {data} = await axios.get(
+          `${BASE_URL}${category}/${id}/season/${season}/credits?api_key=${API_KEY}&language=${lang}`
         )
 
         return data;

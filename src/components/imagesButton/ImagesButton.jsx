@@ -6,7 +6,8 @@ import { useMemo } from "react";
 
 const ImagesButton = ({images, category, id}) => {
   const getResults = () => {
-    return images.res?.backdrops ? images.res?.backdrops : images.res?.profiles ? images.res?.profiles : null;
+    return images.res?.backdrops ? images.res?.backdrops : images.res?.profiles 
+      ? images.res?.profiles : images.res?.posters ? images.res?.posters : null;
   };
 
   const res = getResults();
