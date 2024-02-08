@@ -24,7 +24,7 @@ const GalleryModal = () => {
 
   const bodyRef = useRef(null);
 
-  const {id, modal, season} = useParams();
+  const {id, modal, season, episode} = useParams();
   const category = useCategoryFromLocation();
 
   const isModalImages = modal === 'images';
@@ -32,8 +32,13 @@ const GalleryModal = () => {
 
   useEffect(() => {
     if (isModalImages) {
-      if (season) {
+      if (season && !episode) {
         dispatch(fetchImages({category, season, id}));
+        return;
+      }
+
+      if (season && episode) {
+        dispatch(fetchImages({category, season, episode, id}));
         return;
       }
 
@@ -41,9 +46,15 @@ const GalleryModal = () => {
       return;
     }
     if (isModalVideos) {
-      if (season) {
+      if (season && !episode) {
         dispatch(fetchVideos({category, season, lang, id}));
         dispatch(fetchEnglishVideo({category, season, id}));
+        return;
+      }
+
+      if (season && episode) {
+        dispatch(fetchVideos({category, season, episode, lang, id}));
+        dispatch(fetchEnglishVideo({category, season, episode, id}));
         return;
       }
 
@@ -51,12 +62,13 @@ const GalleryModal = () => {
       dispatch(fetchEnglishVideo({category, id}));
       return;
     }
-  }, [dispatch, category, season, lang, id, isModalImages, isModalVideos]);
+  }, [dispatch, category, season, episode, lang, id, isModalImages, isModalVideos]);
 
   const getImagesRes = () => {
     return images.res?.backdrops ? images.res?.backdrops 
       : images.res?.profiles ? images.res?.profiles 
       : images.res?.posters ? images.res?.posters 
+      : images.res?.stills ? images.res?.stills 
       : null;
   };
 
@@ -82,8 +94,7 @@ const GalleryModal = () => {
   }, [isModalImages, imageResults, isModalVideos, videoResults])
   
   const scrollToBody = useCallback(() => bodyRef.current.scrollIntoView(), []);
-
-  const closePath = `/${category}/${id}${season ? `/seasons/${season}` : ''}`;
+  const closePath = `/${category}/${id}${season ? `/seasons/${season}` : ''}${episode ? `/episodes/${episode}`: ''}`;
 
   return (
     <div className={style.wrapp}>
@@ -106,11 +117,12 @@ const GalleryModal = () => {
           </div>
           <div className={style.top_main}>
             {
-              isModalImages &&
-                <img 
-                  src={`${IMAGE_URL}original${imageResults?.[count -1].file_path}`}
-                  alt="backdrop" 
-                />
+              isModalImages && !images.loading
+                ? <img 
+                    src={`${IMAGE_URL}original${imageResults?.[count -1].file_path}`}
+                    alt="backdrop" 
+                  />
+                  : null // add Loading component
             }
             {
               isModalVideos &&

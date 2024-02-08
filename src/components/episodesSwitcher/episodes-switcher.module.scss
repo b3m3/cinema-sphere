@@ -1,0 +1,30 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  gap: .3125rem;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: .3125rem;
+
+  & p:first-child {
+    font-size: 1.8rem;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: var(--orange-400);
+  transition: transform .2s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

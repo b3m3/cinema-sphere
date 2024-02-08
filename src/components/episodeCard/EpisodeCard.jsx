@@ -1,27 +1,36 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import moment from 'moment';
 import PosterImage from '../posterImage/PosterImage';
 
 import style from './episode-card.module.scss';
 import Rating from '../rating/Rating';
 
-const EpisodeCard = ({air_date, id, name, category, overview, runtime, season_number, episode_number, still_path, vote_average, vote_count}) => {
+const EpisodeCard = ({air_date, name, overview, runtime, season_number, episode_number, still_path, vote_average, vote_count}) => {
+  const {id} = useParams();
+
+  const airDate = air_date && moment(air_date).format('MMMM DD, YYYY');
+  const titleLink = `/tv/${id}/seasons/${season_number}/episodes/${episode_number}`;
+  const title = `S${season_number}.E${episode_number} ${name}`;
+  
   return (
     <div className={style.wrapp}>
       <div className={style.image}>
-        <PosterImage poster_path={still_path} />
+        <PosterImage 
+          id={id}
+          category={'tv'}
+          poster_path={still_path} 
+          season={season_number.toString()} 
+          episode={episode_number.toString()} 
+          link
+        />
       </div>
       <div className={style.body}>
         <div className={style.body_top}>
           <h4>
-            <Link to={''}>
-              S{season_number}.E{episode_number} {name}
-            </Link>
+            <Link to={titleLink}>{title}</Link>
           </h4>
 
-          <span>
-            { air_date && moment(air_date).format('MMMM DD, YYYY') }
-          </span>
+          <span>{ airDate }</span>
         </div>
 
         <div className={style.body_center}>

@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
-import { fetchDetails, fetchTvSeasons, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
+import { fetchTvEpisodes, fetchTvSeasons, fetchDetails, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
@@ -17,15 +18,17 @@ import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/recommendations/Recommendations';
 import Keywords from '../../components/keywords/Keywords';
-import TvEpisodes from '../../components/tvEpisodes/TvEpisodes';
-import SeasonsSwitcher from '../../components/seasonsSwitcher/SeasonsSwitcher';
+import Time from '../../components/time/Time';
+import BackButton from '../../components/backButton/BackButton';
 
-import style from './tv-seasons-page.module.scss';
+import style from './tv-episodes-details-page.module.scss';
+import EpisodesSwitcher from '../../components/episodesSwitcher/EpisodesSwitcher';
 
-const TvSeasonsPage = () => {
-  const {id, season} = useParams();
+const TvEpisodesDetailsPage = () => {
+  const {id, season, episode} = useParams();
   const {lang} = useSelector(state => state.lang);
   const {details} = useSelector(state => state.details);
+  const {tvEpisodes} = useSelector(state => state.tvEpisodes);
   const {tvSeasons} = useSelector(state => state.tvSeasons);
   const {videos} = useSelector(state => state.videos);
   const {images} = useSelector(state => state.images);
@@ -36,54 +39,71 @@ const TvSeasonsPage = () => {
 
   useEffect(() => {
     dispatch(fetchDetails({category, lang, id}))
+    dispatch(fetchTvEpisodes({lang, season, episode, id}))
     dispatch(fetchTvSeasons({lang, season, id}))
-    dispatch(fetchVideos({category, season, lang, id}))
-    dispatch(fetchEnglishVideo({category, season, id}))
-    dispatch(fetchImages({category, season, id}))
-  }, [dispatch, category, season, lang, id]);
-
+    dispatch(fetchVideos({category, season, episode, lang, id}))
+    dispatch(fetchEnglishVideo({category, season, episode, id}))
+    dispatch(fetchImages({category, season, episode, id}))
+  }, [dispatch, category, season, episode, lang, id]);
 
   const getFirstTrailerUrl = useMemo(() => {
     return videos.res?.results.length > 0 ? videos.res.results[0].key 
       : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
   }, [videos, englishVideo]);
 
-  const title = tvSeasons.res?.name;
+  const title = `${details.res?.name} / ${tvSeasons.res?.name} / ${tvEpisodes.res?.name}`;
+  const releaseDate = tvEpisodes.res?.air_date && moment(tvEpisodes.res?.air_date).format('YYYY');
+  const totalEpisodes = tvSeasons.res?.episodes?.length;
+
+  console.log('render');
 
   return (
     <div className={style.wrapp}>
-      { tvSeasons.loading && <Loading /> }
-      { tvSeasons.status && <Error status={tvSeasons.status} />}
+      { tvEpisodes.loading && <Loading /> }
+      { tvEpisodes.status && <Error status={tvEpisodes.status} />}
 
       {
-        tvSeasons.res &&
+        tvEpisodes.res &&
         <>
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <BackgroundImage backdrop_path={tvSeasons.res.poster_path} />
+                <BackgroundImage backdrop_path={tvEpisodes.res.still_path} />
+
+                <div className={style.top__navigate}>
+                  <div className={style.top__navigate_left}>
+                    <BackButton path={`/tv/${id}`} name='TV serie' />
+                    <BackButton path={`/tv/${id}/seasons/${season}`} name='Seasons' />
+                  </div>
+                  <div className={style.top__navigate_right}>
+                    <EpisodesSwitcher totalEpisodes={totalEpisodes} />
+                  </div>
+                </div>
 
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
                     <h1>{title}</h1>
+                    <ul>
+                      <li>{releaseDate}</li>
+                      {
+                        tvEpisodes.res.runtime &&
+                          <li><Time minutes={tvEpisodes.res.runtime}/></li>
+                      }
+                    </ul>
                   </div>
                   <div className={style.top__head_right}>
-                    <Rating rating={tvSeasons.res.vote_average} vote_count={' '} />
+                    <Rating rating={tvEpisodes.res.vote_average} vote_count={tvEpisodes.res.vote_count} />
                   </div>
                 </div>
 
                 <div className={style.top__center}>
-                  <PosterImage title={tvSeasons.res.title} poster_path={tvSeasons.res.poster_path} />
-                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={tvSeasons.res.poster_path}/>
+                  <PosterImage title={tvEpisodes.res.title} poster_path={tvEpisodes.res.still_path} />
+                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={tvEpisodes.res.still_path}/>
 
                   <div className={style.top__center_box}>
                     <VideosButton videos={videos} englishVideo={englishVideo} />
                     <ImagesButton images={images} />
                   </div>
-                </div>
-
-                <div  className={style.top__bottom}>
-                  <SeasonsSwitcher res={details?.res?.seasons} season={season} />
                 </div>
               </div>
             </div>
@@ -93,9 +113,8 @@ const TvSeasonsPage = () => {
             <div className="container">
               <div className={style.body__wrapp}>
                 <div className={style.body__left}>
-                  <Overview overview={tvSeasons.res?.overview} />
-                  <TvEpisodes res={tvSeasons.res?.episodes}/>
-                  <MediaCasts id={id} category={category} lang={lang} season={season} />
+                  <Overview overview={tvEpisodes.res?.overview} />
+                  <MediaCasts id={id} category={category} lang={lang} season={season} episode={episode} />
                 </div>
 
                 <aside className={style.body__right}>
@@ -111,4 +130,4 @@ const TvSeasonsPage = () => {
   );
 }
 
-export default TvSeasonsPage;
+export default TvEpisodesDetailsPage;

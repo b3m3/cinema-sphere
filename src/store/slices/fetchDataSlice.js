@@ -61,16 +61,22 @@ export const fetchDetails = createAsyncThunk(
 
 export const fetchVideos = createAsyncThunk(
   'fetch/fetchVideos',
-  async({category, season, id, lang}, {rejectWithValue}) => {
+  async({category, season, episode, id, lang}, {rejectWithValue}) => {
     try {
-      if (category && id && lang && !season) {
+      if (category && id && lang && !season  && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/videos?api_key=${API_KEY}&language=${lang}`);
 
         return data
       }
 
-      if (category && id && lang && season) {
+      if (category && id && lang && season && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/videos?api_key=${API_KEY}&language=${lang}`);
+
+        return data
+      }
+
+      if (category && id && lang && season && episode) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/episode/${episode}/videos?api_key=${API_KEY}&language=${lang}`);
 
         return data
       }
@@ -82,16 +88,22 @@ export const fetchVideos = createAsyncThunk(
 
 export const fetchEnglishVideo = createAsyncThunk(
   'fetch/fetchEnglishVideo',
-  async({category, season, id}, {rejectWithValue}) => {
+  async({category, season, episode, id}, {rejectWithValue}) => {
     try {
-      if (category && id && !season) {
+      if (category && id && !season && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/videos?api_key=${API_KEY}&language=en`);
 
         return data
       }
 
-      if (category && id && season) {
+      if (category && id && season && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/videos?api_key=${API_KEY}&language=en`);
+
+        return data
+      }
+
+      if (category && id && season && episode) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/episode/${episode}/videos?api_key=${API_KEY}&language=en`);
 
         return data
       }
@@ -103,16 +115,22 @@ export const fetchEnglishVideo = createAsyncThunk(
 
 export const fetchImages = createAsyncThunk(
   'fetch/fetchImages',
-  async({category, season, id}, {rejectWithValue}) => {
+  async({category, season, episode, id}, {rejectWithValue}) => {
     try {
-      if (category && id && !season) {
+      if (category && id && !season && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/images?api_key=${API_KEY}`);
 
         return data;
       }
 
-      if (category && id && season) {
+      if (category && id && season && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/images?api_key=${API_KEY}`);
+
+        return data;
+      }
+
+      if (category && id && season && episode) {
+        const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/episode/${episode}/images?api_key=${API_KEY}`);
 
         return data;
       }
@@ -188,9 +206,9 @@ export const fetchSearch = createAsyncThunk(
 
 export const fetchMediaCasts = createAsyncThunk(
   'fetch/fetchMediaCasts',
-  async({category, season, id, lang}, {rejectWithValue}) => {
+  async({category, season, episode, id, lang}, {rejectWithValue}) => {
     try {
-      if (category && id && lang && !season) {
+      if (category && id && lang && !season && !episode) {
         const {data} = await axios.get(
           `${BASE_URL}${category}/${id}/credits?api_key=${API_KEY}&language=${lang}`
         )
@@ -198,9 +216,17 @@ export const fetchMediaCasts = createAsyncThunk(
         return data;
       }
 
-      if (category && id && lang && season) {
+      if (category && id && lang && season && !episode) {
         const {data} = await axios.get(
           `${BASE_URL}${category}/${id}/season/${season}/credits?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+
+      if (category && id && lang && season && episode) {
+        const {data} = await axios.get(
+          `${BASE_URL}${category}/${id}/season/${season}/episode/${episode}/credits?api_key=${API_KEY}&language=${lang}`
         )
 
         return data;

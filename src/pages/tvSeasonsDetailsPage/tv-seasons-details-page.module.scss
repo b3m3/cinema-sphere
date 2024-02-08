@@ -21,6 +21,12 @@
     gap: .9375rem;
   }
 
+  &__navigate {
+    display: flex;
+    align-items: center;
+    margin-top: .625rem;
+  }
+
   &__head {
     display: flex;
     align-items: center;
@@ -168,6 +174,10 @@
 
 @media screen and (max-width: 650px) {
   .top {
+    &__navigate {
+      justify-content: center;
+    }
+
     &__head {
       display: flex;
       flex-direction: column;

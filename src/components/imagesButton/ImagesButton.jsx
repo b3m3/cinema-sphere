@@ -10,7 +10,8 @@ const ImagesButton = ({images}) => {
   const getResults = () => {
     return images.res?.backdrops ? images.res?.backdrops 
       : images.res?.profiles ? images.res?.profiles 
-      : images.res?.posters ? images.res?.posters 
+      : images.res?.posters ? images.res?.posters
+      : images.res?.stills ? images.res?.stills
       : null;
   };
 
