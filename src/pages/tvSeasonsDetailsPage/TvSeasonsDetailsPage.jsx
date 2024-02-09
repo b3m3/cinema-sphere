@@ -19,7 +19,7 @@ import Recommendations from '../../components/recommendations/Recommendations';
 import Keywords from '../../components/keywords/Keywords';
 import TvEpisodes from '../../components/tvEpisodes/TvEpisodes';
 import SeasonsSwitcher from '../../components/seasonsSwitcher/SeasonsSwitcher';
-import BackButton from '../../components/backButton/BackButton';
+import TitleSwitcher from '../../components/titleSwitcher/TitleSwitcher';
 
 import style from './tv-seasons-details-page.module.scss';
 
@@ -49,7 +49,10 @@ const TvSeasonsDetailsPage = () => {
       : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
   }, [videos, englishVideo]);
 
-  const title = `${details.res?.name} / ${tvSeasons.res?.name}`;
+  const titleData = [
+    {path: `/tv/${id}`, name: details.res?.name},
+    {path: '', name: `Season ${season}`},
+  ];
 
   return (
     <div className={style.wrapp}>
@@ -64,13 +67,9 @@ const TvSeasonsDetailsPage = () => {
               <div className={style.top__wrapp}>
                 <BackgroundImage backdrop_path={tvSeasons.res.poster_path} />
 
-                <div className={style.top__navigate}>
-                  <BackButton path={`/tv/${id}`} name='TV serie' />
-                </div>
-
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
-                    <h1>{title}</h1>
+                    <TitleSwitcher titleData={titleData} />
                   </div>
                   <div className={style.top__head_right}>
                     <Rating rating={tvSeasons.res.vote_average} vote_count={' '} />

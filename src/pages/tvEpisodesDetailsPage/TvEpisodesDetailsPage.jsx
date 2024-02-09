@@ -19,10 +19,10 @@ import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/recommendations/Recommendations';
 import Keywords from '../../components/keywords/Keywords';
 import Time from '../../components/time/Time';
-import BackButton from '../../components/backButton/BackButton';
+import EpisodesSwitcher from '../../components/episodesSwitcher/EpisodesSwitcher';
+import TitleSwitcher from '../../components/titleSwitcher/TitleSwitcher';
 
 import style from './tv-episodes-details-page.module.scss';
-import EpisodesSwitcher from '../../components/episodesSwitcher/EpisodesSwitcher';
 
 const TvEpisodesDetailsPage = () => {
   const {id, season, episode} = useParams();
@@ -51,11 +51,14 @@ const TvEpisodesDetailsPage = () => {
       : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
   }, [videos, englishVideo]);
 
-  const title = `${details.res?.name} / ${tvSeasons.res?.name} / ${tvEpisodes.res?.name}`;
   const releaseDate = tvEpisodes.res?.air_date && moment(tvEpisodes.res?.air_date).format('YYYY');
   const totalEpisodes = tvSeasons.res?.episodes?.length;
 
-  console.log('render');
+  const titleData = [
+    {path: `/tv/${id}`, name: details.res?.name},
+    {path: `/tv/${id}/seasons/${season}`, name: `Season ${season}`},
+    {path: '', name: `E${episode}. ${tvEpisodes.res?.name}`}
+  ];
 
   return (
     <div className={style.wrapp}>
@@ -71,18 +74,13 @@ const TvEpisodesDetailsPage = () => {
                 <BackgroundImage backdrop_path={tvEpisodes.res.still_path} />
 
                 <div className={style.top__navigate}>
-                  <div className={style.top__navigate_left}>
-                    <BackButton path={`/tv/${id}`} name='TV serie' />
-                    <BackButton path={`/tv/${id}/seasons/${season}`} name='Seasons' />
-                  </div>
-                  <div className={style.top__navigate_right}>
-                    <EpisodesSwitcher totalEpisodes={totalEpisodes} />
-                  </div>
+                  <EpisodesSwitcher totalEpisodes={totalEpisodes} />
                 </div>
 
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
-                    <h1>{title}</h1>
+                    <TitleSwitcher titleData={titleData} />
+
                     <ul>
                       <li>{releaseDate}</li>
                       {
