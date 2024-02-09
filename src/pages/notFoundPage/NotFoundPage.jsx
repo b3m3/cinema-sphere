@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import NotFoundSvg from './page-not-found.svg'
 import style from './not-found-page.module.scss';
 
 const NotFoundPage = () => {
@@ -6,6 +7,9 @@ const NotFoundPage = () => {
     <div className="container">
       <section className={style.wrapp}>
         <h1>404 - Not found page</h1>
+        <div className={style.image}>
+          <img src={NotFoundSvg} alt="Not found" />
+        </div>
         <p>Sorry, the requested page does not exist.</p>
         <Link to={'/'}>
           Go to home page

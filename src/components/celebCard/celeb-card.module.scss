@@ -1,7 +1,27 @@
 .wrapp {
   display: grid;
   gap: 1.25rem;
-  grid-template: 6rem / 6rem 1fr;
+  grid-template: 7rem / 7rem 1fr;
+
+  &.big {
+      grid-template: auto 1fr / auto;
+      height: 100%;
+    
+    .image {
+      & a {
+        padding: 50% 0 !important;
+      }
+    }
+
+    .box {
+      padding-top: 0;
+      
+      & h4 {
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+  }
 }
 
 .image {

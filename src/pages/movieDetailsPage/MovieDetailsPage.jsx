@@ -71,7 +71,7 @@ const MovieDetails = () => {
   const releaseDate = details.res?.release_date && moment(details.res?.release_date).format('YYYY');
   
   return (
-    <div className={style.wrapp}>
+    <section className={style.wrapp}>
       { details.loading && <Loading /> }
       { details.status && <Error status={details.status} />}
 
@@ -143,7 +143,7 @@ const MovieDetails = () => {
           </div>
         </>
       }
-    </div>
+    </section>
   );
 }
 

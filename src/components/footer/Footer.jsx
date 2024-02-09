@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 
-import { clearHistory } from '../../store/slices/historySlice';
+import { clearHistory, getHistory } from '../../store/slices/historySlice';
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 import PosterImage from '../posterImage/PosterImage';
 
@@ -13,6 +13,7 @@ import { FcAbout } from "react-icons/fc";
 import TMDBLogo from './tmdb.svg';
 
 import style from './footer.module.scss';
+import { useEffect } from 'react';
 
 const breakpoints = {
   1024: { slidesPerView: 8, slidesPerGroup: 2 },
@@ -32,9 +33,13 @@ const socialLinks = [
 const Footer = () => {
   const {isAuth} = useSelector(state => state.auth.user);
   const {history} = useSelector(state => state.history);
+  const dispatch = useDispatch();
 
   const SwiperWrapper = useWrapperSwiper(PosterImage);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getHistory());
+  }, [dispatch]);
 
   return (
     <footer className={style.footer}>

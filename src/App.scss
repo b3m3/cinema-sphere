@@ -13,6 +13,23 @@
   color: inherit;
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: .3125rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 :root {
   --blue-400: #0066ff;
   --blue-300: #5799ef;

@@ -38,7 +38,7 @@ const DiscoverPage = () => {
 
   return (
     <div className="container">
-      <div className={style.wrapp}>
+      <section className={style.wrapp}>
         <h1>{categoryName}, search - by your filters</h1>
         { loading && <Loading /> }
         { status && <Error status={status} /> }
@@ -49,7 +49,7 @@ const DiscoverPage = () => {
           { res?.total_results === 0 && <h3>No results found</h3> }
         </div>
         <PageSwitcher total_pages={res?.total_pages} page={page} />
-      </div>
+      </section>
     </div>
   );
 }

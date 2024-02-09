@@ -55,7 +55,7 @@ const CelebDetailsPage = () => {
   const knownFor = details.res?.known_for_department && details.res?.known_for_department;
 
   return (
-    <div className={style.wrapp}>
+    <section className={style.wrapp}>
       { details.loading && <Loading /> }
       { details.status && <Error status={details.status} />}
 
@@ -109,7 +109,7 @@ const CelebDetailsPage = () => {
           </div>
         </>
       }
-    </div>
+    </section>
   );
 }
 

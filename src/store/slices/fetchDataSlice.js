@@ -25,6 +25,12 @@ const initialState = {
   discover: {loading: false, status: null, res: null},
   tvSeasons: {loading: false, status: null, res: null},
   tvEpisodes: {loading: false, status: null, res: null},
+
+  // HOME PAGE
+
+  homeMovies: {loading: false, status: null, res: null},
+  homeCelebs: {loading: false, status: null, res: null},
+  homeTvSeries: {loading: false, status: null, res: null},
 }
 
 export const fetchCardData = createAsyncThunk(
@@ -390,7 +396,61 @@ export const fetchTvEpisodes = createAsyncThunk(
   }
 )
 
+// HOME PAGE DATAS
+
+export const fetchTrendingMovies = createAsyncThunk(
+  'fetch/fetchTrendingMovies',
+  async ({lang}, {rejectWithValue}) => {
+    try {
+      if (lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}trending/movie/day?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
+export const fetchTrendingCelebs = createAsyncThunk(
+  'fetch/fetchTrendingCelebs',
+  async ({lang}, {rejectWithValue}) => {
+    try {
+      if (lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}trending/person/day?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
+export const fetchTrendingTvSeries = createAsyncThunk(
+  'fetch/fetchTrendingTvSeries',
+  async ({lang}, {rejectWithValue}) => {
+    try {
+      if (lang) {
+        const {data} = await axios.get(
+          `${BASE_URL}trending/tv/day?api_key=${API_KEY}&language=${lang}`
+        )
+
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 // Function Create Fetch Case
+
 const createFetchCase = (builder, asyncThunk, stateName) => {
   builder.addCase(asyncThunk.pending, (state) => {
     state[`${stateName}`].loading = true;
@@ -435,6 +495,12 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchCombinedCredits, 'combinedCredits')
     createFetchCase(builder, fetchTvSeasons, 'tvSeasons')
     createFetchCase(builder, fetchTvEpisodes, 'tvEpisodes')
+    
+    // HOME PAGE
+    
+    createFetchCase(builder, fetchTrendingMovies, 'homeMovies')
+    createFetchCase(builder, fetchTrendingCelebs, 'homeCelebs')
+    createFetchCase(builder, fetchTrendingTvSeries, 'homeTvSeries')
   }
 })
 

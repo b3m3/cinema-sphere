@@ -44,7 +44,7 @@ const SearchPage = () => {
 
   return (
     <div className="container">
-      <div className={style.wrapp}>
+      <section className={style.wrapp}>
         <h1>{categoryName}, search - {value}</h1>
         { loading && <Loading /> }
         { status && <Error status={status} /> }
@@ -56,7 +56,7 @@ const SearchPage = () => {
           ))}
         </div>
         <PageSwitcher total_pages={res?.total_pages} page={page} />
-      </div>
+      </section>
     </div>
   );
 }

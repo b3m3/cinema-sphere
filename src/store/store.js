@@ -26,6 +26,12 @@ import fetchDiscover from './slices/fetchDataSlice';
 import fetchTvSeasons from './slices/fetchDataSlice';
 import fetchTvEpisodes from './slices/fetchDataSlice';
 
+// HOME PAGE
+
+import fetchTrendingMovies from './slices/fetchDataSlice';
+import fetchTrendingTvSeries from './slices/fetchDataSlice';
+import fetchTrendingCelebs from './slices/fetchDataSlice';
+
 const store = configureStore({
   reducer: {
     auth: authSlice,
@@ -51,7 +57,13 @@ const store = configureStore({
     history: historySlice,
     discover: fetchDiscover,
     tvSeasons: fetchTvSeasons,
-    tvEpisodes: fetchTvEpisodes
+    tvEpisodes: fetchTvEpisodes,
+
+    // HOME PAGE
+
+    homeMovies: fetchTrendingMovies,
+    homeTvSeries: fetchTrendingTvSeries,
+    homeCelebs: fetchTrendingCelebs
   }
 })
 

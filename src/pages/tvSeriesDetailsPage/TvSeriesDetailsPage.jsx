@@ -74,7 +74,7 @@ const TvSeriesDetailsPage = () => {
   const lastDate = isEnded && details.res?.last_air_date && ` - ${moment(details.res?.last_air_date).format('YYYY')}`;
 
   return (
-    <div className={style.wrapp}>
+    <section className={style.wrapp}>
       { details.loading && <Loading /> }
       { details.status && <Error status={details.status} />}
 
@@ -150,7 +150,7 @@ const TvSeriesDetailsPage = () => {
           </div>
         </>
       }
-    </div>
+    </section>
   );
 }
 

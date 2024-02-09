@@ -61,7 +61,7 @@ const TvEpisodesDetailsPage = () => {
   ];
 
   return (
-    <div className={style.wrapp}>
+    <section className={style.wrapp}>
       { tvEpisodes.loading && <Loading /> }
       { tvEpisodes.status && <Error status={tvEpisodes.status} />}
 
@@ -124,7 +124,7 @@ const TvEpisodesDetailsPage = () => {
           </div>
         </>
       }
-    </div>
+    </section>
   );
 }
 
