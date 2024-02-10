@@ -12,9 +12,9 @@ import style from './side-trending.module.scss';
 
 const breakpoints = {
   1024: { slidesPerView: 2, slidesPerGroup: 2 },
-  768: { slidesPerView: 7, slidesPerGroup: 2 },
-  650: { slidesPerView: 5, slidesPerGroup: 2 },
-  475: { slidesPerView: 4, slidesPerGroup: 2 },
+  768: { slidesPerView: 7, slidesPerGroup: 7 },
+  650: { slidesPerView: 5, slidesPerGroup: 5 },
+  475: { slidesPerView: 4, slidesPerGroup: 4 },
   320: { slidesPerView: 2, slidesPerGroup: 2 },
 }
 

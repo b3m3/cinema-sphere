@@ -11,12 +11,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 const breakpoints = {
-  1024: { slidesPerView: 10, slidesPerGroup: 6 },
-  768: { slidesPerView: 8, slidesPerGroup: 4 },
-  650: { slidesPerView: 6, slidesPerGroup: 2 },
-  475: { slidesPerView: 5, slidesPerGroup: 2 },
-  375: { slidesPerView: 3, slidesPerGroup: 2 },
-  320: { slidesPerView: 2, slidesPerGroup: 1 },
+  1024: { slidesPerView: 10, slidesPerGroup: 10 },
+  768: { slidesPerView: 8, slidesPerGroup: 8 },
+  650: { slidesPerView: 6, slidesPerGroup: 6 },
+  475: { slidesPerView: 5, slidesPerGroup: 5 },
+  375: { slidesPerView: 3, slidesPerGroup: 3 },
+  320: { slidesPerView: 2, slidesPerGroup: 2 },
 }
 
 const SeasonsSwitcher = ({res, season}) => {

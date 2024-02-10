@@ -1,0 +1,81 @@
+.wrapp {
+  height: 100%;
+  
+  & h3 {
+    font-size: 1.125rem;
+    line-height: 2.5;
+  }
+}
+
+.main {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  @media (any-hover: hover) {
+    &:hover {
+      &::after {
+        border: 2px solid var(--orange-400);
+      }
+    }
+  }
+
+  &::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    transition: border .2s;
+  }
+
+  &::before {
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgb(53, 53, 53, .8) 0%, rgba(0,0,0,0) 60%);
+    transition: background .2s;
+  }
+
+  & p {
+    position: absolute;
+    font-size: 1rem;
+    font-weight: 500;
+    z-index: 2;
+    bottom: .625rem;
+    left: 1.25rem;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    & svg {
+      font-size: 1.35rem;
+    }
+  }
+
+  & .img {
+    position: relative;
+    display: grid;
+    height: 100%;
+    gap: .1875rem;
+    grid-template: 1fr / repeat(3, 1fr);
+    background: var(--white);
+  
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

@@ -55,6 +55,7 @@ const Language = () => {
               dispatch(changeLang(code))
               setIsOpen(false)
             }}
+            style={code === lang ? {color: 'var(--orange-400)'} : null}
           >
             {name}
           </li>

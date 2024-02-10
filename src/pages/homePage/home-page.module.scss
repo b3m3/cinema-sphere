@@ -9,4 +9,25 @@
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
+
+  &_title {
+    color: var(--orange-400);
+    font-weight: 500;
+    font-size: 1.7rem;
+  }
+}
+
+.celeb_list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,  minmax(140px, 1fr));
+  grid-row-gap: 1.875rem;
+  grid-column-gap: 1.25rem;
+}
+
+.picks_list {
+  margin-bottom: 2.5rem;
+  display: grid;
+  gap: .9375rem;
+  flex-wrap: wrap;
+  grid-template: minmax(13.75rem, 1fr) / repeat(3, minmax(18.75rem, 1fr));
 }
