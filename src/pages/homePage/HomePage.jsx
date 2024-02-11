@@ -1,17 +1,20 @@
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchTrendingMovies, fetchTrendingTvSeries, fetchTrendingCelebs } from '../../store/slices/fetchDataSlice';
+import { fetchTrendingMovies, fetchTrendingTvSeries, fetchTrendingCelebs, fetchDiscover } from '../../store/slices/fetchDataSlice';
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
+import { IoIosArrowForward } from "react-icons/io";
 
 import MediaCard from '../../components/mediaCard/MediaCard';
 import Title from '../../components/title/Title';
 import CelebCard from '../../components/celebCard/CelebCard';
 import Loading from '../../components/loading/Loading';
-
-import style from './home-page.module.scss';
 import PicksCard from '../../components/picksCard/PicksCard';
 import TrendingMovies from '../../components/trendingMovies/TrendingMovies';
+import ScheduledCard from '../../components/scheduledCard/ScheduledCard';
+
+import style from './home-page.module.scss';
 
 const breakpoints = {
   1024: { slidesPerView: 7, slidesPerGroup: 7 },
@@ -33,6 +36,7 @@ const HomePage = () => {
   const {homeMovies} = useSelector(state => state.homeMovies);
   const {homeTvSeries} = useSelector(state => state.homeTvSeries);
   const {homeCelebs} = useSelector(state => state.homeCelebs);
+  const {discover} = useSelector(state => state.discover);
   const {lang} = useSelector(state => state.lang);
   const dispatch = useDispatch();
 
@@ -42,6 +46,16 @@ const HomePage = () => {
     dispatch(fetchTrendingCelebs({lang}))
   }, [dispatch, lang]);
 
+  useEffect(() => {
+    const doc = {
+      category: 'movie', 
+      filters: '&vote_count.gte=5&include_adult=false&sort_by=primary_release_date.desc', 
+      page: 1, 
+      lang
+    }
+    dispatch(fetchDiscover(doc))
+  }, [dispatch, lang]);
+
   const SwiperWrapperTvSeries = useWrapperSwiper(MediaCard);
 
   return (
@@ -49,10 +63,15 @@ const HomePage = () => {
       <section className={style.wrapp}>
         <div className={style.row}>
           <TrendingMovies data={homeMovies} />
+          <button className={style.more_movies}>
+            <Link to={'/movie/popular/1'}>
+              <span>More movies</span> <IoIosArrowForward />
+            </Link>
+          </button>
         </div>
 
         <div className={style.row}>
-          <Title title={'Celebs'} />
+          <Title title={'Celebs'} link={'/person/popular/1'} />
 
           { homeCelebs.loading && <Loading size={7} />}
 
@@ -78,7 +97,7 @@ const HomePage = () => {
         </div>
 
         <div className={style.row}>
-          <Title title={'TV Series'} />
+          <Title title={'TV Series'} link={'/tv/top_rated/1'} />
 
           { homeTvSeries.loading && <Loading size={7} />}
 
@@ -89,6 +108,19 @@ const HomePage = () => {
             breakpoints={breakpoints}
             category={'tv'}
           />
+        </div>
+
+        <div className={style.row}>
+          <h2 className={style.row_title}>Latest movies</h2>
+          
+          <ul className={style.scheduled}>
+            {discover?.res?.results?.slice(0, 8).map((props, i) => (
+              <li className={style.scheduled_item} key={props.id}>
+                <span className={style.scheduled_number}>{i + 1}</span>
+                <ScheduledCard category={'movie'} {...props} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </div>

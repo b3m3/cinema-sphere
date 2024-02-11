@@ -1,6 +1,7 @@
+import { BsBookmarkStarFill } from "react-icons/bs";
 import style from './add-to-watchlist.module.scss';
 
-const AddToWatchlist = ({id, orange}) => {
+const AddToWatchlist = ({id, orange, bookmark}) => {
   return (
     <button 
       className={style.wrapp}
@@ -11,14 +12,22 @@ const AddToWatchlist = ({id, orange}) => {
               color: 'var(--black)', 
               borderRadius: 'var(--radius-4)'
             } 
+          : bookmark ? {background: 'none'}
           : null
       }
     >
-      {!orange && '+'}
+      {
+        bookmark
+          ? <BsBookmarkStarFill style={{fontSize: '22px', color: 'var(--blue-300)'}} />
+          : <>
+              {!orange && '+'}
 
-      <span>
-        {orange ? '+ Add to Watchlist' : 'Watchlist'}
-      </span>
+              <span>
+                {orange ? '+ Add to Watchlist' : 'Watchlist'}
+              </span>
+            </>
+      }
+
     </button>
   );
 }

@@ -1,6 +1,8 @@
 .wrapp {
   height: 100%;
-  
+  display: grid;
+  grid-template: 1fr / 1fr;
+
   & h3 {
     font-size: 1.125rem;
     line-height: 2.5;
@@ -10,8 +12,6 @@
 .main {
   display: block;
   position: relative;
-  height: 100%;
-  width: 100%;
 
   @media (any-hover: hover) {
     &:hover {
@@ -65,10 +65,9 @@
   }
 
   & .img {
-    position: relative;
     display: grid;
-    height: 100%;
     gap: .1875rem;
+    height: 100%;
     grid-template: 1fr / repeat(3, 1fr);
     background: var(--white);
   

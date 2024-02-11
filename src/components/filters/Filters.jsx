@@ -132,7 +132,7 @@ const Filters = ({setOpenFilter}) => {
   }, []);
   
   const link = useMemo(() => {
-    return `/discover/${category}/&include_adult=false&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&/1`;
+    return `/discover/${category}/&include_adult=false&vote_count.gte=25&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&/1`;
   }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax]);
   
   const activeStyleSortBtn = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };

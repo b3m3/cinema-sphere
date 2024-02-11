@@ -88,7 +88,10 @@ const MovieDetails = () => {
                     <h1>{title}</h1>
                     <ul>
                       <li>{releaseDate}</li>
-                      <li><Time minutes={details.res.runtime}/></li>
+                      {
+                        Boolean(details.res.runtime) && 
+                          <li><Time minutes={details.res.runtime}/></li>
+                      }
                     </ul>
                   </div>
                   <div className={style.top__head_right}>

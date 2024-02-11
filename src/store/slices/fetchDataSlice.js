@@ -351,7 +351,7 @@ export const fetchDiscover = createAsyncThunk(
     try {
       if (category && filters && lang && page) {
         const {data} = await axios.get(
-          `${BASE_URL}discover/${category}?api_key=${API_KEY}${filters}&vote_count.gte=25&language=${lang}&page=${page}`
+          `${BASE_URL}discover/${category}?api_key=${API_KEY}${filters}&language=${lang}&page=${page}`
         )
   
         return data;

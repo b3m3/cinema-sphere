@@ -21,17 +21,17 @@
 
     & svg {
       padding: 4px 0 0 0;
-      font-size: 3.375rem;
+      font-size: 2.9rem;
       transition: .2s;
     }
 
     @media (any-hover: hover) {
       &:hover {
-        color: var(--blue-400);
+        color: var(--orange-400);
         
         & svg {
           transform: translateX(4px);
-          color: var(--blue-400);
+          color: var(--orange-400);
         }
       }
     }
