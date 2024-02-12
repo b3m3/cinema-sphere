@@ -1,57 +1,57 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useState, useMemo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-
-import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 import style from './page-switcher.module.scss';
 
 const PageSwitcher = ({total_pages, page}) => {
-  const {pathname} = useLocation();
+  const [pageArray, setPageArray] = useState(null);
 
-  const total = useMemo(() => {
+  const totalPages = useMemo(() => {
     return total_pages && total_pages > 500 ? 500 : total_pages
   }, [total_pages]);
 
-  const switchPage = useCallback((num) => {
+  const currentPage = page;
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    const lowerBound = Math.max(2, +currentPage - 3);
+    const upperBound = Math.min(+totalPages -1, +currentPage + 3);
+    const myArray = Array.from({ length: upperBound - lowerBound + 1 }, (_, i) => lowerBound + i);
+  
+    myArray.unshift(1);
+    myArray.push(+totalPages)
+
+    setPageArray(myArray);
+  }, [currentPage, totalPages]);
+
+  const handleClick = useCallback((num) => {
     return `${pathname.slice(0, pathname.lastIndexOf('/'))}/${num}`;
   }, [pathname]);
+
+  const hasNaN = pageArray?.some(item => isNaN(item));
+  const activeButton = {background: 'var(--orange-400)', color: 'var(--black)', fontWeight: '700'};
 
   return (
     <>
       {
-        total > 1 &&
-        <ul className={style.wrapp}>
-          <li>
-            <Link className={style.Link} to={+page !== 1 && switchPage(+page - 1)}>
-              <IoIosArrowBack/>
-            </Link>
-          </li>
-          <li>
-            <Link className={style.Link} to={switchPage(1)}>1</Link>
-          </li>
-          { +page  !== 1 &&  <li>...</li> }
-          {[3,2,1].map((el, i) => (
-            +page - el > 1 &&
-              <li key={i}>
-                <Link className={style.Link} to={switchPage(+page - el)}>{+page - el}</Link>
-              </li>
-          ))}
-          {[...Array(3)].map((_, i) => (
-            +page + i + 1 < total &&
-              <li key={i}>
-                <Link className={style.Link} to={switchPage(+page + i + 1)}>{+page + i + 1}</Link>
-              </li>
-          ))}
-          { +total !== +page && <li>...</li> }
-          <li>
-            <Link className={style.Link} to={switchPage(total)}>{total}</Link>
-          </li>
-          <li>
-            <Link className={style.Link} to={+page !== total && switchPage(+page + 1)}>
-              <IoIosArrowForward/>
-            </Link>
-          </li>
-        </ul>
+        !hasNaN && 
+          <ul className={style.wrapp}>
+            {pageArray?.map((page) => {
+              return (
+                <li>
+                  <Link
+                    key={page}
+                    to={handleClick(page)}
+                    className={style.link}
+                    style={+currentPage === +page ? activeButton : null}
+                  >
+                    {page}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        
       }
     </>
   );

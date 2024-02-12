@@ -22,9 +22,9 @@ const TvSeriesPage = () => {
   const category = useCategoryFromLocation();
 
   useEffect(() => {
-    dispatch(fetchCardData({category: 'tv', filter, lang, page}));
     scrollToTop();
-  }, [dispatch, page, filter, lang])
+    dispatch(fetchCardData({category: 'tv', filter, lang, page}));
+  }, [dispatch, page, filter, lang]);
 
   return (
     <div className="container">

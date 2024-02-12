@@ -12,7 +12,7 @@ import style from './trending-movies.module.scss';
 import Loading from '../loading/Loading';
 
 const TrendingMovies = () => {
-  const [currentSlide, setCurrentSlie] = useState(16);
+  const [currentSlide, setCurrentSlie] = useState(0);
 
   const {homeMovies} = useSelector(state => state.homeMovies);
   const {lang} = useSelector(state => state.lang);
@@ -49,7 +49,7 @@ const TrendingMovies = () => {
   return (
     <div className={style.wrapp}>
 
-      {homeMovies.res?.loading && <Loading size={10} />}
+      {homeMovies?.loading && <Loading size={10} />}
 
       { 
         Boolean(homeMovies.res?.results.length) &&

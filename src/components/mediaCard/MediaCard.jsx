@@ -5,9 +5,9 @@ import Rating from '../rating/Rating';
 import style from './media-card.module.scss';
 
 const MediaCard = (params) => {
-  const {id, poster_path, release_date, title, name, vote_average, white, category, media_type} = params;
+  const {id, poster_path, release_date, first_air_date, title, name, vote_average, white, category, media_type} = params;
 
-  const releaseDate = release_date?.slice(0, 4);
+  const releaseDate = release_date ? release_date.slice(0, 4) : first_air_date ? first_air_date.slice(0, 4) : null;
 
   return (
     <div className={style.wrapp}>
@@ -17,7 +17,7 @@ const MediaCard = (params) => {
         <Rating rating={vote_average} />
         <h4 className={style.body__title}>
           {title ? title : name ? name : null}
-          {release_date && ` (${releaseDate})`}
+          {(release_date || first_air_date) && ` (${releaseDate || first_air_date})`}
         </h4>
         <AddToWatchlist id={id} />
       </div>

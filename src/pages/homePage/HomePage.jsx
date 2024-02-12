@@ -112,6 +112,8 @@ const HomePage = () => {
 
         <div className={style.row}>
           <h2 className={style.row_title}>Latest movies</h2>
+
+          { discover.loading && <Loading size={7} /> }
           
           <ul className={style.scheduled}>
             {discover?.res?.results?.slice(0, 8).map((props, i) => (
