@@ -3,21 +3,49 @@
   grid-template: auto / 3.125rem 1fr;
   gap: 1.25rem;
   padding: 10px;
+  border-radius: var(--radius-4);
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  gap: .3125rem;
-
-  & h4 {
-    font-weight: 600;
-  }
-
-  & p {
+  gap: 4px;
+  
+  &__top{
     display: flex;
     align-items: center;
-    gap: 5px;
-    color: var(--grey-400);
+    justify-content: space-between;
+    gap: .3125rem;
+    
+    font-size: .75rem;
+
+    & h4 {
+      font-weight: 600;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    & span {
+      position: relative;
+      font-size: .75rem;
+      color: var(--grey-400);
+  
+      &:not(:last-child) {
+        &::before {
+          position: absolute;
+          content: ',';
+          bottom: 1px;
+          right: -3px;
+        }
+      }
+    }
   }
 }

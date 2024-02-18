@@ -26,17 +26,19 @@ const MediaCasts = ({id, category, lang, season, episode}) => {
       <Title title={'Casts'} />
 
       <ul className={style.list}>
-        {res?.cast?.map((props) => (
-          props?.profile_path
-            ?  <li key={props.id}>
-                <CelebCard {...props} />
-              </li>
-            : res?.cast?.length < 10
-               ? <li key={props.id}>
-                    <CelebCard {...props} />
-                  </li>
-                : null
-        ))}
+        {res?.cast?.map((props, i) => {
+          return (
+            props?.profile_path
+              ?  <li key={props.id + i}>
+                  <CelebCard {...props} />
+                </li>
+              : res?.cast?.length < 10
+                 ? <li key={props.id + i}>
+                      <CelebCard {...props} />
+                    </li>
+                  : null
+          )
+        })}
       </ul>
     </div>
   );

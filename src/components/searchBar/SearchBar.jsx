@@ -67,7 +67,7 @@ const SearchBar = () => {
   }
 
   const newCategory = selectArr[selected].name !== 'All' && selectArr[selected].name.slice(0, -1);
-
+  
   return (
     <div className={style.wrapp}>
       <div className={`${style.search} ${openSearch ? style.open_search : ''}`}>

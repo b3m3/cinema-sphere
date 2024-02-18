@@ -67,8 +67,15 @@ const MovieDetails = () => {
       : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
   }, [videos, englishVideo]);
 
-  const title = details.res?.title;
-  const releaseDate = details.res?.release_date && moment(details.res?.release_date).format('YYYY');
+  const title = useMemo(() => {
+    return details.res?.title
+  }, [details]);
+
+  const releaseDate = useMemo(() => {
+    return details.res?.release_date && moment(details.res?.release_date).format('YYYY')
+  }, [details]);
+
+  console.log('render');
   
   return (
     <section className={style.wrapp}>

@@ -6,11 +6,18 @@ import Mask from './mask.webp'
 
 import style from './poster-image.module.scss';
 
-const PosterImage = ({id, poster_path, title, link, media_type, category, season, episode}) => {
+const PosterImage = (props) => {
+  const {id, poster_path, title, link, media_type, category, season, episode} = props;
+  
   const [load, setLoad] = useState(true);
 
-  const className = `${style.poster} ${link ? style.link : ''}`;
-  const imgSrc = poster_path ? `${IMAGE_URL}w500/${poster_path}` : Mask;
+  const className = useMemo(() => {
+    return `${style.poster} ${link ? style.link : ''}`;
+  }, [link]);
+
+  const imgSrc = useMemo(() => {
+    return  poster_path ? `${IMAGE_URL}w500/${poster_path}` : Mask;
+  }, [poster_path]);
 
   const path = useMemo(() => {
     const getCategory = media_type ? media_type : category;

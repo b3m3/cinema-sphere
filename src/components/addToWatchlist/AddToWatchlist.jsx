@@ -9,7 +9,7 @@ const AddToWatchlist = ({id, orange, bookmark}) => {
       style={
         orange 
           ? {
-              background: 'var(--orange-400)', 
+              background: 'var(--grey-400)', 
               color: 'var(--black)', 
               borderRadius: 'var(--radius-4)'
             } 
@@ -24,7 +24,8 @@ const AddToWatchlist = ({id, orange, bookmark}) => {
               {!orange && '+'}
 
               <span>
-                <BsBookmarkPlusFill /> {orange ? 'Add to Watchlist' : 'Watchlist'}
+                <BsBookmarkPlusFill /> 
+                {orange ? 'Add to Watchlist' : 'Watchlist'}
               </span>
             </>
       }
