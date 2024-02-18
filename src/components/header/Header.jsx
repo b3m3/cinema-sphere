@@ -26,7 +26,7 @@ const Header = () => {
     <header className={style.header}>
       <div className="container">
         <div className={style.wrapp}>
-          <Logo />
+          <Logo menu />
           <SearchBar />
           <div className={style.hide}>
             <WatchListBtn />

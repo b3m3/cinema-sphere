@@ -74,8 +74,6 @@ const MovieDetails = () => {
   const releaseDate = useMemo(() => {
     return details.res?.release_date && moment(details.res?.release_date).format('YYYY')
   }, [details]);
-
-  console.log('render');
   
   return (
     <section className={style.wrapp}>
