@@ -5,7 +5,6 @@ const TitleSwitcher = ({titleData}) => {
   return (
     <h1 className={style.title}>
       {titleData?.map(({path, name}, i) => {
-        console.log(name);
         return (
           <Link 
             key={i} 

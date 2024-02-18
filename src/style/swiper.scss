@@ -18,14 +18,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(0, 0, 0, .5);
-  border-radius: var(--radius-4);
-  border: 2px solid var(--grey-100) !important;
-  color: var(--grey-100) !important;
+  background: var(--white);
+  border-radius: 50%;
+  color: var(--grey-900) !important;
   padding: 5px 0;
-  width: unset !important;
-  height: unset !important;
+  width: 40px !important;
+  height: 40px !important;
   transition: .2s;
+  box-shadow: 0 0 20px 0px var(--grey-900);
 
   &.swiper-button-lock {
     display: none;
@@ -37,8 +37,12 @@
 
   @media (any-hover: hover) {
     &:hover {
-      color: var(--orange-400) !important;
-      border: 2px solid var(--orange-400) !important;
+      &.swiper-button-prev {
+        transform: translate(-5px);
+      }
+      &.swiper-button-next {
+        transform: translate(5px);
+      }
     }
   }
 }

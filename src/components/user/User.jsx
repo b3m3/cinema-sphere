@@ -12,10 +12,10 @@ import style from './user.module.scss';
 
 const User = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   const { data } = useSelector(state => state.auth.user);
-
+  
   const toggleMenu = () => {
     return setIsOpen(cur => !cur);
   }
@@ -39,7 +39,7 @@ const User = () => {
 
       <ul className={`${style.list} ${isOpen && style.open}`}>
         <li className={style.list_item}>
-          <button onClick={() => dispath(signOut())}>Sign Out</button>
+          <button onClick={() => dispatch(signOut())}>Sign Out</button>
         </li>
       </ul>
     </div>

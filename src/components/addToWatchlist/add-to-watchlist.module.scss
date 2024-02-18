@@ -8,14 +8,39 @@
   gap: .375rem;
   font-size: 1rem;
   font-weight: 500;
-  background: var(--white-01);
   border-radius: var(--radius-4);
   color: var(--blue-300);
   transition: background .2s;
 
   @media (any-hover: hover) {
     &:hover {
-      background: var(--blue-400-01);
+      background: var(--orange-300) !important;
     }
+  }
+
+  &.bookmark {
+    position: absolute;
+    width: unset;
+    padding: 0;
+    color: var(--orange-400);
+    display: block;
+    transition: .3s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        transform: translateY(5px) scale(1.2) !important;
+        background: none !important;
+      }
+    }
+  }
+
+  & span {
+    display: flex;
+    align-items: center;
+    gap: .3125rem;
+  }
+
+  & svg {
+    font-size: 2rem;
   }
 }

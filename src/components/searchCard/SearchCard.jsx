@@ -4,9 +4,9 @@ import PosterImage from '../posterImage/PosterImage';
 
 import style from './search-card.module.scss';
 
-const SearchCard = (
-  {id, link, title, name, release_date, media_type, first_air_date, known_for_department, profile_path, poster_path, category}
-) => {
+const SearchCard = (props) => {
+  const {id, link, title, name, release_date, media_type, first_air_date, 
+    known_for_department, profile_path, poster_path, category} = props
 
   const categoryFullName = useMemo(() => {
     return media_type === 'tv' ? 'Tv serie' : media_type === 'movie' ? 'Movie' : null;

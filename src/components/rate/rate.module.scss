@@ -66,8 +66,7 @@
   &_wrapp {
     position: relative;
     background: var(--black);
-    max-height: 220px;
-    height: 100%;
+    min-height: 13.75rem;
     width: 100%;
     max-width: 420px;
     display: flex;
@@ -76,7 +75,7 @@
     flex-direction: column;
     gap: 20px;
     border-radius: .5rem;
-    padding-top: 1.25rem;
+    padding: 1.25rem 0 1rem 0;
   }
 
   &_star {

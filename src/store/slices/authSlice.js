@@ -55,6 +55,7 @@ export const createSession = createAsyncThunk(
         )
 
         if (data.session_id) {
+          console.log(data.session_id);
           const session = jwt.sign({session_id: data.session_id}, JWT_SECRET, {expiresIn: '30d'});
           window.localStorage.setItem('session', session);
         }

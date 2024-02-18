@@ -14,15 +14,24 @@ const MediaCard = (params) => {
       <PosterImage poster_path={poster_path} title={title} id={id} link category={category} media_type={media_type} />
 
       <div className={`${style.body} ${white && style.white}`}>
-        <Rating rating={vote_average} />
         <h4 className={style.body__title}>
           {title ? title : name ? name : null}
-          {(release_date || first_air_date) && ` (${releaseDate || first_air_date})`}
         </h4>
-        <AddToWatchlist id={id} />
+
+        <div className={style.body__text}>
+          <Rating rating={vote_average} />
+
+          <span>
+            {(release_date || first_air_date) && `(${releaseDate || first_air_date})`}
+          </span>
+        </div>
       </div>
+
+      <AddToWatchlist id={id} bookmark />
     </div>
   );
 }
 
 export default MediaCard;
+
+        

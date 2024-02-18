@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { fetchLinks } from '../../store/slices/fetchDataSlice';
 
-import { LiaExternalLinkAltSolid } from "react-icons/lia";
-
 import style from './links.module.scss';
 
 const linksArr = [
@@ -34,7 +32,6 @@ const Links = ({category, homepage}) => {
       return (
         <a key={id} className={style.link} href={`${baseUrl}${linkKey}`} rel="noopener noreferrer" target='__blank'>
           {name}
-          <LiaExternalLinkAltSolid />
         </a>
       )
     }
@@ -49,7 +46,6 @@ const Links = ({category, homepage}) => {
               homepage && 
                 <a className={style.link} href={homepage} rel="noopener noreferrer" target='__blank'>
                   Official Site
-                  <LiaExternalLinkAltSolid />
                 </a>
             }
             {linksArr.map(({id, linkBase, name}) => (

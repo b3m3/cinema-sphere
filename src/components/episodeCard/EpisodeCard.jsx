@@ -38,7 +38,7 @@ const EpisodeCard = ({air_date, name, overview, runtime, season_number, episode_
         </div>
 
         <div className={style.body_bottom}>
-          <Rating rating={vote_average} /> {vote_count > 0 && (vote_count)}
+          <Rating rating={vote_average} /> {vote_count > 0 && `(${vote_count})`}
         </div>
       </div>
     </div>

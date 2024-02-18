@@ -5,6 +5,7 @@
   overflow: hidden;
   padding: 75% 0;
   cursor: auto;
+  border-radius: var(--radius-4);
   transition: opacity .2s;
   
   &.link {

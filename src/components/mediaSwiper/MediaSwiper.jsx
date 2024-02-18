@@ -11,12 +11,11 @@ import Loading from '../loading/Loading';
 import style from './media-swiper.module.scss';
 
 const breakpoints = {
-  1024: { slidesPerView: 4, slidesPerGroup: 4 },
-  768: { slidesPerView: 5, slidesPerGroup: 5 },
+  1024: { slidesPerView: 5, slidesPerGroup: 5 },
+  768: { slidesPerView: 6, slidesPerGroup: 6 },
   650: { slidesPerView: 4, slidesPerGroup: 4 },
   475: { slidesPerView: 3, slidesPerGroup: 3 },
-  375: { slidesPerView: 2, slidesPerGroup: 2 },
-  320: { slidesPerView: 1, slidesPerGroup: 1 },
+  320: { slidesPerView: 2, slidesPerGroup: 2 },
 }
 
 const MediaSwiper = ({lang, category, id, title}) => {

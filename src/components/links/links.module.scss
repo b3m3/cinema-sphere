@@ -2,8 +2,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1px;
   text-decoration: underline;
+  color: var(--blue-400);
 
   @media (any-hover: hover) {
     &:hover {
@@ -12,18 +12,11 @@
   }
 
   &:not(:last-child) {
-    margin-right: .625rem;
-
     &::before {
       position: absolute;
-      content: '•';
+      content: ',';
       bottom: 0;
-      right: -13px;
-      color: var(--grey-400);
+      right: -0.25rem;
     }
-  }
-
-  & svg {
-    font-size: 1.1rem;
   }
 }

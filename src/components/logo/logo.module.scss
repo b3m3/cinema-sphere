@@ -15,7 +15,7 @@
     width: 100%;
     height: 100%;
     background: var(--white-01);
-    border-radius: 12px;
+    border-radius: 25px;
     transition: .2s;
   }
   
@@ -39,8 +39,12 @@
     font-size: 1.125rem;
     color: var(--black);
   }
+}
 
-  @media screen and (max-width: 768px) {
-    font-size: 14px;
+@media screen and (max-width: 768px) {
+  .wrapp {
+    & span {
+      font-size: .875rem;
+    }
   }
 }

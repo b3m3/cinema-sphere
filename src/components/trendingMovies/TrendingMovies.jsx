@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
 import PosterImage from '../posterImage/PosterImage';
+import Rating from '../rating/Rating';
 import { IMAGE_URL } from '../../constants/api';
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 import { fetchTrendingMovies } from '../../store/slices/fetchDataSlice';
@@ -28,6 +29,7 @@ const TrendingMovies = () => {
   const title = useCallback((slide) => homeMovies?.res?.results[slide]?.title, [homeMovies])
   const realese = useCallback((slide) => homeMovies?.res?.results[slide]?.release_date, [homeMovies])
   const overview = useCallback((slide) => homeMovies?.res?.results[slide]?.overview, [homeMovies])
+  const rating = useCallback((slide) => homeMovies?.res?.results[slide]?.vote_average, [homeMovies])
 
   const prevSlide = useCallback(() => {
     return setCurrentSlie(currentSlide > 0 ? currentSlide -1 : 19);
@@ -53,7 +55,7 @@ const TrendingMovies = () => {
 
       { 
         Boolean(homeMovies.res?.results.length) &&
-          <>
+          <div className={style.body}>
             <div className={style.card}>
               <div className={style.card_image}>
                 <img src={`${IMAGE_URL}w1280${srcBackgroundImg(currentSlide)}`} alt=" " />
@@ -63,10 +65,10 @@ const TrendingMovies = () => {
                 <PosterImage id={id(currentSlide)} poster_path={srcPosterImg(currentSlide)} category={'movie'} link />
               </div>
 
-              <h2 className={style.card_title}>
+              <div className={style.card_body}>
                 <Link to={`/movie/${id(currentSlide)}`}>{title(currentSlide)}</Link>
                 <span>{moment(realese(currentSlide)).format('DD MMMM, YYYY')}</span>
-              </h2>
+              </div>
 
               <div className={style.card_counter}>
                 <p>{currentSlide + 1}</p>
@@ -87,14 +89,23 @@ const TrendingMovies = () => {
                 <li className={style.list_item} key={i}>
                   <PosterImage poster_path={srcPosterImg(item)} id={id(item)} category={'movie'} link />
                   <Link to={`/movie/${id(item)}`}>
-                    <p className={style.list_title}>{title(item)}</p>
+                    <div className={style.list_title}>
+                      <p>{title(item)}</p>
+                      <Rating rating={rating(item)} /> 
+                    </div>
                     <span className={style.list_overview}>{overview(item)}</span>
                   </Link>
                 </li>
               ))}
             </ul>
-          </>    
+          </div>    
       }
+
+      <button className={style.more_movies}>
+        <Link to={'/movie/popular/1'}>
+          <span>More movies</span> <IoIosArrowForward />
+        </Link>
+      </button>
     </div>
   );
 }

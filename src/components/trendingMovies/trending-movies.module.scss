@@ -1,4 +1,10 @@
 .wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.body {
   display: grid;
   gap: 1.25rem;
   grid-template: 1fr / 65% 1fr;
@@ -71,7 +77,7 @@
     }
   }
 
-  &_title {
+  &_body {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -115,6 +121,13 @@
   }
 
   &_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .4375rem;
+  }
+
+  &_body {
     font-size: 1.0625rem;
     font-weight: 500;
     transition: opacity .2s;
@@ -142,9 +155,36 @@
   }
 }
 
+.more_movies {
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: flex-end;
+  cursor: auto;
+
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3125rem;
+    font-size: 1rem;
+    transition: color .2s;
+
+    & svg {
+      padding-top: 2px;
+      font-size: 1.2rem;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--orange-400);
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1280px) {
   .card {
-    &_title {
+    &_body {
       & a {
         font-size: calc(14px + calc(32 - 14) * ((100vw - 320px) / (1280 - 320)));
       }
@@ -156,14 +196,14 @@
   }
   
   .list {
-    &_title {
+    &_body {
       font-size: calc(12px + calc(17 - 12) * ((100vw - 320px) / (1280 - 320)));
     }
   }
 }
 
 @media screen and (max-width: 950px) {
-  .wrapp {
+  .body {
     grid-template: 1fr / 1fr;
   }
 
@@ -173,7 +213,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .wrapp {
+  .body {
     grid-template: minmax(330px, 1fr) / 1fr;
   }
 
@@ -186,8 +226,19 @@
       width: 11.875rem;
     }
 
-    &_title {
+    &_body {
       left: 14.375rem;
+    }
+  }
+
+  .more_movies {
+    & a {
+      font-size: .875rem;
+  
+      & svg {
+        padding-top: 2px;
+        font-size: 1.1rem;
+      }
     }
   }
 }
@@ -228,7 +279,7 @@
       display: none;
     }
 
-    &_title {
+    &_body {
       text-align: center;
       position: static;
       bottom: unset;

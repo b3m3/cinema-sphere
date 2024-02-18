@@ -5,6 +5,21 @@
   padding: .625rem .625rem .625rem 0;
 }
 
+.bookmark {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    left: 50% !important;
+    top: 50% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .col {
   @media (any-hover: hover) {
     &:hover {

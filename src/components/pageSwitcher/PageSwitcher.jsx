@@ -38,9 +38,8 @@ const PageSwitcher = ({total_pages, page}) => {
           <ul className={style.wrapp}>
             {pageArray?.map((page) => {
               return (
-                <li>
+                <li key={page}>
                   <Link
-                    key={page}
                     to={handleClick(page)}
                     className={style.link}
                     style={+currentPage === +page ? activeButton : null}

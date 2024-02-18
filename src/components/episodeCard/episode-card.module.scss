@@ -1,13 +1,14 @@
 .wrapp {
   display: grid;
   gap: .625rem;
-  grid-template: minmax(125px, auto) / minmax(auto, 12.5rem) 1fr;
+  grid-template: minmax(auto, 115px) / minmax(auto, 10.3125rem) 1fr;
 }
 
 .image {
   position: relative;
   overflow: hidden;
-  max-height: 125px;
+  max-height: 100%;
+  border-radius: var(--radius-4);
 
   & img {
     position: absolute;
@@ -52,7 +53,7 @@
     }
 
     & span {
-      color: var(--grey-400);
+      color: var(--grey-900);
       white-space: nowrap;
     }
   }
@@ -62,9 +63,9 @@
 
     & p {
       font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
+      font-size: .875rem;
       line-height: 1.5rem;
-      color: var(--grey-900);
+      color: var(--grey-400);
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2; /* number of lines to show */
@@ -74,7 +75,7 @@
   }
 
   &_bottom {
-    font-size: 1rem;
+    font-size: 14px;
     display: flex;
     align-items: center;
     gap: .375rem;

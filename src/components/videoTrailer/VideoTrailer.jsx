@@ -29,7 +29,7 @@ const VideoTrailer = ({url, loading, backdrop}) => {
                   <img src={imgSrc} alt="Youtube trailer" />
                   <button onClick={() => setPlay(true)}>
                     <span>
-                      <FaPlayCircle /> Play Trailer
+                      <FaPlayCircle /> <b>Play Trailer</b>
                     </span>
                   </button>
                 </div>

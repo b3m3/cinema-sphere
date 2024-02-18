@@ -7,7 +7,9 @@ import AddToWatchlist from '../addToWatchlist/AddToWatchlist';
 const ScheduledCard = ({id, category, title, release_date}) => {
   return (
     <div className={style.wrapp}>
-      <AddToWatchlist id={id} category={category} bookmark />
+      <div className={style.bookmark}>
+        <AddToWatchlist id={id} category={category} bookmark />
+      </div>
 
       <Link className={style.col} to={`/${category}/${id}`}>
         <p>{title}</p>

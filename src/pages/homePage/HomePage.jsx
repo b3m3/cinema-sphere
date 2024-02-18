@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchTrendingMovies, fetchTrendingTvSeries, fetchTrendingCelebs, fetchDiscover } from '../../store/slices/fetchDataSlice';
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
-import { IoIosArrowForward } from "react-icons/io";
 
 import MediaCard from '../../components/mediaCard/MediaCard';
 import Title from '../../components/title/Title';
@@ -63,11 +61,6 @@ const HomePage = () => {
       <section className={style.wrapp}>
         <div className={style.row}>
           <TrendingMovies data={homeMovies} />
-          <button className={style.more_movies}>
-            <Link to={'/movie/popular/1'}>
-              <span>More movies</span> <IoIosArrowForward />
-            </Link>
-          </button>
         </div>
 
         <div className={style.row}>

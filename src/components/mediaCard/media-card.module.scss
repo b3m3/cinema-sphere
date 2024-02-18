@@ -1,43 +1,37 @@
 .wrapp {
+  position: relative;
   border-radius: 0 0 var(--radius-4) var(--radius-4);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  display: grid;
-  grid-template: auto 1fr / auto;
-  height: 100%;
 }
 
 .body {
   display: flex;
   flex-direction: column;
-  gap: .9375rem;
+  gap: 7px;
   height: 100%;
-  padding: 15px 10px;
-  background: var(--grey-850);
+  padding: .625rem 0 0 0;
 
   &__title {
-    flex: 1 1 auto;
-    font-weight: 500;
-    font-size: .9375rem;
+    font-weight: 400;
+    font-size: 14px;
     color: var(--white);
+  }
+
+  &__text {
+    font-size: .8125rem;
+    display: flex;
+    align-items: center;
+    gap: .3125rem;
+    color: var(--grey-400);
   }
 
   &.white {
     background: var(--white);
-    border: 1px solid var(--grey-100);
-    border-top: none;
-    
+
     & h4 {
-      color: var(--grey-900);
-    }
-
-    & button {
-      background: var(--blue-400-01);
-
-      @media (any-hover: hover) {
-        &:hover {
-          background: var(--grey-100);
-        }
-      }
+      color: var(--grey-800);
     }
   }
 }

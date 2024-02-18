@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 
 import { postRate } from "../../store/slices/rateSlice";
+import { clearRateStates } from "../../store/slices/rateSlice";
+import { getRated } from '../../store/slices/rateSlice';
 
+import Loading from "../loading/Loading";
+import Error from "../error/Error";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 import style from './rate.module.scss';
@@ -11,12 +15,15 @@ import style from './rate.module.scss';
 const Rate = ({category, id, title}) => {
   const [isShow, setIsShow] = useState(false);
   const [starSelected, setStarSelected] = useState('');
+  const [rateValue, setRateValue] = useState(null);
   const [starHover, setStarHover] = useState('');
 
-  const {error, status} = useSelector(state => state.rate);
-  const {isAuth} = useSelector(state => state.auth.user);
-  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
+  const { error, status, loading } = useSelector(state => state.rate.post);
+  const { rated } = useSelector(state => state.rate);
+  const { lang } = useSelector(state => state.lang);
 
+  const dispatch = useDispatch();
   const refModal = useRef(null);
 
   const close = useCallback((event) => {
@@ -68,22 +75,58 @@ const Rate = ({category, id, title}) => {
   }, [starSelected]);
 
   const rateBtnHandler = useCallback(() => {
-    dispatch(postRate({value: starSelected, id, category}))
-    status && !error &&
+    dispatch(postRate({value: starSelected, id, category}));
+  }, [dispatch, category, id, starSelected]);
+
+  useEffect(() => {
+    if (status && !error) {
+      setRateValue(starSelected);
       setStarHover('');
       setStarSelected('');
       setIsShow(false);
-  }, [dispatch, error, category, id, starSelected, status])
+      dispatch(clearRateStates());
+    }
+    
+    if (error) {
+      setTimeout(() => {
+        setIsShow(false);
+        setStarHover('');
+        setStarSelected('');
+        dispatch(clearRateStates());
+      }, 1500);
+    }
+  }, [dispatch, error, starSelected, status]);
+
+  useEffect(() => {
+    const newCategory = category === 'movie' ? 'movies' : category;
+    const accountId = user?.data?.id;
+
+    if (accountId && category) {
+      dispatch(getRated({accountId, category: newCategory, lang}));
+    }
+  }, [dispatch, user, category, lang]);
+
+  useEffect(() => {
+    const _id = +id;
+
+    rated.res?.filter(({id, rating}) => +id === _id ? setRateValue(rating) : null);
+  }, [rated, id])
 
   return (
     <div className={style.wrapp}>
       <h4>YOUR RATING</h4>
 
       {
-        isAuth
+        user.isAuth
           ? <button className={style.button} onClick={() => setIsShow(true)}>
-              <FaRegStar />
-              <span>Rate</span>
+              {
+                rated.loading
+                  ? <Loading size={50} />
+                  : <>
+                      { rateValue ? <FaStar /> : <FaRegStar /> }
+                      <span>{rateValue ? `${rateValue}/10` : 'Rate'}</span>
+                    </>
+              }
             </button>
           : <Link to={'/login'} className={style.button}>
               <FaRegStar />
@@ -105,26 +148,33 @@ const Rate = ({category, id, title}) => {
 
           <h3>{title}</h3>
 
-          <ul className={style.modal_list}>
-            {[...Array(10)].map((_, i) => (
-              <li key={i}>
-                <button>
-                  <FaStarCustom 
-                    TagName={i < starSelected ? FaStar : FaRegStar}
-                    i={i}
-                  />
-                </button>
-              </li>
-            ))}
-          </ul>
+          {
+            loading
+              ? <Loading size={12} spinner />
+              : error ? <Error status={status.message} />
+              : <>
+                  <ul className={style.modal_list}>
+                    {[...Array(10)].map((_, i) => (
+                      <li key={i}>
+                        <button>
+                          <FaStarCustom 
+                            TagName={i < starSelected ? FaStar : FaRegStar}
+                            i={i}
+                          />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
 
-          <button 
-            style={rateBtnStyle}
-            className={style.rate}
-            onClick={rateBtnHandler}
-          >
-            Rate
-          </button>
+                  <button 
+                    style={rateBtnStyle}
+                    className={style.rate}
+                    onClick={rateBtnHandler}
+                  >
+                    Rate
+                  </button>
+                </>
+          }
         </div>
       </div>
     </div>
