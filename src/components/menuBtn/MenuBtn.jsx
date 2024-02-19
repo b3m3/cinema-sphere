@@ -1,19 +1,9 @@
-import { useDispatch } from "react-redux";
-
-import { isOpenMenu } from "../../store/slices/menuSlice";
-
 import { IoMenu } from "react-icons/io5";
-
 import style from './menu-btn.module.scss';
 
-const MenuBtn = () => {
-  const dispatch = useDispatch();
-
+const MenuBtn = ({handleOpenNavbar}) => {
   return (
-    <button 
-      className={style.button}
-      onClick={() => dispatch(isOpenMenu())}
-    >
+    <button className={style.button} onClick={handleOpenNavbar} >
       <IoMenu />
     </button>
   );

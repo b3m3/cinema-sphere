@@ -1,7 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { isCloseMenu } from '../../store/slices/menuSlice';
+import { memo } from 'react';
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdLocalMovies } from "react-icons/md";
@@ -44,27 +42,20 @@ const array = [
   },
 ]
 
-const Navbar = () => {
-  const { menu } = useSelector(state => state.menu);
-  const dispatch = useDispatch();
-
-  const handleClose = () => {
-    dispatch(isCloseMenu());
-  }
-
+const Navbar = memo(({menu, handleCloseNavbar}) => {
   return (
     <div className={`${style.wrapp} ${menu && style.open}`}>
       <div className="container">
         <nav className={style.navbar}>
           <div className={style.top}>
-            <Logo onClick={handleClose} />
+            <Logo onClick={handleCloseNavbar} />
             <div className={style.hover}>
               <Language />
               <WatchListBtn/>
             </div>
             <button 
               className={style.close}
-              onClick={() => dispatch(isCloseMenu())}
+              onClick={handleCloseNavbar}
             >
               <IoIosCloseCircleOutline />
             </button>
@@ -76,7 +67,7 @@ const Navbar = () => {
 
                 <p>
                   {links.map(({name, path}) => (
-                    <Link key={name} to={path} onClick={() => handleClose()}>
+                    <Link key={name} to={path} onClick={handleCloseNavbar}>
                       {name}
                     </Link>
                   ))}
@@ -88,6 +79,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-}
+})
 
 export default Navbar;

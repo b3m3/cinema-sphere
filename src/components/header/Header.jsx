@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect,useCallback } from 'react';
 
 import { checkAuth } from '../../store/slices/authSlice';
+import { isOpenMenu, isCloseMenu } from '../../store/slices/menuSlice';
 
 import Logo from '../logo/Logo';
 import SearchBar from '../searchBar/SearchBar';
@@ -15,11 +16,20 @@ import Navbar from '../navbar/Navbar';
 import style from './header.module.scss';
 
 const Header = () => {
-  const { isAuth } = useSelector(state => state.auth.user)
+  const { user } = useSelector(state => state.auth);
+  const { menu } = useSelector(state => state.menu);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkAuth())
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+  const handleOpenNavbar = useCallback(() => {
+    return dispatch(isOpenMenu());
+  }, [dispatch]);
+
+  const handleCloseNavbar = useCallback(() => {
+    dispatch(isCloseMenu());
   }, [dispatch]);
 
   return (
@@ -29,14 +39,18 @@ const Header = () => {
           <Logo menu />
           <SearchBar />
           <div className={style.hide}>
-            <WatchListBtn />
+            <WatchListBtn isAuth={user.isAuth} handleCloseNavbar={handleCloseNavbar} />
           </div>
-          { isAuth ? <User /> : <SingInBtn /> }
+          { 
+            user.isAuth 
+              ? <User data={user.data} dispatch={dispatch} /> 
+              : <SingInBtn /> 
+          }
           <div className={style.hide}>
             <Language />
           </div>
-          <MenuBtn />
-          <Navbar />
+          <MenuBtn handleOpenNavbar={handleOpenNavbar} />
+          <Navbar handleCloseNavbar={handleCloseNavbar} menu={menu} />
         </div>
       </div>
     </header>

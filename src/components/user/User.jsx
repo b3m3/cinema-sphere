@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { IMAGE_URL } from '../../constants/api';
 import { MdOutlineArrowDropDown } from "react-icons/md";
@@ -10,26 +9,30 @@ import { signOut } from '../../store/slices/authSlice';
 
 import style from './user.module.scss';
 
-const User = () => {
+const User = ({data, dispatch}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch();
-
-  const { data } = useSelector(state => state.auth.user);
   
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     return setIsOpen(cur => !cur);
-  }
+  }, []);
+
+  const handleSignOut = useCallback(() => {
+    return dispatch(signOut());
+  }, [dispatch])
 
   useEffect(() => {
     autoCloser('HEADER', isOpen, setIsOpen);
   }, [isOpen]);
 
+  const imgSrc = `${IMAGE_URL}w45${data?.avatar?.tmdb?.avatar_path}`;
+  const isAvatar = data?.avatar?.tmdb?.avatar_path;
+
   return (
     <div className={style.wrapp} onClick={toggleMenu}>
       <div className={style.avatar}>
         {
-          data?.avatar?.tmdb?.avatar_path
-            ? <img src={`${IMAGE_URL}w45${data?.avatar?.tmdb?.avatar_path}`} alt="Avatar" />
+          isAvatar
+            ? <img src={imgSrc} alt="Avatar" />
             : <FaUserCircle />
         }
       </div>
@@ -39,7 +42,7 @@ const User = () => {
 
       <ul className={`${style.list} ${isOpen && style.open}`}>
         <li className={style.list_item}>
-          <button onClick={() => dispatch(signOut())}>Sign Out</button>
+          <button onClick={handleSignOut}>Sign Out</button>
         </li>
       </ul>
     </div>

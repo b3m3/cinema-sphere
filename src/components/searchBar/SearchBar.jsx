@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -59,12 +59,18 @@ const SearchBar = () => {
     return () => clearTimeout(debounce);
   }, [dispatch, value, category, selected, lang]);
 
-  const filterHandler = () => setOpenFilter(true);
+  const filterHandler = useCallback(() => {
+    setOpenFilter(true);
+  }, []);
 
-  const handleNavigate = (props) => {
+  const handleNavigate = useCallback((props) => {
     setValue('')
     navigate(`/${props.media_type ? props.media_type : selectArr[selected].category}/${props.id}`);
-  }
+  }, [navigate,selected]);
+
+  const handleChange = useCallback((event) => {
+    return setValue(event.target.value)
+  }, [])
 
   const newCategory = selectArr[selected].name !== 'All' && selectArr[selected].name.slice(0, -1);
   
@@ -94,7 +100,7 @@ const SearchBar = () => {
           <input 
             type="text" 
             placeholder="Search Cinema Sphere" 
-            onChange={(e) => setValue(e.target.value)}
+            onChange={handleChange}
             value={value}
           />
           <button 

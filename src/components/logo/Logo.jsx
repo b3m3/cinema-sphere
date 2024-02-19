@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import style from './logo.module.scss';
@@ -9,10 +10,10 @@ const links = [
   {link: '/person/popular/1', name: 'Celebs'},
 ]
 
-const Logo = ({onClick, menu}) => {
+const Logo = memo(({onClick, menu}) => {
   return (
-    <Link className={style.wrapp} to="/" onClick={onClick}>
-      <span>Cinema sphere</span>
+    <div className={style.wrapp}>
+      <Link className={style.logo} to="/" onClick={onClick}>Cinema sphere</Link>
       
       {
         menu &&
@@ -26,8 +27,8 @@ const Logo = ({onClick, menu}) => {
             </ul>
           </div>
       }
-    </Link>
+    </div>
   );
-}
+})
 
 export default Logo;

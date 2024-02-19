@@ -1,13 +1,19 @@
+import { useMemo } from 'react';
+
 import PosterImage from '../posterImage/PosterImage';
 
 import style from './celeb-card.module.scss';
 
 const CelebCard = ({id, original_name, character, profile_path, known_for_department, big}) => {
 
+  const posterProps = useMemo(() => {
+    return {id, poster_path: profile_path, title: original_name, category: 'person'}
+  }, [id, profile_path,original_name])
+
   return (
     <div className={`${style.wrapp} ${big && style.big}`}>
       <div className={style.image}>
-        <PosterImage id={id} poster_path={profile_path} title={original_name} link category={'person'} />
+        <PosterImage {...posterProps} link big />
       </div>
 
       <div className={style.box}>

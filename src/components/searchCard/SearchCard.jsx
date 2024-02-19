@@ -22,9 +22,7 @@ const SearchCard = (props) => {
   }, [name, title]);
 
   const posterProps = useMemo(() => {
-    return {
-      poster_path: poster_path || profile_path, title: "Poster", id, link, category, media_type
-    }
+    return {poster_path: poster_path || profile_path, title: "Poster", id, link, category, media_type}
   }, [poster_path, profile_path, id, link,category,media_type]);
 
   const rating = useMemo(() => {
