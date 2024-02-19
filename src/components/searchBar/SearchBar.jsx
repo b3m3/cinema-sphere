@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
 import { autoCloser } from "../../utils/functions";
 import { fetchSearchBar, clearSearch } from "../../store/slices/fetchDataSlice";
@@ -25,15 +26,17 @@ const selectArr = [
   {name: 'Celebs', category: 'person'},
 ]
 
-const SearchBar = ({dispatch, searchBar, lang}) => {
+const SearchBar = ({lang}) => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openSelect, setOpenSelect] = useState(false);
   const [openFilters, setOpenFilter] = useState(false);
   const [selected, setSelected] = useState(0);
   const [value, setValue] = useState('');
 
+  const { searchBar } = useSelector(state => state.searchBar);
   const category = useCategoryFromLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     autoCloser('HEADER', openSelect, setOpenSelect);

@@ -7,7 +7,7 @@ const PageSwitcher = ({total_pages, page}) => {
   const [pageArray, setPageArray] = useState(null);
 
   const totalPages = useMemo(() => {
-    return total_pages && total_pages > 500 ? 500 : total_pages
+    return total_pages && total_pages > 500 ? 500 : total_pages <= 1 ? null : total_pages
   }, [total_pages]);
 
   const currentPage = page;
@@ -34,7 +34,7 @@ const PageSwitcher = ({total_pages, page}) => {
   return (
     <>
       {
-        !hasNaN && 
+        !hasNaN && totalPages &&
           <ul className={style.wrapp}>
             {pageArray?.map((page) => {
               return (
