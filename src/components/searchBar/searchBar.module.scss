@@ -145,7 +145,7 @@
       cursor: pointer;
       transition: background .2s;
       color: var(--white);
-  
+
       &:not(:last-child) {
         border-bottom: 1px solid var(--grey-800);
       }
@@ -157,6 +157,19 @@
       }
     }
   }
+}
+
+.see_all {
+  display: block;
+  border-top: 1px solid var(--grey-800);
+  padding: .625rem; 
+  text-decoration: underline; 
+  color: var(--blue-400);
+}
+
+.no_res{
+  border-top: 1px solid var(--grey-800);
+  padding: .625rem; 
 }
 
 @media screen and (max-width: 768px) {

@@ -23,7 +23,7 @@ const SearchCard = (props) => {
 
   const posterProps = useMemo(() => {
     return {poster_path: poster_path || profile_path, title: "Poster", id, link, category, media_type}
-  }, [poster_path, profile_path, id, link,category,media_type]);
+  }, [poster_path, profile_path, id, link, category, media_type]);
 
   const rating = useMemo(() => {
     return vote_average ? vote_average.toString().slice(0, 3) : null

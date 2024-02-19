@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { autoCloser } from "../../utils/functions";
@@ -26,16 +25,12 @@ const selectArr = [
   {name: 'Celebs', category: 'person'},
 ]
 
-const SearchBar = () => {
+const SearchBar = ({dispatch, searchBar, lang}) => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openSelect, setOpenSelect] = useState(false);
   const [openFilters, setOpenFilter] = useState(false);
   const [selected, setSelected] = useState(0);
   const [value, setValue] = useState('');
-
-  const {status, res} = useSelector(state => state.searchBar.searchBar);
-  const {lang} = useSelector(state => state.lang);
-  const dispatch = useDispatch();
 
   const category = useCategoryFromLocation();
   const navigate = useNavigate();
@@ -43,6 +38,14 @@ const SearchBar = () => {
   useEffect(() => {
     autoCloser('HEADER', openSelect, setOpenSelect);
   }, [openSelect]);
+
+  const selectedName = useMemo(() => {
+    return selectArr[selected].name
+  }, [selected]);
+
+  const selectedCategory = useMemo(() => {
+    return selectArr[selected].category
+  }, [selected]);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -63,22 +66,44 @@ const SearchBar = () => {
     setOpenFilter(true);
   }, []);
 
-  const handleNavigate = useCallback((props) => {
+  const handleNavigate = useCallback(({media_type, id}) => {
     setValue('')
-    navigate(`/${props.media_type ? props.media_type : selectArr[selected].category}/${props.id}`);
-  }, [navigate,selected]);
+    navigate(`/${media_type ? media_type : selectArr[selected].category}/${id}`);
+  }, [navigate, selected]);
 
   const handleChange = useCallback((event) => {
     return setValue(event.target.value)
+  }, []);
+
+  const handleCategory = useCallback((index) => {
+    setSelected(index) 
+    dispatch(clearSearch())
+  }, [dispatch]);
+
+  const handleOpenSelect = useCallback(() => {
+    setOpenSelect(c => !c)
   }, [])
 
-  const newCategory = selectArr[selected].name !== 'All' && selectArr[selected].name.slice(0, -1);
+  const handleClose = useCallback(() => {
+    setOpenSearch(false)
+    setValue('')
+  }, []);
+
+  const newCategory = selectedName !== 'All' && selectedName.slice(0, -1);
+
+  const searchClass = useMemo(() => {
+    return `${style.search} ${openSearch ? style.open_search : ''}`
+  }, [openSearch]);
+
+  const resultsClass = useMemo(() => {
+    return `${style.results} ${openSearch && style.results_open}`
+  }, [openSearch]);
   
   return (
     <div className={style.wrapp}>
-      <div className={`${style.search} ${openSearch ? style.open_search : ''}`}>
-        <div className={style.select} onClick={() => setOpenSelect(c => !c)}>
-          <span>{selectArr[selected].name}</span>
+      <div className={searchClass}>
+        <div className={style.select} onClick={handleOpenSelect}>
+          <span>{selectedName}</span>
           <MdOutlineArrowDropDown />
 
           <ul className={openSelect ? style.open_select : ''}>
@@ -86,16 +111,14 @@ const SearchBar = () => {
               <li 
                 key={category}
                 style={selected === i ? {color: 'var(--orange-400'} : null}
-                onClick={() => {
-                  setSelected(i) 
-                  dispatch(clearSearch())
-                }}
+                onClick={() => handleCategory(i)}
               >
                 {name}
               </li>
             ))}
           </ul>
         </div>
+
         <div className={style.input_wrapp}>
           <input 
             type="text" 
@@ -103,16 +126,11 @@ const SearchBar = () => {
             onChange={handleChange}
             value={value}
           />
-          <button 
-            className={style.close} 
-            onClick={() => {
-              setOpenSearch(false)
-              setValue('')
-            }}
-          >
+          <button className={style.close} onClick={handleClose}>
             <IoIosClose />
           </button>
         </div>
+
         <button className={style.filter_button} onClick={filterHandler}>
           <IoFilterOutline />
         </button>
@@ -122,38 +140,41 @@ const SearchBar = () => {
         <IoSearch />
       </button>
 
-      <div className={`${style.results} ${openSearch && style.results_open}`}>
-        { value && !res && <Loading />}
-        { status && <Error status={status} /> }
+      <div className={resultsClass}>
+        { value && !searchBar.res && <Loading />}
+        { searchBar.status && <Error status={searchBar.status} /> }
         {
-          value && res &&
+          value && searchBar.res &&
             <ul>
-              {res?.results?.map((props) => (
-                <li 
-                  key={props.id}
-                  onClick={() => handleNavigate(props)}
-                >
-                  <SearchCard {...props} category={newCategory} />
-                </li>
-              ))}
-
-              {
-                res?.results?.length > 0 && selectArr[selected].category !== 'multi' &&
-                  <li style={{padding: '.625rem', textDecoration: 'underline', color: 'var(--blue-400'}}>
-                    <Link
-                      to={`/search/${selectArr[selected].category}/${value}/1`}
-                      onClick={() => setValue('')}
-                    >
-                      See all results →
-                    </Link>
+              {searchBar.res?.results?.map((props) => {
+                return (
+                  <li 
+                    key={props.id} 
+                    onClick={() => handleNavigate({id: props.id, media_type: props.media_type})} 
+                  >
+                    <SearchCard {...props} category={newCategory} />
                   </li>
-              }
-
-              {
-                res?.results?.length === 0 && 
-                  <li style={{padding: '.625rem'}}>No results found for "{value}"</li>
-              }
+                )
+              })}
             </ul>
+        }
+
+        {
+          searchBar.res?.results?.length > 0 && selectedCategory !== 'multi' &&
+            <Link
+              className={style.see_all}
+              to={`/search/${selectedCategory}/${value}/1`} 
+              onClick={() => setValue('')}
+            >
+              See all results →
+            </Link>
+        }
+
+        {
+          searchBar.res?.results?.length === 0 && 
+            <div className={style.no_res}>
+              No results found for "{value}"
+            </div>
         }
       </div>
 

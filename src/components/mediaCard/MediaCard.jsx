@@ -9,11 +9,11 @@ const MediaCard = (params) => {
   const {id, poster_path, release_date, first_air_date, title, name, vote_average, white, category, media_type} = params;
 
   const releaseDate = useMemo(() => {
-    return (release_date || first_air_date).slice(0, 4);
+    return (release_date || first_air_date) && (release_date || first_air_date).slice(0, 4);
   }, [release_date, first_air_date]);
 
   const titleName = useMemo(() => {
-    return title || name
+    return (title || name) && (title || name)
   }, [title, name]);
 
   const posterProps = useMemo(() => {
@@ -21,7 +21,7 @@ const MediaCard = (params) => {
   }, [poster_path, title, id, category, media_type]);
 
   const date = useMemo(() => {
-    return `(${releaseDate || first_air_date})`;
+    return (releaseDate || first_air_date) && `(${releaseDate || first_air_date})`;
   }, [releaseDate, first_air_date])
 
   return (
