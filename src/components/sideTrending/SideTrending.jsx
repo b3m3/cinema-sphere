@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchTrending } from '../../store/slices/fetchDataSlice';
+import { fetchTrending } from "../../store/asyncThunks/fetchTrending";
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
 import PosterImage from '../posterImage/PosterImage';
@@ -19,7 +19,7 @@ const breakpoints = {
 }
 
 const SideTrending = ({category, lang, id, list}) => {
-  const {loading, res} = useSelector(state => state.trending.trending);
+  const {loading, res} = useSelector(state => state.trending);
   const dispatch = useDispatch();
 
   useEffect(() => {

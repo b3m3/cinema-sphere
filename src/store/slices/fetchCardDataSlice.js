@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {fetchCardData} from "../asyncThunks/fetchCardData";
+import { extraReducersBody } from "../utils/extraReducersBody";
 
 const initialState = {
   loading: false, 
@@ -10,29 +11,10 @@ const initialState = {
 const fetchCardDataSlice = createSlice({
   name: 'cardData',
   initialState,
-  reducers: {
-    clearSearch: (state) => {
-      state.searchBar = {loading: false, status: null, res: null}
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchCardData.pending, (state) => {
-        state.loading = true;
-        state.res = null;
-        state.status = null;
-      })
-      .addCase(fetchCardData.fulfilled, (state, {payload}) => {
-        state.loading = false;
-        state.res = payload;
-      })
-      .addCase(fetchCardData.rejected, (state, {payload}) => {
-        payload.message = undefined;
-        state.loading = false;
-        state.status = payload.message;
-      })
+    extraReducersBody(builder, fetchCardData);
   }
 })
 
 export default fetchCardDataSlice.reducer;
-export const { clearSearch } = fetchCardDataSlice.actions;

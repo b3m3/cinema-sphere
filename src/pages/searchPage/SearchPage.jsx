@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchSearch } from '../../store/slices/fetchDataSlice';
+import { fetchSearch } from "../../store/asyncThunks/fetchSearch";
 
 import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
 import Loading from '../../components/loading/Loading';
@@ -14,7 +14,7 @@ import style from './search-page.module.scss';
 
 const SearchPage = () => {
   const {lang} = useSelector(state => state.lang);
-  const {loading, status, res} = useSelector(state => state.search.search);
+  const {loading, status, res} = useSelector(state => state.search);
   const {category, value, page} = useParams();
   const dispatch = useDispatch();
 

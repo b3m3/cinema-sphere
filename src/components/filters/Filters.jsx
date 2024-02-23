@@ -2,13 +2,13 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
-import { fetchGenresList } from '../../store/slices/fetchDataSlice';
+import { fetchGenresList } from "../../store/asyncThunks/fetchGenresList";
 
 import { IoClose } from "react-icons/io5";
 import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown  } from "react-icons/md";
+import Loading from "../loading/Loading";
 
 import style from './filters.module.scss';
-import Loading from "../loading/Loading";
 
 const sortArr = [
   {name: 'Popular', path: 'popularity.desc'},
@@ -34,8 +34,9 @@ const Filters = ({setOpenFilter}) => {
   const [dateMin, setDateMin] = useState(firstYear);
   const [dateMax, setDateMax] = useState(currentYear);
 
-  const { lang } = useSelector(state => state.lang);
-  const {genresList} = useSelector(state => state.genresList);
+  const {lang} = useSelector(state => state.lang);
+  const {genresList} = useSelector(state => state);
+
   const {pathname} = useLocation();
   const dispatch = useDispatch();
 

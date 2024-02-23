@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
-import { fetchDetails, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
+import { fetchImages } from "../../store/asyncThunks/fetchImages";
+import { fetchVideos } from "../../store/asyncThunks/fetchVideos";
+import { fetchEnglishVideo } from "../../store/asyncThunks/fetchEnglishVideo";
+import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 import { getHistory, setHistory } from '../../store/slices/historySlice';
 
 import Rating from '../../components/rating/Rating';
@@ -35,10 +38,7 @@ import style from './tv-series-details-page.module.scss';
 const TvSeriesDetailsPage = () => {
   const {id} = useParams();
   const {lang} = useSelector(state => state.lang);
-  const {details} = useSelector(state => state.details);
-  const {videos} = useSelector(state => state.videos);
-  const {images} = useSelector(state => state.images);
-  const {englishVideo} = useSelector(state => state.englishVideo);
+  const {details, images, videos, englishVideo} = useSelector(state => state);
 
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();
@@ -91,7 +91,7 @@ const TvSeriesDetailsPage = () => {
                     <h1>{title}</h1>
                     <ul>
                       <li>{releaseDate}{lastDate}</li>
-                      { 
+                      {
                         Boolean(details.res.episode_run_time?.length) &&
                           <li><Time minutes={details.res.episode_run_time}/></li>
                       }

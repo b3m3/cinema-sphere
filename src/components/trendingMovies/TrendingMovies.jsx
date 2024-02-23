@@ -7,7 +7,8 @@ import PosterImage from '../posterImage/PosterImage';
 import Rating from '../rating/Rating';
 import { IMAGE_URL } from '../../constants/api';
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
-import { fetchTrendingMovies } from '../../store/slices/fetchDataSlice';
+import { fetchTrending } from "../../store/asyncThunks/fetchTrending";
+
 
 import style from './trending-movies.module.scss';
 import Loading from '../loading/Loading';
@@ -15,21 +16,21 @@ import Loading from '../loading/Loading';
 const TrendingMovies = () => {
   const [currentSlide, setCurrentSlie] = useState(0);
 
-  const {homeMovies} = useSelector(state => state.homeMovies);
+  const {res, status, loading} = useSelector(state => state.trending);
   const {lang} = useSelector(state => state.lang);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTrendingMovies({lang}))
+    dispatch(fetchTrending({category: 'movie', lang}))
   }, [dispatch, lang]);
 
-  const id = useCallback((slide) => homeMovies?.res?.results[slide]?.id, [homeMovies])
-  const srcBackgroundImg = useCallback((slide) => homeMovies?.res?.results[slide]?.backdrop_path, [homeMovies])
-  const srcPosterImg = useCallback((slide) => homeMovies?.res?.results[slide]?.poster_path, [homeMovies])
-  const title = useCallback((slide) => homeMovies?.res?.results[slide]?.title, [homeMovies])
-  const realese = useCallback((slide) => homeMovies?.res?.results[slide]?.release_date, [homeMovies])
-  const overview = useCallback((slide) => homeMovies?.res?.results[slide]?.overview, [homeMovies])
-  const rating = useCallback((slide) => homeMovies?.res?.results[slide]?.vote_average, [homeMovies])
+  const id = useCallback((slide) => res?.results[slide]?.id, [res])
+  const srcBackgroundImg = useCallback((slide) => res?.results[slide]?.backdrop_path, [res])
+  const srcPosterImg = useCallback((slide) => res?.results[slide]?.poster_path, [res])
+  const title = useCallback((slide) => res?.results[slide]?.title, [res])
+  const realese = useCallback((slide) => res?.results[slide]?.release_date, [res])
+  const overview = useCallback((slide) => res?.results[slide]?.overview, [res])
+  const rating = useCallback((slide) => res?.results[slide]?.vote_average, [res])
 
   const prevSlide = useCallback(() => {
     return setCurrentSlie(currentSlide > 0 ? currentSlide -1 : 19);
@@ -51,10 +52,10 @@ const TrendingMovies = () => {
   return (
     <div className={style.wrapp}>
 
-      {homeMovies?.loading && <Loading size={10} />}
+      {loading && <Loading size={10} />}
 
       { 
-        Boolean(homeMovies.res?.results.length) &&
+        Boolean(res?.results.length) &&
           <div className={style.body}>
             <div className={style.card}>
               <div className={style.card_image}>

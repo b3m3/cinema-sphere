@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
-import { fetchTvSeasons } from '../../store/slices/fetchDataSlice';
+import { fetchTvSeasons } from "../../store/asyncThunks/fetchTvSeasons";
 
 import Title from '../title/Title';
 import EpisodeCard from '../episodeCard/EpisodeCard';
@@ -20,7 +20,7 @@ const TvSeasons = ({id, seasons, lang, category}) => {
   const [seasonNumber, setSeasonNumber] = useState(null);
   const [maxEpisodes, setMaxEpisodes] = useState(false);
 
-  const {loading, res} = useSelector(state => state.tvSeasons.tvSeasons)
+  const {loading, res} = useSelector(state => state.tvSeasons)
   const dispatch = useDispatch();
   const {pathname} = useLocation();
 

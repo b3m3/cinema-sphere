@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
-import { fetchDetails, fetchTvSeasons, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
+import { fetchTvSeasons } from "../../store/asyncThunks/fetchTvSeasons";
+import { fetchImages } from "../../store/asyncThunks/fetchImages";
+import { fetchEnglishVideo } from "../../store/asyncThunks/fetchEnglishVideo";
+import { fetchVideos } from "../../store/asyncThunks/fetchVideos";
+import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
@@ -26,11 +30,7 @@ import style from './tv-seasons-details-page.module.scss';
 const TvSeasonsDetailsPage = () => {
   const {id, season} = useParams();
   const {lang} = useSelector(state => state.lang);
-  const {details} = useSelector(state => state.details);
-  const {tvSeasons} = useSelector(state => state.tvSeasons);
-  const {videos} = useSelector(state => state.videos);
-  const {images} = useSelector(state => state.images);
-  const {englishVideo} = useSelector(state => state.englishVideo);
+  const {details, videos, englishVideo, images, tvSeasons} = useSelector(state => state);
 
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();

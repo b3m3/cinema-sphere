@@ -4,8 +4,11 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
-import { fetchDetails, fetchVideos, fetchEnglishVideo, fetchImages } from '../../store/slices/fetchDataSlice';
+import { fetchImages } from "../../store/asyncThunks/fetchImages";
+import { fetchEnglishVideo } from "../../store/asyncThunks/fetchEnglishVideo";
+import { fetchVideos } from "../../store/asyncThunks/fetchVideos";
 import { getHistory, setHistory } from '../../store/slices/historySlice';
+import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 
 import Rating from '../../components/rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
@@ -34,10 +37,10 @@ import style from './movie-details-page.module.scss';
 const MovieDetails = () => {
   const {id} = useParams();
   const {lang} = useSelector(state => state.lang);
-  const {details} = useSelector(state => state.details);
-  const {videos} = useSelector(state => state.videos);
-  const {images} = useSelector(state => state.images);
-  const {englishVideo} = useSelector(state => state.englishVideo);
+  const {details} = useSelector(state => state);
+  const {videos} = useSelector(state => state);
+  const {images} = useSelector(state => state);
+  const {englishVideo} = useSelector(state => state);
 
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchDiscover } from '../../store/slices/fetchDataSlice';
+import { fetchDiscover } from "../../store/asyncThunks/fetchDiscover";
 
 import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
 import Loading from '../../components/loading/Loading';
@@ -13,7 +13,7 @@ import style from './discover-page.module.scss';
 
 const DiscoverPage = () => {
   const {lang} = useSelector(state => state.lang);
-  const {loading, status, res} = useSelector(state => state.discover.discover);
+  const {loading, status, res} = useSelector(state => state.discover);
   const {category, filters, page} = useParams();
   const dispatch = useDispatch();
 

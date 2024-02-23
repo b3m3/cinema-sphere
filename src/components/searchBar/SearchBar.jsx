@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { autoCloser } from "../../utils/functions";
-import { fetchSearchBar, clearSearch } from "../../store/slices/fetchDataSlice";
+import { clearSearch } from "../../store/slices/fetchSearchBarSlice";
+import { fetchSearchBar } from "../../store/asyncThunks/fetchSearchBar";
 import { useCategoryFromLocation } from "../../hooks/useCategoryFromLocation";
 
 import { IoFilterOutline } from "react-icons/io5";
@@ -33,7 +34,7 @@ const SearchBar = ({lang}) => {
   const [selected, setSelected] = useState(0);
   const [value, setValue] = useState('');
 
-  const { searchBar } = useSelector(state => state.searchBar);
+  const { status, res } = useSelector(state => state.searchBar);
   const category = useCategoryFromLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -144,12 +145,12 @@ const SearchBar = ({lang}) => {
       </button>
 
       <div className={resultsClass}>
-        { value && !searchBar.res && <Loading />}
-        { searchBar.status && <Error status={searchBar.status} /> }
+        { value && !res && <Loading />}
+        { status && <Error status={status} /> }
         {
-          value && searchBar.res &&
+          value && res &&
             <ul>
-              {searchBar.res?.results?.map((props) => {
+              {res?.results?.map((props) => {
                 return (
                   <li 
                     key={props.id} 
@@ -163,7 +164,7 @@ const SearchBar = ({lang}) => {
         }
 
         {
-          searchBar.res?.results?.length > 0 && selectedCategory !== 'multi' &&
+          res?.results?.length > 0 && selectedCategory !== 'multi' &&
             <Link
               className={style.see_all}
               to={`/search/${selectedCategory}/${value}/1`} 
@@ -174,7 +175,7 @@ const SearchBar = ({lang}) => {
         }
 
         {
-          searchBar.res?.results?.length === 0 && 
+          res?.results?.length === 0 &&
             <div className={style.no_res}>
               No results found for "{value}"
             </div>

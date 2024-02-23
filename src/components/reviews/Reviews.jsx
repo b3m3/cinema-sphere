@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
-import { fetchReviews } from '../../store/slices/fetchDataSlice';
+import { fetchReviews } from "../../store/asyncThunks/fetchReviews";
 
 import Title from '../title/Title';
 import Rating from '../rating/Rating';
@@ -13,7 +13,7 @@ import style from './reviews.module.scss';
 
 const Reviews = ({category, id}) => {
   const [currentItem, setCurrentItem] = useState(null);
-  const {res} = useSelector(state => state.reviews.reviews);
+  const {res} = useSelector(state => state.reviews);
   const dispatch = useDispatch();
 
   const itemsRefs = useRef([]);

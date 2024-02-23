@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
-import { fetchDetails, fetchImages } from '../../store/slices/fetchDataSlice';
+import { fetchImages } from "../../store/asyncThunks/fetchImages";
+import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 import { getHistory, setHistory } from '../../store/slices/historySlice';
 
 import Details from '../../components/details/Details';
@@ -26,8 +27,7 @@ import 'swiper/css/navigation';
 const CelebDetailsPage = () => {
   const {id} = useParams();
   const {lang} = useSelector(state => state.lang);
-  const {details} = useSelector(state => state.details);
-  const {images} = useSelector(state => state.images);
+  const {details, images} = useSelector(state => state);
 
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();

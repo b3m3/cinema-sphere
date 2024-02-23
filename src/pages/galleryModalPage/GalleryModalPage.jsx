@@ -2,7 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-import { fetchImages, fetchVideos, fetchEnglishVideo } from '../../store/slices/fetchDataSlice';
+import { fetchImages } from "../../store/asyncThunks/fetchImages";
+import { fetchEnglishVideo } from "../../store/asyncThunks/fetchEnglishVideo";
+import  { fetchVideos } from "../../store/asyncThunks/fetchVideos";
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { IMAGE_URL } from '../../constants/api';
 import { scrollToTop } from '../../utils/functions';
@@ -17,11 +19,9 @@ const GalleryModal = () => {
   const [count, setCount] = useState(1);
 
   const {lang} = useSelector(state => state.lang);
-  const {videos} = useSelector(state => state.videos);
-  const {images} = useSelector(state => state.images);
-  const {englishVideo} = useSelector(state => state.englishVideo);
-  const dispatch = useDispatch();
+  const {videos, images, englishVideo} = useSelector(state => state);
 
+  const dispatch = useDispatch();
   const bodyRef = useRef(null);
 
   const {id, modal, season, episode} = useParams();

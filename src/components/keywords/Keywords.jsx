@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { fetchKeywords } from '../../store/slices/fetchDataSlice';
+import { fetchKeywords } from "../../store/asyncThunks/fetchKeywords";
 
 import style from './keywords.module.scss';
 
 const Keywords = ({category, id}) => {
-  const {res} = useSelector(state => state.keywords.keywords);
+  const {res} = useSelector(state => state.keywords);
   const dispatch = useDispatch();
 
   useEffect(() => {

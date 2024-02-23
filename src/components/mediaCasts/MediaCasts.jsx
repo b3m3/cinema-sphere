@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchMediaCasts } from '../../store/slices/fetchDataSlice';
+import { fetchMediaCasts } from "../../store/asyncThunks/fetchMediaCasts";
 import CelebCard from '../celebCard/CelebCard';
 import Title from '../title/Title';
 
 import style from './media-casts.module.scss';
 
 const MediaCasts = ({id, category, lang, season, episode}) => {
-  const {res} = useSelector(state => state.mediaCasts.mediaCasts);
+  const {res} = useSelector(state => state.mediaCasts);
   const dispatch = useDispatch();
 
   useEffect(() => {

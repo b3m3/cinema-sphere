@@ -7,30 +7,24 @@ import fetchRatingSlice from './slices/fetchRatingSlice'
 import historySlice from './slices/historySlice';
 
 import fetchCardData from './slices/fetchCardDataSlice';
-import fetchDetails from './slices/fetchDataSlice';
-import fetchVideos from './slices/fetchDataSlice';
-import fetchImages from './slices/fetchDataSlice';
-import fetchGenresList from './slices/fetchDataSlice';
-import fetchLinks from './slices/fetchDataSlice';
-import fetchEnglishVideo from './slices/fetchDataSlice';
-import fetchSearchBar from './slices/fetchDataSlice';
-import fetchSearch from './slices/fetchDataSlice';
-import fetchMediaCasts from './slices/fetchDataSlice';
-import fetchCombinedCredits from './slices/fetchDataSlice';
-import fetchRecommendations from './slices/fetchDataSlice';
-import fetchSimilar from './slices/fetchDataSlice';
-import fetchReviews from './slices/fetchDataSlice';
-import fetchKeywords from './slices/fetchDataSlice';
-import fetchTrending from './slices/fetchDataSlice';
-import fetchDiscover from './slices/fetchDataSlice';
-import fetchTvSeasons from './slices/fetchDataSlice';
-import fetchTvEpisodes from './slices/fetchDataSlice';
-
-// HOME PAGE
-
-import fetchTrendingMovies from './slices/fetchDataSlice';
-import fetchTrendingTvSeries from './slices/fetchDataSlice';
-import fetchTrendingCelebs from './slices/fetchDataSlice';
+import fetchDetails from './slices/fetchDetailsSlice';
+import fetchVideos from './slices/fetchVideosSlice';
+import fetchEnglishVideo from './slices/fetchEnglishVideoSlice';
+import fetchImages from './slices/fetchImagesSlice';
+import fetchGenresList from './slices/fetchGenresListSlice';
+import fetchLinks from './slices/fetchLinksSlice';
+import fetchSearchBar from './slices/fetchSearchBarSlice';
+import fetchSearch from './slices/fetchSearchSlice';
+import fetchMediaCasts from './slices/fetchMediaCastsSlice';
+import fetchCombinedCredits from './slices/fetchCombinedCreditsSlice';
+import fetchRecommendations from './slices/fetchRecommendationsSlice';
+import fetchSimilar from './slices/fetchSimilarSlice';
+import fetchReviews from './slices/fetchReviewsSlice';
+import fetchKeywords from './slices/fetchKeywordsSlice';
+import fetchTrending from './slices/fetchTrendingSlice';
+import fetchDiscover from './slices/fetchDiscoverSlice';
+import fetchTvSeasons from './slices/fetchTvSeasonsSlice';
+import fetchTvEpisodes from './slices/fetchTvEpisodesSlice';
 
 const store = configureStore({
 	reducer: {
@@ -38,7 +32,6 @@ const store = configureStore({
 		lang: languageSlice,
 		menu: menuSlice,
 		rate: fetchRatingSlice,
-
 		cardData: fetchCardData,
 		details: fetchDetails,
 		videos: fetchVideos,
@@ -59,12 +52,6 @@ const store = configureStore({
 		discover: fetchDiscover,
 		tvSeasons: fetchTvSeasons,
 		tvEpisodes: fetchTvEpisodes,
-
-		// HOME PAGE
-
-		homeMovies: fetchTrendingMovies,
-		homeTvSeries: fetchTrendingTvSeries,
-		homeCelebs: fetchTrendingCelebs,
 	},
 })
 

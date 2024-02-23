@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { fetchLinks } from '../../store/slices/fetchDataSlice';
+import { fetchLinks } from "../../store/asyncThunks/fetchLinks";
 
 import style from './links.module.scss';
 
@@ -14,7 +14,7 @@ const linksArr = [
 ]
 
 const Links = ({category, homepage}) => {
-  const {links} = useSelector(state => state.links)
+  const {res} = useSelector(state => state.links)
   const dispatch = useDispatch();
   
   const {id} = useParams();
@@ -24,7 +24,7 @@ const Links = ({category, homepage}) => {
   }, [dispatch, category, id]);
 
   const renderLinks = (id, linkBase, linkKey, name) => {
-    if (links.res[`${id}`]) {
+    if (res[`${id}`]) {
       const isPerson = category === 'person';
       const imdb = id === 'imdb_id';
       const baseUrl = imdb && isPerson ? linkBase + 'name/' : imdb && !isPerson ? linkBase + 'title/' : linkBase;
@@ -40,7 +40,7 @@ const Links = ({category, homepage}) => {
   return (
     <>
       {
-        links.res &&
+        res &&
           <>
             {
               homepage && 
@@ -49,7 +49,7 @@ const Links = ({category, homepage}) => {
                 </a>
             }
             {linksArr.map(({id, linkBase, name}) => (
-              renderLinks(id, linkBase, links.res[`${id}`], name)
+              renderLinks(id, linkBase, res[`${id}`], name)
             ))}
           </>
       }

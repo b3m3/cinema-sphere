@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchSimilar, fetchCombinedCredits } from '../../store/slices/fetchDataSlice';
+import { fetchSimilar } from "../../store/asyncThunks/fetchSimilar";
+import { fetchCombinedCredits } from "../../store/asyncThunks/fetchCombinedCredits";
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
 import Title from '../title/Title';
@@ -19,8 +20,8 @@ const breakpoints = {
 }
 
 const MediaSwiper = ({lang, category, id, title}) => {
-  const {similar} = useSelector(state => state.similar);
-  const {combinedCredits} = useSelector(state => state.combinedCredits);
+  const {similar} = useSelector(state => state);
+  const {combinedCredits} = useSelector(state => state);
   const dispatch = useDispatch();
 
   const isCelebPage = category === 'person';

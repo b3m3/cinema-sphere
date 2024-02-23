@@ -1,15 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { fetchGenresList, fetchRecommendations } from '../../store/slices/fetchDataSlice';
+import { fetchRecommendations } from "../../store/asyncThunks/fetchRecommendations";
+import { fetchGenresList } from "../../store/asyncThunks/fetchGenresList";
 import SearchCard from '../searchCard/SearchCard';
 import Loading from '../loading/Loading';
 
 import style from './recommendations.module.scss';
 
 const Recommendations = ({id, category, lang}) => {
-  const {loading, res} = useSelector(state => state.recommendations.recommendations);
-  const {genresList} = useSelector(state => state.genresList);
+  const {loading, res} = useSelector(state => state.recommendations);
+  const {genresList} = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
