@@ -4,16 +4,16 @@ import { useEffect, useCallback } from 'react';
 import { fetchAuth } from '../../store/asyncThunks/fetchAuth';
 import { isOpenMenu, isCloseMenu } from '../../store/slices/menuSlice';
 
-import Logo from '../logo/Logo';
-import SearchBar from '../searchBar/SearchBar';
-import Language from '../language/Language';
-import WatchListBtn from '../watchListBtn/WatchListBtn';
-import SingInBtn from '../singInBtn/SingInBtn';
-import User from '../user/User';
-import MenuBtn from '../menuBtn/MenuBtn';
-import Navbar from '../navbar/Navbar';
+import LogoCS from '../../components/LogoCS/LogoCS';
+import SearchBar from '../../components/searchBar/SearchBar';
+import Language from '../../components/language/Language';
+import WatchListBtn from '../../components/watchListBtn/WatchListBtn';
+import SingInBtn from '../../components/SingInBtn/SingInBtn';
+import User from '../../components/user/User';
+import MenuBtn from '../../components/menuBtn/MenuBtn';
+import Navbar from '../../components/navbar/Navbar';
 
-import style from './header.module.scss';
+import style from './Header.module.scss';
 
 const Header = () => {
   const { user } = useSelector(state => state.auth);
@@ -37,7 +37,7 @@ const Header = () => {
     <header className={style.header}>
       <div className="container">
         <div className={style.wrapp}>
-          <Logo menu />
+          <LogoCS menu />
           <SearchBar lang={lang} />
           <div className={style.hide}>
             <WatchListBtn isAuth={user.isAuth} handleCloseNavbar={handleCloseNavbar} />

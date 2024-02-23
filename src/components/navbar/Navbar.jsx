@@ -6,7 +6,7 @@ import { MdLocalMovies } from "react-icons/md";
 import { PiTelevisionSimple } from "react-icons/pi";
 import { FaUsers } from "react-icons/fa";
 
-import Logo from '../logo/Logo';
+import LogoCS from '../LogoCS/LogoCS';
 import Language from '../language/Language';
 import WatchListBtn from '../watchListBtn/WatchListBtn';
 
@@ -48,7 +48,7 @@ const Navbar = memo(({menu, handleCloseNavbar}) => {
       <div className="container">
         <nav className={style.navbar}>
           <div className={style.top}>
-            <Logo onClick={handleCloseNavbar} />
+            <LogoCS onClick={handleCloseNavbar} />
             <div className={style.hover}>
               <Language />
               <WatchListBtn/>

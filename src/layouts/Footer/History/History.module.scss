@@ -1,0 +1,33 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+
+  & h2 {
+    font-weight: 600;
+  }
+
+  & button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    color: var(--blue-400);
+    padding: .625rem;
+    border-radius: 50%;
+    transition: background .2s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--white-01);
+      }
+    }
+  }
+}

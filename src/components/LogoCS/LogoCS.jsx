@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import style from './logo.module.scss';
+import style from './LogoCS.module.scss';
 
 const links = [
   {link: '/', name: 'Home'},
@@ -10,7 +10,7 @@ const links = [
   {link: '/person/popular/1', name: 'Celebs'},
 ]
 
-const Logo = memo(({onClick, menu}) => {
+const LogoCS = memo(({onClick, menu}) => {
   return (
     <div className={style.wrapp}>
       <Link className={style.logo} to="/" onClick={onClick}>Cinema sphere</Link>
@@ -31,4 +31,4 @@ const Logo = memo(({onClick, menu}) => {
   );
 })
 
-export default Logo;
+export default LogoCS;
