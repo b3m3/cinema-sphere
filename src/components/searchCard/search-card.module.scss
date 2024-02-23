@@ -31,10 +31,13 @@
   &__row {
     display: flex;
     align-items: center;
-    gap: 6px;
+    flex-wrap: wrap;
+    grid-column-gap: 6px;
+    grid-row-gap: 2px;
 
     & span {
       position: relative;
+      white-space: nowrap;
       font-size: .75rem;
       color: var(--grey-400);
   

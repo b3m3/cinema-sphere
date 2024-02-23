@@ -27,7 +27,6 @@ const initialState = {
   tvEpisodes: {loading: false, status: null, res: null},
 
   // HOME PAGE
-
   homeMovies: {loading: false, status: null, res: null},
   homeCelebs: {loading: false, status: null, res: null},
   homeTvSeries: {loading: false, status: null, res: null},
@@ -396,7 +395,7 @@ export const fetchTvEpisodes = createAsyncThunk(
   }
 )
 
-// HOME PAGE DATAS
+// HOME PAGE DATA
 
 export const fetchTrendingMovies = createAsyncThunk(
   'fetch/fetchTrendingMovies',
@@ -497,7 +496,6 @@ const fetchDataSlice = createSlice({
     createFetchCase(builder, fetchTvEpisodes, 'tvEpisodes')
     
     // HOME PAGE
-    
     createFetchCase(builder, fetchTrendingMovies, 'homeMovies')
     createFetchCase(builder, fetchTrendingCelebs, 'homeCelebs')
     createFetchCase(builder, fetchTrendingTvSeries, 'homeTvSeries')

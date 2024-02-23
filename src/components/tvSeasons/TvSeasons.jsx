@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,7 +15,6 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import style from './tv-seasons.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useLocation } from 'react-router-dom';
 
 const TvSeasons = ({id, seasons, lang, category}) => {
   const [seasonNumber, setSeasonNumber] = useState(null);
@@ -22,17 +22,29 @@ const TvSeasons = ({id, seasons, lang, category}) => {
 
   const {loading, res} = useSelector(state => state.tvSeasons.tvSeasons)
   const dispatch = useDispatch();
-
   const {pathname} = useLocation();
 
-  useEffect(() => {
-    const getFirstSeason = seasons?.[0]?.season_number;
-    setSeasonNumber(getFirstSeason);
-  }, [seasons])
+  const [curr, setCurr] = useState(null)
+
+  console.log('seasonNumber', seasonNumber)
+  console.log('seasons', seasons)
 
   useEffect(() => {
-    if (seasonNumber?.toString()) {
-      dispatch(fetchTvSeasons({id, season: seasonNumber?.toString() , lang}));
+    setCurr(null)
+    setCurr(seasons);
+  }, [seasons]);
+
+  useEffect(() => {
+    const getFirstSeason = curr?.[0]?.season_number;
+    setSeasonNumber(getFirstSeason);
+  }, [curr]);
+
+
+  useEffect(() => {
+    const season = seasonNumber?.toString();
+
+    if (season) {
+      dispatch(fetchTvSeasons({id, season, lang}));
     }
   }, [dispatch, id, seasonNumber, lang]);
 
