@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { changeLang } from '../../store/slices/languageSlice';
+import { changeLang } from '../../../store/slices/languageSlice';
 import { MdOutlineArrowDropDown } from "react-icons/md";
-import { autoCloser } from '../../utils/functions';
+import { autoCloser } from '../../../utils/functions';
 
-import style from './language.module.scss';
+import style from './Language.module.scss';
 
 const langArr = [
   {name: 'English', code: 'en'},
@@ -22,7 +22,7 @@ const Language = () => {
   useEffect(() => {
     const getStorageLang = localStorage.getItem('lang');
     dispatch(changeLang(getStorageLang ? getStorageLang : 'en'));
-  }, [dispatch]); // Get language in local storage
+  }, [dispatch]); // Get Language in local storage
 
   useEffect(() => {
     autoCloser('HEADER', isOpen, setIsOpen);

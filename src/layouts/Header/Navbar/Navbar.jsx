@@ -6,11 +6,11 @@ import { MdLocalMovies } from "react-icons/md";
 import { PiTelevisionSimple } from "react-icons/pi";
 import { FaUsers } from "react-icons/fa";
 
-import LogoCS from '../LogoCS/LogoCS';
-import Language from '../language/Language';
-import WatchListBtn from '../watchListBtn/WatchListBtn';
+import LogoCS from '../../../components/LogoCS/LogoCS';
+import Language from '../Language/Language';
+import WatchListBtn from '../WatchListBtn/WatchListBtn';
 
-import style from './navbar.module.scss';
+import style from './Navbar.module.scss';
 
 const array = [
   {

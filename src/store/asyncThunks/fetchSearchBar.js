@@ -5,7 +5,7 @@ import {BASE_URL} from "../../constants/api";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchSearchBar = createAsyncThunk(
-  'searchBar/fetchSearchBar',
+  'SearchBar/fetchSearchBar',
   async({category, value, page, lang}, {rejectWithValue}) => {
     try {
       if (category && value && page && lang) {

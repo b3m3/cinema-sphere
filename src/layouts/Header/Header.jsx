@@ -5,13 +5,13 @@ import { fetchAuth } from '../../store/asyncThunks/fetchAuth';
 import { isOpenMenu, isCloseMenu } from '../../store/slices/menuSlice';
 
 import LogoCS from '../../components/LogoCS/LogoCS';
-import SearchBar from '../../components/searchBar/SearchBar';
-import Language from '../../components/language/Language';
-import WatchListBtn from '../../components/watchListBtn/WatchListBtn';
+import Navbar from './Navbar/Navbar';
+import SearchBar from './SearchBar/SearchBar';
+import Language from './Language/Language';
+import WatchListBtn from './WatchListBtn/WatchListBtn';
+import User from './User/User';
+import MenuBtn from './MenuBtn/MenuBtn';
 import SingInBtn from '../../components/SingInBtn/SingInBtn';
-import User from '../../components/user/User';
-import MenuBtn from '../../components/menuBtn/MenuBtn';
-import Navbar from '../../components/navbar/Navbar';
 
 import style from './Header.module.scss';
 
@@ -19,6 +19,7 @@ const Header = () => {
   const { user } = useSelector(state => state.auth);
   const { menu } = useSelector(state => state.menu);
   const { lang } = useSelector(state => state.lang);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,9 +43,9 @@ const Header = () => {
           <div className={style.hide}>
             <WatchListBtn isAuth={user.isAuth} handleCloseNavbar={handleCloseNavbar} />
           </div>
-          { 
+          {
             user.isAuth 
-              ? <User data={user.data} dispatch={dispatch} /> 
+              ? <User data={user.data} dispatch={dispatch} />
               : <SingInBtn /> 
           }
           <div className={style.hide}>

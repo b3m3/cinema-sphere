@@ -2,13 +2,13 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
-import { fetchGenresList } from "../../store/asyncThunks/fetchGenresList";
+import { fetchGenresList } from "../../../../store/asyncThunks/fetchGenresList";
 
 import { IoClose } from "react-icons/io5";
 import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown  } from "react-icons/md";
-import Loading from "../loading/Loading";
+import Loading from "../../../../components/loading/Loading";
 
-import style from './filters.module.scss';
+import style from './Filters.module.scss';
 
 const sortArr = [
   {name: 'Popular', path: 'popularity.desc'},
@@ -40,7 +40,7 @@ const Filters = ({setOpenFilter}) => {
   const {pathname} = useLocation();
   const dispatch = useDispatch();
 
-  // Get filters with pathname
+  // Get Filters with pathname
   useEffect(() => {
     const isDiscover =  pathname.split('/')[1] === 'discover';
 

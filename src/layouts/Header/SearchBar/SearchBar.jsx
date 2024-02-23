@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
-import { autoCloser } from "../../utils/functions";
-import { clearSearch } from "../../store/slices/fetchSearchBarSlice";
-import { fetchSearchBar } from "../../store/asyncThunks/fetchSearchBar";
-import { useCategoryFromLocation } from "../../hooks/useCategoryFromLocation";
+import { autoCloser } from "../../../utils/functions";
+import { clearSearch } from "../../../store/slices/fetchSearchBarSlice";
+import { fetchSearchBar } from "../../../store/asyncThunks/fetchSearchBar";
+import { useCategoryFromLocation } from "../../../hooks/useCategoryFromLocation";
 
 import { IoFilterOutline } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
@@ -13,12 +13,12 @@ import { IoIosClose } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 
-import SearchCard from "../searchCard/SearchCard";
-import Loading from "../loading/Loading";
-import Error from "../error/Error";
+import SearchCard from "../../../components/searchCard/SearchCard";
+import Loading from "../../../components/loading/Loading";
+import Error from "../../../components/error/Error";
 
-import style from './searchBar.module.scss';
-import Filters from "../filters/Filters";
+import style from './SearchBar.module.scss';
+import Filters from "./Filters/Filters";
 
 const selectArr = [
   {name: 'All', category: 'multi'},

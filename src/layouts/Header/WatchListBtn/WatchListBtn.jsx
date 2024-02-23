@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { BsBookmarkStarFill } from "react-icons/bs";
 
-import style from './watch-list-btn.module.scss';
+import style from './WatchListBtn.module.scss';
 
 const WatchListBtn = ({isAuth, handleCloseNavbar}) => {
   return (

@@ -1,5 +1,5 @@
 import { IoMenu } from "react-icons/io5";
-import style from './menu-btn.module.scss';
+import style from './MenuBtn.module.scss';
 
 const MenuBtn = ({handleOpenNavbar}) => {
   return (
