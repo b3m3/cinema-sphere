@@ -6,7 +6,7 @@ import fetchAuthSlice from './slices/fetchAuthSlice'
 import fetchRatingSlice from './slices/fetchRatingSlice'
 import historySlice from './slices/historySlice';
 
-import fetchCardData from './slices/fetchDataSlice';
+import fetchCardData from './slices/fetchCardDataSlice';
 import fetchDetails from './slices/fetchDataSlice';
 import fetchVideos from './slices/fetchDataSlice';
 import fetchImages from './slices/fetchDataSlice';
@@ -38,6 +38,7 @@ const store = configureStore({
 		lang: languageSlice,
 		menu: menuSlice,
 		rate: fetchRatingSlice,
+
 		cardData: fetchCardData,
 		details: fetchDetails,
 		videos: fetchVideos,

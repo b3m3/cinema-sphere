@@ -6,8 +6,8 @@ import { BASE_URL } from '../../constants/api';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const initialState = {
-  cardData: {loading: false, status: null, res: null},
-  details: {loading: false, status: null, res: null},
+  // cardData: {loading: false, status: null, res: null},
+  // details: {loading: false, status: null, res: null},
   videos: {loading: false, status: null, res: null},
   englishVideo: {loading: false, status: null, res: null},
   images: {loading: false, status: null, res: null},
@@ -32,22 +32,22 @@ const initialState = {
   homeTvSeries: {loading: false, status: null, res: null},
 }
 
-export const fetchCardData = createAsyncThunk(
-  'fetch/fetchCardData',
-  async ({category, filter, page, lang}, {rejectWithValue}) => {
-    try {
-      if (category && filter && page && lang) {
-        const {data} = await axios.get(
-          `${BASE_URL}${category}/${filter}?api_key=${API_KEY}&language=${lang}&page=${page}`
-        );
-  
-        return data
-      }
-    } catch (error) {
-      return rejectWithValue(error)
-    }
-  }
-)
+// export const fetchCardData = createAsyncThunk(
+//   'fetch/fetchCardData',
+//   async ({category, filter, page, lang}, {rejectWithValue}) => {
+//     try {
+//       if (category && filter && page && lang) {
+//         const {data} = await axios.get(
+//           `${BASE_URL}${category}/${filter}?api_key=${API_KEY}&language=${lang}&page=${page}`
+//         );
+//
+//         return data
+//       }
+//     } catch (error) {
+//       return rejectWithValue(error)
+//     }
+//   }
+// )
 
 export const fetchDetails = createAsyncThunk(
   'fetch/fetchDetails',
@@ -475,7 +475,7 @@ const fetchDataSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    createFetchCase(builder, fetchCardData, 'cardData')
+    // createFetchCase(builder, fetchCardData, 'cardData')
     createFetchCase(builder, fetchDetails, 'details')
     createFetchCase(builder, fetchVideos, 'videos')
     createFetchCase(builder, fetchEnglishVideo, 'englishVideo')

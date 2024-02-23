@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { fetchCardData } from '../../store/slices/fetchDataSlice';
+import { fetchCardData } from '../../store/asyncThunks/fetchCardData';
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { scrollToTop } from '../../utils/functions';
 
@@ -16,7 +16,7 @@ import style from './movies-page.module.scss';
 
 const MoviesPage = () => {
   const {page, filter} = useParams();
-  const {loading, status, res} = useSelector(state => state.cardData.cardData);
+  const {loading, status, res} = useSelector(state => state.cardData);
   const {lang} = useSelector(state => state.lang)
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();
