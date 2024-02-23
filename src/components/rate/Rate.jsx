@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 
-import { postRate } from "../../store/slices/rateSlice";
-import { clearRateStates } from "../../store/slices/rateSlice";
-import { getRated } from '../../store/slices/rateSlice';
+import { postRating, getRating } from "../../store/asyncThunks/fetchRating";
+import { clearRateStates } from "../../store/slices/fetchRatingSlice";
 
 import Loading from "../loading/Loading";
 import Error from "../error/Error";
@@ -75,7 +74,7 @@ const Rate = ({category, id, title}) => {
   }, [starSelected]);
 
   const rateBtnHandler = useCallback(() => {
-    dispatch(postRate({value: starSelected, id, category}));
+    dispatch(postRating({value: starSelected, id, category}));
   }, [dispatch, category, id, starSelected]);
 
   useEffect(() => {
@@ -102,7 +101,7 @@ const Rate = ({category, id, title}) => {
     const accountId = user?.data?.id;
 
     if (accountId && category) {
-      dispatch(getRated({accountId, category: newCategory, lang}));
+      dispatch(getRating({accountId, category: newCategory, lang}));
     }
   }, [dispatch, user, category, lang]);
 
