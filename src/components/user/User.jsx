@@ -5,7 +5,7 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 
 import { autoCloser } from '../../utils/functions';
-import { signOut } from '../../store/slices/authSlice';
+import { signOut } from '../../store/slices/fetchAuthSlice';
 
 import style from './user.module.scss';
 

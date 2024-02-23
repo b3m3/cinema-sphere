@@ -2,7 +2,7 @@ import {configureStore} from '@reduxjs/toolkit';
 
 import languageSlice from './slices/languageSlice';
 import menuSlice from './slices/menuSlice';
-import authSlice from './slices/authSlice';
+import fetchAuthSlice from './slices/fetchAuthSlice'
 import rateSlice from './slices/rateSlice';
 import historySlice from './slices/historySlice';
 
@@ -33,38 +33,38 @@ import fetchTrendingTvSeries from './slices/fetchDataSlice';
 import fetchTrendingCelebs from './slices/fetchDataSlice';
 
 const store = configureStore({
-  reducer: {
-    auth: authSlice,
-    lang: languageSlice,
-    menu: menuSlice,
-    rate: rateSlice,
-    cardData: fetchCardData,
-    details: fetchDetails,
-    videos: fetchVideos,
-    englishVideo: fetchEnglishVideo,
-    images: fetchImages,
-    genresList: fetchGenresList,
-    links: fetchLinks,
-    searchBar: fetchSearchBar,
-    search: fetchSearch,
-    mediaCasts: fetchMediaCasts,
-    combinedCredits: fetchCombinedCredits,
-    recommendations: fetchRecommendations,
-    similar: fetchSimilar,
-    reviews: fetchReviews,
-    keywords: fetchKeywords,
-    trending: fetchTrending,
-    history: historySlice,
-    discover: fetchDiscover,
-    tvSeasons: fetchTvSeasons,
-    tvEpisodes: fetchTvEpisodes,
+	reducer: {
+		auth: fetchAuthSlice,
+		lang: languageSlice,
+		menu: menuSlice,
+		rate: rateSlice,
+		cardData: fetchCardData,
+		details: fetchDetails,
+		videos: fetchVideos,
+		englishVideo: fetchEnglishVideo,
+		images: fetchImages,
+		genresList: fetchGenresList,
+		links: fetchLinks,
+		searchBar: fetchSearchBar,
+		search: fetchSearch,
+		mediaCasts: fetchMediaCasts,
+		combinedCredits: fetchCombinedCredits,
+		recommendations: fetchRecommendations,
+		similar: fetchSimilar,
+		reviews: fetchReviews,
+		keywords: fetchKeywords,
+		trending: fetchTrending,
+		history: historySlice,
+		discover: fetchDiscover,
+		tvSeasons: fetchTvSeasons,
+		tvEpisodes: fetchTvEpisodes,
 
-    // HOME PAGE
+		// HOME PAGE
 
-    homeMovies: fetchTrendingMovies,
-    homeTvSeries: fetchTrendingTvSeries,
-    homeCelebs: fetchTrendingCelebs
-  }
+		homeMovies: fetchTrendingMovies,
+		homeTvSeries: fetchTrendingTvSeries,
+		homeCelebs: fetchTrendingCelebs,
+	},
 })
 
 export default store;

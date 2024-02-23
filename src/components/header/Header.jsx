@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useCallback } from 'react';
 
-import { checkAuth } from '../../store/slices/authSlice';
+import { fetchAuth } from '../../store/asyncThunks/fetchAuth';
 import { isOpenMenu, isCloseMenu } from '../../store/slices/menuSlice';
 
 import Logo from '../logo/Logo';
@@ -22,7 +22,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkAuth());
+    dispatch(fetchAuth());
   }, [dispatch]);
 
   const handleOpenNavbar = useCallback(() => {

@@ -26,8 +26,8 @@ const TvSeasons = ({id, seasons, lang, category}) => {
 
   const [curr, setCurr] = useState(null)
 
-  console.log('seasonNumber', seasonNumber)
-  console.log('seasons', seasons)
+  // console.log('seasonNumber', seasonNumber)
+  // console.log('seasons', seasons)
 
   useEffect(() => {
     setCurr(null)

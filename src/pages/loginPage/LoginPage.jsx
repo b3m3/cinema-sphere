@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { createRequestToken, createSessionWithLogin, createSession, checkAuth } from '../../store/slices/authSlice';
+import { fetchRequestToken, fetchSessionWithLogin, fetchSession, fetchAuth } from '../../store/asyncThunks/fetchAuth';
 
 import Loading from '../../components/loading/Loading';
 
@@ -18,24 +18,24 @@ const LoginPage = () => {
   
   const auth = (event) => {
     event.preventDefault();
-    dispatch(createRequestToken());
+    dispatch(fetchRequestToken());
   }
 
   useEffect(() => {
     if (token) {
-      dispatch(createSessionWithLogin({username, password, request_token: token}))
+      dispatch(fetchSessionWithLogin({ username, password, request_token: token }))
     }
   }, [dispatch, username, password, token]);
 
   useEffect(() => {
     if (validate) {
-      dispatch(createSession({request_token: validate}))
+      dispatch(fetchSession({request_token: validate}))
     }
   }, [dispatch, validate]);
 
   useEffect(() => {
     if(user.isAuth) {
-      dispatch(checkAuth())
+      dispatch(fetchAuth())
       navigate('/')
     }
   }, [dispatch, navigate, user]);

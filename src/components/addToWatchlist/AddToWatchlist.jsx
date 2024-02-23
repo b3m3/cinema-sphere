@@ -1,4 +1,5 @@
-import { BsBookmarkPlusFill, BsFillBookmarkCheckFill  } from "react-icons/bs";
+import { BsBookmarkPlusFill } from "react-icons/bs";
+// import { BsFillBookmarkCheckFill } from 'react-icons/bs'
 
 import style from './add-to-watchlist.module.scss';
 
