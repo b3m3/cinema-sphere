@@ -13,7 +13,9 @@ const fetchSearchBarSlice = createSlice({
   initialState,
   reducers: {
     clearSearch: (state) => {
-      state.searchBar = {loading: false, status: null, res: null}
+      state.loading = false;
+      state.status = null;
+      state.res = null;
     }
   },
   extraReducers: (builder) => {

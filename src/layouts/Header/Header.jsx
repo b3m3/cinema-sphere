@@ -18,7 +18,6 @@ import style from './Header.module.scss';
 const Header = () => {
   const { user } = useSelector(state => state.auth);
   const { menu } = useSelector(state => state.menu);
-  const { lang } = useSelector(state => state.lang);
 
   const dispatch = useDispatch();
 
@@ -39,7 +38,7 @@ const Header = () => {
       <div className="container">
         <div className={style.wrapp}>
           <LogoCS menu />
-          <SearchBar lang={lang} />
+          <SearchBar />
           <div className={style.hide}>
             <WatchListBtn isAuth={user.isAuth} handleCloseNavbar={handleCloseNavbar} />
           </div>

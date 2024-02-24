@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -8,15 +8,14 @@ import Rating from '../rating/Rating';
 import { IMAGE_URL } from '../../constants/api';
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 import { fetchTrending } from "../../store/asyncThunks/fetchTrending";
-
-
-import style from './trending-movies.module.scss';
 import Loading from '../loading/Loading';
 
-const TrendingMovies = () => {
+import style from './trending-movies.module.scss';
+
+const TrendingMovies = memo(() => {
   const [currentSlide, setCurrentSlie] = useState(0);
 
-  const {res, status, loading} = useSelector(state => state.trending);
+  const { res, loading } = useSelector(state => state.trending);
   const {lang} = useSelector(state => state.lang);
   const dispatch = useDispatch();
 
@@ -109,6 +108,6 @@ const TrendingMovies = () => {
       </button>
     </div>
   );
-}
+});
 
 export default TrendingMovies;

@@ -1,0 +1,51 @@
+.wrapp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-right: 1px solid var(--grey-400);
+  padding-right: .3125rem;
+
+  & span {
+    white-space: nowrap;
+  }
+
+  & ul {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 2.1875rem;
+    z-index: 10;
+    text-align: center;
+    background: var(--grey-900);
+    border-radius: var(--radius-4);
+    border: 2px solid var(--white-01);
+    display: none;
+
+    &.open_select {
+      display: block;
+    }
+
+    & li {
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 12.5px;
+      width: 100%;
+      padding: .5rem;
+      transition: background .2s;
+      color: var(--white);
+
+      @media (any-hover: hover) {
+        &:hover {
+          background: var(--white-01);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .wrapp {
+    color: var(--orange-400);
+  }
+}
