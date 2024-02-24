@@ -1,0 +1,36 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+
+  & h3 {
+    color: var(--grey-100);
+  }
+
+  & ul{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-row-gap: .625rem;
+    grid-column-gap: .375rem;
+
+    & button {
+      font-weight: 500;
+      padding: 6px 11px;
+      background: var(--blue-400-01);
+      color: var(--grey-400);
+      border-radius: 1.5625rem;
+      transition: .2s;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+
+      @media (any-hover: hover) {
+        &:hover {
+          background: var(--white-01);
+        }
+      }
+    }
+  }
+}

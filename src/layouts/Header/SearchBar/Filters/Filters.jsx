@@ -1,31 +1,18 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-
-import { fetchGenresList } from "../../../../store/asyncThunks/fetchGenresList";
 
 import { IoClose } from "react-icons/io5";
 import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown  } from "react-icons/md";
-import Loading from "../../../../components/loading/Loading";
+import SortOptions from "./SortOptions/SortOptions";
 
 import style from './Filters.module.scss';
-
-const sortArr = [
-  {name: 'Popular', path: 'popularity.desc'},
-  {name: 'Date', path: 'primary_release_date.desc'},
-  {name: 'Rating', path: 'vote_average.desc'},
-  {name: 'Votes', path: 'vote_count.desc'},
-];
-
-const categoryArr = [
-  {name: 'Movies', path: 'movie'},
-  {name: 'Tv series', path: 'tv'}
-];
+import CategoryOptions from "./CategoryOptions/CategoryOptions";
+import GenresOptions from "./GenresOptions/GenresOptions";
 
 const firstYear = 1970;
 const currentYear = new Date().getFullYear();
 
-const Filters = ({setOpenFilter}) => {
+const Filters = ({handleCloseFilters}) => {
   const [category, setCategory] = useState('movie');
   const [sort, setSort] = useState('popularity.desc');
   const [genres, setGenres] = useState([]);
@@ -34,11 +21,7 @@ const Filters = ({setOpenFilter}) => {
   const [dateMin, setDateMin] = useState(firstYear);
   const [dateMax, setDateMax] = useState(currentYear);
 
-  const {lang} = useSelector(state => state.lang);
-  const {genresList} = useSelector(state => state);
-
   const {pathname} = useLocation();
-  const dispatch = useDispatch();
 
   // Get Filters with pathname
   useEffect(() => {
@@ -64,26 +47,7 @@ const Filters = ({setOpenFilter}) => {
     }
   }, [pathname]);
 
-  useEffect(() => {
-    dispatch(fetchGenresList({category, lang}))
-  }, [dispatch, category, lang]);
-
-  const handleClose = () => {
-    setOpenFilter(false);
-  };
-
-  const selectHandler = useCallback((str, state, setState) => {
-    if (state.indexOf(str) !== -1) {
-      const newArr = state.filter(elem => elem !== str);
-
-      setState([...newArr]);
-    } else {
-      setState(c => [...c.filter(elem => elem !== str), str]);
-    }
-  }, []);
-
   // onFocus
-
   const blurMinValue = useCallback((event) => {
     return +event.target.value.toString().length < 4 ? firstYear : +event.target.value;
   }, []);
@@ -93,7 +57,6 @@ const Filters = ({setOpenFilter}) => {
   }, []);
 
   // onChange
-
   const getMinValue = useCallback((event, minValue, state, valeLength) => {
     const value = +event.target.value;
 
@@ -115,7 +78,6 @@ const Filters = ({setOpenFilter}) => {
   }, []);
 
   // onClick
-
   const incMin = useCallback((state, setState) => {
     return setState(c => c < state ? c +1 : c);
   }, []);
@@ -136,69 +98,17 @@ const Filters = ({setOpenFilter}) => {
     return `/discover/${category}/&include_adult=false&vote_count.gte=25&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&/1`;
   }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax]);
   
-  const activeStyleSortBtn = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };
+  const activeStyle = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };
 
   return (
     <div className={style.wrapp}>
       
       <div className={style.body}>
         <div className={style.top}>
+          <CategoryOptions category={category} setCategory={setCategory} setGenres={setGenres} activeStyle={activeStyle} />
+          <SortOptions sort={sort} setSort={setSort} activeStyle={activeStyle} />
+          <GenresOptions category={category} genres={genres} setGenres={setGenres} activeStyle={activeStyle} />
 
-          <div className={style.row}>
-            <h3>Category</h3>
-
-            <ul>
-              {categoryArr.map(({path, name}, i) => (
-                <li key={path + i}>
-                  <button
-                    onClick={() => {
-                      setCategory(path);
-                      setGenres([]);
-                    }}
-                    style={category.indexOf(path) !== -1 ? activeStyleSortBtn : null}
-                  >
-                    {name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div className={style.row}>
-            <h3>Sort by</h3>
-
-            <ul>
-              {sortArr.map(({name, path}) => (
-                <li key={path}>
-                  <button
-                    onClick={() => setSort(path)}
-                    style={sort.indexOf(path) !== -1 ? activeStyleSortBtn : null}
-                  >
-                    {name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className={style.row}>
-            <h3>Genres</h3>
-
-            {genresList?.loading && <Loading size={25} />}
-
-            <ul>
-              {genresList.res?.genres?.map(({id, name}, i) => (
-                <li key={id + i}>
-                  <button 
-                    onClick={() => selectHandler(id, genres, setGenres)}
-                    style={genres?.indexOf(id) !== -1 ? activeStyleSortBtn : null}
-                  >
-                    {name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           <div className={style.row}>
             <h3>Rating</h3>
@@ -288,11 +198,11 @@ const Filters = ({setOpenFilter}) => {
         </div>
 
         <div className={style.bottom}>
-          <button onClick={handleClose}>Close</button>
-          <Link to={link} onClick={handleClose}>Search</Link>
+          <button onClick={handleCloseFilters}>Close</button>
+          <Link to={link} onClick={handleCloseFilters}>Search</Link>
         </div>
 
-        <button className={style.close} onClick={handleClose}>
+        <button className={style.close} onClick={handleCloseFilters}>
           <IoClose />
         </button>
       </div>

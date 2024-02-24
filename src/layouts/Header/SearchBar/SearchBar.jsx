@@ -83,6 +83,10 @@ const SearchBar = () => {
     setOpenFilter(true);
   }
 
+  const handleCloseFilters = () => {
+    setOpenFilter(false);
+  }
+
   const searchClass = `${style.search} ${openSearch ? style.search_open : ''}`;
 
   return (
@@ -108,7 +112,7 @@ const SearchBar = () => {
         optionCategory={optionCategory}
       />
 
-      { openFilters && <Filters setOpenFilter={setOpenFilter} /> }
+      { openFilters && <Filters handleCloseFilters={handleCloseFilters} /> }
     </div>
   );
 }
