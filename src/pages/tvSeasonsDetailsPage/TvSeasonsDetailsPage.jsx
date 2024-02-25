@@ -14,7 +14,7 @@ import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
 import BackgroundImage from '../../components/backgroundImage/BackgroundImage';
 import PosterImage from '../../components/posterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
-import Error from '../../components/error/Error';
+import Error from '../../components/Error/Error';
 import VideosButton from '../../components/videosButton/VideosButton';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';

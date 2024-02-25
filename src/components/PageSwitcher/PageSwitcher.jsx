@@ -1,9 +1,9 @@
-import { useCallback, useState, useMemo, useEffect } from "react";
+import {useCallback, useState, useMemo, useEffect, memo} from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import style from './page-switcher.module.scss';
+import style from './PageSwitcher.module.scss';
 
-const PageSwitcher = ({total_pages, page}) => {
+const PageSwitcher = memo(({total_pages, page}) => {
   const [pageArray, setPageArray] = useState(null);
 
   const totalPages = useMemo(() => {
@@ -28,8 +28,13 @@ const PageSwitcher = ({total_pages, page}) => {
     return `${pathname.slice(0, pathname.lastIndexOf('/'))}/${num}`;
   }, [pathname]);
 
-  const hasNaN = pageArray?.some(item => isNaN(item));
-  const activeButton = {background: 'var(--orange-400)', color: 'var(--black)', fontWeight: '700'};
+  const hasNaN = useMemo(() => {
+    return pageArray?.some(item => isNaN(item))
+  }, [pageArray]);
+
+  const activeButton = useMemo(() => {
+    return {background: 'var(--orange-400)', color: 'var(--black)', fontWeight: '700'}
+  }, []);
 
   return (
     <>
@@ -50,10 +55,9 @@ const PageSwitcher = ({total_pages, page}) => {
               )
             })}
           </ul>
-        
       }
     </>
   );
-}
+})
 
 export default PageSwitcher;

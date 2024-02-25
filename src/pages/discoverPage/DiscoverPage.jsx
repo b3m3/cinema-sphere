@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 
 import { fetchDiscover } from "../../store/asyncThunks/fetchDiscover";
 
-import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
+import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Loading from '../../components/Loading/Loading';
-import Error from '../../components/error/Error';
+import Error from '../../components/Error/Error';
 import MediaCard from '../../components/mediaCard/MediaCard';
 
 import style from './discover-page.module.scss';

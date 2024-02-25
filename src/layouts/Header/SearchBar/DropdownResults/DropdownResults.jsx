@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import {useCallback, memo} from "react";
 
 import Loading from "../../../../components/Loading/Loading";
-import Error from "../../../../components/error/Error";
+import Error from "../../../../components/Error/Error";
 import SearchCard from "../../../../components/searchCard/SearchCard";
 import {Link, useNavigate} from "react-router-dom";
 

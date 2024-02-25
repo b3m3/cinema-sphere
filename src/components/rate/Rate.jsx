@@ -6,7 +6,7 @@ import { postRating, getRating } from "../../store/asyncThunks/fetchRating";
 import { clearRateStates } from "../../store/slices/fetchRatingSlice";
 
 import Loading from "../Loading/Loading";
-import Error from "../error/Error";
+import Error from "../Error/Error";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 import style from './rate.module.scss';

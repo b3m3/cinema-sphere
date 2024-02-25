@@ -7,8 +7,8 @@ import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { scrollToTop } from '../../utils/functions';
 
 import Loading from '../../components/Loading/Loading';
-import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
-import Error from '../../components/error/Error';
+import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
+import Error from '../../components/Error/Error';
 import CelebCard from '../../components/celebCard/CelebCard';
 
 import style from './celebs-page.module.scss';
