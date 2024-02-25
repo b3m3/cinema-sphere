@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom";
 import LoginPage from '../pages/loginPage/LoginPage';
 import HomePage from '../pages/HomePage/HomePage';
 import WatchListPage from '../pages/watchListPage/WatchListPage';
-import MoviesPage from '../pages/moviesPage/MoviesPage';
+import MoviesPage from '../pages/MoviesPage/MoviesPage';
 import MovieDetailsPage from '../pages/movieDetailsPage/MovieDetailsPage';
 import GallaryModalPage from '../pages/galleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/tvSeriesPage/TvSeriesPage';

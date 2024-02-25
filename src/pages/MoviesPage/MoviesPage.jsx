@@ -12,7 +12,7 @@ import Error from '../../components/Error/Error';
 import MediaCard from '../../components/MediaCard/MediaCard';
 import MediaSwitcher from '../../components/MediaSwitcher/MediaSwitcher';
 
-import style from './movies-page.module.scss';
+import style from './MoviesPage.module.scss';
 
 const MoviesPage = () => {
   const {page, filter} = useParams();
