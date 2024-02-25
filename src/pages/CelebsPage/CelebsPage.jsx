@@ -11,7 +11,7 @@ import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Error from '../../components/Error/Error';
 import CelebCard from '../../components/celebCard/CelebCard';
 
-import style from './celebs-page.module.scss';
+import style from './CelebsPage.module.scss';
 
 const CelebsPage = () => {
   const {page, filter} = useParams();
@@ -31,7 +31,15 @@ const CelebsPage = () => {
         <h1>Celebs - Cinema Sphere</h1>
         { loading && <Loading /> }
         <div className={style.body}>
-          { res?.results.map((params) => <CelebCard key={params.id} {...params} category={category} />) }
+          {res?.results.map(({id, known_for_department, original_name, profile_path}) => (
+            <CelebCard
+              key={id}
+              knownFor={known_for_department}
+              category={category}
+              name={original_name}
+              profilePath={profile_path}
+            />
+          ))}
         </div>
         <PageSwitcher total_pages={res?.total_pages} page={page} />
         { status && <Error status={status} /> }
