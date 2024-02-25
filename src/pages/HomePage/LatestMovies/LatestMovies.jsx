@@ -1,5 +1,5 @@
 import style from './LatestMovies.module.scss';
-import Loading from "../../../components/loading/Loading";
+import Loading from "../../../components/Loading/Loading";
 import LatestCard from "./LatestCard/LatestCard";
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect} from "react";

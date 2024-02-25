@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { fetchRecommendations } from "../../store/asyncThunks/fetchRecommendations";
 import { fetchGenresList } from "../../store/asyncThunks/fetchGenresList";
 import SearchCard from '../searchCard/SearchCard';
-import Loading from '../loading/Loading';
+import Loading from '../Loading/Loading';
 
 import style from './recommendations.module.scss';
 

@@ -5,7 +5,7 @@ import { useWrapperSwiper } from "../../../hooks/useWrapperSwiper";
 import {fetchTrendingTvSeries} from "../../../store/asyncThunks/fetchTrendingHome";
 
 import Title from "../../../components/title/Title";
-import Loading from "../../../components/loading/Loading";
+import Loading from "../../../components/Loading/Loading";
 import MediaCard from "../../../components/mediaCard/MediaCard";
 
 import style from './TvSeries.module.scss';

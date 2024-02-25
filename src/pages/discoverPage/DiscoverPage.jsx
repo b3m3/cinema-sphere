@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { fetchDiscover } from "../../store/asyncThunks/fetchDiscover";
 
 import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
-import Loading from '../../components/loading/Loading';
+import Loading from '../../components/Loading/Loading';
 import Error from '../../components/error/Error';
 import MediaCard from '../../components/mediaCard/MediaCard';
 

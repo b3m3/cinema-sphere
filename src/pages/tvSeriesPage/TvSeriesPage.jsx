@@ -6,7 +6,7 @@ import { fetchCardData } from '../../store/asyncThunks/fetchCardData';
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { scrollToTop } from '../../utils/functions';
 
-import Loading from '../../components/loading/Loading';
+import Loading from '../../components/Loading/Loading';
 import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
 import Error from '../../components/error/Error';
 import MediaCard from '../../components/mediaCard/MediaCard';

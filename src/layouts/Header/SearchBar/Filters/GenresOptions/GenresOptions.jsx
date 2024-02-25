@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect, memo} from "react";
 
 import {fetchGenresList} from "../../../../../store/asyncThunks/fetchGenresList";
-import Loading from "../../../../../components/loading/Loading";
+import Loading from "../../../../../components/Loading/Loading";
 
 import style from './GenresOptions.module.scss';
 

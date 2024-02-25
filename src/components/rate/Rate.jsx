@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { postRating, getRating } from "../../store/asyncThunks/fetchRating";
 import { clearRateStates } from "../../store/slices/fetchRatingSlice";
 
-import Loading from "../loading/Loading";
+import Loading from "../Loading/Loading";
 import Error from "../error/Error";
 import { FaStar, FaRegStar } from "react-icons/fa";
 

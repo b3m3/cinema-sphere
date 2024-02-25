@@ -3,7 +3,7 @@ import { FaPlayCircle } from "react-icons/fa";
 
 import { IMAGE_URL } from "../../constants/api";
 
-import Loading from "../loading/Loading";
+import Loading from "../Loading/Loading";
 
 import style from './video-trailer.module.scss';
 

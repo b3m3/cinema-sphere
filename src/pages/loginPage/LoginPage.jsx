@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { fetchRequestToken, fetchSessionWithLogin, fetchSession, fetchAuth } from '../../store/asyncThunks/fetchAuth';
 
-import Loading from '../../components/loading/Loading';
+import Loading from '../../components/Loading/Loading';
 
 import style from './login-page.module.scss';
 

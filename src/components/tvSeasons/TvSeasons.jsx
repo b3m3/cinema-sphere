@@ -8,7 +8,7 @@ import { fetchTvSeasons } from "../../store/asyncThunks/fetchTvSeasons";
 
 import Title from '../title/Title';
 import EpisodeCard from '../episodeCard/EpisodeCard';
-import Loading from '../loading/Loading';
+import Loading from '../Loading/Loading';
 
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 

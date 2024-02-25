@@ -7,7 +7,7 @@ import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
 import Title from '../title/Title';
 import MediaCard from '../mediaCard/MediaCard';
-import Loading from '../loading/Loading';
+import Loading from '../Loading/Loading';
 
 import style from './media-swiper.module.scss';
 

@@ -5,7 +5,7 @@ import { fetchTrending } from "../../store/asyncThunks/fetchTrending";
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
 import PosterImage from '../posterImage/PosterImage';
-import Loading from '../loading/Loading';
+import Loading from '../Loading/Loading';
 import SearchCard from '../searchCard/SearchCard';
 
 import style from './side-trending.module.scss';

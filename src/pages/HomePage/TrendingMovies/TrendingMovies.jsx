@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchTrendingMovies } from "../../../store/asyncThunks/fetchTrendingHome";
 import { IoIosArrowForward  } from "react-icons/io";
-import Loading from '../../../components/loading/Loading';
+import Loading from '../../../components/Loading/Loading';
 import TrendingCard from "./TrendingCard/TrendingCard";
 import TrendingList from "./TrendingList/TrendingList";
 
