@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useCallback } from 'react';
+import {useEffect, useCallback, useMemo} from 'react';
 
 import { fetchAuth } from '../../store/asyncThunks/fetchAuth';
 import { isOpenMenu, isCloseMenu } from '../../store/slices/menuSlice';
@@ -18,6 +18,9 @@ import style from './Header.module.scss';
 const Header = () => {
   const { user } = useSelector(state => state.auth);
   const { menu } = useSelector(state => state.menu);
+
+  const memoizedUser = useMemo(() => user, [user]);
+  const memoizedMenu = useMemo(() => menu, [menu]);
 
   const dispatch = useDispatch();
 
@@ -44,14 +47,14 @@ const Header = () => {
           </div>
           {
             user.isAuth 
-              ? <User data={user.data} dispatch={dispatch} />
+              ? <User data={memoizedUser.data} dispatch={dispatch} />
               : <SingInBtn /> 
           }
           <div className={style.hide}>
             <Language />
           </div>
           <MenuBtn handleOpenNavbar={handleOpenNavbar} />
-          <Navbar handleCloseNavbar={handleCloseNavbar} menu={menu} />
+          <Navbar handleCloseNavbar={handleCloseNavbar} menu={memoizedMenu} />
         </div>
       </div>
     </header>

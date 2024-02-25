@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { IoClose } from "react-icons/io5";
-import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown  } from "react-icons/md";
 import SortOptions from "./SortOptions/SortOptions";
-
-import style from './Filters.module.scss';
 import CategoryOptions from "./CategoryOptions/CategoryOptions";
 import GenresOptions from "./GenresOptions/GenresOptions";
+import RatingYearsWrapper from "./RatingYearsWrapper";
+
+import style from './Filters.module.scss';
 
 const firstYear = 1970;
 const currentYear = new Date().getFullYear();
@@ -46,155 +46,49 @@ const Filters = ({handleCloseFilters}) => {
       getElem('primary_release_date.lte=') && setDateMax(+getElem('primary_release_date.lte='));
     }
   }, [pathname]);
-
-  // onFocus
-  const blurMinValue = useCallback((event) => {
-    return +event.target.value.toString().length < 4 ? firstYear : +event.target.value;
-  }, []);
-
-  const blurMaxValue = useCallback((event) => {
-    return +event.target.value.toString().length < 4 ? currentYear : +event.target.value;
-  }, []);
-
-  // onChange
-  const getMinValue = useCallback((event, minValue, state, valeLength) => {
-    const value = +event.target.value;
-
-    if (valeLength) {
-      return value.toString().length >= valeLength && value < minValue ? minValue : value > state ? state : value
-    }
-
-    return value < minValue ? minValue : value > state ? state : value
-  }, []);
-
-  const getMaxValue = useCallback((event, maxValue, state, valeLength) => {
-    const value = +event.target.value;
-    
-    if (valeLength) {
-      return value.toString().length >= valeLength && value <= state ? state : value > maxValue ? maxValue : value
-    }
-
-    return value <= state ? state : value > maxValue ? maxValue : value
-  }, []);
-
-  // onClick
-  const incMin = useCallback((state, setState) => {
-    return setState(c => c < state ? c +1 : c);
-  }, []);
-
-  const decMin = useCallback((setState, minValue) => {
-    return setState(c => c <= minValue ? minValue : c -1);
-  }, []);
-
-  const incMax = useCallback((setState, maxValue) => {
-    return setState(c => c < maxValue ? c +1 : c);
-  }, []);
-
-  const decMax = useCallback((state, setState) => {
-    return setState(c => c > state ? c -1 : c);
-  }, []);
   
   const link = useMemo(() => {
     return `/discover/${category}/&include_adult=false&vote_count.gte=25&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&/1`;
   }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax]);
   
-  const activeStyle = { border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)' };
+  const activeStyle = useMemo(() => {
+    return {border: '1px solid var(--orange-400)', background: 'var(--orange-400)', color: 'var(--black)'}
+  }, []);
 
   return (
     <div className={style.wrapp}>
       
       <div className={style.body}>
         <div className={style.top}>
-          <CategoryOptions category={category} setCategory={setCategory} setGenres={setGenres} activeStyle={activeStyle} />
-          <SortOptions sort={sort} setSort={setSort} activeStyle={activeStyle} />
-          <GenresOptions category={category} genres={genres} setGenres={setGenres} activeStyle={activeStyle} />
-
-
-          <div className={style.row}>
-            <h3>Rating</h3>
-
-            <ul>
-              <li className={style.input_wrapp}>
-                <input 
-                  type="number"
-                  name="rating-min" 
-                  value={ratingMin}
-                  onChange={(e) => setRatingMin(getMinValue(e, 1, ratingMax))}
-                  onFocus={e => e.target.select()}
-                />
-                <div>
-                  <button className={style.arrow_btn} onClick={() => incMin(ratingMax, setRatingMin)}>
-                    <MdOutlineKeyboardArrowUp/>
-                  </button>
-                  <button className={style.arrow_btn} onClick={() => decMin(setRatingMin, 1)}>
-                    <MdOutlineKeyboardArrowDown/>
-                  </button>
-                </div>
-              </li>
-
-              <li className={style.input_wrapp}>
-                <input 
-                  type="number"
-                  name="rating-max" 
-                  value={ratingMax}
-                  onChange={(e) => setRatingMax(getMaxValue(e, 10, ratingMin))}
-                  onFocus={e => e.target.select()}
-                />
-                <div>
-                  <button className={style.arrow_btn} onClick={() => incMax(setRatingMax, 10)}>
-                    <MdOutlineKeyboardArrowUp/>
-                  </button>
-                  <button className={style.arrow_btn} onClick={() => decMax(ratingMin, setRatingMax)}>
-                    <MdOutlineKeyboardArrowDown/>
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div className={style.row}>
-            <h3>Date</h3>
-
-            <ul>
-              <li className={style.input_wrapp}>
-                <input 
-                  type="number"
-                  name="date-min" 
-                  value={dateMin}
-                  onChange={(e) => setDateMin(getMinValue(e, firstYear, dateMax, 4))}
-                  onFocus={(e) =>  e.target.select()}
-                  onBlur={(e) => setDateMin(blurMinValue(e))}
-                />
-                <div>
-                  <button className={style.arrow_btn} onClick={() => incMin(dateMax, setDateMin)}>
-                    <MdOutlineKeyboardArrowUp/>
-                  </button>
-                  <button className={style.arrow_btn} onClick={() => decMin(setDateMin, firstYear)}>
-                    <MdOutlineKeyboardArrowDown/>
-                  </button>
-                </div>
-              </li>
-
-              <li className={style.input_wrapp}>
-                <input 
-                  type="number"
-                  name="date-max" 
-                  value={dateMax}
-                  onChange={(e) => setDateMax(getMaxValue(e, currentYear, dateMin, 4))}
-                  onFocus={(e) => e.target.select()}
-                  onBlur={(e) => setDateMax(blurMaxValue(e))}
-                />
-                <div>
-                  <button className={style.arrow_btn} onClick={() => incMax(setDateMax, currentYear)}>
-                    <MdOutlineKeyboardArrowUp/>
-                  </button>
-                  <button className={style.arrow_btn} onClick={() => decMax(dateMin, setDateMax)}>
-                    <MdOutlineKeyboardArrowDown/>
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <CategoryOptions
+            category={category}
+            setCategory={setCategory}
+            setGenres={setGenres}
+            activeStyle={activeStyle}
+          />
+          <SortOptions
+            sort={sort}
+            setSort={setSort}
+            activeStyle={activeStyle}
+          />
+          <GenresOptions
+            category={category}
+            genres={genres}
+            setGenres={setGenres}
+            activeStyle={activeStyle}
+          />
+          <RatingYearsWrapper
+            ratingMin={ratingMin}
+            ratingMax={ratingMax}
+            setRatingMin={setRatingMin}
+            setRatingMax={setRatingMax}
+            dateMin={dateMin}
+            dateMax={dateMax}
+            setDateMin={setDateMin}
+            setDateMax={setDateMax}
+            firstYear={firstYear}
+            currentYear={currentYear}
+          />
         </div>
 
         <div className={style.bottom}>

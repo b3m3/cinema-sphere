@@ -15,7 +15,6 @@ import DropdownResults from "./DropdownResults/DropdownResults";
 
 import style from './SearchBar.module.scss';
 
-
 const SearchBar = () => {
   // DropdownMenu
   const [selectedOption, setSelectedOption] = useState('All');
@@ -69,23 +68,23 @@ const SearchBar = () => {
     return setValue(event.target.value)
   }, []);
 
-  const handleClearInput = () => {
+  const handleClearInput = useCallback(() => {
     setOpenSearch(false)
     setValue('')
-  }
+  }, [])
 
-  const handleOpenInput = () => {
+  const handleOpenInput = useCallback(() => {
     setOpenSearch(true);
-  }
+  }, [])
 
   // Filters
-  const handleOpenFilters = () => {
+  const handleOpenFilters = useCallback(() => {
     setOpenFilter(true);
-  }
+  }, [])
 
-  const handleCloseFilters = () => {
+  const handleCloseFilters = useCallback(() => {
     setOpenFilter(false);
-  }
+  }, [])
 
   const searchClass = `${style.search} ${openSearch ? style.search_open : ''}`;
 
