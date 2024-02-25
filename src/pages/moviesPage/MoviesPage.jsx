@@ -34,18 +34,16 @@ const MoviesPage = () => {
         <MediaSwitcher />
         { loading && <Loading /> }
         <div className={style.body}>
-          { res?.results.map(({id, poster_path, release_date, title, vote_average}) => {
-            return (
-              <MediaCard
-                key={id}
-                posterPath={poster_path}
-                realese={release_date}
-                category={category}
-                title={title}
-                rating={vote_average}
-              />
-            )
-          })}
+          {res?.results.map(({id, poster_path, release_date, title, vote_average}) => (
+            <MediaCard
+              key={id}
+              posterPath={poster_path}
+              realese={release_date}
+              category={category}
+              title={title}
+              rating={vote_average}
+            />
+          ))}
         </div>
         <PageSwitcher total_pages={res?.total_pages} page={page} />
         { status && <Error status={status} /> }
