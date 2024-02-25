@@ -30,46 +30,6 @@
   gap: 1.875rem;
 }
 
-.list {
-  font-family: "Bebas Neue";
-  font-size: 1.125rem;
-  color: var(--white);
-  display: grid;
-  justify-content: center;
-  grid-template: auto / repeat(3, minmax(auto, 300px));
-
-  & li {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    
-    & h3 {
-      font-size: 1.5rem;
-      display: grid;
-      align-items: center;
-      grid-template: auto / 30px 1fr;
-      color: var(--orange-400);
-    }
-    & p {
-      padding-left: 30px;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Inter';
-      font-weight: 400;
-      font-size: .875rem;
-      line-height: 2;
-    }
-
-    & a {
-      @media (any-hover: hover) {
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
 .hover {
   display: none;
   align-items: center;
@@ -94,13 +54,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.25rem;
-  }
   .hover {
     display: flex;
   }

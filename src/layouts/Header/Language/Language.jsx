@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import {memo, useCallback, useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { changeLang } from '../../../store/slices/languageSlice';
@@ -13,7 +13,7 @@ const langArr = [
   {name: 'Русский', code: 'ru'}
 ];
 
-const Language = () => {
+const Language = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { lang } = useSelector(state => state.lang);
@@ -58,6 +58,6 @@ const Language = () => {
       </ul>
     </div>
   );
-}
+})
 
 export default Language;

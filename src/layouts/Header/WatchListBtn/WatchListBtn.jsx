@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { BsBookmarkStarFill } from "react-icons/bs";
 
 import style from './WatchListBtn.module.scss';
+import {memo} from "react";
 
-const WatchListBtn = ({isAuth, handleCloseNavbar}) => {
+const WatchListBtn = memo(({isAuth, handleCloseNavbar}) => {
   return (
     <Link 
       className={style.wrapp} to={isAuth ? "/watch_list" : "/login"} 
@@ -14,6 +15,6 @@ const WatchListBtn = ({isAuth, handleCloseNavbar}) => {
       <BsBookmarkStarFill />
     </Link>
   );
-}
+})
 
 export default WatchListBtn;

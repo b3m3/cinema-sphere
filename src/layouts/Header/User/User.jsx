@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import {memo, useCallback, useEffect, useMemo, useState} from 'react';
 
 import { IMAGE_URL } from '../../../constants/api';
 import { MdOutlineArrowDropDown } from "react-icons/md";
@@ -9,7 +9,7 @@ import { signOut } from '../../../store/slices/fetchAuthSlice';
 
 import style from './User.module.scss';
 
-const User = ({data, dispatch}) => {
+const User = memo(({data, dispatch}) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const toggleMenu = useCallback(() => {
@@ -24,8 +24,13 @@ const User = ({data, dispatch}) => {
     autoCloser('HEADER', isOpen, setIsOpen);
   }, [isOpen]);
 
-  const imgSrc = `${IMAGE_URL}w45${data?.avatar?.tmdb?.avatar_path}`;
-  const isAvatar = data?.avatar?.tmdb?.avatar_path;
+  const imgSrc = useMemo(() => {
+    return `${IMAGE_URL}w45${data?.avatar?.tmdb?.avatar_path}`;
+  }, [data]);
+
+  const isAvatar = useMemo(() => {
+    return data?.avatar?.tmdb?.avatar_path;
+  }, [data])
 
   return (
     <div className={style.wrapp} onClick={toggleMenu}>
@@ -47,6 +52,6 @@ const User = ({data, dispatch}) => {
       </ul>
     </div>
   );
-}
+})
 
 export default User;
