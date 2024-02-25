@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import moment from 'moment';
-import PosterImage from '../posterImage/PosterImage';
-import Rating from '../rating/Rating';
+import PosterImage from '../PosterImage/PosterImage';
+import Rating from '../Rating/Rating';
 
 import style from './search-card.module.scss';
 

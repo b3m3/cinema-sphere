@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {clearHistory, getHistory} from "../../../store/slices/historySlice";
 import {TfiBrushAlt} from "react-icons/tfi";
 import {useWrapperSwiper} from "../../../hooks/useWrapperSwiper";
-import PosterImage from "../../../components/posterImage/PosterImage";
+import PosterImage from "../../../components/PosterImage/PosterImage";
 import {useEffect} from "react";
 
 import style from './History.module.scss'

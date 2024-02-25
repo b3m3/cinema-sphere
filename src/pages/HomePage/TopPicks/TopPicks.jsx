@@ -1,6 +1,5 @@
-import PicksCard from "../../../components/picksCard/PicksCard";
+import PicksCard from "./PicksCard/PicksCard";
 import style from './TopPicks.module.scss';
-import {memo} from "react";
 
 const arr = [
   {name: 'Anime', link: '/discover/tv/&include_adult=false&with_keywords=210024&/1'},
@@ -8,7 +7,7 @@ const arr = [
   {name: 'Horror', link: '/discover/movie/&with_genres=27&/1'},
 ];
 
-const TopPicks = memo(() => {
+const TopPicks = () => {
   return (
     <div className={style.wrapp}>
       <h2>Top picks</h2>
@@ -22,6 +21,6 @@ const TopPicks = memo(() => {
       </ul>
     </div>
   );
-});
+};
 
 export default TopPicks;

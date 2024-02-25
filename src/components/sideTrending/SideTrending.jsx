@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchTrending } from "../../store/asyncThunks/fetchTrending";
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
-import PosterImage from '../posterImage/PosterImage';
+import PosterImage from '../PosterImage/PosterImage';
 import Loading from '../Loading/Loading';
 import SearchCard from '../searchCard/SearchCard';
 

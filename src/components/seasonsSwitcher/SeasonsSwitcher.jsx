@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { useParams } from 'react-router-dom';
 
-import PosterImage from '../posterImage/PosterImage';
+import PosterImage from '../PosterImage/PosterImage';
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 

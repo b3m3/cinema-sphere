@@ -5,7 +5,7 @@ import moment from 'moment';
 import { fetchReviews } from "../../store/asyncThunks/fetchReviews";
 
 import Title from '../title/Title';
-import Rating from '../rating/Rating';
+import Rating from '../Rating/Rating';
 
 import { HiDotsHorizontal } from "react-icons/hi";
 

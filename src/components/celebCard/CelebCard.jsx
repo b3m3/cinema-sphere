@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import PosterImage from '../posterImage/PosterImage';
+import PosterImage from '../PosterImage/PosterImage';
 
 import style from './celeb-card.module.scss';
 

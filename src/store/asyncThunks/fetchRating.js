@@ -8,7 +8,7 @@ const API_KEY = process.env.REACT_APP_API_KEY
 const JWT_SECRET = process.env.REACT_APP_JWT_SECRET
 
 export const postRating = createAsyncThunk(
-	'rating/postRating',
+	'Rating/postRating',
 	async ({ category, value, id }, { rejectWithValue }) => {
 		try {
 			const token = window.localStorage.getItem('session')
@@ -30,7 +30,7 @@ export const postRating = createAsyncThunk(
 )
 
 export const getRating = createAsyncThunk(
-	'rating/getRating',
+	'Rating/getRating',
 	async ({ accountId, category, lang }, { rejectWithValue }) => {
 		try {
 			const token = window.localStorage.getItem('session')

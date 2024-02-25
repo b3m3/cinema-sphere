@@ -1,8 +1,8 @@
 import React, {memo} from 'react';
 import {Link} from "react-router-dom";
 
-import PosterImage from "../../../../components/posterImage/PosterImage";
-import Rating from "../../../../components/rating/Rating";
+import PosterImage from "../../../../components/PosterImage/PosterImage";
+import Rating from "../../../../components/Rating/Rating";
 
 import style from './TrendingList.module.scss'
 

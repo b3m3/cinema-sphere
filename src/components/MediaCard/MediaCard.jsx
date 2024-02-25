@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import PosterImage from '../posterImage/PosterImage';
+import PosterImage from '../PosterImage/PosterImage';
 import AddToWatchlist from '../addToWatchlist/AddToWatchlist';
-import Rating from '../rating/Rating';
+import Rating from '../Rating/Rating';
 
 import style from './MediaCard.module.scss';
 

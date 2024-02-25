@@ -1,9 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
 import moment from 'moment';
-import PosterImage from '../posterImage/PosterImage';
+import PosterImage from '../PosterImage/PosterImage';
 
 import style from './episode-card.module.scss';
-import Rating from '../rating/Rating';
+import Rating from '../Rating/Rating';
 import { useMemo } from 'react';
 
 const EpisodeCard = ({air_date, name, overview, season_number, episode_number, still_path, vote_average, vote_count}) => {

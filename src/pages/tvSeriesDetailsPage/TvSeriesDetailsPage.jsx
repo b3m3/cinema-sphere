@@ -10,13 +10,13 @@ import { fetchEnglishVideo } from "../../store/asyncThunks/fetchEnglishVideo";
 import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 import { getHistory, setHistory } from '../../store/slices/historySlice';
 
-import Rating from '../../components/rating/Rating';
+import Rating from '../../components/Rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
 import Time from '../../components/time/Time';
 import Details from '../../components/details/Details';
 import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
 import BackgroundImage from '../../components/backgroundImage/BackgroundImage';
-import PosterImage from '../../components/posterImage/PosterImage';
+import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import VideosButton from '../../components/videosButton/VideosButton';

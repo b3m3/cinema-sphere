@@ -1,7 +1,7 @@
 import {memo, useMemo} from "react";
 import { FaStar } from "react-icons/fa6";
 
-import style from './rating.module.scss';
+import style from './Rating.module.scss';
 
 const Rating = memo(({rating, vote_count}) => {
 

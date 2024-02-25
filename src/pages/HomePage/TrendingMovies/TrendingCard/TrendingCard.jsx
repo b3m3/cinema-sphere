@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import moment from "moment/moment";
 
 import {IMAGE_URL} from "../../../../constants/api";
-import PosterImage from "../../../../components/posterImage/PosterImage";
+import PosterImage from "../../../../components/PosterImage/PosterImage";
 import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 
 import style from './TrendingCard.module.scss';

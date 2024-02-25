@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IMAGE_URL } from '../../constants/api';
 import Mask from '../../assets/images/PosterMask.webp'
 
-import style from './poster-image.module.scss';
+import style from './PosterImage.module.scss';
 
 const PosterImage = memo((props) => {
   const {id, posterPath, title, link, media_type, category, season, episode} = props;
