@@ -1,24 +1,25 @@
+import { useMemo } from 'react';
+
 import PosterImage from '../posterImage/PosterImage';
 import AddToWatchlist from '../addToWatchlist/AddToWatchlist';
 import Rating from '../rating/Rating';
 
-import style from './media-card.module.scss';
-import { useMemo } from 'react';
+import style from './MediaCard.module.scss';
 
 const MediaCard = (params) => {
-  const {id, poster_path, release_date, first_air_date, title, name, vote_average, white, category, media_type} = params;
+  const {id, posterPath, realese, first_air_date, title, name, rating, white, category, media_type} = params;
 
   const releaseDate = useMemo(() => {
-    return (release_date || first_air_date) && (release_date || first_air_date).slice(0, 4);
-  }, [release_date, first_air_date]);
+    return (realese || first_air_date) && (realese || first_air_date).slice(0, 4);
+  }, [realese, first_air_date]);
 
   const titleName = useMemo(() => {
     return (title || name) && (title || name)
   }, [title, name]);
 
   const posterProps = useMemo(() => {
-    return {poster_path, title, id, category, media_type}
-  }, [poster_path, title, id, category, media_type]);
+    return {posterPath, title, id, category, media_type}
+  }, [posterPath, title, id, category, media_type]);
 
   const date = useMemo(() => {
     return (releaseDate || first_air_date) && `(${releaseDate || first_air_date})`;
@@ -32,7 +33,7 @@ const MediaCard = (params) => {
         <h4 className={style.body__title}>{titleName}</h4>
 
         <div className={style.body__text}>
-          <Rating rating={vote_average} />
+          <Rating rating={rating} />
 
           <span>{date}</span>
         </div>

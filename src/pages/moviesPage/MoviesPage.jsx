@@ -9,7 +9,7 @@ import { scrollToTop } from '../../utils/functions';
 import Loading from '../../components/Loading/Loading';
 import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Error from '../../components/Error/Error';
-import MediaCard from '../../components/mediaCard/MediaCard';
+import MediaCard from '../../components/MediaCard/MediaCard';
 import MediaSwitcher from '../../components/MediaSwitcher/MediaSwitcher';
 
 import style from './movies-page.module.scss';
@@ -18,6 +18,7 @@ const MoviesPage = () => {
   const {page, filter} = useParams();
   const {loading, status, res} = useSelector(state => state.cardData);
   const {lang} = useSelector(state => state.lang)
+
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();
 
@@ -33,7 +34,18 @@ const MoviesPage = () => {
         <MediaSwitcher />
         { loading && <Loading /> }
         <div className={style.body}>
-          { res?.results.map((params) => <MediaCard key={params.id} {...params} category={category} />) }
+          { res?.results.map(({id, poster_path, release_date, title, vote_average}) => {
+            return (
+              <MediaCard
+                key={id}
+                posterPath={poster_path}
+                realese={release_date}
+                category={category}
+                title={title}
+                rating={vote_average}
+              />
+            )
+          })}
         </div>
         <PageSwitcher total_pages={res?.total_pages} page={page} />
         { status && <Error status={status} /> }

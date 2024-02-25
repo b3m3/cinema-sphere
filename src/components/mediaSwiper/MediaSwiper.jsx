@@ -6,7 +6,7 @@ import { fetchCombinedCredits } from "../../store/asyncThunks/fetchCombinedCredi
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
 import Title from '../title/Title';
-import MediaCard from '../mediaCard/MediaCard';
+import MediaCard from '../MediaCard/MediaCard';
 import Loading from '../Loading/Loading';
 
 import style from './media-swiper.module.scss';

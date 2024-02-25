@@ -6,7 +6,7 @@ import {fetchTrendingTvSeries} from "../../../store/asyncThunks/fetchTrendingHom
 
 import Title from "../../../components/title/Title";
 import Loading from "../../../components/Loading/Loading";
-import MediaCard from "../../../components/mediaCard/MediaCard";
+import MediaCard from "../../../components/MediaCard/MediaCard";
 
 import style from './TvSeries.module.scss';
 

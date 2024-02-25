@@ -9,7 +9,7 @@ import { scrollToTop } from '../../utils/functions';
 import Loading from '../../components/Loading/Loading';
 import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Error from '../../components/Error/Error';
-import MediaCard from '../../components/mediaCard/MediaCard';
+import MediaCard from '../../components/MediaCard/MediaCard';
 import MediaSwitcher from '../../components/MediaSwitcher/MediaSwitcher';
 
 import style from './tv-series-page.module.scss';

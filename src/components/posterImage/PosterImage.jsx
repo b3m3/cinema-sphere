@@ -1,13 +1,13 @@
-import { useCallback, useMemo, useState } from 'react';
+import {memo, useCallback, useMemo, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 import { IMAGE_URL } from '../../constants/api';
-import Mask from './mask.webp'
+import Mask from '../../assets/images/PosterMask.webp'
 
 import style from './poster-image.module.scss';
 
-const PosterImage = (props) => {
-  const {id, poster_path, title, link, media_type, category, season, episode} = props;
+const PosterImage = memo((props) => {
+  const {id, posterPath, title, link, media_type, category, season, episode} = props;
   
   const [load, setLoad] = useState(true);
 
@@ -16,8 +16,8 @@ const PosterImage = (props) => {
   }, [link]);
 
   const imgSrc = useMemo(() => {
-    return  poster_path ? `${IMAGE_URL}w500/${poster_path}` : Mask;
-  }, [poster_path]);
+    return  posterPath ? `${IMAGE_URL}w500/${posterPath}` : Mask;
+  }, [posterPath]);
 
   const path = useMemo(() => {
     const getCategory = media_type ? media_type : category;
@@ -37,6 +37,6 @@ const PosterImage = (props) => {
       <img src={imgSrc} alt={title} onLoad={onLoad}/>
     </Link>
   );
-}
+});
 
 export default PosterImage;
