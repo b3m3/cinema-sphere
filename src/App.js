@@ -15,7 +15,7 @@ function App() {
         <div className="App-wrapp">
           <Router />
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </BrowserRouter>
   );

@@ -10,7 +10,7 @@ import Loading from '../../components/Loading/Loading';
 import PageSwitcher from '../../components/pageSwitcher/PageSwitcher';
 import Error from '../../components/error/Error';
 import MediaCard from '../../components/mediaCard/MediaCard';
-import MediaSwitcher from '../../components/mediaSwitcher/MediaSwitcher';
+import MediaSwitcher from '../../components/MediaSwitcher/MediaSwitcher';
 
 import style from './tv-series-page.module.scss';
 

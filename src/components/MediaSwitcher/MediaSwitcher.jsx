@@ -1,15 +1,15 @@
 import { Link, useParams } from 'react-router-dom';
-import { useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight  } from "react-icons/md";
 
-import style from './media-switcher.module.scss';
+import style from './MediaSwitcher.module.scss';
 
 const movieArr = ['popular', 'now_playing', 'upcoming', 'top_rated'];
 const tvArr = ['top_rated', 'popular', 'airing_today', 'on_the_air'];
 
-const MediaSwitcher = () => {
+const MediaSwitcher = memo(() => {
   const {filter} = useParams();
   const category = useCategoryFromLocation();
 
@@ -59,6 +59,6 @@ const MediaSwitcher = () => {
       </ul>
     </div>
   );
-}
+})
 
 export default MediaSwitcher;
