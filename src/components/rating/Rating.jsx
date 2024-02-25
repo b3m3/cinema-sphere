@@ -1,9 +1,9 @@
-import { useMemo } from "react";
+import {memo, useMemo} from "react";
 import { FaStar } from "react-icons/fa6";
 
 import style from './rating.module.scss';
 
-const Rating = ({rating, vote_count}) => {
+const Rating = memo(({rating, vote_count}) => {
 
   const integer = useMemo(() => {
     return rating?.toString().slice(0, 3)
@@ -38,6 +38,6 @@ const Rating = ({rating, vote_count}) => {
       }
     </>
   );
-}
+})
 
 export default Rating;
