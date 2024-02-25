@@ -1,0 +1,61 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.body {
+  display: grid;
+  gap: 1.25rem;
+  grid-template: 1fr / 65% 1fr;
+}
+
+.more_movies {
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: flex-end;
+  cursor: auto;
+
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3125rem;
+    font-size: 1rem;
+    transition: color .2s;
+
+    & svg {
+      padding-top: 2px;
+      font-size: 1.2rem;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--orange-400);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .body {
+    grid-template: 1fr / 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .body {
+    grid-template: minmax(330px, 1fr) / 1fr;
+  }
+
+  .more_movies {
+    & a {
+      font-size: .875rem;
+  
+      & svg {
+        padding-top: 2px;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

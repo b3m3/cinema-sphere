@@ -1,0 +1,13 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  & ul {
+    display: grid;
+    gap: .9375rem;
+    flex-wrap: wrap;
+    grid-auto-rows: 15.625rem;
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  }
+}

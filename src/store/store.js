@@ -22,6 +22,7 @@ import fetchSimilar from './slices/fetchSimilarSlice';
 import fetchReviews from './slices/fetchReviewsSlice';
 import fetchKeywords from './slices/fetchKeywordsSlice';
 import fetchTrending from './slices/fetchTrendingSlice';
+import fetchTrendingHome from './slices/fetchTrendingHomeSlice';
 import fetchDiscover from './slices/fetchDiscoverSlice';
 import fetchTvSeasons from './slices/fetchTvSeasonsSlice';
 import fetchTvEpisodes from './slices/fetchTvEpisodesSlice';
@@ -47,7 +48,8 @@ const store = configureStore({
 		similar: fetchSimilar,
 		reviews: fetchReviews,
 		keywords: fetchKeywords,
-		trending: fetchTrending,
+    trending: fetchTrending,
+    trendingHome: fetchTrendingHome,
 		history: historySlice,
 		discover: fetchDiscover,
 		tvSeasons: fetchTvSeasons,

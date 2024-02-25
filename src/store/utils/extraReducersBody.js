@@ -16,3 +16,22 @@ export const extraReducersBody = (builder, asyncThunk) => {
       state.status = payload.message;
     })
 }
+
+export const extraReducersTrendingBody = (builder, stateName, asyncThunk) => {
+  const { pending, fulfilled, rejected } = asyncThunk;
+
+  return builder
+    .addCase(pending, (state) => {
+      state[`${stateName}`].loading = true;
+      state[`${stateName}`].res = null;
+      state[`${stateName}`].status = null;
+    })
+    .addCase(fulfilled, (state, {payload}) => {
+      state[`${stateName}`].loading = false;
+      state[`${stateName}`].res = payload;
+    })
+    .addCase(rejected, (state, {payload}) => {
+      state[`${stateName}`].loading = false;
+      state[`${stateName}`].status = payload.message;
+    })
+}

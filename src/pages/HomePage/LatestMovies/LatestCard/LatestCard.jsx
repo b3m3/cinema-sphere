@@ -1,10 +1,12 @@
+import {memo} from "react";
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import style from './scheduled-card.module.scss';
-import AddToWatchlist from '../addToWatchlist/AddToWatchlist';
+import AddToWatchlist from '../../../../components/addToWatchlist/AddToWatchlist';
 
-const ScheduledCard = ({id, category, title, release_date}) => {
+import style from './LatestCard.module.scss';
+
+const LatestCard = memo(({id, category, title, releaseDate}) => {
   return (
     <div className={style.wrapp}>
       <div className={style.bookmark}>
@@ -13,10 +15,10 @@ const ScheduledCard = ({id, category, title, release_date}) => {
 
       <Link className={style.col} to={`/${category}/${id}`}>
         <p>{title}</p>
-        <span>{moment(release_date).format('DD MMMM, YYYY')}</span>
+        <span>{moment(releaseDate).format('DD MMMM, YYYY')}</span>
       </Link>
     </div>
   );
-}
+});
 
-export default ScheduledCard;
+export default LatestCard;
