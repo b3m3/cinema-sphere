@@ -54,6 +54,7 @@ const SearchPage = () => {
               isCeleb
                 ? <CelebCard
                     key={id}
+                    id={id}
                     knownFor={known_for_department}
                     category={category}
                     name={name}
@@ -61,6 +62,7 @@ const SearchPage = () => {
                   />
                 : <MediaCard
                     key={id}
+                    id={id}
                     posterPath={poster_path}
                     realese={release_date}
                     category={category}

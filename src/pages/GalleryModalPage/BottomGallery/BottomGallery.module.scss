@@ -1,0 +1,43 @@
+.wrapp {
+  display: grid;
+  grid-template: auto / repeat(6, 1fr);
+  gap: .625rem;
+  padding: 1.25rem 0;
+
+  & img {
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: background .2s;
+
+    &.active {
+      background: var(--orange-400);
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapp {
+    grid-template: auto / repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .wrapp {
+    grid-template: auto / repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapp {
+    grid-template: auto / repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .wrapp {
+    grid-template: auto / repeat(2, 1fr);
+  }
+}

@@ -5,7 +5,7 @@ import HomePage from '../pages/HomePage/HomePage';
 import WatchListPage from '../pages/watchListPage/WatchListPage';
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
 import MovieDetailsPage from '../pages/movieDetailsPage/MovieDetailsPage';
-import GallaryModalPage from '../pages/galleryModalPage/GalleryModalPage';
+import GalleryModalPage from '../pages/GalleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/TvSeriesPage/TvSeriesPage';
 import TvSeriesDetailsPage from "../pages/tvSeriesDetailsPage/TvSeriesDetailsPage";
 import CelebsPage from '../pages/CelebsPage/CelebsPage';
@@ -31,7 +31,7 @@ const Router = () => {
           path: ':id', 
           children: [
             { index: true, element: <CelebDetailsPage/> },
-            { path: 'gallery/:modal',element: <GallaryModalPage/> }
+            { path: 'gallery/:modal',element: <GalleryModalPage/> }
           ]
         },
       ]
@@ -45,7 +45,7 @@ const Router = () => {
           path: ':id', 
           children: [
             { index: true, element: <MovieDetailsPage/> },
-            { path: 'gallery/:modal',element: <GallaryModalPage/> }
+            { path: 'gallery/:modal',element: <GalleryModalPage/> }
           ]
         },
       ]
@@ -59,17 +59,17 @@ const Router = () => {
           path: ':id', 
           children: [
             { index: true, element: <TvSeriesDetailsPage/> },
-            { path: 'gallery/:modal',element: <GallaryModalPage/> },
+            { path: 'gallery/:modal',element: <GalleryModalPage/> },
             { 
               path: 'seasons/:season',
               children: [
                 { index: true, element: <TvSeasonsDetailsPage/> },
-                { path: 'gallery/:modal', element: <GallaryModalPage/> },
+                { path: 'gallery/:modal', element: <GalleryModalPage/> },
                 {
                   path: 'episodes/:episode',
                   children: [
                     { index: true, element: <TvEpisodesDetailsPage/> },
-                    { path: 'gallery/:modal', element: <GallaryModalPage/> },
+                    { path: 'gallery/:modal', element: <GalleryModalPage/> },
                   ]
                 }
               ]

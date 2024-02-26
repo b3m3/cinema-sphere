@@ -36,6 +36,7 @@ const TvSeriesPage = () => {
           {res?.results.map(({id, poster_path, name, first_air_date, vote_average}) => (
             <MediaCard
               key={id}
+              id={id}
               posterPath={poster_path}
               category={category}
               name={name}

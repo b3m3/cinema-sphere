@@ -37,6 +37,7 @@ const MoviesPage = () => {
           {res?.results.map(({id, poster_path, release_date, title, vote_average}) => (
             <MediaCard
               key={id}
+              id={id}
               posterPath={poster_path}
               realese={release_date}
               category={category}

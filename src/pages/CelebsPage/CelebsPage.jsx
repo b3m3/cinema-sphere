@@ -34,6 +34,7 @@ const CelebsPage = () => {
           {res?.results.map(({id, known_for_department, original_name, profile_path}) => (
             <CelebCard
               key={id}
+              id={id}
               knownFor={known_for_department}
               category={category}
               name={original_name}
