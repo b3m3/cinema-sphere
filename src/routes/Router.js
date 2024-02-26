@@ -6,7 +6,7 @@ import WatchListPage from '../pages/watchListPage/WatchListPage';
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
 import MovieDetailsPage from '../pages/movieDetailsPage/MovieDetailsPage';
 import GallaryModalPage from '../pages/galleryModalPage/GalleryModalPage';
-import TvSeriesPage from '../pages/tvSeriesPage/TvSeriesPage';
+import TvSeriesPage from '../pages/TvSeriesPage/TvSeriesPage';
 import TvSeriesDetailsPage from "../pages/tvSeriesDetailsPage/TvSeriesDetailsPage";
 import CelebsPage from '../pages/CelebsPage/CelebsPage';
 import TvSeasonsDetailsPage from "../pages/tvSeasonsDetailsPage/TvSeasonsDetailsPage";

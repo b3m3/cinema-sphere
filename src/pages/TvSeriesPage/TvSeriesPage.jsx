@@ -12,7 +12,7 @@ import Error from '../../components/Error/Error';
 import MediaCard from '../../components/MediaCard/MediaCard';
 import MediaSwitcher from '../../components/MediaSwitcher/MediaSwitcher';
 
-import style from './tv-series-page.module.scss';
+import style from './TvSeriesPage.module.scss';
 
 const TvSeriesPage = () => {
   const {page, filter} = useParams();
@@ -33,7 +33,16 @@ const TvSeriesPage = () => {
         <MediaSwitcher />
         { loading && <Loading /> }
         <div className={style.body}>
-          { res?.results.map((params) => <MediaCard key={params.id} {...params} category={category} />) }
+          {res?.results.map(({id, poster_path, name, first_air_date, vote_average}) => (
+            <MediaCard
+              key={id}
+              posterPath={poster_path}
+              category={category}
+              name={name}
+              firstDate={first_air_date}
+              rating={vote_average}
+            />
+          ))}
         </div>
         <PageSwitcher total_pages={res?.total_pages} page={page} />
         { status && <Error status={status} /> }
