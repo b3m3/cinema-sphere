@@ -7,11 +7,11 @@ import Rating from '../Rating/Rating';
 import style from './MediaCard.module.scss';
 
 const MediaCard = (params) => {
-  const {id, posterPath, realese, first_air_date, title, name, rating, white, category, media_type} = params;
+  const {id, posterPath, realese, firstDate, title, name, rating, white, category, media_type} = params;
 
   const releaseDate = useMemo(() => {
-    return (realese || first_air_date) && (realese || first_air_date).slice(0, 4);
-  }, [realese, first_air_date]);
+    return (realese || firstDate) && (realese || firstDate).slice(0, 4);
+  }, [realese, firstDate]);
 
   const titleName = useMemo(() => {
     return (title || name) && (title || name)
@@ -22,8 +22,8 @@ const MediaCard = (params) => {
   }, [posterPath, title, id, category, media_type]);
 
   const date = useMemo(() => {
-    return (releaseDate || first_air_date) && `(${releaseDate || first_air_date})`;
-  }, [releaseDate, first_air_date])
+    return (releaseDate || firstDate) && `(${releaseDate || firstDate})`;
+  }, [releaseDate, firstDate])
 
   return (
     <div className={style.wrapp}>

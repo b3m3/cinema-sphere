@@ -8,9 +8,9 @@ import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import MediaCard from '../../components/MediaCard/MediaCard';
-import CelebCard from '../../components/celebCard/CelebCard';
+import CelebCard from '../../components/CelebCard/CelebCard';
 
-import style from './search-page.module.scss';
+import style from './SearchPage.module.scss';
 
 const SearchPage = () => {
   const {lang} = useSelector(state => state.lang);
@@ -49,11 +49,28 @@ const SearchPage = () => {
         { loading && <Loading /> }
         { status && <Error status={status} /> }
         <div className={`${style.body} ${isCeleb && style.body_seleb}`}>
-          {res?.results.map((params) => (
-            isCeleb
-             ? <CelebCard key={params.id} {...params} category={category} />
-             : <MediaCard key={params.id} {...params} category={category} />
-          ))}
+          {res?.results.map(({id, poster_path, profile_path, known_for_department, release_date, title, name, first_air_date, vote_average}) => {
+            return (
+              isCeleb
+                ? <CelebCard
+                    key={id}
+                    knownFor={known_for_department}
+                    category={category}
+                    name={name}
+                    profilePath={profile_path}
+                  />
+                : <MediaCard
+                    key={id}
+                    posterPath={poster_path}
+                    realese={release_date}
+                    category={category}
+                    title={title}
+                    name={name}
+                    firstDate={first_air_date}
+                    rating={vote_average}
+                  />
+            )
+          })}
         </div>
         <PageSwitcher total_pages={res?.total_pages} page={page} />
       </section>

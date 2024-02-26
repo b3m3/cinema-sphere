@@ -4,7 +4,7 @@ import {memo, useEffect} from "react";
 import {fetchTrendingCelebs} from "../../../store/asyncThunks/fetchTrendingHome";
 import Title from "../../../components/title/Title";
 import Loading from "../../../components/Loading/Loading";
-import CelebCard from "../../../components/celebCard/CelebCard";
+import CelebCard from "../../../components/CelebCard/CelebCard";
 
 import style from './Celebs.module.scss';
 

@@ -9,7 +9,7 @@ import { scrollToTop } from '../../utils/functions';
 import Loading from '../../components/Loading/Loading';
 import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Error from '../../components/Error/Error';
-import CelebCard from '../../components/celebCard/CelebCard';
+import CelebCard from '../../components/CelebCard/CelebCard';
 
 import style from './CelebsPage.module.scss';
 

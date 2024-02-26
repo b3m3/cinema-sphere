@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import PosterImage from '../PosterImage/PosterImage';
 
-import style from './celeb-card.module.scss';
+import style from './CelebCard.module.scss';
 
 const CelebCard = ({id, name, character, profilePath, knownFor, big}) => {
 
