@@ -15,7 +15,7 @@ import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
 import Time from '../../components/time/Time';
 import Details from '../../components/details/Details';
 import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
-import BackgroundImage from '../../components/backgroundImage/BackgroundImage';
+import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';

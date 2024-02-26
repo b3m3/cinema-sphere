@@ -89,7 +89,7 @@ const Router = () => {
       path: 'discover',
       children: [
         { index: true },
-        { path: ':category/:Filters/:page', element: <DiscoverPage /> }
+        { path: ':category/:filters/:page', element: <DiscoverPage /> }
       ]
     }
   ])

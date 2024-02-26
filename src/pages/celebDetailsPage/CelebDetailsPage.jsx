@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import {useEffect, useMemo} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
@@ -9,7 +9,7 @@ import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 import { getHistory, setHistory } from '../../store/slices/historySlice';
 
 import Details from '../../components/details/Details';
-import BackgroundImage from '../../components/backgroundImage/BackgroundImage';
+import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
@@ -43,7 +43,7 @@ const CelebDetailsPage = () => {
 
   useEffect(() => {
     if (details) {
-      const poster_path = details?.res?.profile_path;
+      const poster_path = details?.res?.['profile_path'];
       const doc = {id, poster_path, category};
   
       dispatch(setHistory(doc));
@@ -51,11 +51,16 @@ const CelebDetailsPage = () => {
   }, [dispatch, details, id, category]);
 
   const name = details.res?.name;
-  const deathday = details.res?.deathday && details.res?.birthday && `(${moment(details.res.birthday).format('YYYY')} - ${moment(details.res.deathday).format('YYYY')})`
-  const knownFor = details.res?.known_for_department && details.res?.known_for_department;
+
+  const deathDay = useMemo(() => {
+    return details.res?.deathday && details.res?.birthday &&
+      `(${moment(details.res.birthday).format('YYYY')} - ${moment(details.res.deathday).format('YYYY')})`
+  }, []);
+
+  const knownFor = details.res?.['known_for_department'] && details.res?.['known_for_department'];
 
   return (
-    <section className={style.wrapp}>
+    <section>
       { details.loading && <Loading /> }
       { details.status && <Error status={details.status} />}
 
@@ -65,13 +70,13 @@ const CelebDetailsPage = () => {
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <BackgroundImage backdrop_path={details.res.profile_path} />
+                <BackgroundImage backdropPath={details.res['profile_path']} />
 
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
                     <h1>
                       {name} 
-                      <span>{deathday}</span>
+                      <span>{deathDay}</span>
                     </h1>
                     <ul>
                       <li>{knownFor}</li>
