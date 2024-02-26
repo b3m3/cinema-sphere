@@ -13,7 +13,7 @@ import TvSeasonsDetailsPage from "../pages/tvSeasonsDetailsPage/TvSeasonsDetails
 import TvEpisodesDetailsPage from "../pages/tvEpisodesDetailsPage/TvEpisodesDetailsPage";
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import SearchPage from "../pages/searchPage/SearchPage";
-import DiscoverPage from "../pages/discoverPage/DiscoverPage";
+import DiscoverPage from "../pages/DiscoverPage/DiscoverPage";
 import CelebDetailsPage from "../pages/celebDetailsPage/CelebDetailsPage";
 
 const Router = () => {

@@ -34,7 +34,6 @@ const MediaCard = (params) => {
 
         <div className={style.body__text}>
           <Rating rating={rating} />
-
           <span>{date}</span>
         </div>
       </div>
