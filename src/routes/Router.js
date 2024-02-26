@@ -11,7 +11,7 @@ import TvSeriesDetailsPage from "../pages/tvSeriesDetailsPage/TvSeriesDetailsPag
 import CelebsPage from '../pages/CelebsPage/CelebsPage';
 import TvSeasonsDetailsPage from "../pages/tvSeasonsDetailsPage/TvSeasonsDetailsPage";
 import TvEpisodesDetailsPage from "../pages/tvEpisodesDetailsPage/TvEpisodesDetailsPage";
-import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
+import NotFoundPage from '../pages/NotFoundSvg/NotFoundPage';
 import SearchPage from "../pages/SearchPage/SearchPage";
 import DiscoverPage from "../pages/DiscoverPage/DiscoverPage";
 import CelebDetailsPage from "../pages/celebDetailsPage/CelebDetailsPage";

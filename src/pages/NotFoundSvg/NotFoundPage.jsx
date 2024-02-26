@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import NotFoundSvg from './page-not-found.svg'
-import style from './not-found-page.module.scss';
+import NotFoundSvg from '../../assets/images/page-not-found.svg'
+import style from './NotFoundSvg.module.scss';
 
 const NotFoundPage = () => {
   return (
