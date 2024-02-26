@@ -11,16 +11,6 @@
   }
 }
 
-.form {
-  padding: 1.25rem;
-  width: 100%;
-  border-radius: .25rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
 .right {
   text-align: center;
   display: flex;
@@ -39,17 +29,6 @@
   display: flex;
   flex-direction: column;
   gap: .625rem;
-}
-
-.input {
-  padding: 0 .625rem;
-  min-height: 35px;
-  border: 1px solid var(--grey-100);
-  border-radius: .25rem;
-
-  &:focus {
-    border: 1px solid var(--orange-400);
-  }
 }
 
 .button {
@@ -80,13 +59,6 @@
       background: var(--orange-300);
     }
   }
-}
-
-.error {
-  font-weight: 500;
-  font-size: .8125rem;
-  color: var(--red-400);
-  text-align: center;
 }
 
 .label {

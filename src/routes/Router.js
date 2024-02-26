@@ -1,6 +1,6 @@
 import { useRoutes } from "react-router-dom";
 
-import LoginPage from '../pages/loginPage/LoginPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
 import HomePage from '../pages/HomePage/HomePage';
 import WatchListPage from '../pages/watchListPage/WatchListPage';
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
