@@ -24,13 +24,14 @@ import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
-import Reviews from '../../components/reviews/Reviews';
+import Reviews from '../../components/Reviews/Reviews';
 import Rate from '../../components/rate/Rate';
 import Popularity from '../../components/popularity/Popularity';
 import TvSeasons from '../../components/tvSeasons/TvSeasons';
 import BodyAside from "./BodyAside/BodyAside";
 
 import style from './tv-series-details-page.module.scss';
+import BodyMain from "./BodyMain/BodyMain";
 
 const TvSeriesDetailsPage = () => {
   const { id } = useParams();
@@ -60,6 +61,8 @@ const TvSeriesDetailsPage = () => {
       dispatch(setHistory(doc));
     }
   }, [dispatch, details, id, category]);
+
+  const { overview, seasons } = {...details?.res};
 
   const getFirstTrailerUrl = useMemo(() => {
     return videos.res?.results.length > 0 ? videos.res.results[0].key : null;
@@ -131,14 +134,7 @@ const TvSeriesDetailsPage = () => {
           <div className={style.body}>
             <div className="container">
               <div className={style.body__wrapp}>
-                <div className={style.body__left}>
-                  <Overview overview={details.res?.overview} />
-                  <TvSeasons id={id} category={category} seasons={details.res?.seasons} lang={lang} />
-                  <MediaCasts id={id} category={category} lang={lang} />
-                  {/*<MediaSwiper id={id} category={category} lang={lang} title={'Similar'} />*/}
-                  <Reviews id={id} category={category} />
-                </div>
-
+                <BodyMain id={id} category={category} lang={lang} overview={overview} seasons={seasons} />
                 <BodyAside id={id} category={category} lang={lang} />
               </div>
             </div>

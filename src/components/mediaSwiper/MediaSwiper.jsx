@@ -5,7 +5,7 @@ import { fetchSimilar } from "../../store/asyncThunks/fetchSimilar";
 import { fetchCombinedCredits } from "../../store/asyncThunks/fetchCombinedCredits";
 import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
-import Title from '../title/Title';
+import Title from '../Title/Title';
 import MediaCard from '../MediaCard/MediaCard';
 import Loading from '../Loading/Loading';
 

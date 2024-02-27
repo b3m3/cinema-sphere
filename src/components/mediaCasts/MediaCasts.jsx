@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchMediaCasts } from "../../store/asyncThunks/fetchMediaCasts";
 import CelebCard from '../CelebCard/CelebCard';
-import Title from '../title/Title';
+import Title from '../Title/Title';
 
 import style from './media-casts.module.scss';
 

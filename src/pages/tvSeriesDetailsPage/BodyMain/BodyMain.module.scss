@@ -1,0 +1,11 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapp {
+    grid-row: 2 / 3;
+  }
+}

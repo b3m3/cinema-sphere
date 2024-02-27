@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useWrapperSwiper } from "../../../hooks/useWrapperSwiper";
 import {fetchTrendingTvSeries} from "../../../store/asyncThunks/fetchTrendingHome";
 
-import Title from "../../../components/title/Title";
+import Title from "../../../components/Title/Title";
 import Loading from "../../../components/Loading/Loading";
 import MediaCard from "../../../components/MediaCard/MediaCard";
 

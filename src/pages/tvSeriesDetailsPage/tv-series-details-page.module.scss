@@ -99,11 +99,11 @@
     gap: 4%;
   }
   
-  &__left {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
+  //&__left {
+  //  display: flex;
+  //  flex-direction: column;
+  //  gap: 2.5rem;
+  //}
   
   //&__right {
   //  display: flex;
@@ -137,9 +137,9 @@
       gap: 1.25rem;
     }
 
-    &__left {
-      grid-row: 2 / 3;
-    }
+    //&__left {
+    //  grid-row: 2 / 3;
+    //}
   }
 }
 

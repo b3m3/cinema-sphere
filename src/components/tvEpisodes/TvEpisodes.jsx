@@ -1,5 +1,5 @@
 import EpisodeCard from '../episodeCard/EpisodeCard';
-import Title from '../title/Title';
+import Title from '../Title/Title';
 import style from './tv-episodes.module.scss';
 
 const TvEpisodes = ({res}) => {

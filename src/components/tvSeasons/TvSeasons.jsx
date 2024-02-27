@@ -6,7 +6,7 @@ import { Navigation } from 'swiper/modules';
 
 import { fetchTvSeasons } from "../../store/asyncThunks/fetchTvSeasons";
 
-import Title from '../title/Title';
+import Title from '../Title/Title';
 import EpisodeCard from '../episodeCard/EpisodeCard';
 import Loading from '../Loading/Loading';
 

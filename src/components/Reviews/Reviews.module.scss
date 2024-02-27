@@ -29,8 +29,7 @@
   flex-direction: column;
   gap: .9375rem;
 
-  border: 2px solid var(--grey-100);
-  border-radius: var(--radius-4);
+  border-bottom: 1px solid var(--grey-100);
   padding: .625rem;
 
   &_content {
@@ -38,7 +37,8 @@
     font-size: 1rem;
 
     position: relative;
-    height: 60px;
+    //height: 60px;
+    height: 30px;
     overflow: hidden;
     transition: height .2s;
 
@@ -101,11 +101,10 @@
 }
 
 .toggler {
-  position: relative;
+  position: absolute;
   z-index: 3;
   opacity: .65;
   font-size: 1.625rem;
-  position: absolute;
   bottom: -7px;
   right: .625rem;
 }

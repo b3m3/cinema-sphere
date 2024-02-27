@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {memo, useEffect} from "react";
 
 import {fetchTrendingCelebs} from "../../../store/asyncThunks/fetchTrendingHome";
-import Title from "../../../components/title/Title";
+import Title from "../../../components/Title/Title";
 import Loading from "../../../components/Loading/Loading";
 import CelebCard from "../../../components/CelebCard/CelebCard";
 

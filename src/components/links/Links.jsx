@@ -27,7 +27,7 @@ const Links = ({category, homepage}) => {
     if (res[`${id}`]) {
       const isPerson = category === 'person';
       const imdb = id === 'imdb_id';
-      const baseUrl = imdb && isPerson ? linkBase + 'name/' : imdb && !isPerson ? linkBase + 'title/' : linkBase;
+      const baseUrl = imdb && isPerson ? linkBase + 'name/' : imdb && !isPerson ? linkBase + 'Title/' : linkBase;
 
       return (
         <a key={id} className={style.link} href={`${baseUrl}${linkKey}`} rel="noopener noreferrer" target='__blank'>

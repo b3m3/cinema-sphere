@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import {memo} from "react";
 
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-import style from './title.module.scss';
+import style from './Title.module.scss';
 
-const Title = ({title, link}) => {
+const Title = memo(({title, link}) => {
   return (
     <h2 className={style.wrapp}>
       {
@@ -17,6 +18,6 @@ const Title = ({title, link}) => {
       }
     </h2>
   );
-}
+})
 
 export default Title;

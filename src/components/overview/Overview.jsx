@@ -1,4 +1,4 @@
-import Title from '../title/Title';
+import Title from '../Title/Title';
 
 import style from './overview.module.scss';
 

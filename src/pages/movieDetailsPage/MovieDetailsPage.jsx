@@ -26,7 +26,7 @@ import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/Recommendations/Recommendations';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
-import Reviews from '../../components/reviews/Reviews';
+import Reviews from '../../components/Reviews/Reviews';
 import Keywords from '../../components/Keywords/Keywords';
 import Rate from '../../components/rate/Rate';
 import SideTrending from '../../components/SideTrending/SideTrending';
