@@ -20,7 +20,7 @@ import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/Recommendations/Recommendations';
-import Keywords from '../../components/keywords/Keywords';
+import Keywords from '../../components/Keywords/Keywords';
 import TvEpisodes from '../../components/tvEpisodes/TvEpisodes';
 import SeasonsSwitcher from '../../components/seasonsSwitcher/SeasonsSwitcher';
 import TitleSwitcher from '../../components/titleSwitcher/TitleSwitcher';

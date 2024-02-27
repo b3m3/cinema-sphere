@@ -4,7 +4,7 @@ import {BASE_URL} from "../../constants/api";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchKeywords = createAsyncThunk(
-  'keywords/fetchKeywords',
+  'Keywords/fetchKeywords',
   async ({category, id}, {rejectWithValue}) => {
     try {
       if (category && id) {

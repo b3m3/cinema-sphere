@@ -1,4 +1,4 @@
-import Keywords from "../../../components/keywords/Keywords";
+import Keywords from "../../../components/Keywords/Keywords";
 import SideTrending from "../../../components/SideTrending/SideTrending";
 import Recommendations from "../../../components/Recommendations/Recommendations";
 import style from './BodyAside.module.scss';

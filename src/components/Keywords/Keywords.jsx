@@ -1,20 +1,22 @@
-import { useEffect } from 'react';
+import {memo, useEffect, useMemo} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchKeywords } from "../../store/asyncThunks/fetchKeywords";
 
-import style from './keywords.module.scss';
+import style from './Keywords.module.scss';
 
-const Keywords = ({category, id}) => {
-  const {res} = useSelector(state => state.keywords);
+const Keywords = memo(({category, id}) => {
+  const { res } = useSelector(state => state.keywords);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchKeywords({category, id}))
   }, [dispatch, category, id]);
 
-  const results = res && res?.keywords ? res.keywords : res?.results ? res.results : null;
+  const results = useMemo(() => {
+    return res && res?.keywords ? res.keywords : res?.results ? res.results : null;
+  }, [res])
 
   return (
     <>
@@ -36,6 +38,6 @@ const Keywords = ({category, id}) => {
       }
     </>
   );
-}
+});
 
 export default Keywords;

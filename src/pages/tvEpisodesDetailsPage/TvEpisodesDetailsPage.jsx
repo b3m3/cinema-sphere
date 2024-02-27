@@ -22,7 +22,7 @@ import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
 import Recommendations from '../../components/Recommendations/Recommendations';
-import Keywords from '../../components/keywords/Keywords';
+import Keywords from '../../components/Keywords/Keywords';
 import Time from '../../components/time/Time';
 import EpisodesSwitcher from '../../components/episodesSwitcher/EpisodesSwitcher';
 import TitleSwitcher from '../../components/titleSwitcher/TitleSwitcher';
