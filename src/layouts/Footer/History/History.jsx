@@ -1,10 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
+import {useCallback, useEffect} from "react";
+import {SwiperSlide} from "swiper/react";
 
 import {clearHistory, getHistory} from "../../../store/slices/historySlice";
 import {TfiBrushAlt} from "react-icons/tfi";
-import {useWrapperSwiper} from "../../../hooks/useWrapperSwiper";
-import PosterImage from "../../../components/PosterImage/PosterImage";
-import {useCallback, useEffect} from "react";
+import SwiperWrapper from "../../../components/SwiperWrapper/SwiperWrapper";
+import MediaCard from "../../../components/MediaCard/MediaCard";
 
 import style from './History.module.scss'
 
@@ -29,8 +30,6 @@ const History = () => {
     dispatch(clearHistory())
   }, [dispatch]);
 
-  const SwiperWrapper = useWrapperSwiper(PosterImage);
-
   return (
     <div className={style.wrapp}>
       <div className={style.top}>
@@ -45,14 +44,23 @@ const History = () => {
       <div>
         {
           Boolean(history.length)
-            ? <SwiperWrapper
-              res={{results: history?.slice(0, 25)}}
-              white
-              nextEl={'sbnf'}
-              prevEl={'sbpf'}
-              breakpoints={breakpoints}
-              link
-            />
+            ?
+              <SwiperWrapper
+                btnClass={'footer-arrow-'}
+                breakpoints={breakpoints}
+              >
+                {history?.map(({ id, poster_path, category }) => {
+                  return (
+                    <SwiperSlide key={id}>
+                      <MediaCard
+                        id={id}
+                        posterPath={poster_path}
+                        category={category}
+                      />
+                    </SwiperSlide>
+                  )
+                })}
+              </SwiperWrapper>
             : <span style={{color: 'var(--grey-400)', fontSize: '.875rem'}}>You have no recently viewed pages</span>
         }
       </div>

@@ -8,26 +8,6 @@
   }
 }
 
-.list {
-  background: var(--blue-400-01);
-  padding: 1rem;
-  border-radius: var(--radius-4);
-
-  & li {
-    transition: transform .2s ease-out;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid var(--grey-100);
-    }
-
-    @media (any-hover: hover) {
-      &:hover {
-        transform: translateX(-6px) scale(1.05);
-      }
-    }
-  }
-}
-
 @media screen and (max-width: 1024px) {
   .wrapp {
     display: none;

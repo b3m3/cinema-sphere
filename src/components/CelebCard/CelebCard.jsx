@@ -4,11 +4,11 @@ import PosterImage from '../PosterImage/PosterImage';
 
 import style from './CelebCard.module.scss';
 
-const CelebCard = ({id, name, character, profilePath, knownFor, big}) => {
+const CelebCard = ({id, name, character, posterPath, knownFor, big}) => {
 
   const posterProps = useMemo(() => {
-    return {id, posterPath: profilePath, title: name, category: 'person'}
-  }, [id, profilePath, name])
+    return {id, posterPath: posterPath, title: name, category: 'person'}
+  }, [id, posterPath, name])
 
   return (
     <div className={`${style.wrapp} ${big && style.big}`}>

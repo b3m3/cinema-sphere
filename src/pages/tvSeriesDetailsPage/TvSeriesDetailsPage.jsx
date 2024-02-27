@@ -22,7 +22,7 @@ import VideosButton from '../../components/videosButton/VideosButton';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
-import MediaCasts from '../../components/mediaCasts/MediaCasts';
+import MediaCasts from '../../components/MediaCasts/MediaCasts';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import Reviews from '../../components/Reviews/Reviews';
 import Rate from '../../components/rate/Rate';
@@ -41,7 +41,12 @@ const TvSeriesDetailsPage = () => {
   const videos = useSelector(state => state.videos);
 
   const dispatch = useDispatch();
+
   const category = useCategoryFromLocation();
+
+  const memoizedId = useMemo(() => id, [id]);
+  const memoizedLang = useMemo(() => lang, [lang]);
+  const memoizedCategory = useMemo(() => category, [category]);
 
   useEffect(() =>{
     dispatch(fetchDetails({category, lang, id}))
@@ -134,8 +139,8 @@ const TvSeriesDetailsPage = () => {
           <div className={style.body}>
             <div className="container">
               <div className={style.body__wrapp}>
-                <BodyMain id={id} category={category} lang={lang} overview={overview} seasons={seasons} />
-                <BodyAside id={id} category={category} lang={lang} />
+                <BodyMain id={memoizedId} category={memoizedCategory} lang={memoizedLang} overview={overview} seasons={seasons} />
+                <BodyAside id={memoizedId} category={memoizedCategory} lang={memoizedLang} />
               </div>
             </div>
           </div>

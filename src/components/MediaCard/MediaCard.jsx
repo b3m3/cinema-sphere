@@ -8,7 +8,7 @@ import style from './MediaCard.module.scss';
 
 const MediaCard = ({id, posterPath, date, title, rating, white, category, mediaType}) => {
   const dateYear = useMemo(() => {
-    return date && date.slice(0, 4)
+    return date && `(${date.slice(0, 4)})`
   }, [date])
 
   return (

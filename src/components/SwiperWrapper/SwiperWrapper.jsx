@@ -1,13 +1,13 @@
-import {Swiper, SwiperSlide} from "swiper/react";
+import {Swiper} from "swiper/react";
 import {Navigation} from "swiper/modules";
 
-import MediaCard from "../MediaCard/MediaCard";
 import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import {memo} from "react";
 
-const SwiperWrapper = ({currentId, results, category, btnClass, breakpoints}) => {
+const SwiperWrapper = memo(({children, btnClass, breakpoints}) => {
   return (
     <div style={{position: 'relative'}}>
       <Swiper
@@ -20,17 +20,7 @@ const SwiperWrapper = ({currentId, results, category, btnClass, breakpoints}) =>
           prevEl: `.${btnClass}p`
         }}
       >
-        {results?.map(({id, poster_path}) => {
-          return +currentId !== +id && (
-            <SwiperSlide key={id}>
-              <MediaCard
-                id={id}
-                posterPath={poster_path}
-                category={category}
-              />
-            </SwiperSlide>
-          )
-        })}
+        {children}
       </Swiper>
 
       <button className={`swiper-button swiper-button-prev ${btnClass}p`}>
@@ -41,6 +31,6 @@ const SwiperWrapper = ({currentId, results, category, btnClass, breakpoints}) =>
       </button>
     </div>
   );
-};
+});
 
 export default SwiperWrapper;

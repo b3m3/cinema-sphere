@@ -5,7 +5,7 @@ import {BASE_URL} from "../../constants/api";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchMediaCasts = createAsyncThunk(
-  'mediaCasts/fetchMediaCasts',
+  'MediaCasts/fetchMediaCasts',
   async({category, season, episode, id, lang}, {rejectWithValue}) => {
     try {
       if (category && id && lang && !season && !episode) {
