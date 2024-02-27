@@ -64,11 +64,9 @@ const SearchPage = () => {
                     key={id}
                     id={id}
                     posterPath={poster_path}
-                    realese={release_date}
+                    date={release_date || first_air_date}
                     category={category}
-                    title={title}
-                    name={name}
-                    firstDate={first_air_date}
+                    title={title || name}
                     rating={vote_average}
                   />
             )

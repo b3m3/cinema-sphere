@@ -39,7 +39,7 @@ const MoviesPage = () => {
               key={id}
               id={id}
               posterPath={poster_path}
-              realese={release_date}
+              date={release_date}
               category={category}
               title={title}
               rating={vote_average}

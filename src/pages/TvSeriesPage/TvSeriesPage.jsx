@@ -39,8 +39,8 @@ const TvSeriesPage = () => {
               id={id}
               posterPath={poster_path}
               category={category}
-              name={name}
-              firstDate={first_air_date}
+              title={name}
+              date={first_air_date}
               rating={vote_average}
             />
           ))}

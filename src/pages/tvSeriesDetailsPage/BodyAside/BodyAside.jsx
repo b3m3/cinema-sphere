@@ -1,5 +1,5 @@
 import Keywords from "../../../components/keywords/Keywords";
-import SideTrending from "../../../components/sideTrending/SideTrending";
+import SideTrending from "../../../components/SideTrending/SideTrending";
 import Recommendations from "../../../components/Recommendations/Recommendations";
 import style from './BodyAside.module.scss';
 

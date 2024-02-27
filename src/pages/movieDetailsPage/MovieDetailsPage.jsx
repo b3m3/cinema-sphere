@@ -29,7 +29,7 @@ import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import Reviews from '../../components/reviews/Reviews';
 import Keywords from '../../components/keywords/Keywords';
 import Rate from '../../components/rate/Rate';
-import SideTrending from '../../components/sideTrending/SideTrending';
+import SideTrending from '../../components/SideTrending/SideTrending';
 import Popularity from '../../components/popularity/Popularity';
 
 import style from './movie-details-page.module.scss';

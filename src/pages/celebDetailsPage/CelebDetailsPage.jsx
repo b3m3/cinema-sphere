@@ -15,7 +15,7 @@ import Error from '../../components/Error/Error';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
-import SideTrending from '../../components/sideTrending/SideTrending';
+import SideTrending from '../../components/SideTrending/SideTrending';
 
 import style from './celeb-details-page.module.scss';
 

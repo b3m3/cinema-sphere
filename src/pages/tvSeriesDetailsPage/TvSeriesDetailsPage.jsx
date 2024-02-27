@@ -135,7 +135,7 @@ const TvSeriesDetailsPage = () => {
                   <Overview overview={details.res?.overview} />
                   <TvSeasons id={id} category={category} seasons={details.res?.seasons} lang={lang} />
                   <MediaCasts id={id} category={category} lang={lang} />
-                  <MediaSwiper id={id} category={category} lang={lang} title={'Similar'} />
+                  {/*<MediaSwiper id={id} category={category} lang={lang} title={'Similar'} />*/}
                   <Reviews id={id} category={category} />
                 </div>
 

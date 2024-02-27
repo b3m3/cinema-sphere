@@ -6,35 +6,28 @@ import Rating from '../Rating/Rating';
 
 import style from './MediaCard.module.scss';
 
-const MediaCard = (params) => {
-  const {id, posterPath, realese, firstDate, title, name, rating, white, category, mediaType} = params;
-
-  const releaseDate = useMemo(() => {
-    return (realese || firstDate) && (realese || firstDate).slice(0, 4);
-  }, [realese, firstDate]);
-
-  const titleName = useMemo(() => {
-    return (title || name) && (title || name)
-  }, [title, name]);
-
-  const posterProps = useMemo(() => {
-    return {posterPath, title, id, category, mediaType}
-  }, [posterPath, title, id, category, mediaType]);
-
-  const date = useMemo(() => {
-    return (releaseDate || firstDate) && `(${releaseDate || firstDate})`;
-  }, [releaseDate, firstDate])
+const MediaCard = ({id, posterPath, date, title, rating, white, category, mediaType}) => {
+  const dateYear = useMemo(() => {
+    return date && date.slice(0, 4)
+  }, [date])
 
   return (
     <div className={style.wrapp}>
-      <PosterImage {...posterProps} link />
+      <PosterImage
+        posterPath={posterPath}
+        title={title}
+        id={id}
+        category={category}
+        mediaType={mediaType}
+        link
+      />
 
       <div className={`${style.body} ${white && style.white}`}>
-        <h4 className={style.body__title}>{titleName}</h4>
+        <h4 className={style.body__title}>{title}</h4>
 
         <div className={style.body__text}>
           <Rating rating={rating} />
-          <span>{date}</span>
+          <span>{dateYear}</span>
         </div>
       </div>
 
