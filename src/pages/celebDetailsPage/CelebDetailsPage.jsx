@@ -13,7 +13,7 @@ import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
-import Overview from '../../components/overview/Overview';
+import Overview from '../../components/Overview/Overview';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import SideTrending from '../../components/SideTrending/SideTrending';
 

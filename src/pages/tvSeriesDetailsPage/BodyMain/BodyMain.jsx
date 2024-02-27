@@ -1,4 +1,4 @@
-import Overview from "../../../components/overview/Overview";
+import Overview from "../../../components/Overview/Overview";
 import TvSeasons from "../../../components/tvSeasons/TvSeasons";
 import MediaCasts from "../../../components/MediaCasts/MediaCasts";
 import Reviews from "../../../components/Reviews/Reviews";
