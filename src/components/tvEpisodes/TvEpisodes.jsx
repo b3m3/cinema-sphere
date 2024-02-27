@@ -1,4 +1,4 @@
-import EpisodeCard from '../episodeCard/EpisodeCard';
+import EpisodeCard from '../EpisodeCard/EpisodeCard';
 import Title from '../Title/Title';
 import style from './tv-episodes.module.scss';
 

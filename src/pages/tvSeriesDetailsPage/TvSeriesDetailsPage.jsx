@@ -21,13 +21,8 @@ import Error from '../../components/Error/Error';
 import VideosButton from '../../components/videosButton/VideosButton';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import MediaGenres from '../../components/mediaGenres/MediaGenres';
-import Overview from '../../components/Overview/Overview';
-import MediaCasts from '../../components/MediaCasts/MediaCasts';
-import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
-import Reviews from '../../components/Reviews/Reviews';
 import Rate from '../../components/rate/Rate';
 import Popularity from '../../components/popularity/Popularity';
-import TvSeasons from '../../components/tvSeasons/TvSeasons';
 import BodyAside from "./BodyAside/BodyAside";
 
 import style from './tv-series-details-page.module.scss';
@@ -41,7 +36,6 @@ const TvSeriesDetailsPage = () => {
   const videos = useSelector(state => state.videos);
 
   const dispatch = useDispatch();
-
   const category = useCategoryFromLocation();
 
   const memoizedId = useMemo(() => id, [id]);
@@ -67,16 +61,15 @@ const TvSeriesDetailsPage = () => {
     }
   }, [dispatch, details, id, category]);
 
-  const { overview, seasons } = {...details?.res};
+  //*******************************************************************************
+
+  const { name, status, overview, seasons, first_air_date } = {...details?.res};
 
   const getFirstTrailerUrl = useMemo(() => {
     return videos.res?.results.length > 0 ? videos.res.results[0].key : null;
   }, [videos]);
 
-  const { name, status, first_air_date } = {...details?.res}
-
   const isEnded = status && status === 'Ended';
-
   const releaseDate = first_air_date?.slice(0, 4);
   const lastDate = isEnded && details.res?.last_air_date && ` - ${moment(details.res?.last_air_date).format('YYYY')}`;
 
@@ -91,47 +84,47 @@ const TvSeriesDetailsPage = () => {
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <BackgroundImage backdrop_path={details.res.backdrop_path} />
+                {/*<BackgroundImage backdrop_path={details.res.backdrop_path} />*/}
 
-                <div className={style.top__head}>
-                  <div className={style.top__head_left}>
-                    <h1>{ name }</h1>
-                    <ul>
-                      <li>{releaseDate}{lastDate}</li>
-                      {
-                        Boolean(details.res.episode_run_time?.length) &&
-                          <li><Time minutes={details.res.episode_run_time}/></li>
-                      }
-                    </ul>
-                  </div>
-                  <div className={style.top__head_right}>
-                    <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />
-                    <Rate id={id} category={category} title={name}/>
-                    <Popularity popularity={details.res?.popularity} />
-                  </div>
-                </div>
+                {/*<div className={style.top__head}>*/}
+                {/*  <div className={style.top__head_left}>*/}
+                {/*    <h1>{ name }</h1>*/}
+                {/*    <ul>*/}
+                {/*      <li>{releaseDate}{lastDate}</li>*/}
+                {/*      {*/}
+                {/*        Boolean(details.res.episode_run_time?.length) &&*/}
+                {/*          <li><Time minutes={details.res.episode_run_time}/></li>*/}
+                {/*      }*/}
+                {/*    </ul>*/}
+                {/*  </div>*/}
+                {/*  <div className={style.top__head_right}>*/}
+                {/*    <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />*/}
+                {/*    <Rate id={id} category={category} title={name}/>*/}
+                {/*    <Popularity popularity={details.res?.popularity} />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
 
-                <div className={style.top__center}>
-                  <PosterImage title={name} poster_path={details.res.poster_path} />
-                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
+                {/*<div className={style.top__center}>*/}
+                {/*  <PosterImage title={name} poster_path={details.res.poster_path} />*/}
+                {/*  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>*/}
 
-                  <div className={style.top__center_box}>
-                    {/*<VideosButton videos={videos} />*/}
-                    <ImagesButton images={images} />
-                  </div>
-                </div>
+                {/*  <div className={style.top__center_box}>*/}
+                {/*    /!*<VideosButton videos={videos} />*!/*/}
+                {/*    <ImagesButton images={images} />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
 
-                <div className={style.top__bottom}>
-                  <MediaGenres genres={details.res?.genres} category={category} />
+                {/*<div className={style.top__bottom}>*/}
+                {/*  <MediaGenres genres={details.res?.genres} category={category} />*/}
 
-                  <div className={style.top__bottom_block}>
-                    <Details id={id} category={category} {...details.res && details.res} />
-                    <div>
-                      <AddToWatchlist orange/>
-                    </div>
-                  </div>
+                {/*  <div className={style.top__bottom_block}>*/}
+                {/*    <Details id={id} category={category} {...details.res && details.res} />*/}
+                {/*    <div>*/}
+                {/*      <AddToWatchlist orange/>*/}
+                {/*    </div>*/}
+                {/*  </div>*/}
 
-                </div>
+                {/*</div>*/}
               </div>
             </div>
           </div>

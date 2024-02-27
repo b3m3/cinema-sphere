@@ -1,0 +1,16 @@
+.wrapp {
+  & button {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--black);
+    user-select: none;
+
+    &.active {
+      background: var(--orange-400);
+      color: var(--white);
+    }
+  }
+}
