@@ -21,7 +21,7 @@ import VideosButton from '../../components/videosButton/VideosButton';
 import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
-import Recommendations from '../../components/recommendations/Recommendations';
+import Recommendations from '../../components/Recommendations/Recommendations';
 import Keywords from '../../components/keywords/Keywords';
 import Time from '../../components/time/Time';
 import EpisodesSwitcher from '../../components/episodesSwitcher/EpisodesSwitcher';

@@ -1,8 +1,9 @@
-import { IoIosTrendingUp } from "react-icons/io";
+import {memo} from "react";
 
+import { IoIosTrendingUp } from "react-icons/io";
 import style from './popularity.module.scss';
 
-const Popularity = ({popularity}) => {
+const Popularity = memo(({popularity}) => {
   return (
     <div className={style.wrapp}>
       <h4>Popularity</h4>
@@ -13,6 +14,6 @@ const Popularity = ({popularity}) => {
       </div>
     </div>
   );
-}
+});
 
 export default Popularity;

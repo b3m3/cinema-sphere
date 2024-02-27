@@ -4,7 +4,7 @@ import {clearHistory, getHistory} from "../../../store/slices/historySlice";
 import {TfiBrushAlt} from "react-icons/tfi";
 import {useWrapperSwiper} from "../../../hooks/useWrapperSwiper";
 import PosterImage from "../../../components/PosterImage/PosterImage";
-import {useEffect} from "react";
+import {useCallback, useEffect} from "react";
 
 import style from './History.module.scss'
 
@@ -25,17 +25,20 @@ const History = () => {
     dispatch(getHistory());
   }, [dispatch]);
 
+  const clearHandler = useCallback(() => {
+    dispatch(clearHistory())
+  }, [dispatch]);
+
   const SwiperWrapper = useWrapperSwiper(PosterImage);
 
   return (
     <div className={style.wrapp}>
       <div className={style.top}>
         <h2>Recently viewed</h2>
+
         {
           Boolean(history.length) &&
-          <button onClick={() => dispatch(clearHistory())}>
-            <TfiBrushAlt />
-          </button>
+            <button onClick={clearHandler}><TfiBrushAlt /></button>
         }
       </div>
 
@@ -45,7 +48,6 @@ const History = () => {
             ? <SwiperWrapper
               res={{results: history?.slice(0, 25)}}
               white
-              perView={4}
               nextEl={'sbnf'}
               prevEl={'sbpf'}
               breakpoints={breakpoints}

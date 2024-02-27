@@ -7,7 +7,7 @@ import Rating from '../Rating/Rating';
 import style from './MediaCard.module.scss';
 
 const MediaCard = (params) => {
-  const {id, posterPath, realese, firstDate, title, name, rating, white, category, media_type} = params;
+  const {id, posterPath, realese, firstDate, title, name, rating, white, category, mediaType} = params;
 
   const releaseDate = useMemo(() => {
     return (realese || firstDate) && (realese || firstDate).slice(0, 4);
@@ -18,8 +18,8 @@ const MediaCard = (params) => {
   }, [title, name]);
 
   const posterProps = useMemo(() => {
-    return {posterPath, title, id, category, media_type}
-  }, [posterPath, title, id, category, media_type]);
+    return {posterPath, title, id, category, mediaType}
+  }, [posterPath, title, id, category, mediaType]);
 
   const date = useMemo(() => {
     return (releaseDate || firstDate) && `(${releaseDate || firstDate})`;

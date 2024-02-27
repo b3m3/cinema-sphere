@@ -20,8 +20,8 @@ const breakpoints = {
 }
 
 const MediaSwiper = ({lang, category, id, title}) => {
-  const {similar} = useSelector(state => state);
-  const {combinedCredits} = useSelector(state => state);
+  const similar = useSelector(state => state.similar);
+  const combinedCredits = useSelector(state => state.combinedCredits);
   const dispatch = useDispatch();
 
   const isCelebPage = category === 'person';
@@ -49,8 +49,7 @@ const MediaSwiper = ({lang, category, id, title}) => {
 
             <SwiperWrapper
               res={{results: res}}
-              white 
-              perView={4}
+              white
               nextEl={'sbns'}
               prevEl={'sbps'}
               breakpoints={breakpoints}

@@ -6,7 +6,6 @@ import moment from 'moment';
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { fetchImages } from "../../store/asyncThunks/fetchImages";
 import { fetchVideos } from "../../store/asyncThunks/fetchVideos";
-import { fetchEnglishVideo } from "../../store/asyncThunks/fetchEnglishVideo";
 import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 import { getHistory, setHistory } from '../../store/slices/historySlice';
 
@@ -24,21 +23,21 @@ import ImagesButton from '../../components/imagesButton/ImagesButton';
 import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
-import Recommendations from '../../components/recommendations/Recommendations';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import Reviews from '../../components/reviews/Reviews';
-import Keywords from '../../components/keywords/Keywords';
 import Rate from '../../components/rate/Rate';
-import SideTrending from '../../components/sideTrending/SideTrending';
 import Popularity from '../../components/popularity/Popularity';
 import TvSeasons from '../../components/tvSeasons/TvSeasons';
+import BodyAside from "./BodyAside/BodyAside";
 
 import style from './tv-series-details-page.module.scss';
 
 const TvSeriesDetailsPage = () => {
-  const {id} = useParams();
-  const {lang} = useSelector(state => state.lang);
-  const {details, images, videos, englishVideo} = useSelector(state => state);
+  const { id } = useParams();
+  const { lang } = useSelector(state => state.lang);
+  const details = useSelector(state => state.details);
+  const images = useSelector(state => state.images);
+  const videos = useSelector(state => state.videos);
 
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();
@@ -46,7 +45,6 @@ const TvSeriesDetailsPage = () => {
   useEffect(() =>{
     dispatch(fetchDetails({category, lang, id}))
     dispatch(fetchVideos({category, lang, id}))
-    dispatch(fetchEnglishVideo({category, id}))
     dispatch(fetchImages({category, id}))
   }, [dispatch, category, lang, id]);
 
@@ -64,13 +62,14 @@ const TvSeriesDetailsPage = () => {
   }, [dispatch, details, id, category]);
 
   const getFirstTrailerUrl = useMemo(() => {
-    return videos.res?.results.length > 0 ? videos.res.results[0].key 
-      : englishVideo.res?.results.length > 0 ? englishVideo.res.results[0].key : null;
-  }, [videos, englishVideo]);
+    return videos.res?.results.length > 0 ? videos.res.results[0].key : null;
+  }, [videos]);
 
-  const title = details.res?.name;
-  const isEnded = details.res?.status === 'Ended';
-  const releaseDate = details.res?.first_air_date && moment(details.res?.first_air_date).format('YYYY');
+  const { name, status, first_air_date } = {...details?.res}
+
+  const isEnded = status && status === 'Ended';
+
+  const releaseDate = first_air_date?.slice(0, 4);
   const lastDate = isEnded && details.res?.last_air_date && ` - ${moment(details.res?.last_air_date).format('YYYY')}`;
 
   return (
@@ -88,7 +87,7 @@ const TvSeriesDetailsPage = () => {
 
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
-                    <h1>{title}</h1>
+                    <h1>{ name }</h1>
                     <ul>
                       <li>{releaseDate}{lastDate}</li>
                       {
@@ -99,17 +98,17 @@ const TvSeriesDetailsPage = () => {
                   </div>
                   <div className={style.top__head_right}>
                     <Rating rating={details.res.vote_average} vote_count={details.res.vote_count} />
-                    <Rate id={id} category={category} title={details.res?.name}/>
+                    <Rate id={id} category={category} title={name}/>
                     <Popularity popularity={details.res?.popularity} />
                   </div>
                 </div>
 
                 <div className={style.top__center}>
-                  <PosterImage title={details.res.title} poster_path={details.res.poster_path} />
+                  <PosterImage title={name} poster_path={details.res.poster_path} />
                   <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
 
                   <div className={style.top__center_box}>
-                    <VideosButton videos={videos} englishVideo={englishVideo} />
+                    {/*<VideosButton videos={videos} />*/}
                     <ImagesButton images={images} />
                   </div>
                 </div>
@@ -140,11 +139,7 @@ const TvSeriesDetailsPage = () => {
                   <Reviews id={id} category={category} />
                 </div>
 
-                <aside className={style.body__right}>
-                  <Keywords category={category} id={id} />
-                  <SideTrending lang={lang} category={category}id={id} />
-                  <Recommendations id={id} category={category} lang={lang} />
-                </aside>
+                <BodyAside id={id} category={category} lang={lang} />
               </div>
             </div>
           </div>

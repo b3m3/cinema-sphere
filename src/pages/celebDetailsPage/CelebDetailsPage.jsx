@@ -1,7 +1,6 @@
-import {useEffect, useMemo} from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import moment from 'moment';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { fetchImages } from "../../store/asyncThunks/fetchImages";
@@ -17,17 +16,18 @@ import ImagesButton from '../../components/imagesButton/ImagesButton';
 import Overview from '../../components/overview/Overview';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import SideTrending from '../../components/sideTrending/SideTrending';
-import Popularity from '../../components/popularity/Popularity';
 
 import style from './celeb-details-page.module.scss';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import TitleInfo from "./Top/Top";
 
 const CelebDetailsPage = () => {
   const {id} = useParams();
   const {lang} = useSelector(state => state.lang);
-  const {details, images} = useSelector(state => state);
+  const details = useSelector(state => state.details);
+  const images = useSelector(state => state.images);
 
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();
@@ -50,14 +50,7 @@ const CelebDetailsPage = () => {
     }
   }, [dispatch, details, id, category]);
 
-  const name = details.res?.name;
-
-  const deathDay = useMemo(() => {
-    return details.res?.deathday && details.res?.birthday &&
-      `(${moment(details.res.birthday).format('YYYY')} - ${moment(details.res.deathday).format('YYYY')})`
-  }, []);
-
-  const knownFor = details.res?.['known_for_department'] && details.res?.['known_for_department'];
+  const { profile_path, popularity, name, deathday, biography, birthday, known_for_department } = {...details?.res};
 
   return (
     <section>
@@ -70,25 +63,18 @@ const CelebDetailsPage = () => {
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <BackgroundImage backdropPath={details.res['profile_path']} />
+                <BackgroundImage backdropPath={profile_path} />
 
-                <div className={style.top__head}>
-                  <div className={style.top__head_left}>
-                    <h1>
-                      {name} 
-                      <span>{deathDay}</span>
-                    </h1>
-                    <ul>
-                      <li>{knownFor}</li>
-                    </ul>
-                  </div>
-                  <div className={style.top__head_right}>
-                    <Popularity popularity={details.res.popularity} />
-                  </div>
-                </div>
+                <TitleInfo
+                  name={name}
+                  popularity={popularity}
+                  deathday={deathday}
+                  birthday={birthday}
+                  known_for_department={known_for_department}
+                />
 
                 <div className={style.top__center}>
-                  <PosterImage title={details.res.name} poster_path={details.res.profile_path} />
+                  <PosterImage title={name} posterPath={profile_path} />
                   <Details id={id} category={category} {...details.res && details.res} />
                 </div>
               </div>
@@ -99,7 +85,7 @@ const CelebDetailsPage = () => {
             <div className="container">
               <div className={style.body__wrapp}>
                 <div className={style.body__left}>
-                  <Overview biography={details.res?.biography} />
+                  <Overview biography={biography} />
                   <MediaSwiper category={category} lang={lang} id={id} title={'Starred in'} />
                 </div>
 

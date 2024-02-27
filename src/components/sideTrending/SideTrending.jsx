@@ -6,7 +6,7 @@ import { useWrapperSwiper } from '../../hooks/useWrapperSwiper';
 
 import PosterImage from '../PosterImage/PosterImage';
 import Loading from '../Loading/Loading';
-import SearchCard from '../searchCard/SearchCard';
+import SearchCard from '../SearchCard/SearchCard';
 
 import style from './side-trending.module.scss';
 

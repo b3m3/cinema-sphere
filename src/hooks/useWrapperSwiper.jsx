@@ -7,9 +7,11 @@ import 'swiper/css/navigation';
 
 export const useWrapperSwiper = (Component) => {
   return (props) => {
+    const {breakpoints, _id, nextEl, prevEl, res} = props;
+
     const uniqueIds = new Set();
 
-    const filteredItems = props.res?.results?.filter(item => {
+    const filteredItems = res?.results?.filter(item => {
       if (uniqueIds.has(item.id)) {
         return false;
       }
@@ -22,15 +24,16 @@ export const useWrapperSwiper = (Component) => {
       <div style={{position: 'relative'}}>
         <Swiper
           modules={[Navigation]}
-          breakpoints={props.breakpoints}
+          breakpoints={breakpoints}
           spaceBetween={10}
           speed={1000}
           navigation={{
-            nextEl: `.${props.nextEl}`,
-            prevEl: `.${props.prevEl}`
+            nextEl: `.${nextEl}`,
+            prevEl: `.${prevEl}`
           }}
           >
-          {filteredItems?.map((data) => +props._id !== +data.id && (data.poster_path || data.profile_path) && (
+
+          {filteredItems?.map((data) => +_id !== +data.id && (data.poster_path || data.profile_path) && (
             <SwiperSlide key={data.id}>
               <Component {...data} {...props} media_type={data.media_type} />
             </SwiperSlide>

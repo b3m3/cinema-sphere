@@ -24,7 +24,7 @@ import ImagesButton from '../../components/imagesButton/ImagesButton';
 import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/overview/Overview';
 import MediaCasts from '../../components/mediaCasts/MediaCasts';
-import Recommendations from '../../components/recommendations/Recommendations';
+import Recommendations from '../../components/Recommendations/Recommendations';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import Reviews from '../../components/reviews/Reviews';
 import Keywords from '../../components/keywords/Keywords';
