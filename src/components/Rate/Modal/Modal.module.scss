@@ -1,44 +1,3 @@
-.wrapp {
-  display: flex;
-  flex-direction: column;
-  gap: .3125rem;
-  white-space: nowrap;
-
-  & h4 {
-    text-align: center;
-    font-size: .75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--grey-400);
-  }
-}
-
-.button {
-  padding-top: .3125rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .3125rem;
-  color: var(--blue-400);
-  transition: opacity .2s;
-
-  @media (any-hover: hover) {
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
-  & svg {
-    font-size: 1.875rem;
-  }
-
-  & span {
-    font-weight: 500;
-    font-size: 1.25rem;
-  }
-}
-
 .modal {
   padding: 5px;
   position: fixed;
@@ -57,7 +16,7 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity .2s;
-  
+
   &.show {
     pointer-events: all;
     opacity: 1;
@@ -80,7 +39,7 @@
 
   &_star {
     pointer-events: none;
-    
+
     & svg {
       position: absolute;
       top: -10px;

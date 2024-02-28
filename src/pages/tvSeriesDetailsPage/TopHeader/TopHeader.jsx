@@ -1,24 +1,27 @@
-import Time from "../../../components/time/Time";
+import Time from "../../../components/Time/Time";
 import Rating from "../../../components/Rating/Rating";
-import Rate from "../../../components/rate/Rate";
+import Rate from "../../../components/Rate/Rate";
 import Popularity from "../../../components/Popularity/Popularity";
 
 import style from './TopHeader.module.scss';
+import FirstLastAirDates from "../../../components/FirstLastAirDates/FirstLastAirDates";
 
-const TopHeader = ({id, name, category, popularity, releaseDate, lastDate, episode_run_time, vote_average, vote_count}) => {
+const TopHeader = (props) => {
+  const {id, name, category, popularity, first_air_date, last_air_date, episode_run_time, vote_average, status,
+    vote_count} = props;
+
   return (
     <div className={style.head}>
-      <div className={style.head_left}>
+      <div className={style.head__left}>
         <h1>{name}</h1>
-        <ul>
-          <li>{releaseDate}{lastDate}</li>
-          {
-            Boolean(episode_run_time?.length) &&
-            <li><Time minutes={episode_run_time}/></li>
-          }
-        </ul>
+
+        <div className={style.head__left_box}>
+          <Time minutes={episode_run_time} />
+          <FirstLastAirDates release={first_air_date} endDate={last_air_date} status={status} />
+        </div>
       </div>
-      <div className={style.head_right}>
+
+      <div className={style.head__right}>
         <Rating rating={vote_average} vote_count={vote_count}/>
         <Rate id={id} category={category} title={name}/>
         <Popularity popularity={popularity}/>

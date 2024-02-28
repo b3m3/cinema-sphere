@@ -62,9 +62,6 @@ const TvSeriesDetailsPage = () => {
   //   return videos.res?.results.length > 0 ? videos.res.results[0].key : null;
   // }, [videos]);
 
-  const releaseDate = first_air_date?.slice(0, 4);
-  const lastDate = status && status === 'Ended' && last_air_date && ` - ${last_air_date.slice(0, 4)}`;
-
   return (
     <section className={style.wrapp}>
       { details.loading && <Loading /> }
@@ -81,10 +78,11 @@ const TvSeriesDetailsPage = () => {
                 <TopHeader
                   id={id}
                   name={name}
+                  status={status}
                   category={category}
                   popularity={popularity}
-                  releaseDate={releaseDate}
-                  lastDate={lastDate}
+                  last_air_date={last_air_date}
+                  first_air_date={first_air_date}
                   episode_run_time={episode_run_time}
                   vote_average={vote_average}
                   vote_count={vote_count}

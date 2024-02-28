@@ -12,7 +12,7 @@ import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 
 import Rating from '../../components/Rating/Rating';
 import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
-import Time from '../../components/time/Time';
+import Time from '../../components/Time/Time';
 import Details from '../../components/details/Details';
 import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
 import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
@@ -28,7 +28,7 @@ import Recommendations from '../../components/Recommendations/Recommendations';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import Reviews from '../../components/Reviews/Reviews';
 import Keywords from '../../components/Keywords/Keywords';
-import Rate from '../../components/rate/Rate';
+import Rate from '../../components/Rate/Rate';
 import SideTrending from '../../components/SideTrending/SideTrending';
 import Popularity from '../../components/Popularity/Popularity';
 
