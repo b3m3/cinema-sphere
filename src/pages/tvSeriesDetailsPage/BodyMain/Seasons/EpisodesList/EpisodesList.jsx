@@ -30,7 +30,7 @@ const EpisodesList = ({id, lang, category, seasonNumber}) => {
   
   return (
     <>
-      { loading && <Loading size={10} black /> }
+      { loading && <Loading size={30} black /> }
 
       {
         Boolean(res?.episodes.length) &&

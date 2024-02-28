@@ -30,7 +30,7 @@ import Reviews from '../../components/Reviews/Reviews';
 import Keywords from '../../components/Keywords/Keywords';
 import Rate from '../../components/rate/Rate';
 import SideTrending from '../../components/SideTrending/SideTrending';
-import Popularity from '../../components/popularity/Popularity';
+import Popularity from '../../components/Popularity/Popularity';
 
 import style from './movie-details-page.module.scss';
 

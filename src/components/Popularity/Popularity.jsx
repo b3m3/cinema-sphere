@@ -1,7 +1,7 @@
 import {memo} from "react";
 
 import { IoIosTrendingUp } from "react-icons/io";
-import style from './popularity.module.scss';
+import style from './Popularity.module.scss';
 
 const Popularity = memo(({popularity}) => {
   return (

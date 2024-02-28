@@ -14,7 +14,7 @@ const currentYear = new Date().getFullYear();
 
 const Filters = ({handleCloseFilters}) => {
   const [category, setCategory] = useState('movie');
-  const [sort, setSort] = useState('popularity.desc');
+  const [sort, setSort] = useState('Popularity.desc');
   const [genres, setGenres] = useState([]);
   const [ratingMin, setRatingMin] = useState(1);
   const [ratingMax, setRatingMax] = useState(10);

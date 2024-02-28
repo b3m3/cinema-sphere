@@ -2,7 +2,7 @@ import {memo} from "react";
 import style from './SortOptions.module.scss';
 
 const sortArr = [
-  {name: 'Popular', path: 'popularity.desc'},
+  {name: 'Popular', path: 'Popularity.desc'},
   {name: 'Date', path: 'primary_release_date.desc'},
   {name: 'Rating', path: 'vote_average.desc'},
   {name: 'Votes', path: 'vote_count.desc'},

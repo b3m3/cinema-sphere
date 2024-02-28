@@ -1,4 +1,4 @@
-import Popularity from "../../../components/popularity/Popularity";
+import Popularity from "../../../components/Popularity/Popularity";
 import {useMemo} from "react";
 import style from './Top.module.scss';
 
