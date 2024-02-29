@@ -19,7 +19,7 @@ import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
-import VideosButton from '../../components/videosButton/VideosButton';
+import VideosBox from '../../components/VideosBox/VideosBox';
 import ImagesBox from '../../components/ImagesBox/ImagesBox';
 import MediaGenres from '../../components/mediaGenres/MediaGenres';
 import Overview from '../../components/Overview/Overview';
@@ -114,7 +114,7 @@ const MovieDetails = () => {
                   <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
 
                   <div className={style.top__center_box}>
-                    <VideosButton videos={videos} englishVideo={englishVideo} />
+                    <VideosBox videos={videos} englishVideo={englishVideo} />
                     <ImagesBox images={images} />
                   </div>
                 </div>
