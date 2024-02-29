@@ -21,7 +21,7 @@ import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import VideosBox from '../../components/VideosBox/VideosBox';
 import ImagesBox from '../../components/ImagesBox/ImagesBox';
-import MediaGenres from '../../components/mediaGenres/MediaGenres';
+import Genres from '../../components/Genres/Genres';
 import Overview from '../../components/Overview/Overview';
 import MediaCasts from '../../components/MediaCasts/MediaCasts';
 import Recommendations from '../../components/Recommendations/Recommendations';
@@ -120,7 +120,7 @@ const MovieDetails = () => {
                 </div>
 
                 <div className={style.top__bottom}>
-                  <MediaGenres genres={details.res?.genres} category={category} />
+                  <Genres genres={details.res?.genres} category={category} />
 
                   <div className={style.top__bottom_block}>
                     <Details id={id} category={category} {...details.res && details.res} />

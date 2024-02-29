@@ -1,8 +1,3 @@
-import {useEffect, useMemo} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchVideos} from "../../../store/asyncThunks/fetchVideos";
-import {fetchImages} from "../../../store/asyncThunks/fetchImages";
-
 import PosterImage from "../../../components/PosterImage/PosterImage";
 import Trailer from "../../../components/Trailer/Trailer";
 import ImagesBox from "../../../components/ImagesBox/ImagesBox";

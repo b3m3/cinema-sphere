@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import style from './media-genres.module.scss';
+import style from './Genres.module.scss';
 
-const MediaGenres = ({genres,category}) => {
+const Genres = ({genres, category}) => {
   return (
     <ul className={style.wrapp}>
       {genres?.map(({id, name}) => (
@@ -13,4 +13,4 @@ const MediaGenres = ({genres,category}) => {
   );
 }
 
-export default MediaGenres;
+export default Genres;

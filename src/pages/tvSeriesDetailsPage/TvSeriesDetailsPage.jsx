@@ -15,6 +15,7 @@ import TopHeader from "./TopHeader/TopHeader";
 import TopCenter from "./TopCenter/TopCenter";
 
 import style from './tv-series-details-page.module.scss';
+import TopBottom from "./TopBottom/TopBottom";
 
 const TvSeriesDetailsPage = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const TvSeriesDetailsPage = () => {
   }, [dispatch, category, lang, id]);
 
   const { name, status, overview, seasons, poster_path, first_air_date, last_air_date, popularity, episode_run_time,
-    vote_average, vote_count, backdrop_path } = {...details?.res};
+    vote_average, vote_count, backdrop_path, genres } = {...details?.res};
 
   useEffect(() => {
     dispatch(getHistory());
@@ -44,6 +45,8 @@ const TvSeriesDetailsPage = () => {
       dispatch(setHistory({id, poster_path, category}));
     }
   }, [dispatch, details, id, category]);
+
+  console.log(genres)
 
   return (
     <section className={style.wrapp}>
@@ -80,17 +83,10 @@ const TvSeriesDetailsPage = () => {
                   backdrop_path={backdrop_path}
                 />
 
-                {/*<div className={style.bottom}>*/}
-                {/*  <MediaGenres genres={genres} category={category}/>*/}
-
-                {/*  <div className={style.bottom_block}>*/}
-                {/*    /!*<Details id={id} category={category} {...details.res && details.res} />*!/*/}
-                {/*    <div>*/}
-                {/*      <AddToWatchlist orange/>*/}
-                {/*    </div>*/}
-                {/*  </div>*/}
-
-                {/*</div>*/}
+                <TopBottom
+                  genres={genres}
+                  category={category}
+                />
               </div>
             </div>
           </div>

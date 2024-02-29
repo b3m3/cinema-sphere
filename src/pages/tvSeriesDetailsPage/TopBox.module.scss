@@ -1,15 +1,4 @@
-.bottom {
-  display: flex;
-  flex-direction: column;
-  gap: .9375rem;
 
-  &_block {
-    display: grid;
-    align-items: start;
-    grid-template: auto / minmax(auto, 80%) minmax(auto, 20%);
-    gap: 3.125rem;
-  }
-}
 
 @media screen and (max-width: 1024px) {
   .wrapp {
@@ -17,13 +6,3 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .bottom {
-    &_block {
-      display: flex;
-      flex-direction: column;
-      align-items: unset;
-      gap: 1rem;
-    }
-  }
-}
