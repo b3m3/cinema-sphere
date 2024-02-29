@@ -12,7 +12,7 @@ import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
-import ImagesButton from '../../components/imagesButton/ImagesButton';
+import ImagesBox from '../../components/ImagesBox/ImagesBox';
 import Overview from '../../components/Overview/Overview';
 import MediaSwiper from '../../components/mediaSwiper/MediaSwiper';
 import SideTrending from '../../components/SideTrending/SideTrending';
@@ -91,7 +91,7 @@ const CelebDetailsPage = () => {
 
                 <aside className={style.body__right}>
                   <div className={style.body__right_images}>
-                    <ImagesButton images={images} />
+                    <ImagesBox images={images} />
                   </div>
                   <SideTrending lang={lang} category={category} id={id} list={true} />
                 </aside>

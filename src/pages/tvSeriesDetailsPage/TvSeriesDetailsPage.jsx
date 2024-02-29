@@ -8,26 +8,18 @@ import { getHistory, setHistory } from '../../store/slices/historySlice';
 
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
+import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import BodyAside from "./BodyAside/BodyAside";
 import BodyMain from "./BodyMain/BodyMain";
+import TopHeader from "./TopHeader/TopHeader";
+import TopCenter from "./TopCenter/TopCenter";
 
 import style from './tv-series-details-page.module.scss';
-import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
-import TopHeader from "./TopHeader/TopHeader";
-import PosterImage from "../../components/PosterImage/PosterImage";
-import VideoTrailer from "../../components/videoTrailer/VideoTrailer";
-import ImagesButton from "../../components/imagesButton/ImagesButton";
-import MediaGenres from "../../components/mediaGenres/MediaGenres";
-import AddToWatchlist from "../../components/addToWatchlist/AddToWatchlist";
-import {fetchVideos} from "../../store/asyncThunks/fetchVideos";
-import {fetchImages} from "../../store/asyncThunks/fetchImages";
 
 const TvSeriesDetailsPage = () => {
   const { id } = useParams();
   const { lang } = useSelector(state => state.lang);
   const details = useSelector(state => state.details);
-  // const images = useSelector(state => state.images);
-  // const videos = useSelector(state => state.videos);
 
   const dispatch = useDispatch();
   const category = useCategoryFromLocation();
@@ -53,15 +45,6 @@ const TvSeriesDetailsPage = () => {
     }
   }, [dispatch, details, id, category]);
 
-  // useEffect(() =>{
-  //   dispatch(fetchVideos({category, lang, id}))
-  //   dispatch(fetchImages({category, id}))
-  // }, [dispatch, category, lang, id]);
-
-  // const getFirstTrailerUrl = useMemo(() => {
-  //   return videos.res?.results.length > 0 ? videos.res.results[0].key : null;
-  // }, [videos]);
-
   return (
     <section className={style.wrapp}>
       { details.loading && <Loading /> }
@@ -76,10 +59,10 @@ const TvSeriesDetailsPage = () => {
                 <BackgroundImage backdrop_path={backdrop_path}/>
 
                 <TopHeader
-                  id={id}
+                  id={memoizedId}
                   name={name}
                   status={status}
-                  category={category}
+                  category={memoizedCategory}
                   popularity={popularity}
                   last_air_date={last_air_date}
                   first_air_date={first_air_date}
@@ -88,15 +71,14 @@ const TvSeriesDetailsPage = () => {
                   vote_count={vote_count}
                 />
 
-                {/*<div className={style.center}>*/}
-                {/*  <PosterImage title={name} poster_path={poster_path}/>*/}
-                {/*  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={backdrop_path}/>*/}
-
-                {/*  <div className={style.center_box}>*/}
-                {/*    /!*<VideosButton videos={videos} />*!/*/}
-                {/*    <ImagesButton images={images}/>*/}
-                {/*  </div>*/}
-                {/*</div>*/}
+                <TopCenter
+                  id={memoizedId}
+                  category={memoizedCategory}
+                  lang={memoizedLang}
+                  name={name}
+                  poster_path={poster_path}
+                  backdrop_path={backdrop_path}
+                />
 
                 {/*<div className={style.bottom}>*/}
                 {/*  <MediaGenres genres={genres} category={category}/>*/}
@@ -116,8 +98,14 @@ const TvSeriesDetailsPage = () => {
           <div className={style.body}>
             <div className="container">
               <div className={style.body__wrapp}>
-                <BodyMain id={memoizedId} category={memoizedCategory} lang={memoizedLang} overview={overview}
-                          seasons={seasons}/>
+                <BodyMain
+                  id={memoizedId}
+                  category={memoizedCategory}
+                  lang={memoizedLang}
+                  overview={overview}
+                  seasons={seasons}
+                />
+
                 <BodyAside id={memoizedId} category={memoizedCategory} lang={memoizedLang}/>
               </div>
             </div>

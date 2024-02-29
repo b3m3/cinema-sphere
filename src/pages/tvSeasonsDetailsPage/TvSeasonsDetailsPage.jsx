@@ -16,7 +16,7 @@ import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import VideosButton from '../../components/videosButton/VideosButton';
-import ImagesButton from '../../components/imagesButton/ImagesButton';
+import ImagesBox from '../../components/ImagesBox/ImagesBox';
 import Overview from '../../components/Overview/Overview';
 import MediaCasts from '../../components/MediaCasts/MediaCasts';
 import Recommendations from '../../components/Recommendations/Recommendations';
@@ -82,7 +82,7 @@ const TvSeasonsDetailsPage = () => {
 
                   <div className={style.top__center_box}>
                     <VideosButton videos={videos} englishVideo={englishVideo} />
-                    <ImagesButton images={images} />
+                    <ImagesBox images={images} />
                   </div>
                 </div>
 

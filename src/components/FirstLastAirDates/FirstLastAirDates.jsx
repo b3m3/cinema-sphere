@@ -4,12 +4,10 @@ const FirstLastAirDates = ({release, endDate, status}) => {
   const releaseDate = release?.slice(0, 4);
   const lastDate = status && status === 'Ended' && endDate && ` - ${endDate.slice(0, 4)}`;
 
-  const isRes = Boolean(release.length);
-
   return (
     <>
       {
-        isRes &&
+        release &&
           <p className={style.wrapp}>
             { releaseDate && <span>{ releaseDate }</span> }
             { lastDate && <span>{ lastDate }</span> }

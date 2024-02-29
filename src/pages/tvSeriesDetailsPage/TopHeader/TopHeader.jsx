@@ -2,9 +2,9 @@ import Time from "../../../components/Time/Time";
 import Rating from "../../../components/Rating/Rating";
 import Rate from "../../../components/Rate/Rate";
 import Popularity from "../../../components/Popularity/Popularity";
+import FirstLastAirDates from "../../../components/FirstLastAirDates/FirstLastAirDates";
 
 import style from './TopHeader.module.scss';
-import FirstLastAirDates from "../../../components/FirstLastAirDates/FirstLastAirDates";
 
 const TopHeader = (props) => {
   const {id, name, category, popularity, first_air_date, last_air_date, episode_run_time, vote_average, status,
