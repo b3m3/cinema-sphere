@@ -7,23 +7,23 @@
   @media (any-hover: hover) {
     &:hover {
       .mask {
-        &::before {
-          background: var(--white-01);
-        }
+        //&::before {
+        //  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #000 120%);
+        //}
 
         & button {
-          left: 50%;
-          bottom: 50%;
-          transform: translate(-50%, 50%);
+          //left: 50%;
+          //bottom: 50%;
+          //transform: translate(-50%, 50%);
+          color: var(--orange-400);
 
           & svg {
-            transform: scale(1.4);
-            color: var(--orange-400);
+            //transform: scale(1.4);
           }
 
-          & b {
-            display: none;
-          }
+          //& b {
+          //  display: none;
+          //}
         }
       }
     }
@@ -50,7 +50,6 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #000 100%);
-    transition: .3s;
   }
 
   & img {
@@ -62,12 +61,15 @@
   }
 
   & button {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
     position: absolute;
     z-index: 4;
-    left: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
     padding: 3%;
-    transition: .3s;
+    transition: .2s;
 
     & span {
       pointer-events: none;
@@ -80,6 +82,10 @@
     & svg {
       font-size: 2.75rem;
       transition: .3s;
+    }
+
+    & b {
+      transition: .2s;
     }
   }
 }

@@ -10,7 +10,7 @@ import { fetchVideos } from "../../store/asyncThunks/fetchVideos";
 import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 
 import Rating from '../../components/Rating/Rating';
-import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
+import Trailer from '../../components/Trailer/Trailer';
 import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
@@ -78,7 +78,7 @@ const TvSeasonsDetailsPage = () => {
 
                 <div className={style.top__center}>
                   <PosterImage title={tvSeasons.res.title} poster_path={tvSeasons.res.poster_path} />
-                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={tvSeasons.res.poster_path}/>
+                  <Trailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={tvSeasons.res.poster_path}/>
 
                   <div className={style.top__center_box}>
                     <VideosBox videos={videos} englishVideo={englishVideo} />

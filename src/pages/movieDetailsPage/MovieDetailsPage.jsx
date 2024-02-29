@@ -11,7 +11,7 @@ import { getHistory, setHistory } from '../../store/slices/historySlice';
 import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 
 import Rating from '../../components/Rating/Rating';
-import VideoTrailer from '../../components/videoTrailer/VideoTrailer';
+import Trailer from '../../components/Trailer/Trailer';
 import Time from '../../components/Time/Time';
 import Details from '../../components/details/Details';
 import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
@@ -111,7 +111,7 @@ const MovieDetails = () => {
 
                 <div className={style.top__center}>
                   <PosterImage title={details.res.title} poster_path={details.res.poster_path} />
-                  <VideoTrailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
+                  <Trailer url={getFirstTrailerUrl} loading={videos.loading} backdrop={details.res.backdrop_path}/>
 
                   <div className={style.top__center_box}>
                     <VideosBox videos={videos} englishVideo={englishVideo} />
