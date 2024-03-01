@@ -7,7 +7,7 @@ import MoviesPage from '../pages/MoviesPage/MoviesPage';
 import MovieDetailsPage from '../pages/movieDetailsPage/MovieDetailsPage';
 import GalleryModalPage from '../pages/GalleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/TvSeriesPage/TvSeriesPage';
-import TvSeriesDetailsPage from "../pages/tvSeriesDetailsPage/TvSeriesDetailsPage";
+import TvSeriesDetailsPage from "../pages/TvSeriesDetailsPage/TvSeriesDetailsPage";
 import CelebsPage from '../pages/CelebsPage/CelebsPage';
 import TvSeasonsDetailsPage from "../pages/tvSeasonsDetailsPage/TvSeasonsDetailsPage";
 import TvEpisodesDetailsPage from "../pages/tvEpisodesDetailsPage/TvEpisodesDetailsPage";

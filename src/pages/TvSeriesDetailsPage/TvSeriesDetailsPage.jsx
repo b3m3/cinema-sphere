@@ -15,7 +15,7 @@ import TopHeader from "./TopHeader/TopHeader";
 import TopCenter from "./TopCenter/TopCenter";
 import TopBottom from "./TopBottom/TopBottom";
 
-import style from './tv-series-details-page.module.scss';
+import style from './TvSeriesDetailsPage.module.scss';
 
 const TvSeriesDetailsPage = () => {
   const { id } = useParams();
@@ -45,7 +45,7 @@ const TvSeriesDetailsPage = () => {
     if (details) {
       dispatch(setHistory({id, poster_path, category}));
     }
-  }, [dispatch, details, id, category]);
+  }, [dispatch, details, poster_path, id, category]);
 
   return (
     <section>
