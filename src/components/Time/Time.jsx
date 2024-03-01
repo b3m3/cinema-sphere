@@ -12,7 +12,7 @@ const Time = memo(({minutes}) => {
       {
         isRes &&
           <p className={style.wrapp}>
-            {convertMinutesToHoursAndMinutes(isRes ? minutes[0] : minutes)}
+            {convertMinutesToHoursAndMinutes(isArr ? minutes[0] : minutes)}
           </p>
       }
     </>

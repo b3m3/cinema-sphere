@@ -4,7 +4,7 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import HomePage from '../pages/HomePage/HomePage';
 import WatchListPage from '../pages/watchListPage/WatchListPage';
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
-import MovieDetailsPage from '../pages/movieDetailsPage/MovieDetailsPage';
+import MovieDetailsPage from '../pages/MovieDetailsPage/MovieDetailsPage';
 import GalleryModalPage from '../pages/GalleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/TvSeriesPage/TvSeriesPage';
 import TvSeriesDetailsPage from "../pages/TvSeriesDetailsPage/TvSeriesDetailsPage";

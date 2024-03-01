@@ -1,0 +1,20 @@
+.wrapp {
+  & li {
+    padding: .75rem 0;
+
+    &:not(:last-child){
+      border-bottom: 1px solid var(--grey-100);
+    }
+  }
+}
+
+.more {
+  color: var(--blue-300);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+
+  & svg {
+    font-size: 1.4rem;
+  }
+}

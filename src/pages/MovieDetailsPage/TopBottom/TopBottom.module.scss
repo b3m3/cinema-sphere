@@ -1,0 +1,23 @@
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem;
+
+  &_block {
+    display: grid;
+    align-items: start;
+    grid-template: auto / 1fr minmax(200px, auto);
+    gap: 3.125rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bottom {
+    &_block {
+      display: flex;
+      flex-direction: column;
+      align-items: unset;
+      gap: 1rem;
+    }
+  }
+}

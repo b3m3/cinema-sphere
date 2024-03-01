@@ -5,8 +5,8 @@ import DetailsBox from "./DetailsBox/DetailsBox";
 import style from './TopBottom.module.scss';
 
 const TopBottom = (props) => {
-  const { id, genres, category, air_date, release_date, first_air_date, production_countries,
-    production_companies, homepage, spoken_languages, created_by } = props;
+  const { id, genres, category, release_date, production_countries, production_companies, homepage,
+    budget, spoken_languages, created_by } = props;
 
   return (
     <div className={style.bottom}>
@@ -14,9 +14,8 @@ const TopBottom = (props) => {
 
       <div className={style.bottom_block}>
         <DetailsBox
-          air_date={air_date}
           release_date={release_date}
-          first_air_date={first_air_date}
+          budget={budget}
           production_countries={production_countries}
           production_companies={production_companies}
           id={id}

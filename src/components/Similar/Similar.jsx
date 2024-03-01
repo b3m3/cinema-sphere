@@ -28,34 +28,40 @@ const Similar = ({category, id, lang}) => {
   }, [dispatch, category, id, lang]);
 
   return (
-    <div className={style.wrapp}>
-      <Title title={'Similar'} />
-      { loading && <Loading size={30} black />}
-
+    <>
       {
         Boolean(res?.results?.length) &&
-          <SwiperWrapper
-            btnClass={'similar-arrow-'}
-            breakpoints={breakpoints}
-          >
-            {res?.results?.map(({ id, poster_path, release_date, first_air_date, title, name, vote_average }) => {
-              return (
-                <SwiperSlide key={id}>
-                  <MediaCard
-                    id={id}
-                    posterPath={poster_path}
-                    category={category}
-                    date={release_date || first_air_date}
-                    title={title || name}
-                    rating={vote_average}
-                    white
-                  />
-                </SwiperSlide>
-              )
-            })}
-          </SwiperWrapper>
+          <div className={style.wrapp}>
+            <Title title={'Similar'}/>
+            { loading && <Loading size={30} black/> }
+
+            {
+              Boolean(res?.results?.length) &&
+              <SwiperWrapper
+                btnClass={'similar-arrow-'}
+                breakpoints={breakpoints}
+              >
+                {res?.results?.map(({id, poster_path, release_date, first_air_date, title, name, vote_average}) => {
+                  return (
+                    <SwiperSlide key={id}>
+                      <MediaCard
+                        id={id}
+                        posterPath={poster_path}
+                        category={category}
+                        date={release_date || first_air_date}
+                        title={title || name}
+                        rating={vote_average}
+                        white
+                      />
+                    </SwiperSlide>
+                  )
+                })}
+              </SwiperWrapper>
+            }
+        </div>
       }
-    </div>
+    </>
+
   );
 };
 
