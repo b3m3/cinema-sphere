@@ -6,7 +6,7 @@
   &_block {
     display: grid;
     align-items: start;
-    grid-template: auto / minmax(auto, 80%) minmax(auto, 20%);
+    grid-template: auto / 1fr minmax(200px, auto);
     gap: 3.125rem;
   }
 }

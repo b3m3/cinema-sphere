@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import {memo, useCallback, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { fetchLinks } from "../../store/asyncThunks/fetchLinks";
 
-import style from './links.module.scss';
+import style from './Links.module.scss';
 
 const linksArr = [
   {id: 'imdb_id', linkBase: 'https://www.imdb.com/', name: 'IMDB'},
@@ -13,7 +13,7 @@ const linksArr = [
   {id: 'twitter_id', linkBase: 'https://twitter.com/', name: 'Twitter'},
 ]
 
-const Links = ({category, homepage}) => {
+const Links = memo(({category, homepage}) => {
   const {res} = useSelector(state => state.links)
   const dispatch = useDispatch();
   
@@ -23,8 +23,8 @@ const Links = ({category, homepage}) => {
     dispatch(fetchLinks({category, id}))
   }, [dispatch, category, id]);
 
-  const renderLinks = (id, linkBase, linkKey, name) => {
-    if (res[`${id}`]) {
+  const renderLinks = useCallback((id, linkBase, linkKey, name) => {
+    if (res?.[`${id}`]) {
       const isPerson = category === 'person';
       const imdb = id === 'imdb_id';
       const baseUrl = imdb && isPerson ? linkBase + 'name/' : imdb && !isPerson ? linkBase + 'Title/' : linkBase;
@@ -35,26 +35,29 @@ const Links = ({category, homepage}) => {
         </a>
       )
     }
-  }
+  }, [res]);
   
   return (
     <>
       {
         res &&
-          <>
-            {
-              homepage && 
-                <a className={style.link} href={homepage} rel="noopener noreferrer" target='__blank'>
-                  Official Site
-                </a>
-            }
-            {linksArr.map(({id, linkBase, name}) => (
-              renderLinks(id, linkBase, res[`${id}`], name)
-            ))}
-          </>
+          <div className={style.wrapp}>
+            <h4>Links</h4>
+
+            <div className={style.wrapp__box}>
+              {
+                homepage &&
+                  <a href={homepage} rel="noopener noreferrer" target='__blank'>Homepage</a>
+              }
+
+              {linksArr.map(({id, linkBase, name}) => (
+                renderLinks(id, linkBase, res[`${id}`], name)
+              ))}
+            </div>
+          </div>
       }
     </>
   );
-}
+})
 
 export default Links;

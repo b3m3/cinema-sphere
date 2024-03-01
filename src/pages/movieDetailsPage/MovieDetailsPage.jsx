@@ -14,7 +14,7 @@ import Rating from '../../components/Rating/Rating';
 import Trailer from '../../components/Trailer/Trailer';
 import Time from '../../components/Time/Time';
 import Details from '../../components/details/Details';
-import AddToWatchlist from '../../components/addToWatchlist/AddToWatchlist';
+import WatchlistButton from '../../components/WatchlistButton/WatchlistButton';
 import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 import PosterImage from '../../components/PosterImage/PosterImage';
 import Loading from '../../components/Loading/Loading';
@@ -125,7 +125,7 @@ const MovieDetails = () => {
                   <div className={style.top__bottom_block}>
                     <Details id={id} category={category} {...details.res && details.res} />
                     <div>
-                      <AddToWatchlist orange/>
+                      <WatchlistButton orange/>
                     </div>
                   </div>
 

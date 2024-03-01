@@ -1,0 +1,14 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: .9375rem 0;
+  border-top: 1px solid var(--white-01);
+
+  & h4 {
+    font-weight: 500;
+    font-size: .875rem;
+    color: var(--grey-400);
+    width: 10.2rem;
+  }
+}

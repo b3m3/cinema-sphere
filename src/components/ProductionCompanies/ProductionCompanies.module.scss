@@ -1,0 +1,47 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: .9375rem 0;
+  border-top: 1px solid var(--white-01);
+  grid-row-gap: 8px;
+
+  & h4 {
+    font-weight: 500;
+    font-size: .875rem;
+    color: var(--grey-400);
+    width: 10.2rem;
+  }
+
+  & ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .625rem;
+
+    & li {
+      position: relative;
+
+      &:not(:last-child) {
+        &::before {
+          position: absolute;
+          content: ',';
+          bottom: 0;
+          right: -4px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapp {
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+
+    & ul {
+      justify-content: center;
+    }
+  }
+}

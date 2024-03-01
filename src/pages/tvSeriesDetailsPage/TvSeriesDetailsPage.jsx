@@ -13,9 +13,9 @@ import BodyAside from "./BodyAside/BodyAside";
 import BodyMain from "./BodyMain/BodyMain";
 import TopHeader from "./TopHeader/TopHeader";
 import TopCenter from "./TopCenter/TopCenter";
+import TopBottom from "./TopBottom/TopBottom";
 
 import style from './tv-series-details-page.module.scss';
-import TopBottom from "./TopBottom/TopBottom";
 
 const TvSeriesDetailsPage = () => {
   const { id } = useParams();
@@ -34,7 +34,8 @@ const TvSeriesDetailsPage = () => {
   }, [dispatch, category, lang, id]);
 
   const { name, status, overview, seasons, poster_path, first_air_date, last_air_date, popularity, episode_run_time,
-    vote_average, vote_count, backdrop_path, genres } = {...details?.res};
+    vote_average, vote_count, backdrop_path, genres, air_date, release_date, production_countries, production_companies,
+    homepage, spoken_languages, created_by } = {...details?.res};
 
   useEffect(() => {
     dispatch(getHistory());
@@ -46,10 +47,8 @@ const TvSeriesDetailsPage = () => {
     }
   }, [dispatch, details, id, category]);
 
-  console.log(genres)
-
   return (
-    <section className={style.wrapp}>
+    <section>
       { details.loading && <Loading /> }
       { details.status && <Error status={details.status} />}
 
@@ -84,8 +83,17 @@ const TvSeriesDetailsPage = () => {
                 />
 
                 <TopBottom
-                  genres={genres}
+                  id={id}
                   category={category}
+                  genres={genres}
+                  air_date={air_date}
+                  release_date={release_date}
+                  first_air_date={first_air_date}
+                  production_countries={production_countries}
+                  production_companies={production_companies}
+                  homepage={homepage}
+                  spoken_languages={spoken_languages}
+                  created_by={created_by}
                 />
               </div>
             </div>

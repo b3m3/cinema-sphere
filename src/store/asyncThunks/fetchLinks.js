@@ -5,7 +5,7 @@ import {BASE_URL} from "../../constants/api";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchLinks = createAsyncThunk(
-  'links/fetchLinks',
+  'Links/fetchLinks',
   async({category, id}, {rejectWithValue}) => {
     try {
       if (category && id) {

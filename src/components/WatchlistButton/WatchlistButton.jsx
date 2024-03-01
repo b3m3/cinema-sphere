@@ -1,10 +1,10 @@
 import { BsBookmarkPlusFill } from "react-icons/bs";
 // import { BsFillBookmarkCheckFill } from 'react-icons/bs'
 
-import style from './add-to-watchlist.module.scss';
+import style from './WatchlistButton.module.scss';
 import {memo} from "react";
 
-const AddToWatchlist = memo(({id, orange, bookmark}) => {
+const WatchlistButton = memo(({id, orange, bookmark}) => {
   return (
     <button 
       className={`${style.wrapp} ${bookmark && style.bookmark}`}
@@ -36,4 +36,4 @@ const AddToWatchlist = memo(({id, orange, bookmark}) => {
   );
 })
 
-export default AddToWatchlist;
+export default WatchlistButton;

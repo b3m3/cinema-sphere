@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import PosterImage from '../PosterImage/PosterImage';
-import AddToWatchlist from '../addToWatchlist/AddToWatchlist';
+import WatchlistButton from '../WatchlistButton/WatchlistButton';
 import Rating from '../Rating/Rating';
 
 import style from './MediaCard.module.scss';
@@ -31,7 +31,7 @@ const MediaCard = ({id, posterPath, date, title, rating, white, category, mediaT
         </div>
       </div>
 
-      <AddToWatchlist id={id} bookmark />
+      <WatchlistButton id={id} bookmark />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import {memo} from "react";
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import AddToWatchlist from '../../../../components/addToWatchlist/AddToWatchlist';
+import WatchlistButton from '../../../../components/WatchlistButton/WatchlistButton';
 
 import style from './LatestCard.module.scss';
 
@@ -10,7 +10,7 @@ const LatestCard = memo(({id, category, title, releaseDate}) => {
   return (
     <div className={style.wrapp}>
       <div className={style.bookmark}>
-        <AddToWatchlist id={id} category={category} bookmark />
+        <WatchlistButton id={id} category={category} bookmark />
       </div>
 
       <Link className={style.col} to={`/${category}/${id}`}>
