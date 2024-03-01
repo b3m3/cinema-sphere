@@ -13,7 +13,7 @@ const linksArr = [
   {id: 'twitter_id', linkBase: 'https://twitter.com/', name: 'Twitter'},
 ]
 
-const Links = memo(({category, homepage}) => {
+const Links = memo(({category, homepage, borderBottom}) => {
   const {res} = useSelector(state => state.links)
   const dispatch = useDispatch();
   
@@ -35,13 +35,13 @@ const Links = memo(({category, homepage}) => {
         </a>
       )
     }
-  }, [res]);
+  }, [category, res]);
   
   return (
     <>
       {
         res &&
-          <div className={style.wrapp}>
+          <div className={`${style.wrapp} ${borderBottom && style.borderBottom}`}>
             <h4>Links</h4>
 
             <div className={style.wrapp__box}>

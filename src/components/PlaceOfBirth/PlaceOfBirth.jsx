@@ -1,9 +1,15 @@
-import React from 'react';
+import style from './PlaceOfBirth.module.scss';
 
-const PlaceOfBirth = ({place_of_birth}) => {
+const PlaceOfBirth = ({placeOfBirth}) => {
   return (
     <>
-      { place_of_birth && <p>{ place_of_birth }</p> }
+      {
+        placeOfBirth &&
+          <div className={style.wrapp}>
+            <h4>Place of birth</h4>
+            <p>{ placeOfBirth }</p>
+          </div>
+      }
     </>
   );
 };

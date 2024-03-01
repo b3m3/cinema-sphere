@@ -1,0 +1,23 @@
+ .wrapp {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   padding: .9375rem 0;
+   border-bottom: 1px solid var(--white-01);
+   grid-row-gap: 8px;
+
+ & h4 {
+     font-weight: 500;
+     font-size: .875rem;
+     color: var(--grey-400);
+     width: 10.2rem;
+   }
+ }
+
+ @media screen and (max-width: 768px) {
+   .wrapp {
+     text-align: center;
+     align-items: center;
+     flex-direction: column;
+   }
+ }

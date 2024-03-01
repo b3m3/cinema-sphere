@@ -38,7 +38,7 @@ const CelebsPage = () => {
               knownFor={known_for_department}
               category={category}
               name={original_name}
-              profilePath={profile_path}
+              posterPath={profile_path}
             />
           ))}
         </div>

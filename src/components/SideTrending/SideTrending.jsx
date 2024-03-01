@@ -11,7 +11,7 @@ const breakpoints = {
   1024: { slidesPerView: 2, slidesPerGroup: 2 }
 }
 
-const SideTrending = ({category, lang, id, list}) => {
+const SideTrending = ({category, lang, list}) => {
   const { loading, res } = useSelector(state => state.trending);
   const dispatch = useDispatch();
 

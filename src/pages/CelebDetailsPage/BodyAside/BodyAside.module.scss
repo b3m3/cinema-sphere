@@ -1,0 +1,11 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  &__images {
+    height: 80px;
+    background: var(--blue-400-01);
+    border-radius: var(--radius-4);
+  }
+}

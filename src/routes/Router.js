@@ -14,7 +14,7 @@ import TvEpisodesDetailsPage from "../pages/tvEpisodesDetailsPage/TvEpisodesDeta
 import NotFoundPage from '../pages/NotFoundSvg/NotFoundPage';
 import SearchPage from "../pages/SearchPage/SearchPage";
 import DiscoverPage from "../pages/DiscoverPage/DiscoverPage";
-import CelebDetailsPage from "../pages/celebDetailsPage/CelebDetailsPage";
+import CelebDetailsPage from "../pages/CelebDetailsPage/CelebDetailsPage";
 
 const Router = () => {
   return useRoutes([

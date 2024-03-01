@@ -1,0 +1,52 @@
+.top {
+  position: relative;
+  z-index: 1;
+  padding: .625rem 0;
+
+  &::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    backdrop-filter: blur(50px);
+  }
+
+  &__wrapp {
+    display: flex;
+    flex-direction: column;
+    gap: .9375rem;
+  }
+}
+
+.body {
+  background: #fff;
+  color: var(--grey-900);
+  padding: 1rem 0 3rem 0;
+
+  &__wrapp {
+    display: grid;
+    grid-template: auto / minmax(auto, 68%) minmax(auto, 28%);
+    gap: 4%;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .top {
+    &__wrapp {
+      gap: 1.25rem;
+    }
+  }
+
+  .body {
+    &__wrapp {
+      display: grid;
+      grid-template: auto auto / minmax(auto, 100%);
+      gap: 1.25rem;
+    }
+  }
+}
