@@ -25,12 +25,12 @@ const Recommendations = ({id, category, lang}) => {
             <h2>Recommendations</h2>
 
             <ul>
-              {res?.results?.map(({id, name, media_type, first_air_date, vote_average, poster_path}) => {
+              {res?.results?.map(({id, name, title, media_type, first_air_date, vote_average, poster_path}) => {
                 return (
                   <li key={id}>
                     <SearchCard
                       id={id}
-                      title={name}
+                      title={name || title}
                       mediaType={media_type}
                       date={first_air_date}
                       rating={vote_average}

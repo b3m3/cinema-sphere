@@ -24,7 +24,7 @@ const TrendingCard = memo(({id, srcPosterImg, srcBackgroundImg, title, realese, 
       </div>
 
       <div className={style.poster}>
-        <PosterImage id={id(currentSlide)} poster_path={srcPosterImg(currentSlide)} category={'movie'} link/>
+        <PosterImage id={id(currentSlide)} posterPath={srcPosterImg(currentSlide)} category={'movie'} link/>
       </div>
 
       <div className={style.body}>

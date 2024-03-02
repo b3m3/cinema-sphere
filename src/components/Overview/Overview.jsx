@@ -13,10 +13,15 @@ const Overview = memo(({overview, biography}) => {
   }, [overview, biography]);
 
   return (
-    <div className={style.wrapp}>
-      <Title title={title}/>
-      <p>{ text }</p>
-    </div>
+    <>
+      {
+        text &&
+          <div className={style.wrapp}>
+            <Title title={title}/>
+            <p>{ text }</p>
+          </div>
+      }
+    </>
   );
 })
 

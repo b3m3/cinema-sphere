@@ -1,0 +1,32 @@
+.wrapp {
+  display: grid;
+  grid-column-gap: 15px;
+  grid-template: auto / 30px 1fr;
+
+  & h3 {
+    line-height: 1.7;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  & span {
+    font-size: 13px;
+    color: var(--grey-400);
+  }
+
+  &_row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+}

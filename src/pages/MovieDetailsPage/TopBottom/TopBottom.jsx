@@ -6,7 +6,7 @@ import style from './TopBottom.module.scss';
 
 const TopBottom = (props) => {
   const { id, genres, category, release_date, production_countries, production_companies, homepage,
-    budget, spoken_languages, created_by } = props;
+    budget, spoken_languages } = props;
 
   return (
     <div className={style.bottom}>
@@ -22,7 +22,6 @@ const TopBottom = (props) => {
           category={category}
           homepage={homepage}
           spoken_languages={spoken_languages}
-          created_by={created_by}
         />
 
         <div>

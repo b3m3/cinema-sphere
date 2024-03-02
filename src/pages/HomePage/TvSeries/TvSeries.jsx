@@ -1,11 +1,12 @@
 import {memo, useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import {SwiperSlide} from "swiper/react";
 
-import { useWrapperSwiper } from "../../../hooks/useWrapperSwiper";
 import {fetchTrendingTvSeries} from "../../../store/asyncThunks/fetchTrendingHome";
 
 import Title from "../../../components/Title/Title";
 import Loading from "../../../components/Loading/Loading";
+import SwiperWrapper from "../../../components/SwiperWrapper/SwiperWrapper";
 import MediaCard from "../../../components/MediaCard/MediaCard";
 
 import style from './TvSeries.module.scss';
@@ -29,21 +30,30 @@ const TvSeries = memo(() => {
     dispatch(fetchTrendingTvSeries({lang}))
   }, [dispatch, lang])
 
-  const SwiperWrapperTvSeries = useWrapperSwiper(MediaCard);
-
   return (
     <div className={style.wrapp}>
       <Title title={'TV Series'} link={'/tv/top_rated/1'}/>
 
-      {loading && <Loading size={7}/>}
+      { loading && <Loading size={7}/> }
 
-      <SwiperWrapperTvSeries
-        res={res}
-        nextEl={'sbnst'}
-        prevEl={'sbpst'}
+      <SwiperWrapper
         breakpoints={breakpoints}
-        category={'tv'}
-      />
+        btnClass={'trending-tv-series-'}
+      >
+        {res?.results?.map(({id, name, poster_path, first_air_date, vote_average}) => (
+          <SwiperSlide key={id} >
+            <MediaCard
+              id={id}
+              name={name}
+              posterPath={poster_path}
+              category={'tv'}
+              date={first_air_date}
+              title={name}
+              rating={vote_average}
+            />
+          </SwiperSlide>
+        ))}
+      </SwiperWrapper>
     </div>
   );
 });

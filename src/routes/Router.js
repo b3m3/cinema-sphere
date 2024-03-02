@@ -9,7 +9,7 @@ import GalleryModalPage from '../pages/GalleryModalPage/GalleryModalPage';
 import TvSeriesPage from '../pages/TvSeriesPage/TvSeriesPage';
 import TvSeriesDetailsPage from "../pages/TvSeriesDetailsPage/TvSeriesDetailsPage";
 import CelebsPage from '../pages/CelebsPage/CelebsPage';
-import TvSeasonsDetailsPage from "../pages/tvSeasonsDetailsPage/TvSeasonsDetailsPage";
+import TvSeasonsDetailsPage from "../pages/TvSeasonsDetailsPage/TvSeasonsDetailsPage";
 import TvEpisodesDetailsPage from "../pages/tvEpisodesDetailsPage/TvEpisodesDetailsPage";
 import NotFoundPage from '../pages/NotFoundSvg/NotFoundPage';
 import SearchPage from "../pages/SearchPage/SearchPage";

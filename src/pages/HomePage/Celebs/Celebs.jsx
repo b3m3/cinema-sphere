@@ -24,9 +24,14 @@ const Celebs = memo(() => {
       { loading && <Loading size={7}/> }
 
       <ul>
-        {res?.results?.slice(0, 14).map(props => (
-          <li key={props.id}>
-            <CelebCard {...props} big/>
+        {res?.results?.slice(0, 14).map(({id, name, profile_path})=> (
+          <li key={id}>
+            <CelebCard
+              id={id}
+              name={name}
+              posterPath={profile_path}
+              big
+            />
           </li>
         ))}
       </ul>

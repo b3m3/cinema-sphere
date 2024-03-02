@@ -11,7 +11,7 @@ const TrendingList = memo(({id, queueArray, title, overview, rating, srcPosterIm
     <ul className={style.list}>
       {queueArray.map(({item}, i) => (
         <li className={style.list_item} key={i}>
-          <PosterImage poster_path={srcPosterImg(item)} id={id(item)} category={'movie'} link/>
+          <PosterImage posterPath={srcPosterImg(item)} id={id(item)} category={'movie'} link/>
           <Link to={`/movie/${id(item)}`}>
             <div className={style.list_title}>
               <p>{title(item)}</p>

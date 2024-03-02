@@ -25,7 +25,7 @@ import Recommendations from '../../components/Recommendations/Recommendations';
 import Keywords from '../../components/Keywords/Keywords';
 import Time from '../../components/Time/Time';
 import EpisodesSwitcher from '../../components/episodesSwitcher/EpisodesSwitcher';
-import TitleSwitcher from '../../components/titleSwitcher/TitleSwitcher';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 import style from './tv-episodes-details-page.module.scss';
 
@@ -79,7 +79,7 @@ const TvEpisodesDetailsPage = () => {
 
                 <div className={style.top__head}>
                   <div className={style.top__head_left}>
-                    <TitleSwitcher titleData={titleData} />
+                    <Breadcrumbs titleData={titleData} />
 
                     <ul>
                       <li>{releaseDate}</li>

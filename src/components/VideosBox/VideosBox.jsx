@@ -7,15 +7,19 @@ import {fetchVideos} from "../../store/asyncThunks/fetchVideos";
 
 import style from './VideosBox.module.scss';
 
-const VideosBox = memo(({id, category, lang}) => {
+const VideosBox = memo(({id, season, category, lang}) => {
   const videos = useSelector(state => state.videos);
 
   const {pathname} = useLocation();
   const dispatch = useDispatch();
 
-  useEffect(() =>{
-    dispatch(fetchVideos({category, lang, id}));
-  }, [dispatch, category, lang, id]);
+  useEffect(() => {
+    if (season) {
+      dispatch(fetchVideos({category, season, lang, id}));
+    } else {
+      dispatch(fetchVideos({category, lang, id}));
+    }
+  }, [dispatch, category, season, lang, id]);
 
   const resLength = useMemo(() => videos.res?.results?.length, [videos]);
 

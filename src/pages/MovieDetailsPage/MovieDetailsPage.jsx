@@ -34,7 +34,7 @@ const MovieDetailsPage = () => {
   const memoizedCategory = useMemo(() => category, [category]);
 
   const { backdrop_path, genres, homepage, overview, popularity, poster_path, production_countries, production_companies,
-    release_date, runtime, spoken_languages, status, title, vote_average, vote_count, created_by, budget } = {...details?.res};
+    release_date, runtime, spoken_languages, status, title, vote_average, vote_count, budget } = {...details?.res};
 
   useEffect(() => {
     dispatch(getHistory());
@@ -93,7 +93,6 @@ const MovieDetailsPage = () => {
                   homepage={homepage}
                   budget={budget}
                   spoken_languages={spoken_languages}
-                  created_by={created_by}
                 />
               </div>
             </div>

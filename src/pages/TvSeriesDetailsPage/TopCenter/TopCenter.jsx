@@ -13,7 +13,7 @@ const TopCenter = ({id, category, lang, name, poster_path, backdrop_path}) => {
 
       <div className={style.center_box}>
         <VideosBox id={id} category={category} lang={lang} />
-        <ImagesBox id={id} category={category} lang={lang} />
+        <ImagesBox id={id} category={category} />
       </div>
     </div>
   );
