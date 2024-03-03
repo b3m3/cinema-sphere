@@ -1,4 +1,13 @@
 .wrapp {
+  & > div {
+    padding: 0 35px;
+    & > div {
+      padding: 5px;
+      border-radius: 25px;
+      border: 1px solid var(--grey-100);
+    }
+  }
+
   & button {
     width: 2.375rem;
     height: 2.375rem;

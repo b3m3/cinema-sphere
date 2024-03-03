@@ -26,12 +26,12 @@ const VideosBox = memo(({id, season, episode, category, lang}) => {
   const resLength = useMemo(() => videos.res?.results?.length, [videos]);
 
   const path = Boolean(resLength) ? `${pathname}/gallery/videos` : '';
-  const count = resLength > 1 ? resLength + ' VIDEOS' : resLength + ' VIDEO';
+  const count = resLength && resLength > 1 ? resLength + ' VIDEOS' : resLength + ' VIDEO';
 
   return (
     <Link className={style.wrapp} to={path}>
       <FaPhotoVideo />
-      { Boolean(resLength) && <span>{count}</span> }
+      <span>{videos?.res && count}</span>
     </Link>
   );
 })

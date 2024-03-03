@@ -81,6 +81,8 @@ const TvEpisodesDetailsPage = () => {
                   category={memoizedCategory}
                   lang={memoizedLang}
                   overview={overview}
+                  season_number={season_number}
+                  episode_number={episode_number}
                 />
 
                 <BodyAside

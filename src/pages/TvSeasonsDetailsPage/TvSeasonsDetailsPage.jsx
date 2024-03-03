@@ -86,6 +86,7 @@ const TvSeasonsDetailsPage = () => {
                     lang={memoizedLang}
                     overview={overview}
                     episodes={episodes}
+                    season_number={season_number}
                   />
 
                   <BodyAside
