@@ -7,19 +7,21 @@ import {fetchImages} from "../../store/asyncThunks/fetchImages";
 
 import style from './ImagesBox.module.scss';
 
-const ImagesBox = memo(({id, season, category}) => {
+const ImagesBox = memo(({id, season, episode, category}) => {
   const images = useSelector(state => state.images);
 
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (season) {
+    if (season && !episode) {
       dispatch(fetchImages({category, season, id}));
+    } else if (season && episode) {
+      dispatch(fetchImages({category, episode, season, id}));
     } else {
       dispatch(fetchImages({category, id}));
     }
-  }, [dispatch, category, season, id]);
+  }, [dispatch, category, episode, season, id]);
 
   const {backdrops, profiles, posters, stills} = {...images?.res};
 

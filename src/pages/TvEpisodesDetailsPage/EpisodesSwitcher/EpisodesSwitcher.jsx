@@ -1,11 +1,22 @@
-import { useMemo } from "react";
+import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {memo, useEffect, useMemo} from "react";
+
+import {fetchTvSeasons} from "../../../store/asyncThunks/fetchTvSeasons";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
-import style from './episodes-switcher.module.scss';
-import { Link, useParams } from "react-router-dom";
+import style from './EpisodesSwitcher.module.scss';
 
-const EpisodesSwitcher = ({totalEpisodes}) => {
-  const { id, season, episode } = useParams();
+const EpisodesSwitcher = memo(({id, lang, category, season, episode}) => {
+  const tvSeasons = useSelector(state => state.tvSeasons);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTvSeasons({lang, season: season.toString(), id}))
+  }, [dispatch, category, season, lang, id]);
+
+  const totalEpisodes = useMemo(() => tvSeasons.res?.episodes?.length, [tvSeasons]);
 
   const prev = useMemo(() => {
     return +episode > 1 ? episode - 1 : episode
@@ -15,13 +26,15 @@ const EpisodesSwitcher = ({totalEpisodes}) => {
     return +episode < +totalEpisodes ? +episode + 1 : episode;
   }, [episode, totalEpisodes]);
 
-  const banStyle = {pointerEvents: 'none', color: 'var(--white-01)'}
+  const banStyle = useMemo(() => {
+    return {pointerEvents: 'none', color: 'var(--white-01)'}
+  }, []);
 
   return (
     <>
       {
         totalEpisodes &&
-        <div className={style.wrapp}>
+          <div className={style.wrapp}>
           <Link 
             className={style.button}
             style={+episode <= 1 ? banStyle : null}
@@ -45,6 +58,6 @@ const EpisodesSwitcher = ({totalEpisodes}) => {
       }
     </>
   );
-}
+})
 
 export default EpisodesSwitcher;

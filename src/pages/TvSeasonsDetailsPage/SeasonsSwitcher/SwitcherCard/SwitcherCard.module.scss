@@ -4,6 +4,7 @@
   grid-template: auto / 30px 1fr;
 
   & h3 {
+    display: inline-block;
     line-height: 1.7;
     overflow: hidden;
     display: -webkit-box;
@@ -11,11 +12,15 @@
     line-clamp: 1;
     -webkit-box-orient: vertical;
 
-    @media (any-hover: hover) {
-      &:hover {
-        text-decoration: underline;
+    & a {
+      display: inline-block;
+      @media (any-hover: hover) {
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
+
   }
 
   & span {

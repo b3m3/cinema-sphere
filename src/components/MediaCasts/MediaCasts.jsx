@@ -18,9 +18,8 @@ const MediaCasts = ({ id, category, lang }) => {
   return (
     <div className={style.wrapp}>
       <Title title={'Top casts'} />
-
       <ul className={style.list}>
-        {res?.cast?.slice(0, 30).map(({id, name, profile_path, known_for_department}, i) => {
+        {res?.cast?.slice(0, 30).map(({id, name, profile_path, character, known_for_department}, i) => {
           return profile_path && (
             <li key={id + i}>
               <CelebCard
@@ -29,6 +28,7 @@ const MediaCasts = ({ id, category, lang }) => {
                 knownFor={known_for_department}
                 posterPath={profile_path}
                 category={category}
+                character={character}
               />
             </li>
           )

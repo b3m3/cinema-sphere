@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
 import { fetchTvSeasons } from "../../store/asyncThunks/fetchTvSeasons";
-import { fetchDetails } from "../../store/asyncThunks/fetchDetails";
 
 import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 import Loading from '../../components/Loading/Loading';
@@ -20,7 +19,6 @@ import style from './TvSeasonsDetailsPage.module.scss';
 const TvSeasonsDetailsPage = () => {
   const { id, season } = useParams();
   const { lang } = useSelector(state => state.lang);
-  const details = useSelector(state => state.details);
   const tvSeasons = useSelector(state => state.tvSeasons);
 
   const dispatch = useDispatch();
@@ -31,12 +29,10 @@ const TvSeasonsDetailsPage = () => {
   const memoizedCategory = useMemo(() => category, [category]);
 
   useEffect(() => {
-    dispatch(fetchDetails({category, lang, id}));
     dispatch(fetchTvSeasons({lang, season, id}));
   }, [dispatch, category, season, lang, id]);
 
-  const { air_date, episodes, name, overview, poster_path, vote_average } = {...tvSeasons?.res};
-  const { seasons } = {...details?.res};
+  const { air_date, episodes, name, overview, poster_path, vote_average, vote_count, season_number } = {...tvSeasons?.res};
 
   return (
     <section>
@@ -55,26 +51,27 @@ const TvSeasonsDetailsPage = () => {
                     id={memoizedId}
                     category={memoizedCategory}
                     title={name}
-                    tvSeriesName={details.res?.name}
                     air_date={air_date}
-                    season={season}
+                    season_number={season_number}
                     vote_average={vote_average}
+                    vote_count={vote_count}
                   />
 
                   <TopCenter
                     id={memoizedId}
                     category={memoizedCategory}
                     lang={memoizedLang}
-                    season={season}
+                    season_number={season_number}
                     poster_path={poster_path}
                     title={name}
                   />
 
                   <SeasonsSwitcher
+                    id={memoizedId}
+                    lang={memoizedLang}
                     tvSeriesId={memoizedId}
                     category={memoizedCategory}
-                    season={season}
-                    res={seasons}
+                    season={season_number}
                   />
                 </div>
               </div>
@@ -87,7 +84,6 @@ const TvSeasonsDetailsPage = () => {
                     id={memoizedId}
                     category={memoizedCategory}
                     lang={memoizedLang}
-                    season={season}
                     overview={overview}
                     episodes={episodes}
                   />

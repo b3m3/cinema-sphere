@@ -1,13 +1,26 @@
-import style from './SeasonsSwitcher.module.scss';
-import SwitcherCard from "./SwitcherCard/SwitcherCard";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
 
-const SeasonsSwitcher = ({ tvSeriesId, category, res, season }) => {
+import SwitcherCard from "./SwitcherCard/SwitcherCard";
+import {fetchDetails} from "../../../store/asyncThunks/fetchDetails";
+
+import style from './SeasonsSwitcher.module.scss';
+
+const SeasonsSwitcher = ({ id, lang, tvSeriesId, category, season }) => {
+  const details = useSelector(state => state.details);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchDetails({category, lang, id}));
+  }, [dispatch, category, lang, id]);
+
   const activeStyle = {background: 'linear-gradient( to right, rgba(0, 0, 0, 0), rgba(245,197, 24, 0.3))'};
 
   return (
     <div className={style.wrapp}>
       <ul>
-        {res?.map(({ id, name, air_date, episode_count, poster_path, season_number }) => (
+        {details?.res?.seasons?.map(({ id, name, air_date, episode_count, poster_path, season_number }) => (
           <li
             key={id}
             style={ +season === +season_number ? activeStyle : null }

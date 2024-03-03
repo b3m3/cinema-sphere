@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import PosterImage from '../PosterImage/PosterImage';
 
 import style from './CelebCard.module.scss';
