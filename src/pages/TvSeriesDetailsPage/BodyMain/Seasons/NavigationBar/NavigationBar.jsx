@@ -1,5 +1,4 @@
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation} from "swiper/modules";
+import {SwiperSlide} from "swiper/react";
 import {memo} from "react";
 
 import style from './NavigationBar.module.scss';
