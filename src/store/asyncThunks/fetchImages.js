@@ -10,19 +10,16 @@ export const fetchImages = createAsyncThunk(
     try {
       if (category && id && !season && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/images?api_key=${API_KEY}`);
-
         return data;
       }
 
       if (category && id && season && !episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/images?api_key=${API_KEY}`);
-
         return data;
       }
 
       if (category && id && season && episode) {
         const {data} = await axios.get(`${BASE_URL}${category}/${id}/season/${season}/episode/${episode}/images?api_key=${API_KEY}`);
-
         return data;
       }
     } catch (error) {

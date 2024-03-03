@@ -31,7 +31,7 @@ const VideosBox = memo(({id, season, episode, category, lang}) => {
   return (
     <Link className={style.wrapp} to={path}>
       <FaPhotoVideo />
-      <span>{ count }</span>
+      { Boolean(resLength) && <span>{count}</span> }
     </Link>
   );
 })

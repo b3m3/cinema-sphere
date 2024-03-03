@@ -37,7 +37,7 @@ const ImagesBox = memo(({id, season, episode, category}) => {
   return (
     <Link className={style.wrapp} to={path} >
       <FaRegImage />
-      <span>{ count } </span>
+      { isResLength && <span>{ count }</span> }
     </Link>
   );
 });

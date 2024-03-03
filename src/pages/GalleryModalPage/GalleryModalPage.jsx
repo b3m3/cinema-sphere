@@ -32,16 +32,11 @@ const GalleryModalPage = () => {
     if (isModalImages) {
       if (season && !episode) {
         dispatch(fetchImages({category, season, id}));
-        return;
+      } else if (season && episode) {
+        dispatch(fetchImages({category, episode, season, id}));
+      } else {
+        dispatch(fetchImages({category, id}));
       }
-
-      if (season && episode) {
-        dispatch(fetchImages({category, season, episode, id}));
-        return;
-      }
-
-      dispatch(fetchImages({category, id}));
-      return;
     }
   }, [dispatch, category, season, episode, id, isModalImages])
 
@@ -49,35 +44,24 @@ const GalleryModalPage = () => {
     if (isModalVideos) {
       if (season && !episode) {
         dispatch(fetchVideos({category, season, lang, id}));
-        return;
-      }
-
-      if (season && episode) {
+      } else if (season && episode) {
         dispatch(fetchVideos({category, season, episode, lang, id}));
-        return;
+      } else {
+        dispatch(fetchVideos({category, lang, id}));
       }
-
-      dispatch(fetchVideos({category, lang, id}));
-      return;
     }
   }, [dispatch, category, season, episode, lang, id, isModalVideos]);
 
-  const imagesRes = useMemo(() => {
-    return images.res?.['backdrops']  ? images.res?.['backdrops']
-      : images.res?.['profiles'] ? images.res?.['profiles']
-      : images.res?.['posters'] ? images.res?.['posters']
-      : images.res?.['stills'] ? images.res?.['stills']
-      : null;
-  }, [images]);
-
+  const {backdrops, profiles, posters, stills} = {...images?.res};
 
   const videoResults = useMemo(() => {
     return videos.res?.results.length > 0 ? videos.res?.results : null;
   }, [videos]);
 
   const imageResults = useMemo(() => {
-    return imagesRes?.length > 0 ? imagesRes : null;
-  }, [imagesRes]);
+    return (backdrops || profiles || posters || stills)?.length > 0
+      ? backdrops || profiles || posters || stills : null;
+  }, [backdrops, profiles, posters, stills]);
 
   return (
     <div className={style.wrapp}>

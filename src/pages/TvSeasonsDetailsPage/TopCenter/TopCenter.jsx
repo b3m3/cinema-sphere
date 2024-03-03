@@ -12,8 +12,8 @@ const TopCenter = ({ id, category, season_number, lang, title, poster_path }) =>
       <Trailer backdrop={poster_path}/>
 
       <div className={style.center_box}>
-        <VideosBox id={id} season={season_number} category={category} lang={lang} />
-        <ImagesBox id={id} season={season_number} category={category} />
+        <VideosBox id={id} season={`${season_number}`} category={category} lang={lang} />
+        <ImagesBox id={id} season={`${season_number}`} category={category} />
       </div>
     </div>
   );
