@@ -1,19 +1,17 @@
-import { useEffect } from 'react';
+import {memo, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchGenresList } from '../../store/slices/fetchDataSlice';
 
-import style from './genres-list.module.scss';
+import style from './GenresList.module.scss';
 
-const GenresList = ({category, lang}) => {
+const GenresList = memo(({category, lang}) => {
   const {genresList} = useSelector(state => state.genresList);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGenresList({category, lang}))
   }, [dispatch, category, lang]);
-
-  console.log(genresList);
 
   return (
     <div className={style.wrapp}>
@@ -26,6 +24,6 @@ const GenresList = ({category, lang}) => {
       </ul>
     </div>
   );
-}
+})
 
 export default GenresList;

@@ -10,8 +10,8 @@ const ProductionCompanies = memo(({companies}) => {
             <h4>Production companies</h4>
 
             <ul>
-              {companies?.map(({name}) => (
-                <li key={name}>{name}</li>
+              {companies?.map(({name}, i) => (
+                <li key={name + i}>{name}</li>
               ))}
             </ul>
           </div>

@@ -5,7 +5,7 @@ import {BASE_URL} from "../../constants/api";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchGenresList = createAsyncThunk(
-  'genresList/fetchGenresList',
+  'GenresList/fetchGenresList',
   async({category, lang}, {rejectWithValue}) => {
     try {
       if (category && lang) {
