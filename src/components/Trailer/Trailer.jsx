@@ -2,12 +2,12 @@ import {useState, useMemo, memo} from "react";
 import {useSelector} from "react-redux";
 
 import { FaPlayCircle } from "react-icons/fa";
-import { IMAGE_URL } from "../../constants/api";
 import Loading from "../Loading/Loading";
+import TvPattern from '../../assets/video/TvPatternVid.webm';
 
 import style from './Trailer.module.scss';
 
-const Trailer = memo(({backdrop}) => {
+const Trailer = memo(() => {
   const [play, setPlay] = useState(false);
 
   const { res, loading } = useSelector(state => state.videos);
@@ -49,9 +49,11 @@ const Trailer = memo(({backdrop}) => {
                   className={style.iframe}
                 />
               </div>
-          : backdrop 
-            ? <img className={style.backdrop} src={`${IMAGE_URL}w1280${backdrop}`} alt="Backdrop" /> 
-            : <span className={style.white} />
+          : !Boolean(res?.results?.length)
+              ? <video className={style.pattern} autoPlay muted loop>
+                  <source src={`${TvPattern}`} type='video/webm; codecs="vp8.0, vorbis"'/>
+                </video>
+              : <span className={style.white}/>
       }
     </div>
   );

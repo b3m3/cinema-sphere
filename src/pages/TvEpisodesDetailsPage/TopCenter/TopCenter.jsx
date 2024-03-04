@@ -9,7 +9,7 @@ const TopCenter = ({ id, category, season_number, episode_number, lang, title, p
   return (
     <div className={style.center}>
       <PosterImage title={title} posterPath={poster_path}/>
-      <Trailer backdrop={poster_path}/>
+      <Trailer/>
 
       <div className={style.center_box}>
         <VideosBox id={id} season={`${season_number}`} episode={`${episode_number}`} category={category} lang={lang} />

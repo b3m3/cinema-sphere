@@ -58,7 +58,7 @@ const TvSeriesDetailsPage = () => {
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <BackgroundImage backdrop_path={backdrop_path}/>
+                <BackgroundImage backdropPath={backdrop_path}/>
 
                 <TopHeader
                   id={memoizedId}
@@ -79,7 +79,6 @@ const TvSeriesDetailsPage = () => {
                   lang={memoizedLang}
                   name={name}
                   poster_path={poster_path}
-                  backdrop_path={backdrop_path}
                 />
 
                 <TopBottom

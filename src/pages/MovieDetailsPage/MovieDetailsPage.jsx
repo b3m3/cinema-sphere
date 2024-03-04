@@ -42,12 +42,9 @@ const MovieDetailsPage = () => {
 
   useEffect(() => {
     if (details) {
-      const poster_path = details?.res?.poster_path;
-      const doc = {id, poster_path, category};
-  
-      dispatch(setHistory(doc));
+      dispatch(setHistory({id, poster_path, category}));
     }
-  }, [dispatch, details, id, category]);
+  }, [dispatch, details, id, poster_path, category]);
 
   return (
     <section>
@@ -60,7 +57,7 @@ const MovieDetailsPage = () => {
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <BackgroundImage backdrop_path={details.res.backdrop_path} />
+                <BackgroundImage backdropPath={backdrop_path} />
 
                 <TopHeader
                   id={memoizedId}
@@ -80,7 +77,6 @@ const MovieDetailsPage = () => {
                   lang={memoizedLang}
                   title={title}
                   poster_path={poster_path}
-                  backdrop_path={backdrop_path}
                 />
 
                 <TopBottom

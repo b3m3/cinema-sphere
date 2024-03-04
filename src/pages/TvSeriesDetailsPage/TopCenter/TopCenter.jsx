@@ -5,11 +5,11 @@ import VideosBox from "../../../components/VideosBox/VideosBox";
 
 import style from './TopCenter.module.scss';
 
-const TopCenter = ({id, category, lang, name, poster_path, backdrop_path}) => {
+const TopCenter = ({id, category, lang, name, poster_path}) => {
   return (
     <div className={style.center}>
       <PosterImage title={name} posterPath={poster_path}/>
-      <Trailer backdrop={backdrop_path}/>
+      <Trailer/>
 
       <div className={style.center_box}>
         <VideosBox id={id} category={category} lang={lang} />

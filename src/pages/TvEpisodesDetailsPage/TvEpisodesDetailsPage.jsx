@@ -45,7 +45,7 @@ const TvEpisodesDetailsPage = () => {
           <div className={style.top}>
             <div className="container">
               <div className={style.top__wrapp}>
-                <BackgroundImage backdrop={still_path} />
+                <BackgroundImage backdropPath={still_path} />
 
                 <TopHeader
                   id={memoizedId}
