@@ -25,7 +25,7 @@ const TopBottom = (props) => {
         />
 
         <div>
-          <WatchlistButton orange/>
+          <WatchlistButton button />
         </div>
       </div>
 

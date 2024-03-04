@@ -1,37 +1,19 @@
-import { BsBookmarkPlusFill } from "react-icons/bs";
-// import { BsFillBookmarkCheckFill } from 'react-icons/bs'
+import {memo, useState} from "react";
+import { BsBookmarkPlusFill, BsFillBookmarkCheckFill } from "react-icons/bs";
 
 import style from './WatchlistButton.module.scss';
-import {memo} from "react";
 
-const WatchlistButton = memo(({id, orange, bookmark}) => {
+const WatchlistButton = memo(({ id, button }) => {
+  const [watchlistStatus, setWatchlistStatus] = useState(false);
+
   return (
-    <button 
-      className={`${style.wrapp} ${bookmark && style.bookmark}`}
-      style={
-        orange 
-          ? {
-              background: 'var(--grey-400)', 
-              color: 'var(--black)', 
-              borderRadius: 'var(--radius-4)'
-            } 
-          : bookmark ? {background: 'none'}
-          : null
-      }
-    >
+    <button className={`${style.wrapp} ${button ? style.button : ''} ${watchlistStatus ? style.active : ''}`}>
+      <span>{ watchlistStatus ? <BsFillBookmarkCheckFill/> : <BsBookmarkPlusFill/> }</span>
+
       {
-        bookmark
-          ? <BsBookmarkPlusFill />
-          : <>
-              {!orange && '+'}
-
-              <span>
-                <BsBookmarkPlusFill /> 
-                {orange ? 'Add to Watchlist' : 'Watchlist'}
-              </span>
-            </>
+        button &&
+          <p>{ watchlistStatus ? 'Watchlist' : 'Add to Watchlist' }</p>
       }
-
     </button>
   );
 })

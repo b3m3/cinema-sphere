@@ -1,48 +1,58 @@
 .wrapp {
-  width: 100%;
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: .375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: var(--radius-4);
-  color: var(--blue-300);
-  transition: background .2s;
-  white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--grey-400);
+  transition: color .2s;
+
+  &.button {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    position: relative;
+    background: var(--white-01);
+    border-radius: var(--radius-4);
+    transition: .2s;
+  }
+
+  &.active {
+    color: var(--orange-400);
+
+    &.button {
+      background: var(--orange-400);
+      color: var(--black);
+    }
+  }
+
+
+  & svg {
+    font-size: 32px;
+  }
+
+  & p {
+    font-weight: 600;
+    font-size: 1rem;
+  }
 
   @media (any-hover: hover) {
     &:hover {
-      background: var(--orange-300) !important;
-    }
-  }
+      color: var(--orange-300);
 
-  &.bookmark {
-    position: absolute;
-    width: unset;
-    padding: 0;
-    color: var(--grey-400);
-    display: block;
-    transition: .3s;
+      &.button {
+        color: var(--black);
+        background: var(--orange-300);
+      }
 
-    @media (any-hover: hover) {
-      &:hover {
-        transform: translateY(3px) scale(1.12) !important;
-        background: none !important;
-        color: var(--orange-300);
+      &.active {
+        color: var(--grey-400);
+
+        &.button {
+          background: var(--white-01);
+        }
       }
     }
-  }
-
-  & span {
-    display: flex;
-    align-items: center;
-    gap: .3125rem;
-  }
-
-  & svg {
-    font-size: 2rem;
   }
 }

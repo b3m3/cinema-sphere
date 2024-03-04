@@ -68,10 +68,10 @@ export const fetchAuth = createAsyncThunk(
 	'auth/fetchAuth',
 	async (_, { rejectWithValue }) => {
 		try {
-			const token = window.localStorage.getItem('session')
+			const token = window.localStorage.getItem('session');
 
 			if (token) {
-				const { session_id } = jwt.verify(token, JWT_SECRET)
+				const { session_id } = jwt.verify(token, JWT_SECRET);
 				const { data } = await axios.get(
 					`${BASE_URL}account?api_key=${API_KEY}&session_id=${session_id}`
 				)

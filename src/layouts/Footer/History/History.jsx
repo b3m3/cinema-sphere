@@ -5,7 +5,7 @@ import {SwiperSlide} from "swiper/react";
 import {clearHistory, getHistory} from "../../../store/slices/historySlice";
 import {TfiBrushAlt} from "react-icons/tfi";
 import SwiperWrapper from "../../../components/SwiperWrapper/SwiperWrapper";
-import MediaCard from "../../../components/MediaCard/MediaCard";
+import PosterImage from "../../../components/PosterImage/PosterImage";
 
 import style from './History.module.scss'
 
@@ -52,10 +52,11 @@ const History = () => {
                 {history?.map(({ id, poster_path, category }) => {
                   return (
                     <SwiperSlide key={id}>
-                      <MediaCard
+                      <PosterImage
                         id={id}
                         posterPath={poster_path}
                         category={category}
+                        link
                       />
                     </SwiperSlide>
                   )
