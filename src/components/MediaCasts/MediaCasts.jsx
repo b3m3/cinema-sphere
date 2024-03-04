@@ -22,25 +22,31 @@ const MediaCasts = ({ id, category, lang, episode, season }) => {
   }, [dispatch, category, episode, season, id, lang]);
 
   return (
-    <div className={style.wrapp}>
-      <Title title={'Top casts'} />
-      <ul className={style.list}>
-        {res?.cast?.slice(0, 30).map(({id, name, profile_path, character, known_for_department}, i) => {
-          return profile_path && (
-            <li key={id + i}>
-              <CelebCard
-                id={id}
-                name={name}
-                knownFor={known_for_department}
-                posterPath={profile_path}
-                category={category}
-                character={character}
-              />
-            </li>
-          )
-        })}
-      </ul>
-    </div>
+    <>
+      {
+        Boolean(res?.cast?.length) &&
+          <div className={style.wrapp}>
+            <Title title={'Top casts'} />
+
+            <ul className={style.list}>
+              {res?.cast?.slice(0, 30).map(({id, name, profile_path, character, known_for_department}, i) => {
+                return profile_path && (
+                  <li key={id + i}>
+                    <CelebCard
+                      id={id}
+                      name={name}
+                      knownFor={known_for_department}
+                      posterPath={profile_path}
+                      category={category}
+                      character={character}
+                    />
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+      }
+    </>
   );
 }
 
