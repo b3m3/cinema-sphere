@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
+import {memo} from "react";
 
 import { BsBookmarkStarFill } from "react-icons/bs";
 
 import style from './WatchListBtn.module.scss';
-import {memo} from "react";
 
 const WatchListBtn = memo(({isAuth, handleCloseNavbar}) => {
   return (
     <Link 
-      className={style.wrapp} to={isAuth ? "/watch_list" : "/login"} 
+      to={isAuth ? "/watchlist/movie" : "/login"}
+      className={style.wrapp}
       onClick={handleCloseNavbar}
     >
       <span>WatchList</span>

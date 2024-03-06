@@ -3,26 +3,37 @@ import {memo, useCallback, useEffect, useMemo, useState} from 'react';
 import { IMAGE_URL } from '../../../constants/api';
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+import {fetchGetMovieWatchlist, fetchGetTvWatchlist} from "../../../store/asyncThunks/fetchWatchlist";
 
 import { autoCloser } from '../../../utils/functions';
 import { signOut } from '../../../store/slices/fetchAuthSlice';
 
 import style from './User.module.scss';
+import {useSelector} from "react-redux";
 
 const User = memo(({data, dispatch}) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
+  const { lang } = useSelector(state => state.lang);
+
+  useEffect(() => {
+    const accountId = data?.id;
+
+    dispatch(fetchGetTvWatchlist({ accountId, lang }));
+    dispatch(fetchGetMovieWatchlist({ accountId, lang }));
+  }, [dispatch, data, lang]);
+
+  useEffect(() => {
+    autoCloser('HEADER', isOpen, setIsOpen);
+  }, [isOpen]);
+
   const toggleMenu = useCallback(() => {
     return setIsOpen(cur => !cur);
   }, []);
 
   const handleSignOut = useCallback(() => {
     return dispatch(signOut());
-  }, [dispatch])
-
-  useEffect(() => {
-    autoCloser('HEADER', isOpen, setIsOpen);
-  }, [isOpen]);
+  }, [dispatch]);
 
   const imgSrc = useMemo(() => {
     return `${IMAGE_URL}w45${data?.avatar?.tmdb?.avatar_path}`;
@@ -30,7 +41,7 @@ const User = memo(({data, dispatch}) => {
 
   const isAvatar = useMemo(() => {
     return data?.avatar?.tmdb?.avatar_path;
-  }, [data])
+  }, [data]);
 
   return (
     <div className={style.wrapp} onClick={toggleMenu}>

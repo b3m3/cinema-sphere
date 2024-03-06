@@ -42,3 +42,7 @@ export const calculateAgeWithDOB = (currentYear, birthYear, birthMonth, birthDay
 export const scrollToTop = () => {
   return window.scrollTo(0, 0)
 }
+
+export const convertPathToTitle = (path) => {
+  return path[0].toUpperCase() + path.slice(1).split('_').join(' ');
+}

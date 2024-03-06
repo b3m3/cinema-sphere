@@ -9,7 +9,6 @@ import historySlice from './slices/historySlice';
 import fetchCardData from './slices/fetchCardDataSlice';
 import fetchDetails from './slices/fetchDetailsSlice';
 import fetchVideos from './slices/fetchVideosSlice';
-import fetchEnglishVideo from './slices/fetchEnglishVideoSlice';
 import fetchImages from './slices/fetchImagesSlice';
 import fetchGenresList from './slices/fetchGenresListSlice';
 import fetchLinks from './slices/fetchLinksSlice';
@@ -26,17 +25,18 @@ import fetchTrendingHome from './slices/fetchTrendingHomeSlice';
 import fetchDiscover from './slices/fetchDiscoverSlice';
 import fetchTvSeasons from './slices/fetchTvSeasonsSlice';
 import fetchTvEpisodes from './slices/fetchTvEpisodesSlice';
+import fetchWatchlist from "./slices/fetchWatchlistSlice";
 
 const store = configureStore({
 	reducer: {
 		auth: fetchAuthSlice,
 		lang: languageSlice,
 		menu: menuSlice,
+    watchlist: fetchWatchlist,
 		rate: fetchRatingSlice,
 		cardData: fetchCardData,
 		details: fetchDetails,
 		videos: fetchVideos,
-		englishVideo: fetchEnglishVideo,
 		images: fetchImages,
 		genresList: fetchGenresList,
 		links: fetchLinks,

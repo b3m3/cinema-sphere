@@ -33,7 +33,7 @@ const Header = () => {
   }, [dispatch]);
 
   const handleCloseNavbar = useCallback(() => {
-    dispatch(isCloseMenu());
+    return dispatch(isCloseMenu());
   }, [dispatch]);
 
   return (

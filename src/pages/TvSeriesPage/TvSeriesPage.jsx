@@ -14,6 +14,8 @@ import MediaSwitcher from '../../components/MediaSwitcher/MediaSwitcher';
 
 import style from './TvSeriesPage.module.scss';
 
+const tvArr = ['top_rated', 'popular', 'airing_today', 'on_the_air'];
+
 const TvSeriesPage = () => {
   const {page, filter} = useParams();
   const {loading, status, res} = useSelector(state => state.cardData);
@@ -30,8 +32,9 @@ const TvSeriesPage = () => {
     <div className="container">
       <section className={style.wrapp}>
         <h1>What tv series to watch - Cinema Sphere</h1>
-        <MediaSwitcher />
+        <MediaSwitcher results={tvArr} />
         { loading && <Loading /> }
+
         <div className={style.body}>
           {res?.results.map(({id, poster_path, name, first_air_date, vote_average}) => (
             <MediaCard

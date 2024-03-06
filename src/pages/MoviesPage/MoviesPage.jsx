@@ -14,6 +14,8 @@ import MediaSwitcher from '../../components/MediaSwitcher/MediaSwitcher';
 
 import style from './MoviesPage.module.scss';
 
+const movieArr = ['popular', 'now_playing', 'upcoming', 'top_rated'];
+
 const MoviesPage = () => {
   const {page, filter} = useParams();
   const {loading, status, res} = useSelector(state => state.cardData);
@@ -31,8 +33,9 @@ const MoviesPage = () => {
     <div className="container">
       <section className={style.wrapp}>
         <h1>What movies to watch - Cinema Sphere</h1>
-        <MediaSwitcher />
+        <MediaSwitcher results={movieArr} />
         { loading && <Loading /> }
+
         <div className={style.body}>
           {res?.results.map(({id, poster_path, release_date, title, vote_average}) => (
             <MediaCard

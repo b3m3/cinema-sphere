@@ -1,60 +1,47 @@
-import { Link, useParams } from 'react-router-dom';
-import { memo, useCallback, useMemo } from 'react';
+import {Link, useLocation, useParams} from 'react-router-dom';
+import {memo, useCallback, useMemo} from 'react';
 
-import { useCategoryFromLocation } from '../../hooks/useCategoryFromLocation';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight  } from "react-icons/md";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+
+import { convertPathToTitle } from "../../utils/functions";
 
 import style from './MediaSwitcher.module.scss';
 
-const movieArr = ['popular', 'now_playing', 'upcoming', 'top_rated'];
-const tvArr = ['top_rated', 'popular', 'airing_today', 'on_the_air'];
+const MediaSwitcher = memo(({results}) => {
+  const { filter } = useParams();
+  const { pathname } = useLocation();
 
-const MediaSwitcher = memo(() => {
-  const {filter} = useParams();
-  const category = useCategoryFromLocation();
+  const pathHandler = useCallback((newFilter) => {
+    let array = pathname.split('/');
+    const index = array.indexOf(filter);
 
-  const currentCategory = useMemo(() => {
-    switch (category) {
-      case 'tv':
-        return tvArr;
-      case 'movie':
-        return movieArr;
-      default:
-        break;
-    }
-  }, [category]);
+    array[index] = newFilter;
 
-  const getTitleFromPathname = useCallback((str) => {
-    return `/${category}/${str}/1`;
-  }, [category])
-
-  const updateLocationPathname = useCallback((str) => {
-    return str[0].toUpperCase() + str.slice(1).split('_').join(' ')
-  }, [])
+    return array.join('/')
+  }, [filter, pathname])
 
   const isActive = useMemo(() => {
-    return currentCategory?.indexOf(filter)
-  }, [currentCategory, filter]);
+    return results?.indexOf(filter)
+  }, [results, filter]);
 
   return (
     <div className={style.wrapp}>
       <ul className={style.list}>
         {
-          currentCategory?.map((el, i) => (
+          results?.map((el, i) => (
             <li key={el}>
-              <Link 
-                className={`${style.button} ${isActive === i ? style.active : null}`} 
-                to={getTitleFromPathname(el)}
+              <Link
+                className={`${style.button} ${isActive === i ? style.active : null}`}
+                to={pathHandler(el)}
               >
-                {updateLocationPathname(el)}
+                { convertPathToTitle(el) }
               </Link>
             </li>
           ))
         }
 
         <div className={style.navigate}>
-          <MdKeyboardArrowLeft />
-          <MdKeyboardArrowRight />
+          <BiDotsHorizontalRounded />
         </div>
       </ul>
     </div>

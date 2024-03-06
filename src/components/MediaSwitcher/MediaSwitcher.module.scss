@@ -19,18 +19,11 @@
 
   & svg {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.875rem;
+    bottom: 8px;
+    font-size: 1rem;
     opacity: .75;
-
-    &:first-child {
-      left: -15px;
-    }
-
-    &:last-child {
+    color: var(--white);
       right: -15px;
-    }
   }
 }
 

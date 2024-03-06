@@ -2,7 +2,7 @@ import { useRoutes } from "react-router-dom";
 
 import LoginPage from '../pages/LoginPage/LoginPage';
 import HomePage from '../pages/HomePage/HomePage';
-import WatchListPage from '../pages/watchListPage/WatchListPage';
+import WatchListPage from '../pages/WatchlistPage/WatchlistPage';
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
 import MovieDetailsPage from '../pages/MovieDetailsPage/MovieDetailsPage';
 import GalleryModalPage from '../pages/GalleryModalPage/GalleryModalPage';
@@ -20,7 +20,7 @@ const Router = () => {
   return useRoutes([
     { path: '/', element: <HomePage /> },
     { path: 'login', element: <LoginPage /> },
-    { path: 'watch_list', element: <WatchListPage /> },
+    { path: 'watchlist/:filter', element: <WatchListPage /> },
     { path: '*', element: <NotFoundPage /> },
     { 
       path: 'person',
