@@ -1,29 +1,37 @@
-import { useParams } from "react-router-dom";
-import { useMemo } from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useEffect, useMemo} from "react";
 import { useSelector } from "react-redux";
 
 import MediaSwitcher from "../../components/MediaSwitcher/MediaSwitcher";
 import Loading from "../../components/Loading/Loading";
 import MediaCard from "../../components/MediaCard/MediaCard";
 import Error from "../../components/Error/Error";
+import { convertPathToTitle } from "../../utils/functions";
 
 import style from './WatchlistPage.module.scss';
-import {convertPathToTitle} from "../../utils/functions";
 
 const watchlistArr = ['movies', 'tv_series']
 
 const WatchlistPage = () => {
   const { filter } = useParams();
+  const navigate = useNavigate();
 
-  const { movieResults, tvResults } = useSelector(state => state.watchlist);
+  const auth = useSelector(state => state.auth);
+  const { movie, tv } = useSelector(state => state.watchlist);
 
   const category = useMemo(() => {
     return filter === 'tv_series' ? 'tv' : filter === 'movies' ? 'movie' : null;
   }, [filter]);
 
   const results = useMemo(() => {
-      return filter === 'tv_series' ? tvResults : filter === 'movies' ? movieResults : null;
-  }, [filter, tvResults, movieResults]);
+      return filter === 'tv_series' ? tv : filter === 'movies' ? movie : null;
+  }, [filter, tv, movie]);
+
+  useEffect(() => {
+    if (!auth.user?.isAuth) {
+      return navigate('/');
+    }
+  }, [auth, navigate]);
 
   return (
     <div className="container">

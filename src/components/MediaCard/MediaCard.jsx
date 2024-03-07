@@ -31,7 +31,7 @@ const MediaCard = ({id, posterPath, date, title, rating, white, category, mediaT
         </div>
       </div>
 
-      <WatchlistButton id={id} />
+      <WatchlistButton category={mediaType || category} id={id} />
     </div>
   );
 }

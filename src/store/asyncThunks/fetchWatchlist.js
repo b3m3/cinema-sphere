@@ -10,7 +10,7 @@ export const fetchToggleWatchlist = createAsyncThunk(
   'watchlist/fetchToggleWatchlist',
   async ({accountId, media_type, media_id, watchlist}, {rejectWithValue}) => {
     try {
-      if (accountId && media_type && media_id && watchlist) {
+      if (accountId && media_type && media_id) {
         const token = window.localStorage.getItem('session');
         const { session_id } = jwt.verify(token, JWT_SECRET);
 
@@ -20,13 +20,11 @@ export const fetchToggleWatchlist = createAsyncThunk(
             { media_type, media_id, watchlist }
           );
 
-          console.log(data);
-          return data;
+          return data?.success;
         }
       }
     } catch (error) {
-      console.log(rejectWithValue(error));
-      return rejectWithValue(error)
+      return rejectWithValue(error);
     }
   }
 )

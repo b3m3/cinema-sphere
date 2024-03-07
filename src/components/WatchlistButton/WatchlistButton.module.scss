@@ -27,6 +27,16 @@
     }
   }
 
+  &.loading {
+    pointer-events: none;
+    opacity: .8;
+  }
+
+  & span {
+    position: relative;
+    display: inline-block;
+    max-width: 40px;
+  }
 
   & svg {
     font-size: 32px;

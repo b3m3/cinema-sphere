@@ -8,7 +8,7 @@ import style from './WatchListBtn.module.scss';
 const WatchListBtn = memo(({isAuth, handleCloseNavbar}) => {
   return (
     <Link 
-      to={isAuth ? "/watchlist/movie" : "/login"}
+      to={isAuth ? "/watchlist/movies" : "/login"}
       className={style.wrapp}
       onClick={handleCloseNavbar}
     >

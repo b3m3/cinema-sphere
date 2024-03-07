@@ -3,8 +3,8 @@ import { fetchToggleWatchlist, fetchGetTvWatchlist, fetchGetMovieWatchlist } fro
 
 const initialState = {
   toggleResults: { loading: false, status: null, res: null },
-  tvResults: { loading: false, status: null, res: null },
-  movieResults: { loading: false, status: null, res: null }
+  tv: { loading: false, status: null, res: null },
+  movie: { loading: false, status: null, res: null }
 }
 
 const fetchWatchlistSlice = createSlice({
@@ -33,36 +33,36 @@ const fetchWatchlistSlice = createSlice({
 
       // GET TV WATCHLIST
       .addCase(fetchGetTvWatchlist.pending, (state) => {
-        state.tvResults.loading = true;
-        state.tvResults.status = null;
-        state.tvResults.res = null;
+        state.tv.loading = true;
+        state.tv.status = null;
+        state.tv.res = null;
       })
       .addCase(fetchGetTvWatchlist.fulfilled, (state, {payload}) => {
-        state.tvResults.loading = false;
-        state.tvResults.status = null;
-        state.tvResults.res = payload;
+        state.tv.loading = false;
+        state.tv.status = null;
+        state.tv.res = payload;
       })
       .addCase(fetchGetTvWatchlist.rejected, (state, {payload}) => {
-        state.tvResults.loading = false;
-        state.tvResults.res = null;
-        state.tvResults.status = payload;
+        state.tv.loading = false;
+        state.tv.res = null;
+        state.tv.status = payload;
       })
 
       // GET MOVIE WATCHLIST
       .addCase(fetchGetMovieWatchlist.pending, (state) => {
-        state.movieResults.loading = true;
-        state.movieResults.status = null;
-        state.movieResults.res = null;
+        state.movie.loading = true;
+        state.movie.status = null;
+        state.movie.res = null;
       })
       .addCase(fetchGetMovieWatchlist.fulfilled, (state, {payload}) => {
-        state.movieResults.loading = false;
-        state.movieResults.status = null;
-        state.movieResults.res = payload;
+        state.movie.loading = false;
+        state.movie.status = null;
+        state.movie.res = payload;
       })
       .addCase(fetchGetMovieWatchlist.rejected, (state, {payload}) => {
-        state.movieResults.loading = false;
-        state.movieResults.res = null;
-        state.movieResults.status = payload;
+        state.movie.loading = false;
+        state.movie.res = null;
+        state.movie.status = payload;
       })
   }
 });
