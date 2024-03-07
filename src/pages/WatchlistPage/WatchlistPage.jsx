@@ -44,7 +44,7 @@ const WatchlistPage = () => {
 
         { results?.loading && <Loading /> }
         { !results?.status && <Error status={results?.status} /> }
-        { !Boolean(results?.res?.length) && <EmptyList filter={filter} /> }
+        { results?.res && !Boolean(results?.res?.length) && <EmptyList filter={filter} /> }
 
         <div className={style.body}>
           {results?.res?.map(({id, poster_path, name, title, release_date, first_air_date, vote_average}) => (
