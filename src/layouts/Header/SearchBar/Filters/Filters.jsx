@@ -42,13 +42,13 @@ const Filters = ({handleCloseFilters}) => {
       getElem('with_genres=') && setGenres(getElem('with_genres=').split(',').map(el => +el));
       getElem('vote_average.gte=') && setRatingMin(+getElem('vote_average.gte='));
       getElem('vote_average.lte=') && setRatingMax(+getElem('vote_average.lte='));
-      getElem('primary_release_date.gte=') && setDateMin(+getElem('primary_release_date.gte='));
-      getElem('primary_release_date.lte=') && setDateMax(+getElem('primary_release_date.lte='));
+      getElem('primary_release_date.gte=') && setDateMin(+getElem('primary_release_date.gte=').slice(0, 4));
+      getElem('primary_release_date.lte=') && setDateMax(+getElem('primary_release_date.lte=').slice(0, 4));
     }
   }, [pathname]);
   
   const link = useMemo(() => {
-    return `/discover/${category}/&include_adult=false&vote_count.gte=25&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${dateMin}&primary_release_date.lte=${dateMax}&/1`;
+    return `/discover/${category}/&include_adult=false&vote_count.gte=25&sort_by=${sort}&with_genres=${genres.join(',')}&vote_average.gte=${ratingMin}&vote_average.lte=${ratingMax}&primary_release_date.gte=${`${dateMin}-01-01`}&primary_release_date.lte=${`${dateMax}-12-31`}&/1`;
   }, [category, sort, genres, ratingMin, ratingMax, dateMin, dateMax]);
   
   const activeStyle = useMemo(() => {
