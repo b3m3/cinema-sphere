@@ -6,6 +6,8 @@ import MediaSwitcher from "../../components/MediaSwitcher/MediaSwitcher";
 import Loading from "../../components/Loading/Loading";
 import MediaCard from "../../components/MediaCard/MediaCard";
 import Error from "../../components/Error/Error";
+import EmptyList from "./EmptyList/EmptyList";
+
 import { convertPathToTitle } from "../../utils/functions";
 
 import style from './WatchlistPage.module.scss';
@@ -42,6 +44,7 @@ const WatchlistPage = () => {
 
         { results?.loading && <Loading /> }
         { !results?.status && <Error status={results?.status} /> }
+        { !Boolean(results?.res?.length) && <EmptyList filter={filter} /> }
 
         <div className={style.body}>
           {results?.res?.map(({id, poster_path, name, title, release_date, first_air_date, vote_average}) => (

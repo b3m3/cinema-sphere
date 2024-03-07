@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchToggleWatchlist, fetchGetTvWatchlist, fetchGetMovieWatchlist } from "../asyncThunks/fetchWatchlist";
+import { fetchGetTvWatchlist, fetchGetMovieWatchlist } from "../asyncThunks/fetchWatchlist";
 
 const initialState = {
-  toggleResults: { loading: false, status: null, res: null },
   tv: { loading: false, status: null, res: null },
   movie: { loading: false, status: null, res: null }
 }
@@ -13,23 +12,6 @@ const fetchWatchlistSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
-      // TOGGLE WATCHLIST
-      .addCase(fetchToggleWatchlist.pending, (state) => {
-        state.toggleResults.loading = true;
-        state.toggleResults.status = null;
-        state.toggleResults.res = null;
-      })
-      .addCase(fetchToggleWatchlist.fulfilled, (state, {payload}) => {
-        state.toggleResults.loading = false;
-        state.toggleResults.status = null;
-        state.toggleResults.res = payload;
-      })
-      .addCase(fetchToggleWatchlist.rejected, (state, {payload}) => {
-        state.toggleResults.loading = false;
-        state.toggleResults.res = null;
-        state.toggleResults.status = payload;
-      })
 
       // GET TV WATCHLIST
       .addCase(fetchGetTvWatchlist.pending, (state) => {
