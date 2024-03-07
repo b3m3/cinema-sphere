@@ -4,19 +4,6 @@
   border-radius: 1.25rem;
   transition: .2s;
   
-  @media (any-hover: hover) {
-    &:hover {
-      .logo {
-        color: var(--orange-300);
-      }
-
-      .hover {
-        opacity: 1;
-        pointer-events: all;
-      }
-    }
-  }
-  
   .logo {
     font-family: "Bebas Neue";
     position: relative;
@@ -25,37 +12,6 @@
     font-weight: 400;
     font-size: 1.5rem;
     color: var(--orange-400);
-  }
-}
-
-.hover {
-  position: absolute;
-  z-index: 9;
-  top: 100%;
-  left: 0;
-  background: var(--grey-900);
-  padding: 1.25rem;
-  border-radius: var(--radius-4);
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: opacity .3s;
-
-  & ul {
-    display: flex;
-    flex-direction: column;
-    gap: .9375rem;
-
-    & li {
-      font-size: 1rem;
-
-      @media (any-hover: hover) {
-        &:hover {
-          color: var(--orange-400);
-        }
-      }
-    }
   }
 }
 

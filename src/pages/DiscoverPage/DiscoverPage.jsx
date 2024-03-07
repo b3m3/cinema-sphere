@@ -17,8 +17,6 @@ const DiscoverPage = () => {
   const {category, filters, page} = useParams();
   const dispatch = useDispatch();
 
-  console.log(filters)
-
   const categoryName = useMemo(() => {
     switch (category) {
       case 'movie':

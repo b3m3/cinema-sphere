@@ -40,7 +40,7 @@ const Header = () => {
     <header className={style.header}>
       <div className="container">
         <div className={style.wrapp}>
-          <LogoCS menu />
+          <LogoCS />
           <SearchBar />
           <div className={style.hide}>
             <WatchListBtn isAuth={user.isAuth} handleCloseNavbar={handleCloseNavbar} />
