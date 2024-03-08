@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('./assets/fonts/fonts.scss');
 @import url('./style/swiper.scss');
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family:inherit;
-  font-weight: inherit;
+  font-family: inherit;
   list-style: none;
   text-decoration: none;
   color: inherit;
@@ -61,6 +59,7 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   font-size: .875rem;
+  font-weight: 400;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: var(--black);

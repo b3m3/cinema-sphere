@@ -7,13 +7,13 @@ import style from './WatchListBtn.module.scss';
 
 const WatchListBtn = memo(({isAuth, handleCloseNavbar}) => {
   return (
-    <Link 
+    <Link
       to={isAuth ? "/watchlist/movies" : "/login"}
       className={style.wrapp}
       onClick={handleCloseNavbar}
     >
       <span>WatchList</span>
-      <BsBookmarkStarFill />
+      <BsBookmarkStarFill/>
     </Link>
   );
 })
