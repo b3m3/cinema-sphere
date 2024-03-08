@@ -11,6 +11,19 @@
     text-transform: uppercase;
     font-size: 1.5rem;
     color: var(--orange-400);
+
+    background: linear-gradient(to right, var(--blue-400), var(--red-400), var(--green-400));
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip:text;
+    animation: rainbow 1.6s ease-in-out infinite;
+    transition: color .15s ease-in-out;
+
+    @media (any-hover: hover) {
+      &:hover{
+        color:rgba(0,0,0,0);
+      }
+    }
   }
 }
 
@@ -20,4 +33,10 @@
       font-size: 1.2rem;
     }
   }
+}
+
+@keyframes rainbow {
+  0%{background-position:left}
+  50%{background-position:right}
+  100%{background-position:left}
 }
