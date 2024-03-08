@@ -20,7 +20,7 @@ const TrendingCard = memo(({id, srcPosterImg, srcBackgroundImg, title, realese, 
   return (
     <div className={style.wrapp}>
       <div className={style.image}>
-        <img src={`${IMAGE_URL}w1280${srcBackgroundImg(currentSlide)}`} alt=" "/>
+        <img src={`${IMAGE_URL}w1280${srcBackgroundImg(currentSlide)}`} alt="Background"/>
       </div>
 
       <div className={style.poster}>
