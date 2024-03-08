@@ -41,16 +41,16 @@ const ActorFilmography = ({name, id, lang}) => {
           <SwiperWrapper
             btnClass={'filmography-arrow-'}
             breakpoints={breakpoints}
-          >`
-            {res?.cast?.map(({id, poster_path, release_date, title, vote_average, media_type}, i) => {
+          >
+            {res?.cast?.map(({id, poster_path, release_date, first_air_date, name, title, vote_average, media_type}, i) => {
               return (
                 <SwiperSlide key={id + i}>
                   <MediaCard
                     id={id}
                     posterPath={poster_path}
                     mediaType={media_type}
-                    date={release_date}
-                    title={title}
+                    date={release_date || first_air_date}
+                    title={title || name}
                     rating={vote_average}
                     white
                   />

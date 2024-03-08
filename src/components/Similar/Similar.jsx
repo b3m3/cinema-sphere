@@ -61,7 +61,6 @@ const Similar = ({category, id, lang}) => {
         </div>
       }
     </>
-
   );
 };
 
