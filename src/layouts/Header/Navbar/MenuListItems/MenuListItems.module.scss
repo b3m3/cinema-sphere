@@ -5,6 +5,7 @@
   display: grid;
   justify-content: center;
   grid-template: auto / repeat(3, minmax(auto, 300px));
+  padding-bottom: 50px;
 
   & li {
     display: flex;

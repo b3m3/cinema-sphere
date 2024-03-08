@@ -7,9 +7,18 @@ import LogoCS from '../../../components/LogoCS/LogoCS';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import style from './Navbar.module.scss';
+import {useEffect} from "react";
 
 const Navbar = ({handleCloseNavbar}) => {
   const { menu } = useSelector(state => state.menu);
+
+  useEffect(() => {
+    if (menu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [menu]);
 
   return (
     <div className={`${style.wrapp} ${menu && style.open}`}>
