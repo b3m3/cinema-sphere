@@ -9,8 +9,8 @@ const SpokenLanguages = ({spokenLang}) => {
             <h4>Languages</h4>
 
             <ul>
-              {spokenLang && spokenLang.map(({name}) => (
-                <li key={name}>{name}</li>
+              {spokenLang && spokenLang.map(({name}, i) => (
+                <li key={name + i}>{name}</li>
               ))}
             </ul>
           </div>

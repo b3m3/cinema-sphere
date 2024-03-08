@@ -30,7 +30,7 @@ const Links = memo(({category, homepage, borderBottom}) => {
       const baseUrl = imdb && isPerson ? linkBase + 'name/' : imdb && !isPerson ? linkBase + 'Title/' : linkBase;
 
       return (
-        <a key={id} className={style.link} href={`${baseUrl}${linkKey}`} rel="noopener noreferrer" target='__blank'>
+        <a key={id + name} href={`${baseUrl}${linkKey}`} rel="noopener noreferrer" target='__blank'>
           {name}
         </a>
       )

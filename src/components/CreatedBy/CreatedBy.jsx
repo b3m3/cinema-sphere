@@ -11,8 +11,8 @@ const CreatedBy = ({createdBy}) => {
           <h4>Created by</h4>
 
           <ul>
-            {createdBy?.map(({id, name, profile_path}) => (
-              <li key={id}>
+            {createdBy?.map(({id, name, profile_path}, i) => (
+              <li key={id + i}>
                 {
                   profile_path && <img src={`${IMAGE_URL}w45/${profile_path}`} alt={`${name}`} />
                 }
