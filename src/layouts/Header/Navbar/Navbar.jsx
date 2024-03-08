@@ -1,12 +1,16 @@
-import { IoIosCloseCircleOutline } from "react-icons/io";
-import LogoCS from '../../../components/LogoCS/LogoCS';
+import {useSelector} from "react-redux";
 import Language from '../Language/Language';
 import WatchListBtn from '../WatchListBtn/WatchListBtn';
+import MenuListItems from "./MenuListItems/MenuListItems";
+import LogoCS from '../../../components/LogoCS/LogoCS';
+
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import style from './Navbar.module.scss';
-import MenuListItems from "./MenuListItems/MenuListItems";
 
-const Navbar = ({menu, handleCloseNavbar}) => {
+const Navbar = ({handleCloseNavbar}) => {
+  const { menu } = useSelector(state => state.menu);
+
   return (
     <div className={`${style.wrapp} ${menu && style.open}`}>
       <div className="container">
