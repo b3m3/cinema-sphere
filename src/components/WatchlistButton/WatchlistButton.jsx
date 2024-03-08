@@ -1,11 +1,11 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 
 import Loading from "../Loading/Loading";
 import { BASE_URL } from "../../constants/api";
-
 import { BsBookmarkPlusFill, BsFillBookmarkCheckFill } from "react-icons/bs";
 
 import style from './WatchlistButton.module.scss';
@@ -14,19 +14,30 @@ const WatchlistButton = memo(({ id, category, button }) => {
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { data } = useSelector(state => state.auth.user);
+  const navigate = useNavigate();
+
+  const { user } = useSelector(state => state.auth);
   const watchlist = useSelector(state => state.watchlist);
 
   const handleClick = useCallback(async () => {
+    if (!user?.isAuth) {
+      if (window.confirm('Would you like to sign in for more access?') === true) {
+        return navigate('/login');
+      }
+
+      return;
+    }
+
     try {
       setLoading(true);
 
       const token = window.localStorage.getItem('session');
       const { session_id } = jwt.verify(token, process.env.REACT_APP_JWT_SECRET);
+      const accountId = user.data?.id;
 
       if (session_id) {
         const response = await axios.post(
-          `${BASE_URL}account/${data.id}/watchlist?api_key=${process.env.REACT_APP_API_KEY}&session_id=${session_id}`,
+          `${BASE_URL}account/${accountId}/watchlist?api_key=${process.env.REACT_APP_API_KEY}&session_id=${session_id}`,
           { media_type: category, media_id: id, watchlist: !active }
         );
 
@@ -41,7 +52,7 @@ const WatchlistButton = memo(({ id, category, button }) => {
     finally {
       setLoading(false);
     }
-  }, [active, data, category, id]);
+  }, [active, navigate, user, category, id]);
 
   useEffect(() => {
     const getActive = Boolean(

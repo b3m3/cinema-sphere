@@ -50,8 +50,7 @@ const DiscoverPage = () => {
               posterPath={poster_path}
               date={release_date || first_air_date}
               category={category}
-              title={title}
-              name={name}
+              title={title || name}
               rating={vote_average}
             />
           ))}
