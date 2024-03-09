@@ -50,11 +50,10 @@ const Trailer = memo(() => {
                 />
               </div>
           : !Boolean(res?.results?.length)
-            ? <picture className={style.pattern}>
-                <source srcset={`${NoTrailerAvailable}`} type="image/webp" />
-                <img src={`${NoTrailerAvailable}`} alt="menu-image" />
-                <figcaption>No trailer available</figcaption>
-              </picture>
+            ? <div className={style.pattern}>
+                <img src={`${NoTrailerAvailable}`} alt="NoTrailerAvailable" />
+                <p>No trailer available</p>
+              </div>
             : <span className={style.white}/>
       }
     </div>
