@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import {useEffect, useCallback, useMemo} from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { fetchAuth } from '../../store/asyncThunks/fetchAuth';
-import { isCloseMenu } from '../../store/slices/menuSlice';
 
 import LogoCS from '../../components/LogoCS/LogoCS';
 import Navbar from './Navbar/Navbar';
@@ -25,10 +24,6 @@ const Header = () => {
     dispatch(fetchAuth());
   }, [dispatch]);
 
-  const handleCloseNavbar = useCallback(() => {
-    return dispatch(isCloseMenu());
-  }, [dispatch]);
-
   return (
     <header className={style.header}>
       <div className="container">
@@ -37,21 +32,17 @@ const Header = () => {
           <SearchBar />
 
           <div className={style.hide}>
-            <WatchListBtn isAuth={memoizedUser.isAuth} handleCloseNavbar={handleCloseNavbar} />
+            <WatchListBtn isAuth={memoizedUser?.isAuth} />
           </div>
 
-          {
-            memoizedUser.isAuth
-              ? <User data={memoizedUser.data} dispatch={dispatch} />
-              : <SingInBtn />
-          }
+          { memoizedUser.isAuth ? <User userData={memoizedUser?.data} /> : <SingInBtn /> }
 
           <div className={style.hide}>
             <Language />
           </div>
 
-          <MenuBtn dispatch={dispatch} />
-          <Navbar handleCloseNavbar={handleCloseNavbar} />
+          <MenuBtn />
+          <Navbar isAuth={memoizedUser?.isAuth} />
         </div>
       </div>
     </header>

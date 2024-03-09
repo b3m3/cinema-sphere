@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 
 import { FaPlayCircle } from "react-icons/fa";
 import Loading from "../Loading/Loading";
-import TvPattern from '../../assets/video/TvPatternVid.webm';
+import NoTrailerAvailable from '../../assets/images/NoTrailerAvailable.webp';
 
 import style from './Trailer.module.scss';
 
@@ -50,10 +50,12 @@ const Trailer = memo(() => {
                 />
               </div>
           : !Boolean(res?.results?.length)
-              ? <video className={style.pattern} autoPlay muted loop>
-                  <source src={`${TvPattern}`} type='video/webm; codecs="vp8.0, vorbis"'/>
-                </video>
-              : <span className={style.white}/>
+            ? <picture className={style.pattern}>
+                <source srcset={`${NoTrailerAvailable}`} type="image/webp" />
+                <img src={`${NoTrailerAvailable}`} alt="menu-image" />
+                <figcaption>No trailer available</figcaption>
+              </picture>
+            : <span className={style.white}/>
       }
     </div>
   );

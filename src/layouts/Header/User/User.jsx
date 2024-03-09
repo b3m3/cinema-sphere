@@ -1,5 +1,6 @@
 import {memo, useCallback, useEffect, useMemo, useState} from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
 
 import { IMAGE_URL } from '../../../constants/api';
 import { MdOutlineArrowDropDown } from "react-icons/md";
@@ -10,15 +11,16 @@ import { autoCloser } from '../../../utils/functions';
 import { signOut } from '../../../store/slices/fetchAuthSlice';
 
 import style from './User.module.scss';
-import {useLocation} from "react-router-dom";
 
-const User = memo(({data, dispatch}) => {
+const User = memo(({ userData }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { pathname } = useLocation();
 
   const { lang } = useSelector(state => state.lang);
-  const { id, avatar, username } = { ...data };
+  const { id, avatar, username } = { ...userData };
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGetTvWatchlist({ accountId: id, lang }));

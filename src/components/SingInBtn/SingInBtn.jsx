@@ -1,8 +1,9 @@
+import {memo} from "react";
 import { Link } from "react-router-dom";
 
 import style from './SingInBtn.module.scss';
 
-const SingInBtn = ({big}) => {
+const SingInBtn = memo(({big}) => {
   return (
     <div className={`${style.wrapp} ${big && style.big}`}>
       <Link to={'/login'}>
@@ -11,6 +12,6 @@ const SingInBtn = ({big}) => {
     </div>
 
   );
-}
+});
 
 export default SingInBtn;
