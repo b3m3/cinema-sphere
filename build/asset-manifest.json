@@ -1,8 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.2f868b5d.css",
-    "main.js": "./static/js/main.4432b4db.js",
-    "static/media/TvPatternVid.webm": "./static/media/TvPatternVid.744530b95b6cac3067a9.webm",
+    "main.css": "./static/css/main.54985d76.css",
+    "main.js": "./static/js/main.0cd8705e.js",
     "static/media/anime_03.webp": "./static/media/anime_03.5ed63fc0f4e048cc68c8.webp",
     "static/media/anime_02.webp": "./static/media/anime_02.b036a56273d436bd0018.webp",
     "static/media/PosterMask.webp": "./static/media/PosterMask.0dee9235a195c6461211.webp",
@@ -23,16 +22,17 @@
     "static/media/comedy_03.webp": "./static/media/comedy_03.49d36ec05cba0da52259.webp",
     "static/media/horror_03.webp": "./static/media/horror_03.76827972347f12d5c376.webp",
     "static/media/BebasNeue-Regular.woff2": "./static/media/BebasNeue-Regular.8eefcd4284319e1eb4ca.woff2",
+    "static/media/NoTrailerAvailable.webp": "./static/media/NoTrailerAvailable.48e47849f73c9f8ba7ae.webp",
     "static/media/spinner.svg": "./static/media/spinner.1dc24163a92aa984cb1c20da2ba6048f.svg",
     "static/media/tmdb.svg": "./static/media/tmdb.bf7f470b3821af1da7fa249c87dadea3.svg",
     "static/media/pulse.svg": "./static/media/pulse.0d6f7277a428e425b2f110176823c56f.svg",
     "static/media/pulse_black.svg": "./static/media/pulse_black.9e4a540b56168cf5264b74a7e62a5771.svg",
     "index.html": "./index.html",
-    "main.2f868b5d.css.map": "./static/css/main.2f868b5d.css.map",
-    "main.4432b4db.js.map": "./static/js/main.4432b4db.js.map"
+    "main.54985d76.css.map": "./static/css/main.54985d76.css.map",
+    "main.0cd8705e.js.map": "./static/js/main.0cd8705e.js.map"
   },
   "entrypoints": [
-    "static/css/main.2f868b5d.css",
-    "static/js/main.4432b4db.js"
+    "static/css/main.54985d76.css",
+    "static/js/main.0cd8705e.js"
   ]
 }
