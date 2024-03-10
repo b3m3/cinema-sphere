@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.54985d76.css",
-    "main.js": "./static/js/main.0cd8705e.js",
+    "main.css": "./static/css/main.a5c19e5a.css",
+    "main.js": "./static/js/main.52dc2aec.js",
     "static/media/anime_03.webp": "./static/media/anime_03.5ed63fc0f4e048cc68c8.webp",
     "static/media/anime_02.webp": "./static/media/anime_02.b036a56273d436bd0018.webp",
     "static/media/PosterMask.webp": "./static/media/PosterMask.0dee9235a195c6461211.webp",
@@ -28,11 +28,11 @@
     "static/media/pulse.svg": "./static/media/pulse.0d6f7277a428e425b2f110176823c56f.svg",
     "static/media/pulse_black.svg": "./static/media/pulse_black.9e4a540b56168cf5264b74a7e62a5771.svg",
     "index.html": "./index.html",
-    "main.54985d76.css.map": "./static/css/main.54985d76.css.map",
-    "main.0cd8705e.js.map": "./static/js/main.0cd8705e.js.map"
+    "main.a5c19e5a.css.map": "./static/css/main.a5c19e5a.css.map",
+    "main.52dc2aec.js.map": "./static/js/main.52dc2aec.js.map"
   },
   "entrypoints": [
-    "static/css/main.54985d76.css",
-    "static/js/main.0cd8705e.js"
+    "static/css/main.a5c19e5a.css",
+    "static/js/main.52dc2aec.js"
   ]
 }
