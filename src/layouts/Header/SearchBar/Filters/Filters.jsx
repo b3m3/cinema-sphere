@@ -57,7 +57,6 @@ const Filters = ({handleCloseFilters}) => {
 
   return (
     <div className={style.wrapp}>
-      
       <div className={style.body}>
         <div className={style.top}>
           <CategoryOptions

@@ -37,7 +37,7 @@
     padding: 1.25rem 0 1rem 0;
   }
 
-  &_star {
+  &_bigStar {
     pointer-events: none;
 
     & svg {
@@ -67,8 +67,19 @@
       padding: 0 1px;
     }
 
-    & svg {
+    & button {
       font-size: 2rem;
+
+      & svg {
+        fill: var(--blue-400);
+        transition: .3s ease-out;
+
+        @media (any-hover: hover) {
+          &:hover {
+            transform: scale(1.4);
+          }
+        }
+      }
     }
   }
 }
@@ -85,6 +96,29 @@
   @media (any-hover: hover) {
     &:hover {
       opacity: .8;
+    }
+  }
+}
+
+.close {
+  position: absolute;
+  content: '';
+  right: -0.625rem;
+  top: -2.8125rem;
+  font-size: 2rem;
+  color: var(--grey-100);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  padding: 4px;
+  transition: .2s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      background: var(--white-01);
     }
   }
 }

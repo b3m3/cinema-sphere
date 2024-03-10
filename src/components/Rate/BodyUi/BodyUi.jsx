@@ -10,7 +10,7 @@ import {FaRegStar, FaStar} from "react-icons/fa";
 import style from './BodyUi.module.scss';
 
 const BodyUi = (props) => {
-  const { id, status, error, category, setIsShow, starSelected, setStarHover, setStarSelected } = props;
+  const { id, status, error, category, setIsShow, starSelected, setStarSelected } = props;
 
   const [rateValue, setRateValue] = useState(null);
 
@@ -23,7 +23,6 @@ const BodyUi = (props) => {
   useEffect(() => {
     if (status && !error) {
       setRateValue(starSelected);
-      setStarHover('');
       setStarSelected('');
       setIsShow(false);
       dispatch(clearRateStates());
@@ -32,12 +31,11 @@ const BodyUi = (props) => {
     if (error) {
       setTimeout(() => {
         setIsShow(false);
-        setStarHover('');
         setStarSelected('');
         dispatch(clearRateStates());
       }, 1500);
     }
-  }, [dispatch, error, starSelected, status, setIsShow, setStarHover, setStarSelected]);
+  }, [dispatch, error, starSelected, status, setIsShow, setStarSelected]);
 
   useEffect(() => {
     const newCategory = category === 'movie' ? 'movies' : category;

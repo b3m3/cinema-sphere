@@ -7,7 +7,6 @@ import BodyUi from "./BodyUi/BodyUi";
 const Rate = ({category, id, title}) => {
   const [isShow, setIsShow] = useState(false);
   const [starSelected, setStarSelected] = useState('');
-  const [starHover, setStarHover] = useState('');
 
   const { error, status, loading } = useSelector(state => state.rate.post);
 
@@ -18,7 +17,6 @@ const Rate = ({category, id, title}) => {
         setIsShow={setIsShow}
         category={category}
         starSelected={starSelected}
-        setStarHover={setStarHover}
         setStarSelected={setStarSelected}
         error={error}
         status={status}
@@ -30,9 +28,7 @@ const Rate = ({category, id, title}) => {
             id={id}
             category={category}
             starSelected={starSelected}
-            starHover={starHover}
             isShow={isShow}
-            setStarHover={setStarHover}
             setStarSelected={setStarSelected}
             title={title}
             setIsShow={setIsShow}
