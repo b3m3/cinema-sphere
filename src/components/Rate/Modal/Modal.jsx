@@ -6,9 +6,9 @@ import Error from "../../Error/Error";
 import {postRating} from "../../../store/asyncThunks/fetchRating";
 
 import { FaRegStar, FaStar } from "react-icons/fa";
+import {IoClose} from "react-icons/io5";
 
 import style from './Modal.module.scss';
-import {IoClose} from "react-icons/io5";
 
 const Modal = (props) => {
   const {id, category, isShow, setStarSelected, starSelected, title, error, status, setIsShow, loading} = props;
