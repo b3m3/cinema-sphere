@@ -1,7 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
+import {confirmMessage} from "../../../utils/functions";
 import Loading from "../../Loading/Loading";
 import {clearRateStates} from "../../../store/slices/fetchRatingSlice";
 import {getRating} from "../../../store/asyncThunks/fetchRating";
@@ -19,6 +20,7 @@ const BodyUi = (props) => {
   const { lang } = useSelector(state => state.lang);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (status && !error) {
@@ -72,10 +74,10 @@ const BodyUi = (props) => {
                 </>
             }
           </button>
-          : <Link to={'/login'} className={style.button}>
+          : <button className={style.button} onClick={() => confirmMessage(navigate)}>
               <FaRegStar />
               <span>Rate</span>
-            </Link>
+            </button>
       }
     </div>
   );
