@@ -1,9 +1,9 @@
 import {Link, useLocation, useParams} from 'react-router-dom';
 import {memo, useCallback, useMemo} from 'react';
 
-import { BiDotsHorizontalRounded } from "react-icons/bi";
+import {BiDotsHorizontalRounded} from "react-icons/bi";
 
-import { convertPathToTitle } from "../../utils/functions";
+import {convertPathToTitle} from "../../utils/functions";
 
 import style from './MediaSwitcher.module.scss';
 
@@ -17,8 +17,8 @@ const MediaSwitcher = memo(({results}) => {
 
     array[index] = newFilter;
 
-    return array.join('/')
-  }, [filter, pathname])
+    return `${array.slice(0, -1).join('/')}/1`;
+  }, [filter, pathname]);
 
   const isActive = useMemo(() => {
     return results?.indexOf(filter)
