@@ -27,9 +27,15 @@ const ActorFilmography = ({name, id, lang}) => {
     dispatch(fetchCombinedCredits({id, lang}))
   }, [dispatch, id, lang]);
 
+  const uniqueResults = useMemo(() => {
+    return res?.cast?.filter((object, index, self) => {
+      return index === self.findIndex((t) => (t.id === object.id));
+    });
+  }, [res]);
+
   const title = useMemo(() => {
-    return `Works Featuring ${name} ${Boolean(res?.cast?.length ) ? `(${res?.cast?.length})` : ''}`
-  }, [res ,name])
+    return `Works Featuring ${name} ${Boolean(uniqueResults?.length ) ? `(${uniqueResults?.length})` : ''}`
+  }, [uniqueResults, name]);
 
   return (
     <div className={style.wrapp}>
@@ -37,14 +43,14 @@ const ActorFilmography = ({name, id, lang}) => {
       { loading && <Loading size={30} black/> }
 
       {
-        Boolean(res?.cast?.length) &&
+        Boolean(uniqueResults?.length) &&
           <SwiperWrapper
             btnClass={'filmography-arrow-'}
             breakpoints={breakpoints}
           >
-            {res?.cast?.map(({id, poster_path, release_date, first_air_date, name, title, vote_average, media_type}, i) => {
+            {uniqueResults?.map(({id, poster_path, release_date, first_air_date, name, title, vote_average, media_type}, i) => {
               return (
-                <SwiperSlide key={id + i}>
+                <SwiperSlide key={id}>
                   <MediaCard
                     id={id}
                     posterPath={poster_path}
