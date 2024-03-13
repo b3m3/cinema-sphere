@@ -1,26 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.a5c19e5a.css",
-    "main.js": "./static/js/main.c430a2cf.js",
-    "static/media/anime_03.webp": "./static/media/anime_03.5ed63fc0f4e048cc68c8.webp",
-    "static/media/anime_02.webp": "./static/media/anime_02.b036a56273d436bd0018.webp",
+    "main.css": "./static/css/main.2b3d07cb.css",
+    "main.js": "./static/js/main.503436c1.js",
     "static/media/PosterMask.webp": "./static/media/PosterMask.0dee9235a195c6461211.webp",
-    "static/media/anime_01.webp": "./static/media/anime_01.a83366d4d33912caacd1.webp",
+    "static/media/poster_comedy.webp": "./static/media/poster_comedy.0c15a7f19665e6b45a41.webp",
+    "static/media/poster_anime.webp": "./static/media/poster_anime.9c08ae3eb6cb60921abb.webp",
+    "static/media/poster_forties.webp": "./static/media/poster_forties.ed5eea0c78af58280eb8.webp",
+    "static/media/poster_horror.webp": "./static/media/poster_horror.33171d79337799c207b6.webp",
     "static/media/Inter-Bold.woff2": "./static/media/Inter-Bold.74a8620796c795315a62.woff2",
     "static/media/Inter-ExtraBold.woff2": "./static/media/Inter-ExtraBold.37a35b6c3eb2745d0f11.woff2",
     "static/media/Inter-SemiBold.woff2": "./static/media/Inter-SemiBold.d873c5ea912cb7dff6d9.woff2",
     "static/media/Inter-Medium.woff2": "./static/media/Inter-Medium.19e05b2238d4f2d8d3d5.woff2",
     "static/media/Inter-Light.woff2": "./static/media/Inter-Light.b4a67515ff5692d12096.woff2",
-    "static/media/horror_02.webp": "./static/media/horror_02.aca647809b32eeef68f2.webp",
-    "static/media/horror_01.webp": "./static/media/horror_01.177e45ee1483a60b934c.webp",
+    "static/media/poster_maffia.webp": "./static/media/poster_maffia.74cc58b95afb8b9bce8a.webp",
     "static/media/Inter-Regular.woff2": "./static/media/Inter-Regular.e976b84791e6a5f65646.woff2",
-    "static/media/comedy_02.webp": "./static/media/comedy_02.0186b69fb2c46f62d2a5.webp",
-    "static/media/comedy_01.webp": "./static/media/comedy_01.0465c6310eabd7e3077a.webp",
+    "static/media/poster_zombie.webp": "./static/media/poster_zombie.152620261a8ef312c1eb.webp",
     "static/media/page-not-found.svg": "./static/media/page-not-found.a8c2131084e6135f1ee34fccced00cd4.svg",
     "static/media/Empty.png": "./static/media/Empty.d610006de2042e646446.png",
     "static/media/Roboto-Regular.woff2": "./static/media/Roboto-Regular.9429985be4f46ec8fcfc.woff2",
-    "static/media/comedy_03.webp": "./static/media/comedy_03.49d36ec05cba0da52259.webp",
-    "static/media/horror_03.webp": "./static/media/horror_03.76827972347f12d5c376.webp",
     "static/media/BebasNeue-Regular.woff2": "./static/media/BebasNeue-Regular.8eefcd4284319e1eb4ca.woff2",
     "static/media/NoTrailerAvailable.webp": "./static/media/NoTrailerAvailable.48e47849f73c9f8ba7ae.webp",
     "static/media/spinner.svg": "./static/media/spinner.1dc24163a92aa984cb1c20da2ba6048f.svg",
@@ -28,11 +25,11 @@
     "static/media/pulse.svg": "./static/media/pulse.0d6f7277a428e425b2f110176823c56f.svg",
     "static/media/pulse_black.svg": "./static/media/pulse_black.9e4a540b56168cf5264b74a7e62a5771.svg",
     "index.html": "./index.html",
-    "main.a5c19e5a.css.map": "./static/css/main.a5c19e5a.css.map",
-    "main.c430a2cf.js.map": "./static/js/main.c430a2cf.js.map"
+    "main.2b3d07cb.css.map": "./static/css/main.2b3d07cb.css.map",
+    "main.503436c1.js.map": "./static/js/main.503436c1.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5c19e5a.css",
-    "static/js/main.c430a2cf.js"
+    "static/css/main.2b3d07cb.css",
+    "static/js/main.503436c1.js"
   ]
 }
