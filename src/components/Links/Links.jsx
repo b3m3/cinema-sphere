@@ -1,4 +1,4 @@
-import {memo, useCallback, useEffect} from 'react';
+import {memo, useCallback, useEffect, useMemo} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -36,11 +36,15 @@ const Links = memo(({category, homepage, borderBottom}) => {
       )
     }
   }, [category, res]);
-  
+
+  const isResults = useMemo(() => {
+    return res && ( res['imdb_id'] || res['facebook_id'] || res['instagram_id'] || res['twitter_id'] );
+  }, [res]);
+
   return (
     <>
       {
-        res &&
+        isResults &&
           <div className={`${style.wrapp} ${borderBottom && style.borderBottom}`}>
             <h4>Links</h4>
 
