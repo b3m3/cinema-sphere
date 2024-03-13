@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { fetchSearch } from "../../store/asyncThunks/fetchSearch";
+import {scrollToTop} from "../../utils/functions";
 
 import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Loading from '../../components/Loading/Loading';
@@ -38,7 +39,8 @@ const SearchPage = () => {
 
   useEffect(() => {
     if(category && value && page && lang) {
-      dispatch(fetchSearch({category, value, page, lang}))
+      dispatch(fetchSearch({category, value, page, lang}));
+      scrollToTop();
     }
   }, [dispatch, category, value, page, lang]);
 

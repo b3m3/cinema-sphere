@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { fetchDiscover } from "../../store/asyncThunks/fetchDiscover";
+import {scrollToTop} from "../../utils/functions";
 
 import PageSwitcher from '../../components/PageSwitcher/PageSwitcher';
 import Loading from '../../components/Loading/Loading';
@@ -33,6 +34,7 @@ const DiscoverPage = () => {
   useEffect(() => {
     if(category && filters && lang && page) {
       dispatch(fetchDiscover({category, filters, lang, page}))
+      scrollToTop();
     }
   }, [dispatch, category, filters, lang, page]);
 
