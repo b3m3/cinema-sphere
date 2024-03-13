@@ -1,3 +1,5 @@
+import {useNavigate} from "react-router-dom";
+
 export const getLanguage = () => localStorage.getItem('lang');
 
 export const autoCloser = (tagName, state, setState) => {
@@ -45,4 +47,10 @@ export const scrollToTop = () => {
 
 export const convertPathToTitle = (path) => {
   return path[0].toUpperCase() + path.slice(1).split('_').join(' ');
+}
+
+export const confirmMessage = (callback) => {
+  if (window.confirm('Would you like to sign in for more access?') === true) {
+    return callback('/login');
+  }
 }
