@@ -5,6 +5,7 @@ import Loading from "../../../components/Loading/Loading";
 import {fetchAuth, fetchRequestToken, fetchSession, fetchSessionWithLogin} from "../../../store/asyncThunks/fetchAuth";
 
 import style from './Form.module.scss';
+import {scrollToTop} from "../../../utils/functions";
 
 const Form = memo(() => {
   const [username, setUsername] = useState('');
@@ -37,6 +38,10 @@ const Form = memo(() => {
       navigate('/')
     }
   }, [dispatch, navigate, user]);
+
+  useEffect(() => {
+    scrollToTop()
+  }, []);
 
   const errorStyle = useMemo(() => {
     if (status) {
