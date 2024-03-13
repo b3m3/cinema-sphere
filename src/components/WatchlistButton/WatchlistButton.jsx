@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 
+import {confirmMessage} from "../../utils/functions";
 import Loading from "../Loading/Loading";
 import { BASE_URL } from "../../constants/api";
 import { BsBookmarkPlusFill, BsFillBookmarkCheckFill } from "react-icons/bs";
@@ -20,14 +21,6 @@ const WatchlistButton = memo(({ id, category, button }) => {
   const watchlist = useSelector(state => state.watchlist);
 
   const handleClick = useCallback(async () => {
-    if (!user?.isAuth) {
-      if (window.confirm('Would you like to sign in for more access?') === true) {
-        return navigate('/login');
-      }
-
-      return;
-    }
-
     try {
       setLoading(true);
 
@@ -52,7 +45,7 @@ const WatchlistButton = memo(({ id, category, button }) => {
     finally {
       setLoading(false);
     }
-  }, [active, navigate, user, category, id]);
+  }, [active, user, category, id]);
 
   useEffect(() => {
     const getActive = Boolean(
@@ -65,11 +58,11 @@ const WatchlistButton = memo(({ id, category, button }) => {
   return (
     <button
       className={`${style.wrapp} ${button ? style.button : ''} ${active ? style.active : ''}`}
-      onClick={handleClick}
+      onClick={() => user?.isAuth ? handleClick() : confirmMessage(navigate)}
     >
       <span>
         {
-          loading
+          loading || watchlist[category]?.loading
             ? <Loading size={90} spinner />
             : <>{ active ? <BsFillBookmarkCheckFill/> : <BsBookmarkPlusFill/> }</>
         }
