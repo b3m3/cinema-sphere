@@ -3,42 +3,40 @@ import {memo, useMemo} from 'react';
 
 import { IoIosList } from "react-icons/io";
 
-import Anime01 from '../../../../assets/images/picks/anime_01.webp';
-import Anime02 from '../../../../assets/images/picks/anime_02.webp';
-import Anime03 from '../../../../assets/images/picks/anime_03.webp';
-import Horror01 from '../../../../assets/images/picks/horror_01.webp';
-import Horror02 from '../../../../assets/images/picks/horror_02.webp';
-import Horror03 from '../../../../assets/images/picks/horror_03.webp';
-import Comedy01 from '../../../../assets/images/picks/comedy_01.webp';
-import Comedy02 from '../../../../assets/images/picks/comedy_02.webp';
-import Comedy03 from '../../../../assets/images/picks/comedy_03.webp';
+import Anime from '../../../../assets/images/picks/poster_anime.webp';
+import Horror from '../../../../assets/images/picks/poster_horror.webp';
+import Comedy from '../../../../assets/images/picks/poster_comedy.webp';
+import Mafia from '../../../../assets/images/picks/poster_maffia.webp';
+import Zombie from '../../../../assets/images/picks/poster_zombie.webp';
+import Forties from '../../../../assets/images/picks/poster_forties.webp';
 
 import style from './PicksCard.module.scss';
 
-const PicksCard = memo(({link, name}) => {
+const PicksCard = memo(({name}) => {
+
   const data = useMemo(() => {
     switch (name) {
       case "Anime":
-        return [Anime01, Anime02, Anime03]
-
+        return {src: Anime, link: '/discover/tv/&include_adult=false&with_keywords=210024&/1'};
       case "Horror":
-        return [Horror01, Horror02, Horror03]
-
+        return {src: Horror, link: '/discover/movie/&with_genres=27&/1'};
       case "Comedy":
-        return [Comedy01, Comedy02, Comedy03]
-    
-      default:
-        return [];
+        return {src: Comedy, link: '/discover/movie/&with_genres=35&/1'};
+      case "Mafia":
+        return {src: Mafia, link: '/discover/movie/&include_adult=false&with_keywords=10391&/1'};
+      case "Zombie":
+        return {src: Zombie, link: '/discover/movie/&include_adult=false&with_keywords=12377&/1'};
+      case "1940s":
+        return {src: Forties, link: '/discover/movie/&include_adult=false&with_keywords=207883&/1'};
+      default: return {};
     }
   }, [name]);
 
   return (
     <div className={style.wrapp}>
       <div className={style.main}>
-        <Link className={style.img} to={link}>
-          {data?.map(src => (
-            <img src={src} alt=" " key={src} />
-          ))}
+        <Link className={style.img} to={data.link}>
+          <img src={`${data.src}`} alt={name} />
         </Link>
 
         <p><IoIosList /> <span>List</span></p>

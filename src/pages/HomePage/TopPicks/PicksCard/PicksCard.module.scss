@@ -4,34 +4,29 @@
   grid-template: 1fr / 1fr;
 
   & h3 {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     line-height: 2.5;
+    font-weight: 500;
   }
 }
 
 .main {
   display: block;
   position: relative;
+  border-radius: var(--radius-4);
+  overflow: hidden;
+  background: var(--orange-400);
 
   @media (any-hover: hover) {
     &:hover {
-      &::after {
-        border: 2px solid var(--orange-400);
+      & img {
+        transform: scale(1.05);
+      }
+
+      & p {
+        color: var(--orange-400);
       }
     }
-  }
-
-  &::after {
-    pointer-events: none;
-    position: absolute;
-    z-index: 2;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    transition: border .2s;
   }
 
   &::before {
@@ -58,6 +53,7 @@
     display: flex;
     align-items: center;
     gap: 3px;
+    transition: color .3s ease-out;
 
     & svg {
       font-size: 1.35rem;
@@ -65,16 +61,14 @@
   }
 
   & .img {
-    display: grid;
-    gap: .1875rem;
-    height: 100%;
-    grid-template: 1fr / repeat(3, 1fr);
-    background: var(--white);
-  
     & img {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform .3s ease-out;
     }
   }
 }
