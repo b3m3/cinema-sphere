@@ -1,6 +1,7 @@
-import {Link, useLocation, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {memo, useCallback, useMemo} from 'react';
 
+import {useCategoryFromLocation} from "../../hooks/useCategoryFromLocation";
 import {BiDotsHorizontalRounded} from "react-icons/bi";
 
 import {convertPathToTitle} from "../../utils/functions";
@@ -9,16 +10,13 @@ import style from './MediaSwitcher.module.scss';
 
 const MediaSwitcher = memo(({results}) => {
   const { filter } = useParams();
-  const { pathname } = useLocation();
+  const category = useCategoryFromLocation();
 
   const pathHandler = useCallback((newFilter) => {
-    let array = pathname.split('/');
-    const index = array.indexOf(filter);
+    const isWatchlist = category === 'watchlist';
 
-    array[index] = newFilter;
-
-    return `${array.slice(0, -1).join('/')}/1`;
-  }, [filter, pathname]);
+    return`/${category}/${newFilter}${isWatchlist ? '' : '/1'}`;
+  }, [category]);
 
   const isActive = useMemo(() => {
     return results?.indexOf(filter)
