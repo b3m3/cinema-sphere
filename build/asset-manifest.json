@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "./static/css/main.2b3d07cb.css",
-    "main.js": "./static/js/main.75702c37.js",
+    "main.css": "./static/css/main.4da0dce4.css",
+    "main.js": "./static/js/main.17d8eac9.js",
     "static/media/PosterMask.webp": "./static/media/PosterMask.0dee9235a195c6461211.webp",
-    "static/media/poster_comedy.webp": "./static/media/poster_comedy.0c15a7f19665e6b45a41.webp",
-    "static/media/poster_anime.webp": "./static/media/poster_anime.9c08ae3eb6cb60921abb.webp",
-    "static/media/poster_forties.webp": "./static/media/poster_forties.ed5eea0c78af58280eb8.webp",
-    "static/media/poster_horror.webp": "./static/media/poster_horror.33171d79337799c207b6.webp",
+    "static/media/Anime.webp": "./static/media/Anime.664d118b1ddb90091e5f.webp",
     "static/media/Inter-Bold.woff2": "./static/media/Inter-Bold.74a8620796c795315a62.woff2",
     "static/media/Inter-ExtraBold.woff2": "./static/media/Inter-ExtraBold.37a35b6c3eb2745d0f11.woff2",
     "static/media/Inter-SemiBold.woff2": "./static/media/Inter-SemiBold.d873c5ea912cb7dff6d9.woff2",
     "static/media/Inter-Medium.woff2": "./static/media/Inter-Medium.19e05b2238d4f2d8d3d5.woff2",
     "static/media/Inter-Light.woff2": "./static/media/Inter-Light.b4a67515ff5692d12096.woff2",
-    "static/media/poster_maffia.webp": "./static/media/poster_maffia.74cc58b95afb8b9bce8a.webp",
+    "static/media/Superhero.webp": "./static/media/Superhero.381ffd96707864273fa1.webp",
     "static/media/Inter-Regular.woff2": "./static/media/Inter-Regular.e976b84791e6a5f65646.woff2",
-    "static/media/poster_zombie.webp": "./static/media/poster_zombie.152620261a8ef312c1eb.webp",
+    "static/media/Magic.webp": "./static/media/Magic.a7e7df518fd7b1451f65.webp",
+    "static/media/Zombie.webp": "./static/media/Zombie.152620261a8ef312c1eb.webp",
+    "static/media/Mafia.webp": "./static/media/Mafia.b18fde378ef769eabb91.webp",
     "static/media/page-not-found.svg": "./static/media/page-not-found.a8c2131084e6135f1ee34fccced00cd4.svg",
     "static/media/Empty.png": "./static/media/Empty.d610006de2042e646446.png",
+    "static/media/Forties.webp": "./static/media/Forties.1c1f02f1f7fcd19fa611.webp",
     "static/media/Roboto-Regular.woff2": "./static/media/Roboto-Regular.9429985be4f46ec8fcfc.woff2",
     "static/media/BebasNeue-Regular.woff2": "./static/media/BebasNeue-Regular.8eefcd4284319e1eb4ca.woff2",
     "static/media/NoTrailerAvailable.webp": "./static/media/NoTrailerAvailable.48e47849f73c9f8ba7ae.webp",
@@ -25,11 +25,11 @@
     "static/media/pulse.svg": "./static/media/pulse.0d6f7277a428e425b2f110176823c56f.svg",
     "static/media/pulse_black.svg": "./static/media/pulse_black.9e4a540b56168cf5264b74a7e62a5771.svg",
     "index.html": "./index.html",
-    "main.2b3d07cb.css.map": "./static/css/main.2b3d07cb.css.map",
-    "main.75702c37.js.map": "./static/js/main.75702c37.js.map"
+    "main.4da0dce4.css.map": "./static/css/main.4da0dce4.css.map",
+    "main.17d8eac9.js.map": "./static/js/main.17d8eac9.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b3d07cb.css",
-    "static/js/main.75702c37.js"
+    "static/css/main.4da0dce4.css",
+    "static/js/main.17d8eac9.js"
   ]
 }
