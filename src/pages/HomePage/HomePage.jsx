@@ -6,7 +6,7 @@ import TvSeries from "./TvSeries/TvSeries";
 
 import style from './HomePage.module.scss';
 
-const picksResFirst = ['Anime', 'Comedy', 'Horror'];
+const picksResFirst = ['Anime', 'Superhero', 'Magic'];
 const picksResLast = ['Mafia', 'Zombie', '1940s'];
 
 const HomePage = () => {
