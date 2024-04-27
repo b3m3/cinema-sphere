@@ -87,7 +87,7 @@ const Form = memo(() => {
         <button
           className={`${style.button} ${buttonBanStyle}`}
         >
-          { loading ? <Loading spinner size={10}/> : <span>Sing In</span> }
+          { loading ? <Loading spinner size={10}/> : <span>Sign In</span> }
         </button>
       </div>
     </form>

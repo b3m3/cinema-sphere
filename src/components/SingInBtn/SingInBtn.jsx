@@ -7,7 +7,7 @@ const SingInBtn = memo(({big}) => {
   return (
     <div className={`${style.wrapp} ${big && style.big}`}>
       <Link to={'/login'}>
-        { big ? 'Sign in for more access' : 'Sing In' }
+        { big ? 'Sign in for more access' : 'Sign In' }
       </Link>
     </div>
 
